@@ -16,17 +16,13 @@ class TicketType
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $ticket = null;
-
     #[ORM\Column(enumType: TicketLabel::class)]
     private ?TicketLabel $label = null;
 
     #[ORM\Column]
     private ?int $price = null;
 
-    #[ORM\Column]
-    private ?int $eventId = null;
+
 
     #[ORM\ManyToOne(inversedBy: 'tickettypes')]
     private ?Event $event = null;
@@ -47,17 +43,7 @@ class TicketType
         return $this->id;
     }
 
-    public function getTicket(): ?int
-    {
-        return $this->ticket;
-    }
-
-    public function setTicket(int $ticket): static
-    {
-        $this->ticket = $ticket;
-
-        return $this;
-    }
+   
 
     public function getLabel(): ?TicketLabel
     {
@@ -83,17 +69,7 @@ class TicketType
         return $this;
     }
 
-    public function getEventId(): ?int
-    {
-        return $this->eventId;
-    }
 
-    public function setEventId(int $eventId): static
-    {
-        $this->eventId = $eventId;
-
-        return $this;
-    }
 
     public function getEvent(): ?Event
     {
@@ -135,5 +111,10 @@ class TicketType
         }
 
         return $this;
+    }
+
+        function __toString()
+    {
+        return $this->label;
     }
 }

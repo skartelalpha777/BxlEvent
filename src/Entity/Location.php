@@ -135,4 +135,9 @@ class Location
 
         return $this;
     }
+
+    function __toString()
+    {
+        return $this ->street." " +$this->number.",".$this->postcode." ". $this->city;
+    }
 }

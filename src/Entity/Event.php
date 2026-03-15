@@ -32,12 +32,6 @@ class Event
     #[ORM\Column(enumType: Status::class)]
     private ?Status $status = null;
 
-    #[ORM\Column]
-    private ?int $creatorId = null;
-
-    #[ORM\Column]
-    private ?int $locationId = null;
-
     #[ORM\ManyToOne(inversedBy: 'events')]
     private ?Location $location = null;
 
@@ -148,29 +142,6 @@ class Event
         return $this;
     }
 
-    public function getCreatorId(): ?int
-    {
-        return $this->creatorId;
-    }
-
-    public function setCreatorId(int $creatorId): static
-    {
-        $this->creatorId = $creatorId;
-
-        return $this;
-    }
-
-    public function getLocationId(): ?int
-    {
-        return $this->locationId;
-    }
-
-    public function setLocationId(int $locationId): static
-    {
-        $this->locationId = $locationId;
-
-        return $this;
-    }
 
     public function getLocation(): ?Location
     {
@@ -338,5 +309,10 @@ class Event
         $this->categories->removeElement($category);
 
         return $this;
+    }
+
+        function __toString()
+    {
+        return $this->title;
     }
 }

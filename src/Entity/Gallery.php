@@ -17,9 +17,6 @@ class Gallery
     private ?string $filePath = null;
 
     #[ORM\Column]
-    private ?int $eventId = null;
-
-    #[ORM\Column]
     private ?bool $isMain = null;
 
     #[ORM\ManyToOne(inversedBy: 'galleries')]
@@ -42,17 +39,6 @@ class Gallery
         return $this;
     }
 
-    public function getEventId(): ?int
-    {
-        return $this->eventId;
-    }
-
-    public function setEventId(int $eventId): static
-    {
-        $this->eventId = $eventId;
-
-        return $this;
-    }
 
     public function isMain(): ?bool
     {

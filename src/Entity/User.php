@@ -23,11 +23,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 180)]
     private ?string $email = null;
 
-    /**
-     * @var list<string> The user roles
-     */
-    #[ORM\Column]
-    private array $roles = [];
+
 
     /**
      * @var string The hashed password
@@ -105,24 +101,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @see UserInterface
      */
-    public function getRoles(): array
-    {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
-
-        return array_unique($roles);
-    }
 
     /**
-     * @param list<string> $roles
+     * Allow to make the links between System roles and the enum UserRole
+     * @return array
      */
-    public function setRoles(array $roles): static
+    public function getRoles(): array
     {
-        $this->roles = $roles;
+        $liste = [];
 
-        return $this;
+        
+        if ($this->role) {
+            $liste[] = 'ROLE_' . strtoupper($this->role->value);
+        }
+       // dd($liste);
+
+        // 3. On ajoute TOUJOURS le rôle par défaut "ROLE_USER"
+        $liste[] = 'ROLE_USER';
+
+        // 4. On renvoie le tableau final sans doublons
+        return array_unique($liste);
     }
+
 
     /**
      * @see PasswordAuthenticatedUserInterface
@@ -145,7 +145,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __serialize(): array
     {
         $data = (array) $this;
-        $data["\0".self::class."\0password"] = hash('crc32c', $this->password);
+        $data["\0" . self::class . "\0password"] = hash('crc32c', $this->password);
 
         return $data;
     }
@@ -304,5 +304,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return $this;
+    }
+
+    function __toString()
+    {
+        return $this->firstName . " " . $this->lastName;
     }
 }

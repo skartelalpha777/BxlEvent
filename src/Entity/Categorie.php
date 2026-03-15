@@ -72,4 +72,9 @@ class Categorie
 
         return $this;
     }
+
+        function __toString()
+    {
+        return $this->name;
+    }
 }
