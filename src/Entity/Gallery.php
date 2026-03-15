@@ -22,6 +22,9 @@ class Gallery
     #[ORM\Column]
     private ?bool $isMain = null;
 
+    #[ORM\ManyToOne(inversedBy: 'galleries')]
+    private ?Event $event = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +62,18 @@ class Gallery
     public function setIsMain(bool $isMain): static
     {
         $this->isMain = $isMain;
+
+        return $this;
+    }
+
+    public function getEvent(): ?Event
+    {
+        return $this->event;
+    }
+
+    public function setEvent(?Event $event): static
+    {
+        $this->event = $event;
 
         return $this;
     }

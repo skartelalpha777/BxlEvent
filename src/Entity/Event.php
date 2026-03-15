@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Enum\Status;
 use App\Repository\EventRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -35,6 +37,51 @@ class Event
 
     #[ORM\Column]
     private ?int $locationId = null;
+
+    #[ORM\ManyToOne(inversedBy: 'events')]
+    private ?Location $location = null;
+
+    #[ORM\ManyToOne(inversedBy: 'events')]
+    private ?User $creator = null;
+
+    /**
+     * @var Collection<int, Ticket>
+     */
+    #[ORM\OneToMany(targetEntity: Ticket::class, mappedBy: 'event')]
+    private Collection $tickets;
+
+    /**
+     * @var Collection<int, Reports>
+     */
+    #[ORM\OneToMany(targetEntity: Reports::class, mappedBy: 'event')]
+    private Collection $reports;
+
+    /**
+     * @var Collection<int, Gallery>
+     */
+    #[ORM\OneToMany(targetEntity: Gallery::class, mappedBy: 'event')]
+    private Collection $galleries;
+
+    /**
+     * @var Collection<int, TicketType>
+     */
+    #[ORM\OneToMany(targetEntity: TicketType::class, mappedBy: 'event')]
+    private Collection $tickettypes;
+
+    /**
+     * @var Collection<int, Categorie>
+     */
+    #[ORM\ManyToMany(targetEntity: Categorie::class, inversedBy: 'events')]
+    private Collection $categories;
+
+    public function __construct()
+    {
+        $this->tickets = new ArrayCollection();
+        $this->reports = new ArrayCollection();
+        $this->galleries = new ArrayCollection();
+        $this->tickettypes = new ArrayCollection();
+        $this->categories = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -121,6 +168,174 @@ class Event
     public function setLocationId(int $locationId): static
     {
         $this->locationId = $locationId;
+
+        return $this;
+    }
+
+    public function getLocation(): ?Location
+    {
+        return $this->location;
+    }
+
+    public function setLocation(?Location $location): static
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
+    public function getCreator(): ?User
+    {
+        return $this->creator;
+    }
+
+    public function setCreator(?User $creator): static
+    {
+        $this->creator = $creator;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Ticket>
+     */
+    public function getTickets(): Collection
+    {
+        return $this->tickets;
+    }
+
+    public function addTicket(Ticket $ticket): static
+    {
+        if (!$this->tickets->contains($ticket)) {
+            $this->tickets->add($ticket);
+            $ticket->setEvent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTicket(Ticket $ticket): static
+    {
+        if ($this->tickets->removeElement($ticket)) {
+            // set the owning side to null (unless already changed)
+            if ($ticket->getEvent() === $this) {
+                $ticket->setEvent(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Reports>
+     */
+    public function getReports(): Collection
+    {
+        return $this->reports;
+    }
+
+    public function addReport(Reports $report): static
+    {
+        if (!$this->reports->contains($report)) {
+            $this->reports->add($report);
+            $report->setEvent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReport(Reports $report): static
+    {
+        if ($this->reports->removeElement($report)) {
+            // set the owning side to null (unless already changed)
+            if ($report->getEvent() === $this) {
+                $report->setEvent(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Gallery>
+     */
+    public function getGalleries(): Collection
+    {
+        return $this->galleries;
+    }
+
+    public function addGallery(Gallery $gallery): static
+    {
+        if (!$this->galleries->contains($gallery)) {
+            $this->galleries->add($gallery);
+            $gallery->setEvent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGallery(Gallery $gallery): static
+    {
+        if ($this->galleries->removeElement($gallery)) {
+            // set the owning side to null (unless already changed)
+            if ($gallery->getEvent() === $this) {
+                $gallery->setEvent(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, TicketType>
+     */
+    public function getTickettypes(): Collection
+    {
+        return $this->tickettypes;
+    }
+
+    public function addTickettype(TicketType $tickettype): static
+    {
+        if (!$this->tickettypes->contains($tickettype)) {
+            $this->tickettypes->add($tickettype);
+            $tickettype->setEvent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTickettype(TicketType $tickettype): static
+    {
+        if ($this->tickettypes->removeElement($tickettype)) {
+            // set the owning side to null (unless already changed)
+            if ($tickettype->getEvent() === $this) {
+                $tickettype->setEvent(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Categorie>
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Categorie $category): static
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories->add($category);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Categorie $category): static
+    {
+        $this->categories->removeElement($category);
 
         return $this;
     }

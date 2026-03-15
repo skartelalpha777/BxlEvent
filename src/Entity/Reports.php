@@ -14,11 +14,6 @@ class Reports
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $userId = null;
-
-    #[ORM\Column]
-    private ?int $eventId = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTime $date = null;
@@ -29,34 +24,17 @@ class Reports
     #[ORM\Column]
     private ?bool $treated = null;
 
+    #[ORM\ManyToOne(inversedBy: 'reports')]
+    private ?Event $event = null;
+
+    #[ORM\ManyToOne(inversedBy: 'reports')]
+    private ?User $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getUserId(): ?int
-    {
-        return $this->userId;
-    }
-
-    public function setUserId(int $userId): static
-    {
-        $this->userId = $userId;
-
-        return $this;
-    }
-
-    public function getEventId(): ?int
-    {
-        return $this->eventId;
-    }
-
-    public function setEventId(int $eventId): static
-    {
-        $this->eventId = $eventId;
-
-        return $this;
-    }
 
     public function getDate(): ?\DateTime
     {
@@ -90,6 +68,30 @@ class Reports
     public function setTreated(bool $treated): static
     {
         $this->treated = $treated;
+
+        return $this;
+    }
+
+    public function getEvent(): ?Event
+    {
+        return $this->event;
+    }
+
+    public function setEvent(?Event $event): static
+    {
+        $this->event = $event;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }
