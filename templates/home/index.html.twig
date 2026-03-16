@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Home
+{% endblock %}
+{% block body %}
+  <table class="table" border="1">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Date</th>
+        <th>Hour</th>
+      </tr>
+    </thead>
+    <tbody>
+      <nav>
+        <a href="{{ path('app_home_event_index') }}">Accueil</a> |
+        <a href="{{ path('app_register') }}">S'inscrire</a> |
+        <a href="{{path('app_login')}}">Connexion</a> {# On créera le lien après le make:auth #}
+        <hr />
+      </nav>
+
+      {% for event in events %}
+        <tr>
+          <td>{{ event.id }}</td>
+          <td>{{ event.title }}</td>
+          <td>{{ event.description }}</td>
+          <td>{{ event.date ? event.date|date('Y-m-d') : '' }}</td>
+          <td>{{ event.hour ? event.hour|date('H:i:s') : '' }}</td>
+        </tr>
+      {% else %}
+        <tr>
+          <td colspan="7">no records found</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
