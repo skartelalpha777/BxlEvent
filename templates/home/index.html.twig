@@ -15,12 +15,6 @@
       </tr>
     </thead>
     <tbody>
-      <nav>
-        <a href="{{ path('app_home_event_index') }}">Accueil</a> |
-        <a href="{{ path('app_register') }}">S'inscrire</a> |
-        <a href="{{path('app_login')}}">Connexion</a> {# On créera le lien après le make:auth #}
-        <hr />
-      </nav>
 
       {% for event in events %}
         <tr>
@@ -37,4 +31,5 @@
       {% endfor %}
     </tbody>
   </table>
+
 {% endblock %}
