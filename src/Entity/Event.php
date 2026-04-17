@@ -30,7 +30,7 @@ class Event
     private ?\DateTime $hour = null;
 
     #[ORM\Column(enumType: Status::class)]
-    private ?Status $status = null;
+    private ?Status $status = Status::NOTCHECKED;
 
     #[ORM\ManyToOne(inversedBy: 'events')]
     private ?Location $location = null;
@@ -315,4 +315,5 @@ class Event
     {
         return $this->title;
     }
+
 }

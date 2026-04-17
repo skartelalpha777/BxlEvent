@@ -26,8 +26,8 @@ class EventType extends AbstractType
             ->add('status', EnumType::class, [
                 'class' => Status::class,
                 'choice_label' => 'value',
-            ])
-            */
+            ])*/
+            
             ->add('location', EntityType::class, [
                 'class' => Location::class,
                 'choice_label' => 'id',

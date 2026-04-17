@@ -10,29 +10,59 @@
     <section id="hero" class="hero section">
       <div class="container">
         <div class="row gy-4 align-items-center">
-          <div class="col-lg-6 order-2 order-lg-1">
+          <div class="col order-2 order-lg-1">
             <div class="hero-content">
-              <h1>Bruxelles</h1>
+              <h1>BxlEvent</h1>
               <h2>L'agenda de vos meilleures sorties</h2>
-              <p">
+              <p>
                 Concerts, expositions, festivals ou événements sportifs... <strong>BxlEvent</strong> rassemble pour vous toutes les activités incontournables de la capitale. Trouvez l'événement parfait, réservez vos billets en quelques clics et profitez pleinement de la vie bruxelloise.
               </p>
-              <div class="hero-actions" data-aos="fade-up" data-aos-delay="500">
-                <a href="portfolio.html" class="btn btn-primary">View My Work</a>
-                <a href="contact.html" class="btn btn-outline">Get In Touch</a>
-              </div>
-              <div class="social-links" data-aos="fade-up" data-aos-delay="600">
-                <a href="#"><i class="bi bi-twitter"></i></a>
-                <a href="#"><i class="bi bi-linkedin"></i></a>
-                <a href="#"><i class="bi bi-github"></i></a>
-                <a href="#"><i class="bi bi-dribbble"></i></a>
-              </div>
             </div>
           </div>
         </div>
+
+        <div class="row">
+          <div class="col">Recherche</div>
+          <div class="col">filtre</div>
+          <div class="col">filtre</div>
+          <div class="col">filtre</div>
+          <div class="col">filtre</div>
+        </div>
+        <div class="row ">
+          {% for event in events %}
+            <div class="col-12 col-md-4 mt-4">
+              <div class="card">
+                <img src="{{ asset('assets/img/person/person-f-12.webp') }}" class="card-img-top" alt="..." />
+                <div class="card-body">
+                <p class="rounded text-white fw-bold " style="background:grey;>Categorie</p>
+                  <h5 class="card-title">{{ event.title }}</h5>
+                  <p class="card-text">{{ event.description }}</p>
+
+            <!-- DATE BADGE -->
+                <div class="position-absolute top-0 start-0 m-3 px-3 py-2 rounded text-white fw-bold"
+                    style="background: #1387c1;">
+                  {{ event.date|date('d M')|upper }}
+                </div>
+
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">
+                    <h4>{{ event.date|date('y-m-d') }}</h4>
+                  </li>
+                  <li class="list-group-item">{{ event.hour|date('H:i:s') }}</li>
+                  <li class="list-group-item">Location 📍</li>
+                  <li class="list-group-item">Pirx</li>
+                </ul>
+                <div class="card-body">
+                  <a href="#" class="card-link">Acheter un ticket</a>
+                  <a href="#" class="card-link">Another link</a>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
       </div>
     </section>
-    <!-- /Hero Section -->
   </main>
 
   <h1>Event index</h1>
@@ -72,4 +102,17 @@
   </table>
 
   <a href="{{ path('app_event_new') }}">Create new</a>
+  {# 1. Chargement du fichier que j'ai vu dans ton dossier vendor #}
+  <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
+
+  {# 2. Initialisation obligatoire pour activer les animations #}
+
+  <script>
+    AOS.init({
+      duration: 1000,
+      easing: 'smart',
+      once: true,
+      mirror: false
+    })
+  </script>
 {% endblock %}

@@ -696,9 +696,12 @@ section,
   font-size: 3.5rem;
   font-weight: 400;
   line-height: 1.2;
+  color: white;
   color: var(--heading-color);
   margin-bottom: 1.5rem;
   letter-spacing: -1px;
+
+
 }
 
 @media (max-width: 768px) {
@@ -723,7 +726,8 @@ section,
   padding: 80px 0;
   min-height: 100vh;
   display: flex;
-  align-items: center;
+  align-items: left;
+  text-align: left;
 }
 
 .hero .hero-content h1 {
@@ -756,10 +760,20 @@ section,
 }
 
 .hero .hero-content h2 {
-  font-size: 1.5rem;
+  font-size: 56px;
   font-weight: 400;
+  letter-spacing: -1px;
   margin-bottom: 2rem;
   color: color-mix(in srgb, var(--default-color), transparent 20%);
+
+  
+}
+.hero .hero-content p {
+color: #dee2e6; 
+font-size: 1.1rem; 
+line-height: 1.6;
+
+  
 }
 
 .hero .hero-content h2 .typed {
@@ -2868,4 +2882,27 @@ section,
 --------------------------------------------------------------*/
 .starter-section {
   /* Add your styles here */
+}
+
+.card{
+
+    border-radius: 10px;
+     background-color: var(--surface-color);
+     overflow: hidden;
+     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+     margin-bottom: 30px;
+     transition: all 0.3s ease;
+      color: white;
+    
+}
+
+.card  .list-group-item {
+  background-color: var(--surface-color);
+   color: white;
+   border: none;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
