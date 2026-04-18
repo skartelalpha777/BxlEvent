@@ -245,7 +245,7 @@ h6 {
     position: relative;
   }
 
-  .navmenu>ul>li { 
+  .navmenu>ul>li {
     white-space: nowrap;
     padding: 15px 28px 15px 0;
   }
@@ -766,14 +766,15 @@ section,
   margin-bottom: 2rem;
   color: color-mix(in srgb, var(--default-color), transparent 20%);
 
-  
-}
-.hero .hero-content p {
-color: #dee2e6; 
-font-size: 1.1rem; 
-line-height: 1.6;
 
-  
+}
+
+.hero .hero-content p {
+  color: #dee2e6;
+  font-size: 1.1rem;
+  line-height: 1.6;
+
+
 }
 
 .hero .hero-content h2 .typed {
@@ -2884,25 +2885,60 @@ line-height: 1.6;
   /* Add your styles here */
 }
 
-.card{
+.card {
 
-    border-radius: 10px;
-     background-color: var(--surface-color);
-     overflow: hidden;
-     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-     margin-bottom: 30px;
-     transition: all 0.3s ease;
-      color: white;
-    
+  border-radius: 10px;
+  background-color: #111827;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  margin-bottom: 30px;
+  transition: all 0.3s ease;
+  color: white;
+
+}
+.card-text{
+  color: #b0c8e0;
+  
 }
 
-.card  .list-group-item {
-  background-color: var(--surface-color);
-   color: white;
-   border: none;
+.card .list-group-item {
+  background-color: #111827;
+   color: #b0c8e0;
+  border: none;
 }
 
 .card:hover {
   transform: translateY(-10px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.categorie {
+  border-radius: 5px;
+  background-color: #5b8def;
+  display: inline-block;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.button {
+
+  background-color: #5a7a9a;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  padding: 5px;
+}
+.button:hover {
+  background-color:#7a9ab8 ;
+}
+
+.main{
+
+  margin-top: none;
+  background-image:url("../img/Atomium.jpg");
+  background-size: cover;   /* L'image est affichée en entier */
+    background-repeat: no-repeat; /* Évite que l'image ne se répète */
+    background-position: center;  /* Centre l'image dans le bloc */
+
+    min-height: 70vh;
 }

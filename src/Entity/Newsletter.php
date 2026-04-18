@@ -20,6 +20,13 @@ class Newsletter
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTime $inscriptionDate = null;
 
+    public function __construct()
+{
+    // On initilise a la date courante
+    $this->inscriptionDate = new \DateTime(); 
+}
+
+
     public function getId(): ?int
     {
         return $this->id;
