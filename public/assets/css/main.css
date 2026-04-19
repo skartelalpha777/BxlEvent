@@ -2885,6 +2885,20 @@ section,
   /* Add your styles here */
 }
 
+.main {
+
+  margin-top: none;
+  background-image: url("../img/Atomium.jpg");
+  background-size: cover;
+  /* L'image est affichée en entier */
+  background-repeat: no-repeat;
+  /* Évite que l'image ne se répète */
+  background-position: center;
+  /* Centre l'image dans le bloc */
+
+  min-height: 70vh;
+}
+
 .card {
 
   border-radius: 10px;
@@ -2896,14 +2910,15 @@ section,
   color: white;
 
 }
-.card-text{
+
+.card-text {
   color: #b0c8e0;
-  
+
 }
 
 .card .list-group-item {
   background-color: #111827;
-   color: #b0c8e0;
+  color: #b0c8e0;
   border: none;
 }
 
@@ -2922,23 +2937,29 @@ section,
 
 .button {
 
-  background-color: #5a7a9a;
+  background-color: #1387c1 !important;
   border: none;
+  border-radius: 10px !important;
+  color: white !important;
+  padding: 10px !important;
+}
+
+.bi {
+  color: #1387c1;
+
+}
+
+.newsletter {
+  background-color: #3a5a7d;
+}
+
+.noBackground {
   border-radius: 10px;
   color: white;
-  padding: 5px;
-}
-.button:hover {
-  background-color:#7a9ab8 ;
-}
+  background-color: #111827;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: solid 1px;
+  border-color: #1387c1;
 
-.main{
-
-  margin-top: none;
-  background-image:url("../img/Atomium.jpg");
-  background-size: cover;   /* L'image est affichée en entier */
-    background-repeat: no-repeat; /* Évite que l'image ne se répète */
-    background-position: center;  /* Centre l'image dans le bloc */
-
-    min-height: 70vh;
 }
