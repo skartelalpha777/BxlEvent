@@ -2912,7 +2912,8 @@ section,
 }
 
 .card-text {
-  color: #b0c8e0;
+  /* color: #b0c8e0;*/
+  color: white;
 
 }
 
@@ -2961,5 +2962,5 @@ section,
   padding-bottom: 10px;
   border: solid 1px;
   border-color: #1387c1;
-
+  
 }
