@@ -8,6 +8,7 @@
 
 		<section id="contact" class="contact section">
 
+
 			<div class="container section-title">
 				<h2>Contact</h2>
 				<p>Une question sur un événement à Bruxelles ? Notre équipe vous répond dans les plus brefs délais.</p>
@@ -27,7 +28,8 @@
 								</div>
 								<div class="content">
 									<h4>Notre Localisation</h4>
-									<p>A108 Adam Street, New York, NY 535022</p>
+									<p>Avenue de l'Astronomie 19 
+																																																												1210 Saint-Josse</p>
 								</div>
 							</div>
 
@@ -57,14 +59,7 @@
 						<div class="contact-form">
 							<h3>Envoyez un message</h3>
 
-							{% for message in app.flashes('success') %}
-								<div class="alert alert-success alert-dismissible fade show" role="alert">
-									{{ message }}
-									<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-								</div>
-							{% endfor %}
 
-						
 							{{ form_start(form, {'attr': {'class': 'php-email-form'}}) }}
 							<div class="row gy-4">
 
@@ -108,20 +103,33 @@
 									{{ form_errors(form.message) }}
 								</div>
 
-								<div
-									class="col-12 text-center">
+								<div class="col-12 text-center">
 									<div class="loading">Chargement...</div>
 									<div class="error-message"></div>
 									<div class="sent-message">Votre message a été envoyé. Merci !</div>
 
 									<button type="submit" class="btn button">Envoyer le message</button>
 								</div>
+								<div class="col-12 text-center">
+									{% for message in app.flashes('success') %}
+										<div class="alert alert-success">
+											{{ message }}
+										</div>
+									{% endfor %}
+								</div>
 
 							</div>
 							{{ form_end(form) }}
-							{# --- FIN DU FORMULAIRE SYMFONY --- #}
+
 
 						</div>
+
+						{% for message in app.flashes('success') %}
+							<div class="alert alert-success alert-dismissible fade show" role="alert">
+								{{ message }}
+								<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+							</div>
+						{% endfor %}
 					</div>
 
 				</div>

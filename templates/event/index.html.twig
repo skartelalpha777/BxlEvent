@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	Event index
+	BxlEvent-Accueil
 {% endblock %}
 
 {% block body %}
@@ -112,47 +112,51 @@
 							{% for label, messages in app.flashes %}
 								{% for message in messages %}
 									<div class="alert alert-{{ label == 'error' ? 'danger' : 'success' }}role=" alert"  justify-content-center>{{ message }}
-								</div>
-								{% endfor %}
-							{% endfor %}
-						</div>
-					</form>
-
-			</div>
-		</div>
-
-
-	</div>
-</section></main><h1>Event index</h1><table class="table">
-<thead>
-	<tr>
-		<th>Id</th>
-		<th>Title</th>
-		<th>Description</th>
-		<th>Date</th>
-		<th>Hour</th>
-		<th>Status</th>
-		<th>actions</th>
-	</tr>
-</thead>
-<tbody>
-	{% for event in events %}
-		<tr>
-			<td>{{ event.id }}</td>
-			<td>{{ event.title }}</td>
-			<td>{{ event.description }}</td>
-			<td>{{ event.date ? event.date|date('Y-m-d') : '' }}</td>
-			<td>{{ event.hour ? event.hour|date('H:i:s') : '' }}</td>
-			<td>{{ event.status.value }}</td>
-			<td>
-				<a href="{{ path('app_event_show', { id: event.id }) }}">show</a>
-				<a href="{{ path('app_event_edit', { id: event.id }) }}">edit</a>
-			</td>
-		</tr>
-	{% else %}
-		<tr>
-			<td colspan="7">no records found</td>
-		</tr>
-	{% endfor %}
-</tbody></table><a href="{{ path('app_event_new') }}">Create new</a>{# 1. Chargement du fichier que j'ai vu dans ton dossier vendor #}<script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>{# 2. Initialisation obligatoire pour activer les animations #}<script>
-AOS.init({duration: 1000, easing: 'smart', once: true, mirror: false})</script>{% endblock %}
+																		</div>
+																		{% endfor %}
+																	{% endfor %}
+																</div>
+															</form>
+										
+													</div>
+												</div>
+										
+										
+											</div>
+										</section></main><h1>Event index</h1><table class=" table">
+										<thead>
+											<tr>
+												<th>Id</th>
+												<th>Title</th>
+												<th>Description</th>
+												<th>Date</th>
+												<th>Hour</th>
+												<th>Status</th>
+												<th>actions</th>
+											</tr>
+										</thead>
+										<tbody>
+											{% for event in events %}
+												<tr>
+													<td>{{ event.id }}</td>
+													<td>{{ event.title }}</td>
+													<td>{{ event.description }}</td>
+													<td>{{ event.date ? event.date|date('Y-m-d') : '' }}</td>
+													<td>{{ event.hour ? event.hour|date('H:i:s') : '' }}</td>
+													<td>{{ event.status.value }}</td>
+													<td>
+														<a href="{{ path('app_event_show', { id: event.id }) }}">show</a>
+														<a href="{{ path('app_event_edit', { id: event.id }) }}">edit</a>
+													</td>
+												</tr>
+											{% else %}
+												<tr>
+													<td colspan="7">no records found</td>
+												</tr>
+											{% endfor %}
+										</tbody>
+									</table>
+									<a href="{{ path('app_event_new') }}">Create new</a>{# 1. Chargement du fichier que j'ai vu dans ton dossier vendor #}<script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>{# 2. Initialisation obligatoire pour activer les animations #}<script>
+										AOS.init({duration: 1000, easing: 'smart', once: true, mirror: false})
+									</script>
+								{% endblock %}

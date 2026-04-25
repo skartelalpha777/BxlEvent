@@ -1,21 +1,134 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-  Register
+	BxlEvvent Inscription
 {% endblock %}
 
 {% block body %}
-  <h1>Register</h1>
 
-  {{ form_errors(registrationForm) }}
+	<main class="main">
 
-  {{ form_start(registrationForm) }}
-  {{ form_row(registrationForm.firstName, { label: 'Prénom' }) }}
-  {{ form_row(registrationForm.lastName, { label: 'Nom' }) }}
-  {{ form_row(registrationForm.email) }}
-  {{ form_row(registrationForm.plainPassword, { label: 'Mot de passe' }) }}
-  {{ form_row(registrationForm.agreeTerms) }}
+		<section id="contact" class="contact section">
 
-  <button type="submit" class="btn">Register</button>
-  {{ form_end(registrationForm) }}
-{% endblock %}
+			<div class="container">
+
+				<div class="row g-4 g-lg-5">
+					<div class="col-3"></div>
+					<div class="col-6 info-box">
+						<div class="container section-title">
+							<h2>Inscription</h2>
+						</div>
+						<div class="inscription-form">
+
+							{{ form_start(registrationForm, {'attr': {'class': 'php-email-form'}}) }}
+							<div class="row gy-4">
+
+								<div class="col-md-6">
+									{{ form_label(registrationForm.lastName, 'Nom') }}
+
+									<div class="input-group mb-3">
+										<span class="input-group-text">
+											<i class="bi bi-person-fill"></i>
+										</span>
+										{{ form_widget(registrationForm.lastName, {
+                                        'attr': {
+                                          
+                                            'class': 'form-control', 
+                                          
+                                        }
+                                    }) }}
+									</div>
+									{{ form_errors(registrationForm.firstName) }}
+								</div>
+								<div class="col-md-6">
+									{{ form_label(registrationForm.firstName, 'Prenom') }}
+									<div class="input-group mb-3">
+										<span class="input-group-text">
+											<i class="bi bi-person-fill"></i>
+										</span>
+										{{ form_widget(registrationForm.firstName, {
+                                        'attr': {
+                                            'class': 'form-control', 
+                                            
+                                        }
+                                    }) }}
+									</div>
+									{{ form_errors(registrationForm.firstName) }}
+								</div>
+
+								<div class="col-md-6">
+									{{ form_label(registrationForm.email, 'Email') }}
+									<div class="input-group mb-3">
+										<span class="input-group-text">
+											<i class="bi bi-envelope-at-fill"></i>
+										</span>
+
+										{{ form_widget(registrationForm.email, {
+                                        'attr': {
+                                            'class': 'form-control'
+                                            
+                            
+                                        }
+                                    } ) }}
+									</div>
+									{{ form_errors(registrationForm.email) }}
+								</div>
+
+								<div class="col-md-6">
+									{{form_label(registrationForm.plainPassword, 'Mot de passe')}}
+									<div class="input-group mb-3">
+										<span class="input-group-text">
+											<i class="bi bi-lock-fill"></i>
+										</span>
+
+										{{ form_widget(registrationForm.plainPassword, {
+                                      
+                                        'attr': {
+                                            'class': 'form-control',   
+                                            'rows': 6
+                                        }
+                                    }) }}
+									</div>
+									{{ form_errors(registrationForm.plainPassword) }}
+								</div>
+
+								<div class="col-12 text-center">
+
+									<button type="submit" class="btn button">S'incrire</button>
+								</div>
+
+
+
+							</div>
+							{{ form_end(registrationForm) }}
+						
+
+						</div>
+
+						{% for message in app.flashes('success') %}
+							<div class="alert alert-success alert-dismissible fade show" role="alert">
+								{{ message }}
+								<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+							</div>
+						{% endfor %}
+					</div>
+					<div class="col-3"></div>
+				</div>
+
+			</div>
+
+		</section>
+
+
+		{{ form_errors(registrationForm) }}
+
+		{# form_start(registrationForm) }}
+																																				{{ form_row(registrationForm.firstName, { label: 'Prénom' }) }}
+																																				{{ form_row(registrationForm.lastName, { label: 'Nom' }) }}
+																																				{{ form_row(registrationForm.email) }}
+																																				{{ form_row(registrationForm.plainPassword, { label: 'Mot de passe' }) }}
+																																				{{ form_row(registrationForm.agreeTerms) }}
+																																		
+																																				<button type="submit" class="btn">Register</button>
+																																				{{ form_end(registrationForm) } #}
+	{% endblock %}
