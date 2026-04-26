@@ -20,8 +20,30 @@
 						</div>
 						<div class="inscription-form">
 
+
 							{{ form_start(registrationForm, {'attr': {'class': 'php-email-form'}}) }}
 							<div class="row gy-4">
+								{% for child in registrationForm.role %}
+									<div
+										class="col-md-6">
+										{# L'input doit être JUSTE AVANT le label #}
+										{{ form_widget(child, {'attr': {'class': 'role-input'}}) }}
+
+										<label for="{{ child.vars.id }}" class="role-label">
+											<span class="role-title">{{ child.vars.attr['data-titre'] }}</span>
+											<span class="role-description">{{ child.vars.attr['data-description'] }}</span>
+											
+											{% if child.vars.value == 0 %}
+												<i class="bi bi-people-fill"></i>
+											{% else %}
+												<i class="bi bi-megaphone-fill"></i>
+											{% endif %}
+										</label>
+									</div>
+								{% endfor %}
+								<div class="text-danger">
+									{{ form_errors(registrationForm.role) }}
+								</div>
 
 								<div class="col-md-6">
 									{{ form_label(registrationForm.lastName, 'Nom') }}
@@ -40,6 +62,8 @@
 									</div>
 									{{ form_errors(registrationForm.firstName) }}
 								</div>
+
+
 								<div class="col-md-6">
 									{{ form_label(registrationForm.firstName, 'Prenom') }}
 									<div class="input-group mb-3">
@@ -92,25 +116,30 @@
 									{{ form_errors(registrationForm.plainPassword) }}
 								</div>
 
-								<div class="col-12 text-center">
 
-									<button type="submit" class="btn button">S'incrire</button>
+								<div class="col">
+
+									{{ form_row(registrationForm.agreeTerms)}}
+
 								</div>
 
+
+								<div class="col-12 text-center">
+
+									<button type="submit" class="btn button large">S'incrire</button>
+
+									<p>Vous disposez déja d'un compte?
+										<a href="{{path('app_login')}}">Connectez vous</a>
+									</p>
+								</div>
 
 
 							</div>
 							{{ form_end(registrationForm) }}
-						
+
 
 						</div>
 
-						{% for message in app.flashes('success') %}
-							<div class="alert alert-success alert-dismissible fade show" role="alert">
-								{{ message }}
-								<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-							</div>
-						{% endfor %}
 					</div>
 					<div class="col-3"></div>
 				</div>
@@ -119,16 +148,4 @@
 
 		</section>
 
-
-		{{ form_errors(registrationForm) }}
-
-		{# form_start(registrationForm) }}
-																																				{{ form_row(registrationForm.firstName, { label: 'Prénom' }) }}
-																																				{{ form_row(registrationForm.lastName, { label: 'Nom' }) }}
-																																				{{ form_row(registrationForm.email) }}
-																																				{{ form_row(registrationForm.plainPassword, { label: 'Mot de passe' }) }}
-																																				{{ form_row(registrationForm.agreeTerms) }}
-																																		
-																																				<button type="submit" class="btn">Register</button>
-																																				{{ form_end(registrationForm) } #}
 	{% endblock %}
