@@ -24,22 +24,25 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $allowedRoles = [UserRole::MEMBRE, UserRole::CONTRIBUTEUR];
+            $role = $form->get('role')->getData();
+            // rajoute une sécurité supplémentaire pour ne pas q'un utilisateur puisse s'attribuer le role admin
+            if (!in_array($role, $allowedRoles)) {
+                throw new \Exception("Tentative d'injection de rôle non autorisé.");
+            }
             //dd($form);
-            /** @var string $plainPassword */
+
             $plainPassword = $form->get('plainPassword')->getData();
             $currentDate = new DateTime();
-            $role = $form->get('role')->getData();
 
 
-            // encode the plain password
             $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));
             $user->setDateRgpd($currentDate);
             $user->setRole($role);
 
             $entityManager->persist($user);
             $entityManager->flush();
-
-            // do anything else you need here, like send an email
 
             return $this->redirectToRoute('app_home_event_index');
         }

@@ -2760,7 +2760,7 @@ section,
 
 @media (max-width: 992px) {
   .contact .info-box {
-    padding: 1.5rem;
+    padding: 1.5rem;  
   }
 }
 
@@ -3043,4 +3043,15 @@ largeur du contenaire */
 /* Changement de couleur de l'icône quand c'est sélectionné */
 .role-input:checked+.role-label i {
   color: #008ecc;
+}
+
+@media (max-width: 575px) {
+    .info-box {
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 20px 15px !important;
+    }
+    .contact .container {
+        padding: 0 10px;
+    }
 }

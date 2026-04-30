@@ -12,12 +12,13 @@
 
 			<div class="container">
 
-				<div class="row g-4 g-lg-5">
-					<div class="col-3"></div>
-					<div class="col-6 info-box">
+				<div class="row  justify-content-center gy-4">
+					
+					<div class="col-11 col-md-10 col-lg-8 info-box">
 						<div class="container section-title">
 							<h2>Inscription</h2>
 						</div>
+
 						<div class="inscription-form">
 
 
@@ -26,7 +27,7 @@
 								{% for child in registrationForm.role %}
 									<div
 										class="col-md-6">
-										{# L'input doit être JUSTE AVANT le label #}
+						
 										{{ form_widget(child, {'attr': {'class': 'role-input'}}) }}
 
 										<label for="{{ child.vars.id }}" class="role-label">
@@ -141,7 +142,7 @@
 						</div>
 
 					</div>
-					<div class="col-3"></div>
+					
 				</div>
 
 			</div>
