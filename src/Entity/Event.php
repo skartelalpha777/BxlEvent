@@ -68,6 +68,9 @@ class Event
     #[ORM\ManyToMany(targetEntity: Categorie::class, inversedBy: 'events')]
     private Collection $categories;
 
+    #[ORM\Column(length: 255)]
+    private ?string $shortDescription = null;
+
     public function __construct()
     {
         $this->tickets = new ArrayCollection();
@@ -315,5 +318,17 @@ class Event
     {
         return $this->title;
     }
+
+        public function getShortDescription(): ?string
+        {
+            return $this->shortDescription;
+        }
+
+        public function setShortDescription(string $shortDescription): static
+        {
+            $this->shortDescription = $shortDescription;
+
+            return $this;
+        }
 
 }

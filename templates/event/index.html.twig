@@ -47,10 +47,14 @@
 							<div class="card">
 								<img src="{{ asset('assets/img/person/person-f-12.webp') }}" class="card-img-top" alt="..."/>
 								<div class="card-body">
-									<p class="categorie mt-3">Categorie</p>
+									{% for cat in event.categories %}
+										<p class="categorie mt-3">{{cat.name}}</p>
+
+									{% endfor %}
+
 
 									<h4 class="card-title">{{ event.title }}</h5>
-									<p class="card-text">{{ event.description }}</p>
+									<p class="card-text">{{ event.shortDescription }}</p>
 
 									<!-- DATE BADGE -->
 									<div class="position-absolute top-0 start-0 m-3 px-3 py-2 rounded text-white fw-bold" style="background: #1387c1;">
@@ -61,7 +65,12 @@
 								<ul class="list-group list-group-flush">
 									<li class="list-group-item">
 										<i class="bi bi-geo-alt"></i>
-										Location</li>
+										{% set adress = event.location.name ~','~ event.location.street ~'  '~ event.location.number ~','~ event.location.postcode ~' '~ event.location.city	%}
+										{% set url = 'https://www.google.com/maps/search/?api=1&query=' ~ adress|url_encode%}
+
+										<a href="{{url}}">{{event.location.name}}</a>
+									</li>
+
 									<li class="list-group-item ">
 										<i class="bi bi-calendar-check-fill me-1"></i>
 										{{event.date|date('d M Y') }}
@@ -89,74 +98,75 @@
 							</div>
 						</div>
 					{% endfor %}
-				</div>
+									</li>
+								</div>
 
 
-			</div>
-		</div>
-	</section>
-
-	<section class="newlstter pt-0">
-		<div class="container-fluid p-0  newsletter mt-0">
-			<div class="row   d-flex align-items-center justify-content-center text-center">
-				<div class="col my-5">
-					<h2>Ne manquez aucune sortie</h2>
-					<p>Inscrivez vous a notre newletter</p>
-					<form name="frmNewsletter" action="{{path('app_newSuscrib_new')}}" method="post">
-						<div class="input-group justify-content-center">
-							<input type="email" name="email" id="email" placeholder="Email" class="form-control rounded" style="max-width: 300px;">
-							<button type="submit" class="button ms-2 ">S'abonner</button>
-							<input type="hidden" name="_token" value="{{ csrf_token('newsletter_token') }}">
+							</div>
 						</div>
-						<div class="message">
-							{% for label, messages in app.flashes %}
-								{% for message in messages %}
-									<div class="alert alert-{{ label == 'error' ? 'danger' : 'success' }}role=" alert"  justify-content-center>{{ message }}
-																		</div>
-																		{% endfor %}
-																	{% endfor %}
-																</div>
-															</form>
-										
-													</div>
-												</div>
-										
-										
-											</div>
-										</section></main><h1>Event index</h1><table class=" table">
-										<thead>
-											<tr>
-												<th>Id</th>
-												<th>Title</th>
-												<th>Description</th>
-												<th>Date</th>
-												<th>Hour</th>
-												<th>Status</th>
-												<th>actions</th>
-											</tr>
-										</thead>
-										<tbody>
-											{% for event in events %}
-												<tr>
-													<td>{{ event.id }}</td>
-													<td>{{ event.title }}</td>
-													<td>{{ event.description }}</td>
-													<td>{{ event.date ? event.date|date('Y-m-d') : '' }}</td>
-													<td>{{ event.hour ? event.hour|date('H:i:s') : '' }}</td>
-													<td>{{ event.status.value }}</td>
-													<td>
-														<a href="{{ path('app_event_show', { id: event.id }) }}">show</a>
-														<a href="{{ path('app_event_edit', { id: event.id }) }}">edit</a>
-													</td>
-												</tr>
-											{% else %}
-												<tr>
-													<td colspan="7">no records found</td>
-												</tr>
-											{% endfor %}
-										</tbody>
-									</table>
-									<a href="{{ path('app_event_new') }}">Create new</a>{# 1. Chargement du fichier que j'ai vu dans ton dossier vendor #}<script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>{# 2. Initialisation obligatoire pour activer les animations #}<script>
-										AOS.init({duration: 1000, easing: 'smart', once: true, mirror: false})
-									</script>
-								{% endblock %}
+					</section>
+
+					<section class="newlstter pt-0">
+						<div class="container-fluid p-0  newsletter mt-0">
+							<div class="row   d-flex align-items-center justify-content-center text-center">
+								<div class="col my-5">
+									<h2>Ne manquez aucune sortie</h2>
+									<p>Inscrivez vous a notre newletter</p>
+									<form name="frmNewsletter" action="{{path('app_newSuscrib_new')}}" method="post">
+										<div class="input-group justify-content-center">
+											<input type="email" name="email" id="email" placeholder="Email" class="form-control rounded" style="max-width: 300px;">
+											<button type="submit" class="button ms-2 ">S'abonner</button>
+											<input type="hidden" name="_token" value="{{ csrf_token('newsletter_token') }}">
+										</div>
+										<div class="message">
+											{% for label, messages in app.flashes %}
+												{% for message in messages %}
+													<div class="alert alert-{{ label == 'error' ? 'danger' : 'success' }}role=" alert"  justify-content-center>{{ message }}
+																																																																								</div>
+																																																																								{% endfor %}
+																																																																							{% endfor %}
+																																																																						</div>
+																																																																					</form>
+														
+																																																																			</div>
+																																																																		</div>
+														
+														
+																																																																	</div>
+																																																																</section></main><h1>Event index</h1><table class=" table">
+														<thead>
+															<tr>
+																<th>Id</th>
+																<th>Title</th>
+																<th>Description</th>
+																<th>Date</th>
+																<th>Hour</th>
+																<th>Status</th>
+																<th>actions</th>
+															</tr>
+														</thead>
+														<tbody>
+															{% for event in events %}
+																<tr>
+																	<td>{{ event.id }}</td>
+																	<td>{{ event.title }}</td>
+																	<td>{{ event.description }}</td>
+																	<td>{{ event.date ? event.date|date('Y-m-d') : '' }}</td>
+																	<td>{{ event.hour ? event.hour|date('H:i:s') : '' }}</td>
+																	<td>{{ event.status.value }}</td>
+																	<td>
+																		<a href="{{ path('app_event_show', { id: event.id }) }}">show</a>
+																		<a href="{{ path('app_event_edit', { id: event.id }) }}">edit</a>
+																	</td>
+																</tr>
+															{% else %}
+																<tr>
+																	<td colspan="7">no records found</td>
+																</tr>
+															{% endfor %}
+														</tbody>
+													</table>
+													<a href="{{ path('app_event_new') }}">Create new</a>{# 1. Chargement du fichier que j'ai vu dans ton dossier vendor #}<script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>{# 2. Initialisation obligatoire pour activer les animations #}<script>
+														AOS.init({duration: 1000, easing: 'smart', once: true, mirror: false})
+													</script>
+												{% endblock %}

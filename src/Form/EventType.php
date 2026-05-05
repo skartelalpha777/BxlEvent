@@ -12,6 +12,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use App\Enum\Status;
 use Symfony\Component\Form\Extension\Core\Type\EnumType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class EventType extends AbstractType
 {
@@ -22,15 +25,26 @@ class EventType extends AbstractType
             ->add('description')
             ->add('date')
             ->add('hour')
+            ->add('shortDescription', TextType::class, [
+    'constraints' => [
+        new NotBlank(message: 'La description courte est obligatoire.'),
+        new Length( 
+            min: 50,
+            max: 110,
+            minMessage: 'Votre description doit faire au moins {{ limit }} caractères.',
+            maxMessage: 'Votre description ne peut pas dépasser {{ limit }} caractères.',
+        )
+    ]
+])
             /*
             ->add('status', EnumType::class, [
                 'class' => Status::class,
                 'choice_label' => 'value',
             ])*/
-            
+
             ->add('location', EntityType::class, [
                 'class' => Location::class,
-                'choice_label' => 'id',
+                'choice_label' => 'name',
             ])
             ->add('creator', EntityType::class, [
                 'class' => User::class,
@@ -38,8 +52,9 @@ class EventType extends AbstractType
             ])
             ->add('categories', EntityType::class, [
                 'class' => Categorie::class,
-                'choice_label' => 'id',
+                'choice_label' => 'name',
                 'multiple' => true,
+                'expanded' => true,
             ])
         ;
     }

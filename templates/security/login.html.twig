@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block body %}
-	<main class="main">
+	<div class="main">
 
 		<section id="contact" class="contact section">
 
@@ -14,7 +14,7 @@
 
 					<div class="col-11 col-md-10 col-lg-8 info-box">
 						<div class="container section-title">
-							<h2>Connexion</h2>
+							<h1>Connexion</h1>
 						</div>
 						<div class="inscription-form">
 							<form method="post">
@@ -67,7 +67,7 @@
 
 									</div>
 									<div class="col-12 col-md-6 col-lg-6">
-										<a class=" d-flex justify-content-start justify-content-md-end" href="#">Mot de passe oublié?</a>
+										<a class=" d-flex justify-content-start justify-content-md-end" href="{{path('app_forgot_password_request')}}">Mot de passe oublié?</a>
 									</div>
 
 								</div>
@@ -88,6 +88,6 @@
 
 				</div>
 			</div>
-		</main>
+		</section>
 	</div>
 {% endblock %}

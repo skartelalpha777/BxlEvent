@@ -8,6 +8,7 @@
     <table class="table">
         <thead>
             <tr>
+                <th>Name</th>
                 <th>Id</th>
                 <th>Street</th>
                 <th>Number</th>
@@ -20,6 +21,7 @@
         <tbody>
         {% for location in locations %}
             <tr>
+                <td>{{ location.name }}</td>
                 <td>{{ location.id }}</td>
                 <td>{{ location.street }}</td>
                 <td>{{ location.number }}</td>

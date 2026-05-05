@@ -3045,13 +3045,3 @@ largeur du contenaire */
   color: #008ecc;
 }
 
-@media (max-width: 575px) {
-    .info-box {
-        max-width: 100% !important;
-        margin: 0 !important;
-        padding: 20px 15px !important;
-    }
-    .contact .container {
-        padding: 0 10px;
-    }
-}
