@@ -3045,3 +3045,11 @@ largeur du contenaire */
   color: #008ecc;
 }
 
+/* permet d'appliquer les mêmes dimensions aux images pricipales de 
+l'événement dans la page consulter un événement */
+.event-card-img {
+    width: 100%;      
+    height: 535px;    
+    object-fit: cover; 
+    object-position: center; 
+}

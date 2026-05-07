@@ -68,7 +68,7 @@
 										{% set adress = event.location.name ~','~ event.location.street ~'  '~ event.location.number ~','~ event.location.postcode ~' '~ event.location.city	%}
 										{% set url = 'https://www.google.com/maps/search/?api=1&query=' ~ adress|url_encode%}
 
-										<a href="{{url}}">{{event.location.name}}</a>
+										<a href="{{url}}" target="_blank">{{event.location.name}}</a>
 									</li>
 
 									<li class="list-group-item ">

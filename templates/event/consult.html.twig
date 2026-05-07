@@ -10,49 +10,179 @@
 
 		<section id="hero">
 
+			<section id="contact" class="contact section">
 
-			<div class="container">
+				<div class="container">
 
-				<div class="row">
-					<div class="col-lg-9">
-						<div id="carouselExample" class="carousel slide">
-							<div class="carousel-inner">
+					<div class="row  gx-5">
+						<div class="col-lg-8">
+							<div id="carouselExample" class="carousel slide">
+								<div class="carousel-inner">
 
-								{% for eventimg in event.galleries %}
-									{% set name = eventimg.filePath %}
+									{% for eventimg in event.galleries %}
+										{% set name = eventimg.name %}
 
-									<div class="carousel-item {% if loop.first %}active{% endif %}">
-										<img src="{{ asset('assets/img/uploads/events/') ~ name }}" class="d-block w-100" alt="...">
-									</div>
-								{% endfor %}
+										<div class="carousel-item {% if loop.first %}active{% endif %}">
+											<img src="{{ asset('assets/img/uploads/events/') ~ name }}" class="rounded event-card-img " alt="image de l'évènement: {{event.title}}">
+										</div>
+									{% endfor %}
+
+
+								</div>
+								<button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+									<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+									<span class="visually-hidden">Previous</span>
+								</button>
+								<button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+									<span class="carousel-control-next-icon" aria-hidden="true"></span>
+									<span class="visually-hidden">Next</span>
+								</button>
+								<div class="position-absolute top-0 start-0 m-3 px-3 py-2 rounded text-white fw-bold" style="background: #1a9c23;">
+									{{ event.date|date('d M Y')|upper }}
+								</div>
+
+								<div class="position-absolute top-50 start-0  mx-3 ">
+									{% for cat in event.categories %}
+										<p class="categorie  mt-5  px-3 rounded">{{cat.name}}</p>
+
+									{% endfor %}
+									<h1 class=" ">{{event.title}}</h1>
+									<p>
+										<i class="bi bi-geo-alt"></i>
+										{{event.location.name}}</p>
+									<p class="w-50 ">{{event.shortDescription}}</p>
+								</div>
 
 
 							</div>
-							<button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-								<span class="visually-hidden">Previous</span>
+
+
+						</div>
+						<div class="col-lg-4 info-box">
+							<h2>Informations</h2>
+							<div class="row ">
+								<div class="col   Col ">
+									<li class="list-group-item ">
+										<i class="bi bi-calendar-check-fill me-1"></i>
+										Date
+									</li>
+								</div>
+								<div class="col ">
+									<p>{{event.date|date('d M Y') }}
+									</p>
+								</div>
+							</div>
+							<div class="row ">
+								<div class="col   Col ">
+									<li class="list-group-item ">
+										<i class="bi bi-alarm"></i>
+										Heure
+
+									</li>
+								</div>
+								<div class="col ">
+									<p>{{ event.hour|date('H:i') }}</p>
+								</div>
+							</div>
+
+
+							<div class="row ">
+								<div class="col   Col ">
+									<li class="list-group-item ">
+										<i class="bi bi-geo-alt"></i>
+										Lieu
+
+									</li>
+								</div>
+								<div class="col  ">
+									{% set adress = event.location.name ~','~ event.location.street ~'  '~ event.location.number ~','~ event.location.postcode ~' '~ event.location.city	%}
+									{% set url = 'https://www.google.com/maps/search/?api=1&query=' ~ adress|url_encode%}
+									<p>
+										<a href="{{url}}" target="_blank">{{event.location.name}}</a>
+									</p>
+								</div>
+							</div>
+							<div class="row ">
+								<div class="col   Col ">
+									<li class="list-group-item ">
+										<i class="bi bi-bookmark-heart"></i>
+										Catégorie
+
+									</li>
+								</div>
+								<div class="col ">
+									{% set allCategories ='' %}
+									{% for cat  in event.categories %}
+										{% set allCategories = allCategories ~ cat.name ~' '%}
+									{% endfor %}
+									<p>{{allCategories }}</p>
+
+								</div>
+								<div class="row ">
+									<div class="col   Col ">
+										<li class="list-group-item ">
+											<i class="bi bi-tag"></i>
+											Prix
+										</li>
+									</div>
+									<div class="col  ">
+
+										<p>Afficher prix</p>
+
+									</div>
+								</div>
+
+							</div>
+							<button class="btn button large " type="submit">
+								Acheter un ticket
 							</button>
-							<button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-								<span class="carousel-control-next-icon" aria-hidden="true"></span>
-								<span class="visually-hidden">Next</span>
-							</button>
+							<button class=" noBackground large mt-2" type="button">Ajouter à mes favoris</button>
 						</div>
 					</div>
-					<div class="col">bbbbb</div>
+
+					<div class="row gx-5 mt-5">
+						<div class="col-lg-8 info-box">
+
+							<div class="row">
+								<div class="col">
+									<h2>Description</h2>
+									<p class="mt-3">{{event.description}}</p>
+
+									<div class="border-bottom"></div>
+
+									<h2 class="mt-4 mb-3">Lieu</h2>
+									<i class="bi bi-geo-alt"></i>
+									{% set adress = event.location.name ~','~ event.location.street ~'  '~ event.location.number ~','~ event.location.postcode ~' '~ event.location.city	%}
+									{% set url = 'https://www.google.com/maps/search/?api=1&query=' ~ adress|url_encode%}
+
+									<a href="{{url}}" target="_blank">{{event.location.name}}</a>
+									<div>
+										<i class="bi bi-geo"></i>
+										{{event.location.street ~'  '~ event.location.number ~','~ event.location.postcode ~' '~ event.location.city}}
+									</div>
+									<div class="mt-3">
+										<iframe class="rounded" width="100%" height="100px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" style="border:0" allowfullscreen="" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBVizdQeh3udy11xDc5Ao2YStR2gLc-rfc&amp;q={{adress|url_encode}}&amp;maptype=roadmap&amp;zoom=14">
+											<a href="https://www.maps.ie/create-google-map/">Embed Google Street View map</a>
+										</iframe>
+									</div>
+								</div>
+								<div class="col">
+									<h2>Description</h2>
+								</div>
+							</div>
+
+						</div>
+						<div class="col-lg-4 info-box">dddd</div>
+					</div>
+
+					<div class="row">
+						<div class="col"></div>
+						<div class="col">ffff</div>
+					</div>
+
 				</div>
 
-				<div class="row">
-					<div class="col-6">cccc</div>
-					<div class="col-6">dddd</div>
-				</div>
-
-				<div class="row">
-					<div class="col">eeee</div>
-					<div class="col">ffff</div>
-				</div>
-
-			</div>
-
+			</section>
 		</section>
 
 	</main>
