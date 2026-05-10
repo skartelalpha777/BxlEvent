@@ -52,13 +52,13 @@ final class EventController extends AbstractController
 
 
 
-    #[Route('/{id}/consult', name: 'app_event_consult')]
-    public function consult(Request $request, Event $event, EntityManagerInterface $entityManager): Response
+    #[Route('/{id}/consult', name: 'app_event_consult', methods: ['GET'])]
+    public function consult(Event $event, EventRepository $eventRepository): Response
     {
 
         return $this->render('event/consult.html.twig', [
-            'event' => $event
-        
+            'event' => $event,
+            'events' => $eventRepository->findAll(),
         ]);
     }
 

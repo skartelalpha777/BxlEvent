@@ -45,7 +45,7 @@
 					{% for event in events %}
 						<div class="col-12 col-md-4 mt-4">
 							<div class="card">
-								<img src="{{ asset('assets/img/person/person-f-12.webp') }}" class="card-img-top" alt="..."/>
+								<img src="{{ asset('assets/img/uploads/events/' ~ event.galleries[0].name) }}" class="card-img-top" alt="..."/>
 								<div class="card-body">
 									{% for cat in event.categories %}
 										<p class="categorie mt-3">{{cat.name}}</p>

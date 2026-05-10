@@ -17,8 +17,6 @@ class Ticket
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTime $date = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $quantity = null;
 
     #[ORM\ManyToOne(inversedBy: 'tickets')]
     private ?Event $event = null;
@@ -28,6 +26,12 @@ class Ticket
 
     #[ORM\ManyToOne(inversedBy: 'tickets')]
     private ?TicketType $ticketType = null;
+
+    #[ORM\Column]
+    private ?string $code = null;
+
+    #[ORM\Column]
+    private ?bool $isScanned = false;
 
     public function getId(): ?int
     {
@@ -42,18 +46,6 @@ class Ticket
     public function setDate(?\DateTime $date): static
     {
         $this->date = $date;
-
-        return $this;
-    }
-
-    public function getQuantity(): ?int
-    {
-        return $this->quantity;
-    }
-
-    public function setQuantity(?int $quantity): static
-    {
-        $this->quantity = $quantity;
 
         return $this;
     }
@@ -90,6 +82,30 @@ class Ticket
     public function setTicketType(?TicketType $ticketType): static
     {
         $this->ticketType = $ticketType;
+
+        return $this;
+    }
+
+    public function getCode(): ?string
+    {
+        return $this->code;
+    }
+
+    public function setCode(string $code): static
+    {
+        $this->code = $code;
+
+        return $this;
+    }
+
+    public function isScanned(): ?bool
+    {
+        return $this->isScanned;
+    }
+
+    public function setIsScanned(?bool $isScanned  ): static
+    {
+        $this->isScanned = $isScanned;
 
         return $this;
     }

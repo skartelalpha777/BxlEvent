@@ -9,7 +9,7 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>FilePath</th>
+                <th>Nampe</th>
                 <th>IsMain</th>
                 <th>actions</th>
             </tr>
@@ -18,7 +18,7 @@
         {% for gallery in galleries %}
             <tr>
                 <td>{{ gallery.id }}</td>
-                <td>{{ gallery.filePath }}</td>
+                <td>{{ gallery.name }}</td>
                 <td>{{ gallery.isMain ? 'Yes' : 'No' }}</td>
                 <td>
                     <a href="{{ path('app_gallery_show', {'id': gallery.id}) }}">show</a>

@@ -6,8 +6,10 @@ use App\Entity\Event;
 use App\Entity\Ticket;
 use App\Entity\TicketType;
 use App\Entity\User;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -17,7 +19,8 @@ class TicketFormType extends AbstractType
     {
         $builder
             ->add('date')
-            ->add('quantity')
+            ->add('code', TextareaType::class)
+         /*   ->add('isScanned', CheckboxType::class) */
             ->add('event', EntityType::class, [
                 'class' => Event::class,
                 'choice_label' => 'id',
@@ -27,8 +30,11 @@ class TicketFormType extends AbstractType
                 'choice_label' => 'id',
             ])
             ->add('ticketType', EntityType::class, [
-                'class' => self::class,
-                'choice_label' => 'id',
+                'class' => TicketType::class,
+                'choice_label' => function (TicketType $ticketType) {
+                    return $ticketType->getLabel()->value;
+                },
+                /*'expanded' => true,*/
             ])
         ;
     }

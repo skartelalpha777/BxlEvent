@@ -10,7 +10,11 @@
             <tr>
                 <th>Id</th>
                 <th>Date</th>
-                <th>Quantity</th>
+                <th>eventID</th>
+                <th>userID</th>
+                <th>ticketTypeID</th>
+                <th>code</th>
+                <th>isScanned</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -19,7 +23,12 @@
             <tr>
                 <td>{{ ticket.id }}</td>
                 <td>{{ ticket.date ? ticket.date|date('Y-m-d') : '' }}</td>
-                <td>{{ ticket.quantity }}</td>
+                <td>{{ ticket.event.id }}</td>
+                <td>{{ ticket.user.id }}</td>
+                <td>{{ ticket.ticketType.id }}</td>
+                <td>{{ ticket.code }}</td>
+                <td>{{ ticket.isScanned }}</td>
+                
                 <td>
                     <a href="{{ path('app_ticket_show', {'id': ticket.id}) }}">show</a>
                     <a href="{{ path('app_ticket_edit', {'id': ticket.id}) }}">edit</a>

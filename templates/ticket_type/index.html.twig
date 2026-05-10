@@ -18,7 +18,7 @@
         {% for ticket_type in ticket_types %}
             <tr>
                 <td>{{ ticket_type.id }}</td>
-                <td>{{ ticket_type.label }}</td>
+                <td>{{ ticket_type.label.value }}</td>
                 <td>{{ ticket_type.price }}</td>
                 <td>
                     <a href="{{ path('app_ticket_type_show', {'id': ticket_type.id}) }}">show</a>

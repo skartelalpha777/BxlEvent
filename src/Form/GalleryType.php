@@ -14,7 +14,7 @@ class GalleryType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('filePath')
+            ->add('name')
             ->add('isMain')
             ->add('event', EntityType::class, [
                 'class' => Event::class,

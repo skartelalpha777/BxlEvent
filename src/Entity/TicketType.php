@@ -6,6 +6,7 @@ use App\Enum\TicketLabel;
 use App\Repository\TicketTypeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\Expr\Value;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TicketTypeRepository::class)]
@@ -33,6 +34,9 @@ class TicketType
     #[ORM\OneToMany(targetEntity: Ticket::class, mappedBy: 'ticketType')]
     private Collection $tickets;
 
+    #[ORM\Column(length: 255)]
+    private ?string $description = null;
+
     public function __construct()
     {
         $this->tickets = new ArrayCollection();
@@ -43,16 +47,18 @@ class TicketType
         return $this->id;
     }
 
-   
+
 
     public function getLabel(): ?TicketLabel
     {
+
         return $this->label;
     }
 
     public function setLabel(TicketLabel $label): static
     {
         $this->label = $label;
+
 
         return $this;
     }
@@ -113,8 +119,20 @@ class TicketType
         return $this;
     }
 
-        function __toString()
+    function __toString()
     {
-        return $this->label;
+        return $this->label ? (string) $this->label->value : '';
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $Description): static
+    {
+        $this->description = $Description;
+
+        return $this;
     }
 }
