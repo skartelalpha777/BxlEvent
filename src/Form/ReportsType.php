@@ -17,7 +17,7 @@ class ReportsType extends AbstractType
         $builder
             ->add('date')
             ->add('reason')
-            ->add('treated')
+            //->add('treated')
             ->add('event', EntityType::class, [
                 'class' => Event::class,
                 'choice_label' => 'id',

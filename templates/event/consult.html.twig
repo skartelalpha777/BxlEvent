@@ -7,13 +7,23 @@
 
 {% block body %}
 
-	<main class="mainSection">
+	<main class="main">
 
 		<section id="hero">
 			<section id="contact" class="contact section">
-				<div class="container">
-					<div class="row  gx-5">
-						<div class="col-lg-8  ps-0">
+				<div class="container-fluid container-lg">
+
+					<div class="row">
+						<a href="{{ path('app_event_index') }}" class="text-decoration-none text-info mb-5 d-inline-block ">
+							<i class="bi bi-arrow-left"></i>
+							Retour aux événements
+						</a>
+
+					</div>
+
+					<div class="row  gx-lg-5 gy-4">
+						<div class="col-lg-8">
+
 							<div id="carouselExample" class="carousel slide">
 								<div class="carousel-inner">
 									{% for eventimg in event.galleries %}
@@ -49,130 +59,135 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-lg-4 info-box">
-							<h2>Informations</h2>
-							<div class="row ">
-								<div class="col   Col ">
-									<li class="list-group-item ">
-										<i class="bi bi-calendar-check-fill me-1"></i>
-										Date
-									</li>
-								</div>
-								<div class="col ">
-									<p>{{event.date|date('d M Y') }}
-									</p>
-								</div>
-							</div>
-							<div class="row ">
-								<div class="col   Col ">
-									<li class="list-group-item ">
-										<i class="bi bi-alarm"></i>
-										Heure
-									</li>
-								</div>
-								<div class="col ">
-									<p>{{ event.hour|date('H:i') }}</p>
-								</div>
-							</div>
-							<div class="row ">
-								<div class="col   Col ">
-									<li class="list-group-item ">
-										<i class="bi bi-geo-alt"></i>
-										Lieu
-									</li>
-								</div>
-								<div class="col  ">
-									{% set adress = event.location.name ~','~ event.location.street ~'  '~ event.location.number ~','~ event.location.postcode ~' '~ event.location.city	%}
-									{% set url = 'https://www.google.com/maps/search/?api=1&query=' ~ adress|url_encode%}
-									<p>
-										<a href="{{url}}" target="_blank">{{event.location.name}}</a>
-									</p>
-								</div>
-							</div>
-							<div class="row ">
-								<div class="col   Col ">
-									<li class="list-group-item ">
-										<i class="bi bi-bookmark-heart"></i>
-										Catégorie
-
-									</li>
-								</div>
-								<div class="col ">
-									{% set allCategories ='' %}
-									{% for cat  in event.categories %}
-										{% set allCategories = allCategories ~ cat.name ~' '%}
-									{% endfor %}
-									<p>{{allCategories }}</p>
-
+						<div class="col-lg-4">
+							<div class="info-box h-100">
+								<h2>Informations</h2>
+								<div class="row ">
+									<div class="col   Col ">
+										<li class="list-group-item ">
+											<i class="bi bi-calendar-check-fill me-1"></i>
+											Date
+										</li>
+									</div>
+									<div class="col ">
+										<p>{{event.date|date('d M Y') }}
+										</p>
+									</div>
 								</div>
 								<div class="row ">
 									<div class="col   Col ">
 										<li class="list-group-item ">
-											<i class="bi bi-tag"></i>
-											Prix
+											<i class="bi bi-alarm"></i>
+											Heure
+										</li>
+									</div>
+									<div class="col ">
+										<p>{{ event.hour|date('H:i') }}</p>
+									</div>
+								</div>
+								<div class="row ">
+									<div class="col   Col ">
+										<li class="list-group-item ">
+											<i class="bi bi-geo-alt"></i>
+											Lieu
 										</li>
 									</div>
 									<div class="col  ">
-
-										<p>Afficher prix</p>
-
+										{% set adress = event.location.name ~','~ event.location.street ~'  '~ event.location.number ~','~ event.location.postcode ~' '~ event.location.city	%}
+										{% set url = 'https://www.google.com/maps/search/?api=1&query=' ~ adress|url_encode%}
+										<p>
+											<a href="{{url}}" target="_blank">{{event.location.name}}</a>
+										</p>
 									</div>
 								</div>
+								<div class="row ">
+									<div class="col   Col ">
+										<li class="list-group-item ">
+											<i class="bi bi-bookmark-heart"></i>
+											Catégorie
+
+										</li>
+									</div>
+									<div class="col ">
+										{% set allCategories ='' %}
+										{% for cat  in event.categories %}
+											{% set allCategories = allCategories ~ cat.name ~' '%}
+										{% endfor %}
+										<p>{{allCategories }}</p>
+
+									</div>
+									<div class="row ">
+										<div class="col   Col ">
+											<li class="list-group-item ">
+												<i class="bi bi-tag"></i>
+												Prix
+											</li>
+										</div>
+										<div class="col  ">
+
+											<p>Afficher prix</p>
+
+										</div>
+									</div>
+								</div>
+								<button class="btn button large ">
+									Acheter un ticket
+								</button>
+								<button class=" noBackground large mt-2" type="button">Ajouter à mes favoris</button>
+
 							</div>
-							<button class="btn button large " type="submit">
-								Acheter un ticket
-							</button>
-							<button class=" noBackground large mt-2" type="button">Ajouter à mes favoris</button>
 						</div>
 					</div>
-					<div class="row mt-5 gx-5">
-						<div class="col-lg-9 info-box">
-							<div class="row ">
-								<div class="col">
-									<h2>Description</h2>
-									<p class="mt-3">{{event.description}}</p>
+					<div class="row  gx-lg-5 gy-4 mt-3  ">
+						<div class="col-lg-9">
+							<div class="info-box h-100">
+								<div class="row ">
+									<div class="col">
+										<h2>Description</h2>
+										<p class="mt-3">{{event.description}}</p>
 
-									<div class="border-bottom border-black"></div>
+										<div class="border-bottom border-black"></div>
 
-									<h2 class="mt-4 mb-3">Lieu</h2>
-									<i class="bi bi-geo-alt"></i>
-									{% set adress = event.location.name ~','~ event.location.street ~'  '~ event.location.number ~','~ event.location.postcode ~' '~ event.location.city	%}
-									{% set url = 'https://www.google.com/maps/search/?api=1&query=' ~ adress|url_encode%}
+										<h2 class="mt-4 mb-3">Lieu</h2>
+										<i class="bi bi-geo-alt"></i>
+										{% set adress = event.location.name ~','~ event.location.street ~'  '~ event.location.number ~','~ event.location.postcode ~' '~ event.location.city	%}
+										{% set url = 'https://www.google.com/maps/search/?api=1&query=' ~ adress|url_encode%}
 
-									<a href="{{url}}" target="_blank">{{event.location.name}}</a>
-									<div>
-										<i class="bi bi-geo"></i>
-										{{event.location.street ~'  '~ event.location.number ~','~ event.location.postcode ~' '~ event.location.city}}
-									</div>
-									<div class="mt-3">
-										<iframe class="rounded" width="100%" height="125px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" style="border:0" allowfullscreen="" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBVizdQeh3udy11xDc5Ao2YStR2gLc-rfc&amp;q={{adress|url_encode}}&amp;maptype=roadmap&amp;zoom=14">
-											<a href="https://www.maps.ie/create-google-map/">Embed Google Street View map</a>
-										</iframe>
-									</div>
-								</div>
-								<div class="col">
-									<h2>Types de tickets</h2>
-									{% for type in event.tickettypes %}
-										<div class=" row border border-black rounded m-1">
-											<div class="col col-lg-8">
-												<h3 class="m-1 fs-4">
-													{{type.label.value}}
-												</h3>
-												<p class="pb-0 ">{{type.description}}</p>
-											</div>
-											<div class="col col-lg-4">
-												<p class="fs-3">{{type.price ~ '€'}}
-												</p>
-											</div>
+										<a href="{{url}}" target="_blank">{{event.location.name}}</a>
+										<div>
+											<i class="bi bi-geo"></i>
+											{{event.location.street ~'  '~ event.location.number ~','~ event.location.postcode ~' '~ event.location.city}}
 										</div>
-									{% endfor %}
-									<button class="btn button large mt-3 " type="submit">
-										Acheter un ticket
-									</button>
+										<div class="mt-3">
+											<iframe class="rounded" width="100%" height="125px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" style="border:0" allowfullscreen="" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBVizdQeh3udy11xDc5Ao2YStR2gLc-rfc&amp;q={{adress|url_encode}}&amp;maptype=roadmap&amp;zoom=14">
+												<a href="https://www.maps.ie/create-google-map/">Embed Google Street View map</a>
+											</iframe>
+										</div>
+									</div>
+									<div class="col">
+										<h2>Types de tickets</h2>
+										{% for type in event.tickettypes %}
+											<div class=" row border border-black rounded m-1">
+												<div class="col col-lg-8">
+													<h3 class="m-1 fs-4">
+														{{type.label.value}}
+													</h3>
+													<p class="pb-0 ">{{type.description}}</p>
+												</div>
+												<div class="col col-lg-4">
+													<p class="fs-3">{{type.price ~ '€'}}
+													</p>
+												</div>
+											</div>
+										{% endfor %}
+										<button class="btn button large mt-3 ">
+											Acheter un ticket
+										</button>
+									</div>
 								</div>
 							</div>
 						</div>
-						<div class="col-lg-3 pe-0 ">
+						<div class="col-lg-3">
 							<div class=" p-4 rounded-4 border border-secondary border-opacity-25 shadow-sm">
 								<div class="d-flex align-items-center mb-3">
 									<i class="bi bi-shield-exclamation text-danger fs-4 me-3"></i>
@@ -202,8 +217,8 @@
 								<div class="d-flex align-items-start">
 									<i class="bi bi-headset text-success fs-4 me-3"></i>
 									<div>
-										<h6 class="fw-bold mb-1">Support disponible</h6>
-										<small class="text-white-50">7j/7 de 9h à 22h</small>
+										<h6 class="fw-bold mb-1">Service client</h6>
+										<small class="text-white-50">Lundi - Vendredi de 9h à 19h</small>
 									</div>
 								</div>
 							</div>
@@ -211,50 +226,48 @@
 					</div>
 					<div class="row">
 						<div class="col">
-							<section id="similar-events" class="mt-5 pb-5">
-								<div class="container">
-									<div class="d-flex justify-content-between align-items-center mb-4">
-										<h2>Événements similaires</h2>
-										<div class="d-flex gap-2">
-											<button class="btn btn-dark rounded-circle border-secondary">
-												<i class="bi bi-chevron-left"></i>
-											</button>
-											<button class="btn btn-dark rounded-circle border-secondary">
-												<i class="bi bi-chevron-right"></i>
-											</button>
-										</div>
-									</div>
-									<div class="row">
-										{% for allevents in events %}
-											{% if allevents.id != event.id %}
-												{% set common = false %}
-												{% for cat in allevents.categories %}
-													{% if cat in event.categories %}
-														{% set common = true %}
-													{% endif %}
-												{% endfor %}
+							<section class="mt-5 pb-5">
 
-												{% if common %}
-													<div class="col-md-4">
-														<div class="card bg-transparent border border-secondary border-opacity-25 rounded-4 overflow-hidden">
-															<img src="{{ asset('assets/img/uploads/events/' ~ allevents.galleries[0].name) }}" class="card-img-top" style="height: 200px; object-fit: cover;">
-															<div class="card-body">
-																<span class="badge bg-primary mb-2">
-																	{{ allevents.categories[0].name }}
-																</span>
-																<h5 class="card-title text-white">{{ allevents.title }}</h5>
-																<p class="text-info small">
-																	<i class="bi bi-geo-alt"></i>
-																	{{ allevents.location.name }}</p>
-																<button class=" noBackground" type="button" onclick="window.location.href='{{path('app_event_consult', {'id': allevents.id}) }}'">Voir l'évenement</button>
-															</div>
+								<div class="d-flex justify-content-between align-items-center mb-4">
+									<h2>Événements similaires</h2>
+
+								</div>
+								<div class="row">
+									{% set displayedCount = 0 %}
+									{% for allevents in events %}
+										{% if allevents.id != event.id and displayedCount < 6 %}
+
+
+											{% set common = false %}
+											{% for cat in allevents.categories %}
+												{% if cat in event.categories %}
+													{% set common = true %}
+												{% endif %}
+											{% endfor %}
+
+											{% if common %}
+												<div class="col-12 col-md-6 col-lg-4 mb-4">
+													<div class="card bg-transparent border border-secondary border-opacity-25 rounded-4 overflow-hidden">
+														<img src="{{ asset('assets/img/uploads/events/' ~ allevents.galleries[0].name) }}" class="card-img-top" style="height: 200px; object-fit: cover;">
+														<div class="card-body">
+															<span class="badge bg-primary mb-2">
+																{{ allevents.categories[0].name }}
+															</span>
+															<h5 class="card-title text-white">{{ allevents.title }}</h5>
+															<p class="text-info small">
+																<i class="bi bi-geo-alt"></i>
+																{{ allevents.location.name }}</p>
+															<button class=" noBackground" type="button" onclick="window.location.href='{{path('app_event_consult', {'id': allevents.id}) }}'">Voir l'évenement</button>
 														</div>
 													</div>
-												{% endif %}
+												</div>
+												{% set displayedCount = displayedCount + 1 %}
 											{% endif %}
-										{% endfor %}
-									</div>
+										{% endif %}
+
+									{% endfor %}
 								</div>
+
 							</section>
 						</div>
 					</div>

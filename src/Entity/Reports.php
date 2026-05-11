@@ -22,7 +22,7 @@ class Reports
     private ?string $reason = null;
 
     #[ORM\Column]
-    private ?bool $treated = null;
+    private ?bool $treated = false;
 
     #[ORM\ManyToOne(inversedBy: 'reports')]
     private ?Event $event = null;
