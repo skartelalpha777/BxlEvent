@@ -1,4 +1,80 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+{% block body %}
+	<div class="main">
+
+		<section id="contact" class="contact section">
+			<div class="container-fluid container-lg py-5">
+
+
+				<div class="mb-4">
+					<a href="{{path('app_event_consult', {id:report.event.id} )}}" class="text-decoration-none text-info">
+						<i class="bi bi-arrow-left"></i>
+						Retour à l'événement
+					</a>
+				</div>
+
+
+				<div class="mb-5 ms-2">
+					<div class="d-flex align-items-center gap-3 mb-2">
+						<i class="bi bi-shield-exclamation text-danger fs-1"></i>
+						<h1>Signaler un événement</h1>
+					</div>
+					<p>
+						Vous avez remarqué un problème avec cet événement ?<br>
+						Signalez-le à notre équipe et nous l'examinerons rapidement.
+					</p>
+				</div>
+				<div class="info-box">
+
+					{{ form_start(form, {'attr': {'class': 'p-4 p-md-5 rounded-4'}}) }}
+
+
+					<div class="mb-5">
+						<h2>1. Quel est le problème ?</h2>
+						<p class="mb-4">Sélectionnez le type de problème rencontré</p>
+
+						<div class="row g-3">
+
+							{% for child in form.category %}
+								<div class="col-md-6 col-lg-4">
+
+									{{ form_widget(child, {'attr': {'class': 'btn-check'}}) }}
+									<label class="btn btn-outline-secondary w-100 h-100 p-3 text-start border-opacity-25 d-flex flex-column" for="{{ child.vars.id }}">
+										<span class="fw-bold text-white">{{ child.vars.label }}</span>
+
+									</label>
+								</div>
+							{% endfor %}
+						</div>
+
+						<div class="text-danger small mt-2">{{ form_errors(form.category) }}</div>
+					</div>
+
+
+					<div class="mb-5">
+						<h2 class>2. Décrivez le problème</h2>
+						<p class="mb-3">Donnez-nous plus de détails sur le problème rencontré</p>
+
+						{{ form_widget(form.description, {
+                    'attr': {
+                        'class': 'form-control bg-dark text-white border-secondary border-opacity-25 p-3 rounded-3',
+                        'rows': '6',
+                        'placeholder': 'Décrivez le problème le plus précisément possible...'
+                    }
+                }) }}
+						<div class="text-danger small mt-1">{{ form_errors(form.description) }}</div>
+					</div>
+
+					<div class="mt-4">
+						<button type="submit" class="button large  py-3 border-0" >
+							<i class="bi bi-send-check me-2"></i>
+							Envoyer le signalement
+						</button>
+					</div>
+
+					{{ form_end(form) }}
+				</div>
+
+			</div>
+		</section>
+	</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ReportCategory{% endblock %}
+
+{% block body %}
+    <h1>Create new ReportCategory</h1>
+
+    {{ include('report_category/_form.html.twig') }}
+
+    <a href="{{ path('app_report_category_index') }}">back to list</a>
+{% endblock %}

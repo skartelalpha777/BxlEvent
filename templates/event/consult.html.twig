@@ -14,7 +14,7 @@
 				<div class="container-fluid container-lg">
 
 					<div class="row">
-						<a href="{{ path('app_event_index') }}" class="text-decoration-none text-info mb-5 d-inline-block ">
+						<a href=" {{path('app_event_index', {id:event.id} )}}" class="text-decoration-none text-info mb-5 d-inline-block ">
 							<i class="bi bi-arrow-left"></i>
 							Retour aux événements
 						</a>
@@ -194,7 +194,7 @@
 									<h4 class="mb-0">Signaler l'événement</h4>
 								</div>
 								<p class="small text-white-50">Cet événement pose problème ? Signalez-le et notre équipe l'examinera.</p>
-								<button class="btn btn-outline-danger w-100 py-2 rounded-3 mt-2" type="button">
+								<button class="btn btn-outline-danger w-100 py-2 rounded-3 mt-2" type="button" onclick="window.location.href='{{path('app_reports_new', {id:event.id})}}'">
 									<i class="bi bi-flag"></i>
 									Signaler
 								</button>

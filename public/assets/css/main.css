@@ -3054,3 +3054,8 @@ l'événement dans la page consulter un événement */
   object-fit: cover;
   object-position: center;
 }
+
+.signaler{
+
+  height: 200px;
+}

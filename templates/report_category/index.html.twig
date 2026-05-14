@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ReportCategory index{% endblock %}
+
+{% block body %}
+    <h1>ReportCategory index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Label</th>
+                <th>Icon</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for report_category in report_categories %}
+            <tr>
+                <td>{{ report_category.id }}</td>
+                <td>{{ report_category.label }}</td>
+                <td>{{ report_category.icon }}</td>
+                <td>
+                    <a href="{{ path('app_report_category_show', {'id': report_category.id}) }}">show</a>
+                    <a href="{{ path('app_report_category_edit', {'id': report_category.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_report_category_new') }}">Create new</a>
+{% endblock %}

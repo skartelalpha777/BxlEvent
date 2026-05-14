@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Event;
 use App\Entity\Reports;
 use App\Form\ReportsType;
 use App\Repository\ReportsRepository;
@@ -10,6 +11,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
+use App\Enum\UserRole;
+
 
 #[Route('/reports')]
 final class ReportsController extends AbstractController
@@ -21,15 +25,20 @@ final class ReportsController extends AbstractController
             'reports' => $reportsRepository->findAll(),
         ]);
     }
-
-    #[Route('/new', name: 'app_reports_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+  // a coriger  #[IsGranted(UserRole::MEMBRE ,UserRole::CONTRIBUTEUR, UserRole::ADMIN)]
+    #[Route('/new/{id}', name: 'app_reports_new', methods: ['GET', 'POST'])]
+    public function new(Event $event, Request $request, EntityManagerInterface $entityManager): Response
     {
         $report = new Reports();
+        
+        $report->setEvent($event);
+        $report->setUser($this->getUser());
+
         $form = $this->createForm(ReportsType::class, $report);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+           
             $entityManager->persist($report);
             $entityManager->flush();
 
@@ -41,7 +50,7 @@ final class ReportsController extends AbstractController
             'form' => $form,
         ]);
     }
-
+  // a corriger  #[IsGranted(UserRole::ADMIN, UserRole::CONTRIBUTEUR)]
     #[Route('/{id}', name: 'app_reports_show', methods: ['GET'])]
     public function show(Reports $report): Response
     {
@@ -49,7 +58,7 @@ final class ReportsController extends AbstractController
             'report' => $report,
         ]);
     }
-
+  //a coriger  #[IsGranted(UserRole::ADMIN, UserRole::CONTRIBUTEUR)]
     #[Route('/{id}/edit', name: 'app_reports_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Reports $report, EntityManagerInterface $entityManager): Response
     {
@@ -71,7 +80,7 @@ final class ReportsController extends AbstractController
     #[Route('/{id}', name: 'app_reports_delete', methods: ['POST'])]
     public function delete(Request $request, Reports $report, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$report->getId(), $request->getPayload()->getString('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $report->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($report);
             $entityManager->flush();
         }

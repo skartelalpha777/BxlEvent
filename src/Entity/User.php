@@ -105,7 +105,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
 
     /**
-     * Allow to make the links between System roles and the enum UserRole
+     * permet de faire le liens entre les roles system et l'enum UserRole
      * @return array
      */
     public function getRoles(): array

@@ -17,9 +17,14 @@ class Reports
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTime $date = null;
+    public function __construct()
+    {
+        // On initilise a la date courante
+        $this->date = new \DateTime();
+    }
 
     #[ORM\Column(length: 255)]
-    private ?string $reason = null;
+    private ?string $description = null;
 
     #[ORM\Column]
     private ?bool $treated = false;
@@ -29,6 +34,9 @@ class Reports
 
     #[ORM\ManyToOne(inversedBy: 'reports')]
     private ?User $user = null;
+
+    #[ORM\ManyToOne(inversedBy: 'reports')]
+    private ?ReportCategory $category = null;
 
     public function getId(): ?int
     {
@@ -48,14 +56,14 @@ class Reports
         return $this;
     }
 
-    public function getReason(): ?string
+    public function getDescription(): ?string
     {
-        return $this->reason;
+        return $this->description;
     }
 
-    public function setReason(string $reason): static
+    public function setDescription(string $description): static
     {
-        $this->reason = $reason;
+        $this->description = $description;
 
         return $this;
     }
@@ -92,6 +100,18 @@ class Reports
     public function setUser(?User $user): static
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getCategory(): ?ReportCategory
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?ReportCategory $category): static
+    {
+        $this->category = $category;
 
         return $this;
     }
