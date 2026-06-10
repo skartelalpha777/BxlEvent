@@ -1,0 +1,167 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Choisir vos tickets -
+	{{ event.title }}
+{% endblock %}
+
+{% block body %}
+	<main class="mainSection">
+		<div class="container py-5">
+			<div class="mb-4">
+				<a href="{{ path('app_event_consult', {'id': event.id}) }}" class="text-decoration-none text-info">
+					<i class="bi bi-arrow-left"></i>
+					Retour à l'événement
+				</a>
+			</div>
+			<div class="row g-4">
+				<div class="col-lg-8">
+					<div class="info-box p-4 rounded-4 mb-4 shadow">
+						<div class="row align-items-center g-4">
+							<div class="col-md-4">
+								<img src="{{ asset('assets/img/uploads/events/' ~ event.galleries[0].name) }}" class="img-fluid rounded-3 w-100" style="object-fit: cover; max-height: 200px;" alt="{{ event.title }}">
+							</div>
+							<div class="col-md-8">
+								<div class="d-flex gap-2 mb-2">
+									{% for cat in event.categories %}
+										<span class="badge bg-primary">{{ cat.name }}</span>
+									{% endfor %}
+								</div>
+								<h1 class="h3 fw-bold text-white mb-3">{{ event.title }}</h1>
+								<p class="text-white-50 mb-1">
+									<i class="bi bi-geo-alt me-2"></i>
+									{{ event.location.name }}</p>
+								<p class="text-white-50 mb-0">
+									<i class="bi bi-calendar me-2"></i>
+									{{ event.date|date('d M Y') }}
+									à
+									{{ event.hour|date('H:i') }}</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="info-box p-4 rounded-4 mb-4 shadow">
+						<h2 class="h4 fw-bold text-white mb-1">Choisissez vos tickets</h2>
+						<p class="text-white-50 small mb-4">Sélectionnez le type de ticket qui vous convient</p>
+
+						<form action="{{path('app_ticket_newTicket')}}" method="POST" id="ticket-form">
+							{% for type in event.tickettypes %}
+								<div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between p-3 mb-3 border border-secondary border-opacity-25 rounded-3 bg-dark">
+									<div class="d-flex align-items-center gap-3 mb-3 mb-sm-0">
+										<div class="rounded-circle bg-primary bg-opacity-10 d-flex align-items-center justify-content-center" style="width: 45px; height: 45px;">
+											<i class="bi bi-ticket-perforated text-primary fs-5"></i>
+										</div>
+										<div>
+											<div class="d-flex align-items-center gap-2">
+												<h3 class="h6 fw-bold text-white mb-0">{{ type.label.value }}</h3>
+											</div>
+											<p class="text-white-50 small mb-0">{{ type.description }}</p>
+										</div>
+									</div>
+
+									<div class="d-flex align-items-center gap-4">
+										<span class="fs-5 fw-bold text-white">{{ type.price }}
+											€</span>
+
+										<div class="input-group" style="width: 130px;">
+
+											<button class="btn btn-outline-secondary border-opacity-50 text-white" type="button" onclick="updateQty('{{ type.id }}', -1)">
+												<i class="bi bi-dash"></i>
+											</button>
+
+
+											<input type="number" name="tickets[{{ type.id }}]" id="qty-{{ type.id }}" class="form-control bg-transparent text-white text-center border-secondary border-opacity-50 px-1 ticket-qty" value="0" min="0" max="10" readonly data-price="{{ type.price }}">
+
+
+											<button class="btn btn-outline-secondary border-opacity-50 text-white" type="button" onclick="updateQty('{{ type.id }}', 1)">
+												<i class="bi bi-plus"></i>
+											</button>
+										</div>
+									</div>
+
+								</div>
+							{% endfor %}
+
+							<div class="d-flex align-items-start gap-2 mt-4 text-info small">
+								<i class="bi bi-info-circle mt-1"></i>
+								<span>
+									<strong>Bon à savoir :</strong>
+									Les billets sont non remboursables sauf en cas d'annulation de l'événement.</span>
+							</div>
+							<input type="hidden" name="_token" value="{{ csrf_token('_token') }}"/>
+						</form>
+					</div>
+				</div>
+
+				<div class="col-lg-4">
+					<div class="position-sticky" style="top: 2rem;">
+
+
+						<div class="info-box p-4 rounded-4 mb-4 shadow">
+							<div class="d-flex align-items-center gap-2 mb-4">
+								<i class="bi bi-receipt fs-4 text-white"></i>
+								<h2 class="h5 fw-bold text-white mb-0">Votre commande</h2>
+							</div>
+
+							<div class="mb-4">
+								<p class="fw-bold text-white mb-2">Tickets sélectionnés</p>
+								<div class="d-flex justify-content-between text-white-50 small mb-2">
+									<span id="summary-text">Aucun ticket sélectionné</span>
+									<span id="summary-subtotal">0 €</span>
+								</div>
+
+								<div class="d-flex justify-content-between text-white-50 small pb-3 border-bottom border-secondary border-opacity-25">
+									<span>Frais de service
+										<i class="bi bi-info-circle ms-1 text-muted"></i>
+									</span>
+									<span>2,50 €</span>
+								</div>
+
+								<div class="d-flex justify-content-between align-items-center text-white mt-3">
+									<span class="fs-5 fw-bold">Total</span>
+									<span class="fs-4 fw-bold" id="summary-total">0 €</span>
+								</div>
+							</div>
+
+							<button form="ticket-form" type="submit" class="button large w-100 py-3 border-0 d-flex justify-content-center align-items-center gap-2" id="btn-submit">
+								Continuer
+								<i class="bi bi-arrow-right"></i>
+							</button>
+							<div class="text-center mt-3 text-white-50 small">
+								<i class="bi bi-lock-fill"></i>
+								Paiement 100% sécurisé
+							</div>
+						</div>
+						<div class="info-box p-4 rounded-4 shadow">
+							<h3 class="h6 fw-bold text-white mb-4">Pourquoi acheter sur BxlEvent ?</h3>
+							<div class="d-flex align-items-start gap-3 mb-3">
+								<i class="bi bi-shield-check text-success fs-4"></i>
+								<div>
+									<p class="fw-bold text-white mb-0 small">Paiement sécurisé</p>
+									<p class="text-white-50 small mb-0" style="font-size: 0.8rem;">Vos données sont protégées</p>
+								</div>
+							</div>
+							<div class="d-flex align-items-start gap-3 mb-3">
+								<i class="bi bi-envelope-paper text-success fs-4"></i>
+								<div>
+									<p class="fw-bold text-white mb-0 small">Billets électroniques</p>
+									<p class="text-white-50 small mb-0" style="font-size: 0.8rem;">Reçus instantanément par email</p>
+								</div>
+							</div>
+							<div class="d-flex align-items-start gap-3">
+								<i class="bi bi-headset text-success fs-4"></i>
+								<div>
+									<p class="fw-bold text-white mb-0 small">Support disponible</p>
+									<p class="text-white-50 small mb-0" style="font-size: 0.8rem;">7j/7 de 9h à 22h</p>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</main>
+
+	<script src="{{asset('assets/js/ticket.js')}}"></script>
+{% endblock %}
