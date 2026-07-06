@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+		<title>Vos Billets</title>
+
+	</head>
+	<body>
+
+		{% for data in ticketsData %}
+			<div class="ticket-page justify-content-center align-items-center">
+				<h1 class="event-title">{{ data.ticket.event.title }}</h1>
+             {# Ici on récupère directement la racine de votre dossier public via la variable Twig globale du serveur car asset ne marche pas #}
+				<img src="{{ app.request.server.get('DOCUMENT_ROOT') }}/assets/img/uploads/events/{{ data.ticket.event.galleries[0].name }}" class="img-fluid rounded-3 w-100" style="object-fit: cover; max-height: 200px;" alt="{{ data.ticket.event.title }}">
+				<p>
+					<strong>Date de l'événement :</strong>
+					{{ data.ticket.event.date|date('d/m/Y') }}
+					à
+					{{ data.ticket.event.hour|date('H:i') }}</p>
+
+				<hr>
+
+				<h3>Billet :
+					{{ data.ticket.ticketType.label.value }}</h3>
+				<p>
+					<strong>Titulaire :</strong>
+					{{ data.ticket.user.firstName }}
+					{{ data.ticket.user.lastName }}</p>
+				<p>
+					<strong>Prix :</strong>
+					{{ data.ticket.ticketType.price }}
+					€</p>
+
+				<p>
+					<strong>N° Commande :</strong>
+					{{ order.reference }}</p>
+
+				<!-- Affichage du QR code encodé en base64 généré dans le controller -->
+				<img src="data:image/png;base64,{{ data.qrBase64 }}" class="qr-code" alt="QR Code Billet">
+				<p>
+					<small>Code:
+						{{ data.ticket.code }}</small>
+				</p>
+			</div>
+		{% endfor %}
+
+	</body>
+</html>
