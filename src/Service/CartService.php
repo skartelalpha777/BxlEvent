@@ -40,4 +40,22 @@ class CartService
 
         $session->set('cart', $cart);
     }
+
+    public function getCart(): array
+
+    {
+        $cartWithData = [];
+        $cart = $this->requestStack->getSession()->get('cart', []);
+
+        foreach ($cart as $id => $quantity) {
+            $ticketType = $this->ticketTypeRepository->find($id);
+            if ($ticketType) {
+                $cartWithData[] = [
+                    'ticketType' => $ticketType,
+                    'quantity' => $quantity
+                ];
+            }
+        }
+        return $cartWithData;
+    }
 }
