@@ -30,12 +30,10 @@
 					<strong>Prix :</strong>
 					{{ data.ticket.ticketType.price }}
 					€</p>
-
 				<p>
 					<strong>N° Commande :</strong>
 					{{ order.reference }}</p>
 
-				<!-- Affichage du QR code encodé en base64 généré dans le controller -->
 				<img src="data:image/png;base64,{{ data.qrBase64 }}" class="qr-code" alt="QR Code Billet">
 				<p>
 					<small>Code:
