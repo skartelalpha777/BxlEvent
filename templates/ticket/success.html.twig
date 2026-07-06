@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paiement Réussi
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-5 text-center">
+		<h1 class="text-success">Merci pour votre achat !</h1>
+		<p>Votre commande
+			<strong>{{ order.reference }}</strong>
+			a été validée avec succès.</p>
+
+		<a href="{{ path('app_ticket_download', {'reference': order.reference}) }}" class="btn btn-primary btn-lg mt-4">
+			<i class="bi bi-download"></i>
+			Télécharger mes billets (PDF)
+		</a>
+	</div>
+{% endblock %}
