@@ -61,6 +61,15 @@ final class EventController extends AbstractController
             'events' => $eventRepository->findAll(),
         ]);
     }
+    #[Route('/{id}/tickets', name: 'app_event_consult', methods: ['GET'])]
+    public function tickets(Event $event, EventRepository $eventRepository): Response
+    {
+
+        return $this->render('event/tickets.html.twig', [
+            'event' => $event,
+            'events' => $eventRepository->findAll(),
+        ]);
+    }
 
 
 

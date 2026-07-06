@@ -29,36 +29,35 @@ final class NewsletterController extends AbstractController
     #[Route('/new', name: 'app_newSuscrib_new', methods: ['GET', 'POST'])]
     public function newSuscrib(Request $request, EntityManagerInterface $entityManager): Response
     {
-       $email = $request->request->get('email');
-    $token = $request->request->get('_token');
+        $email = $request->request->get('email');
+        $token = $request->request->get('_token');
 
-    if (!$this->isCsrfTokenValid('newsletter_token', $token)) {
-        throw $this->createAccessDeniedException('Jeton de sécurité invalide.');
-    }
+        if (!$this->isCsrfTokenValid('newsletter_token', $token)) {
+            throw $this->createAccessDeniedException('Jeton de sécurité invalide.');
+        }
 
-    if (!$email) {
-        $this->addFlash('error', "Veuillez renseigner une adresse email.");
-        return $this->redirectToRoute('app_event_index');
-    }
+        if (!$email) {
+            $this->addFlash('error', "Veuillez renseigner une adresse email.");
+            return $this->redirectToRoute('app_event_index');
+        }
 
-    $alreadyExists = $entityManager->getRepository(Newsletter::class)->findOneBy(['email' => $email]);
+        $alreadyExists = $entityManager->getRepository(Newsletter::class)->findOneBy(['email' => $email]);
 
-    if ($alreadyExists) {
-        $this->addFlash('error', 'Vous êtes déjà inscrit à la newsletter.');
-        return $this->redirectToRoute('app_event_index');
-    }
+        if ($alreadyExists) {
+            $this->addFlash('error', 'Vous êtes déjà inscrit à la newsletter.');
+            return $this->redirectToRoute('app_event_index');
+        }
 
-    $newsletter = new Newsletter();
-    $newsletter->setEmail($email);
-    $newsletter->setInscriptionDate(new \DateTime());
+        $newsletter = new Newsletter();
+        $newsletter->setEmail($email);
+        $newsletter->setInscriptionDate(new \DateTime());
 
-    $entityManager->persist($newsletter);
-    $entityManager->flush();
+        $entityManager->persist($newsletter);
+        $entityManager->flush();
 
-    $this->addFlash('success', 'Inscription réussie !');
-    
-    return $this->redirectToRoute('app_event_index', [], Response::HTTP_SEE_OTHER);
+        $this->addFlash('success', 'Inscription réussie !');
 
+        return $this->redirectToRoute('app_event_index', [], Response::HTTP_SEE_OTHER);
     }
 
 

@@ -33,6 +33,9 @@ class Ticket
     #[ORM\Column]
     private ?bool $isScanned = false;
 
+    #[ORM\ManyToOne(inversedBy: 'tickets')]
+    private ?Order $purchase = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -106,6 +109,18 @@ class Ticket
     public function setIsScanned(?bool $isScanned  ): static
     {
         $this->isScanned = $isScanned;
+
+        return $this;
+    }
+
+    public function getPurchase(): ?Order
+    {
+        return $this->purchase;
+    }
+
+    public function setPurchase(?Order $purchase): static
+    {
+        $this->purchase = $purchase;
 
         return $this;
     }
