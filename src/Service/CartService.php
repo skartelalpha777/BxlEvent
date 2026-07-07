@@ -66,7 +66,7 @@ class CartService
         foreach ($cart as $item) {
             $cartTotalPrice += $item['ticketType']->getPrice() * $item['quantity'];
         }
-        return $cartTotalPrice;
+        return $cartTotalPrice ;
     }
     public function clearCart(): void
     {
