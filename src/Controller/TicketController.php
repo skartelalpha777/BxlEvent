@@ -74,7 +74,7 @@ final class TicketController extends AbstractController
     /**
      * gere le cas d'un payement avec succes et reference   est l'identifiant 
      * unique de la commande qui a été créée juste avant le paiement.
-     */ 
+     */
     #[Route('/payment/success/{reference}', name: 'app_payment_success', methods: ['GET'])]
     public function paymentSuccess(
         string $reference,
@@ -236,6 +236,8 @@ final class TicketController extends AbstractController
 
         return $order;
     }
+
+
 
     /**
      * Prépare les line_items pour Stripe et crée les entités Ticket associées.

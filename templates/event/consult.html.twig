@@ -130,7 +130,7 @@
 										</div>
 									</div>
 								</div>
-								<button class="btn button large ">
+								<button class="btn button large " onclick="window.location.href='{{path('app_event_tickets',{id:event.id})}}'">
 									Acheter un ticket
 								</button>
 								<button class=" noBackground large mt-2" type="button">Ajouter à mes favoris</button>
@@ -180,7 +180,7 @@
 												</div>
 											</div>
 										{% endfor %}
-										<button class="btn button large mt-3 ">
+										<button class="btn button large mt-3 " onclick="window.location.href='{{path('app_event_tickets',{id:event.id})}}'">
 											Acheter un ticket
 										</button>
 									</div>

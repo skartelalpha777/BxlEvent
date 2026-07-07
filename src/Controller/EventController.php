@@ -61,7 +61,7 @@ final class EventController extends AbstractController
             'events' => $eventRepository->findAll(),
         ]);
     }
-    #[Route('/{id}/tickets', name: 'app_event_consult', methods: ['GET'])]
+    #[Route('/{id}/tickets', name: 'app_event_tickets', methods: ['GET'])]
     public function tickets(Event $event, EventRepository $eventRepository): Response
     {
 
