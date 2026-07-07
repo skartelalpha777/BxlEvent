@@ -62,6 +62,19 @@ class CartService
     public function getTotal(): float
     {
         $cart = $this->getCart();
-        $carttotalPrice = 0;
+        $cartTotalPrice = 0;
+        foreach ($cart as $item) {
+            $cartTotalPrice += $item['ticketType']->getPrice() * $item['quantity'];
+        }
+        return $cartTotalPrice;
+    }
+    public function clearCart(): void
+    {
+        $this->requestStack->getSession()->remove('cart');
+    }
+
+    public function getServicefee()
+    {
+        return 2.0;
     }
 }
