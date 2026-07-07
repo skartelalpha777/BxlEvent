@@ -58,4 +58,10 @@ class CartService
         }
         return $cartWithData;
     }
+
+    public function getTotal(): float
+    {
+        $cart = $this->getCart();
+        $carttotalPrice = 0;
+    }
 }
