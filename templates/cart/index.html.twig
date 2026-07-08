@@ -1,79 +1,102 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Votre Panier{% endblock %}
+{% block title %}Votre Panier
+{% endblock %}
 
 {% block body %}
-<main class="container my-5">
-    <div class="section-title">
-        <h2>Votre Panier</h2>
-    </div>
+	<main class="container my-5">
+		<div class="section-title">
+			<h2>Votre Panier</h2>
+		</div>
 
-    {% if items|length > 0 %}
-        <div class="row">
-            <div class="col-md-8">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Événement</th>
-                            <th>Type de Ticket</th>
-                            <th>Prix Unitaire</th>
-                            <th>Quantité</th>
-                            <th>Total</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for item in items %}
-                            <tr>
-                                <td>{{ item.ticketType.event.title }}</td>
-                                <td>{{ item.ticketType.label.value }}</td>
-                                <td>{{ item.ticketType.price|number_format(2, ',', ' ') }} €</td>
-                                <td>{{ item.quantity }}</td>
-                                <td>{{ (item.ticketType.price * item.quantity)|number_format(2, ',', ' ') }} €</td>
-                                <td>
-                                    <a href="{{ path('app_cart_remove', {'id': item.ticketType.id}) }}" class="btn btn-danger btn-sm">
-                                        <i class="bi bi-trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-                 <a href="{{ path('app_cart_clear') }}" class="btn btn-outline-danger">Vider le panier</a>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Résumé de la commande</h5>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                Sous-total
-                                <span>{{ subTotal|number_format(2, ',', ' ') }} €</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                Frais de service
-                                <span>{{ serviceFee|number_format(2, ',', ' ') }} €</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center fw-bold">
-                                TOTAL
-                                <span>{{ total|number_format(2, ',', ' ') }} €</span>
-                            </li>
-                        </ul>
-                        <a href="{{ path('app_ticket_newTicket') }}" class="btn button w-100 mt-3">
-                            Procéder au paiement
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    {% else %}
-        <div class="alert alert-info text-center" role="alert">
-            Votre panier est vide.
-        </div>
-         <div class="text-center">
-            <a href="{{ path('app_event_index') }}" class="btn button">Retourner à l'accueil</a>
-        </div>
-    {% endif %}
+		{% if items|length > 0 %}
+			<div class="row">
+				<div class="col-md-8">
+					<table class="table  table-dark ">
+						<thead>
+							<tr>
+								<th>Événement</th>
+								<th>Type de Ticket</th>
+								<th>Prix Unitaire</th>
+								<th>Quantité</th>
+								<th>Action</th>
+								<th>Total</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for item in items %}
+								<tr>
+									<td>{{ item.ticketType.event.title }}</td>
+									<td>{{ item.ticketType.label.value }}</td>
+									<td>{{ item.ticketType.price|number_format(2, ',', ' ') }}€</td>
 
-</main>
+
+									<td>
+										{# item.quantity #}
+										<div class="input-group" style="width: 120px;">
+
+											<button class="btn btn-outline-secondary rounded  text-white" type="button" onclick="window.location.href=' {{path('app_cart_decrease',{'id': item.ticketType.id})}} '">
+												<i class="bi bi-dash"></i>
+
+											</button>
+											<span class="bg-transparent text-white text-center border-secondary border-opacity-50 m-1">{{ item.quantity}}</span>
+											<button class="btn btn-outline-secondary rounded text-white " type="button" onclick="window.location.href=' {{path('app_cart_increase',{'id': item.ticketType.id})}} '">
+												<i class="bi bi-plus"></i>
+											</button>
+										</div>
+									</td>
+									<td>
+										<a href="{{ path('app_cart_remove', {'id': item.ticketType.id}) }}" class="btn btn-danger btn-sm">
+											<i class="bi bi-trash"></i>
+										</a>
+									</td>
+
+									<td>{{ (item.ticketType.price * item.quantity)|number_format(2, ',', ' ') }}
+										€</td>
+
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+					<a href="{{ path('app_cart_clear') }}" class="btn btn-outline-danger">Vider le panier</a>
+				</div>
+				<div class="col-md-4">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title">Résumé de la commande</h5>
+							<ul class="list-group list-group-flush">
+								<li class="list-group-item d-flex justify-content-between align-items-center">
+									Sous-total
+									<span>{{ subTotal|number_format(2, ',', ' ') }}
+										€</span>
+								</li>
+								<li class="list-group-item d-flex justify-content-between align-items-center">
+									Frais de service
+									<span>{{ serviceFee|number_format(2, ',', ' ') }}
+										€</span>
+								</li>
+								<li class="list-group-item d-flex justify-content-between align-items-center fw-bold">
+									TOTAL
+									<span>{{ total|number_format(2, ',', ' ') }}
+										€</span>
+								</li>
+							</ul>
+							<a href="{{ path('app_ticket_newTicket') }}" class="btn button w-100 mt-3">
+								Procéder au paiement
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		{% else %}
+			<div class="alert alert-info text-center" role="alert">
+				Votre panier est vide.
+			</div>
+			<div class="text-center">
+				<a href="{{ path('app_event_index') }}" class="btn button">Retourner à l'accueil</a>
+			</div>
+		{% endif %}
+
+	</main>
 {% endblock %}

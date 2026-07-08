@@ -41,6 +41,7 @@ class CartService
         $session->set('cart', $cart);
     }
 
+
     public function getCart(): array
 
     {
@@ -66,7 +67,7 @@ class CartService
         foreach ($cart as $item) {
             $cartTotalPrice += $item['ticketType']->getPrice() * $item['quantity'];
         }
-        return $cartTotalPrice ;
+        return $cartTotalPrice;
     }
     public function clearCart(): void
     {
@@ -76,5 +77,26 @@ class CartService
     public function getServicefee()
     {
         return 2.0;
+    }
+
+    public function increaseQuantity(int $ticketTypeId): void
+    {
+
+        $session = $this->requestStack->getSession();
+        $cart = $session->get('cart', []);
+        if (!empty($cart[$ticketTypeId]) && $cart[$ticketTypeId] < 11) {
+            $cart[$ticketTypeId] = $cart[$ticketTypeId] + 1;
+            $session->set('cart', $cart);
+        }
+    }
+    public function decreaseQuantity(int $ticketTypeId): void
+    {
+
+        $session = $this->requestStack->getSession();
+        $cart = $session->get('cart', []);
+        if (!empty($cart[$ticketTypeId]) && $cart[$ticketTypeId] > 0) {
+            $cart[$ticketTypeId] = $cart[$ticketTypeId] - 1;
+            $session->set('cart', $cart);
+        }
     }
 }

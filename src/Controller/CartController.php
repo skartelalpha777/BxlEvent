@@ -23,7 +23,9 @@ final class CartController extends AbstractController
             'total' => $cartService->getTotal() + $cartService->getServicefee(),
         ]);
     }
-
+    /**
+     * Permet d'ajouter un ticket au panier a partir de la page de tickets d'un evenement
+     */
     #[Route('{id}/add', name: 'app_cart_add', methods: ['POST', 'GET'])]
     public function add(Event $event, CartService $cartService, Request $request): Response
     {
@@ -43,6 +45,21 @@ final class CartController extends AbstractController
         $this->addFlash('success', 'le ou les tickets selectionés ont bien été ajoutés à votre panier.');
 
         return $this->redirectToRoute('app_event_tickets', ['id' => $event->getId()]);
+    }
+
+    #[Route('/increaseQuaity/{id}/', name: 'app_cart_increase')]
+    public function increaseQuantity(int $id, CartService $cartService): Response
+    {
+
+        $cartService->increaseQuantity($id);
+        return $this->redirectToRoute('app_cart_index');
+    }
+
+    #[Route('/decreaseQuatity/{id}', name: 'app_cart_decrease')]
+    public function decreaseQuantity(int $id, CartService $cartService): Response
+    {
+        $cartService->decreaseQuantity($id);
+        return $this->redirectToRoute('app_cart_index');
     }
 
     #[Route('/remove/{id}', name: 'app_cart_remove')]
