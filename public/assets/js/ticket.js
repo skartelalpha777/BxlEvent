@@ -1,4 +1,4 @@
-const FRAIS_SERVICE = 2.50;
+const FRAIS_SERVICE = 2;
 
 function updateQty(idTicket, variation) {
     const champInput = document.getElementById('qty-' + idTicket);
@@ -24,6 +24,7 @@ function calculerPanier() {
 
             let prixUnitaire = parseFloat(input.getAttribute('data-price'));
             sousTotal += (quantite * prixUnitaire);
+
         }
     });
 
@@ -33,11 +34,16 @@ function calculerPanier() {
         document.getElementById('summary-subtotal').innerText = sousTotal + " €";
         document.getElementById('summary-total').innerText = (sousTotal + FRAIS_SERVICE) + " €";
 
+        document.getElementById('btn-submit').disabled = false;
+
+
 
     } else {
         document.getElementById('summary-text').innerText = "Aucun ticket sélectionné";
         document.getElementById('summary-subtotal').innerText = "0 €";
         document.getElementById('summary-total').innerText = "0 €";
+        document.getElementById('btn-submit').disabled = true;
+
 
 
     }
