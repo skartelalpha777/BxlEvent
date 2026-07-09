@@ -4,99 +4,104 @@
 {% endblock %}
 
 {% block body %}
-	<main class="container my-5">
-		<div class="section-title">
-			<h2>Votre Panier</h2>
-		</div>
+	<main class="mainSection">
+		<div class="container py-5">
+			<div class="section-title">
+				<h2>Votre Panier</h2>
+			</div>
 
-		{% if items|length > 0 %}
-			<div class="row">
-				<div class="col-md-8">
-					<table class="table  table-dark ">
-						<thead>
-							<tr>
-								<th>Événement</th>
-								<th>Type de Ticket</th>
-								<th>Prix Unitaire</th>
-								<th>Quantité</th>
-								<th>Action</th>
-								<th>Total</th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody>
+			{% if items|length > 0 %}
+				<div class="row g-4">
+					<div class="col-lg-8">
+						<div class="info-box p-4 rounded-4 mb-4 shadow">
 							{% for item in items %}
-								<tr>
-									<td>{{ item.ticketType.event.title }}</td>
-									<td>{{ item.ticketType.label.value }}</td>
-									<td>{{ item.ticketType.price|number_format(2, ',', ' ') }}€</td>
-
-
-									<td>
-										{# item.quantity #}
-										<div class="input-group" style="width: 120px;">
-
-											<button class="btn btn-outline-secondary rounded  text-white" type="button" onclick="window.location.href=' {{path('app_cart_decrease',{'id': item.ticketType.id})}} '">
-												<i class="bi bi-dash"></i>
-
-											</button>
-											<span class="bg-transparent text-white text-center border-secondary border-opacity-50 m-1">{{ item.quantity}}</span>
-											<button class="btn btn-outline-secondary rounded text-white " type="button" onclick="window.location.href=' {{path('app_cart_increase',{'id': item.ticketType.id})}} '">
-												<i class="bi bi-plus"></i>
-											</button>
+								<div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between p-3 mb-3 border border-secondary border-opacity-25 rounded-3 bg-dark">
+									<div class="d-flex align-items-center gap-3 mb-3 mb-sm-0">
+										<div class="rounded bg-primary bg-opacity-10 d-flex align-items-center justify-content-center" style="width: 45px; height: 45px;">
+											<i class="bi bi-ticket-perforated text-primary fs-5"></i>
 										</div>
-									</td>
-									<td>
-										<a href="{{ path('app_cart_remove', {'id': item.ticketType.id}) }}" class="btn btn-danger btn-sm">
-											<i class="bi bi-trash"></i>
-										</a>
-									</td>
+										<div>
+											<div class="d-flex align-items-center gap-2">
+												<h3 class="h6 fw-bold text-white mb-0">{{ item.ticketType.event.title }}</h3>
+											</div>
+											<p class="text-white-50 small mb-0">{{ item.ticketType.label.value }}</p>
+										</div>
+									</div>
 
-									<td>{{ (item.ticketType.price * item.quantity)|number_format(2, ',', ' ') }}
-										€</td>
+									<div class="d-flex align-items-center gap-4">
+										<span class="fs-5 fw-bold text-white text-nowrap ">{{ item.ticketType.price|number_format(2, ',', ' ') }}€</span>
 
-								</tr>
+										<div class="d-flex align-items-center gap-2">
+											<form id="cart-form-{{ item.ticketType.id }}" action="{{ path('app_cart_alter_quantity', {'ticketTypeId': item.ticketType.id }) }}" method="post" class="d-flex align-items-center">
+												<input type="number" name="quantity" value="{{ item.quantity }}" min="1" max="10" class="form-control quantity bg-transparent text-white text-center border-secondary border-opacity-50" style="width: 70px;">
+												<input type="hidden" name="token" value="{{ csrf_token('alter-cart') }}">
+											</form>
+											<a href="{{ path('app_cart_remove', {'id': item.ticketType.id}) }}" class="btn btn-outline-danger btn-sm">
+												<i class="bi bi-trash"></i>
+											</a>
+										</div>
+										<span class="fs-5 fw-bold text-white text-nowrap">{{ (item.ticketType.price * item.quantity)|number_format(2, ',', ' ') }} €</span>
+									</div>
+								</div>
 							{% endfor %}
-						</tbody>
-					</table>
-					<a href="{{ path('app_cart_clear') }}" class="btn btn-outline-danger">Vider le panier</a>
-				</div>
-				<div class="col-md-4">
-					<div class="card">
-						<div class="card-body">
-							<h5 class="card-title">Résumé de la commande</h5>
-							<ul class="list-group list-group-flush">
-								<li class="list-group-item d-flex justify-content-between align-items-center">
-									Sous-total
-									<span>{{ subTotal|number_format(2, ',', ' ') }}
-										€</span>
-								</li>
-								<li class="list-group-item d-flex justify-content-between align-items-center">
-									Frais de service
-									<span>{{ serviceFee|number_format(2, ',', ' ') }}
-										€</span>
-								</li>
-								<li class="list-group-item d-flex justify-content-between align-items-center fw-bold">
-									TOTAL
-									<span>{{ total|number_format(2, ',', ' ') }}
-										€</span>
-								</li>
-							</ul>
-							<a href="{{ path('app_ticket_newTicket') }}" class="btn button w-100 mt-3">
-								Procéder au paiement
-							</a>
+
+							<div class="d-flex justify-content-between align-items-center mt-4">
+								<a href="{{ path('app_cart_clear') }}" class="btn btn-outline-danger">Vider le panier</a>
+								<div class="text-danger">
+									{% for message in app.flashes('error') %}
+										<div class="flash-notice text-error">
+											{{ message }}
+										</div>
+									{% endfor %}
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4">
+						<div class="position-sticky">
+							<div class="info-box p-4 rounded-4 mb-4 shadow">
+								<div class="d-flex align-items-center gap-2 mb-4">
+									<i class="bi bi-receipt fs-4 text-white"></i>
+									<h2 class="h5 fw-bold text-white mb-0">Votre commande</h2>
+								</div>
+								<div class="mb-4">
+									<div class="d-flex justify-content-between text-white-50 small mb-2">
+										<span>Sous-total</span>
+										<span>{{ subTotal|number_format(2, ',', ' ') }} €</span>
+									</div>
+									<div class="d-flex justify-content-between text-white-50 small pb-3 border-bottom border-secondary border-opacity-25">
+										<span>Frais de service</span>
+										<span>{{ serviceFee|number_format(2, ',', ' ') }} €</span>
+									</div>
+									<div class="d-flex justify-content-between align-items-center text-white mt-3">
+										<span class="fs-5 fw-bold">Total</span>
+										<span class="fs-4 fw-bold">{{ total|number_format(2, ',', ' ') }} €</span>
+									</div>
+								</div>
+								<a href="{{ path('app_ticket_newTicket') }}" class="button large w-100 py-3 border-0 d-flex justify-content-center align-items-center gap-2">
+									Procéder au paiement
+									<i class="bi bi-arrow-right"></i>
+								</a>
+								<div class="text-center mt-3 text-white-50 small">
+									<i class="bi bi-lock-fill"></i>
+									Paiement 100% sécurisé
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		{% else %}
-			<div class="alert alert-info text-center" role="alert">
-				Votre panier est vide.
-			</div>
-			<div class="text-center">
-				<a href="{{ path('app_event_index') }}" class="btn button">Retourner à l'accueil</a>
-			</div>
-		{% endif %}
-
+			{% else %}
+				<div class="info-box p-5 rounded-4 mb-4 shadow text-center">
+					<p class="h4 text-white">Votre panier est vide.</p>
+					<p class="text-white-50">Parcourez nos événements pour trouver votre prochaine sortie !</p>
+					<a href="{{ path('app_event_index') }}" class="btn button mt-3">
+						<i class="bi bi-arrow-left"></i>
+						Retourner à l'accueil
+					</a>
+				</div>
+			{% endif %}
+		</div>
 	</main>
+
+	<script src="{{asset('assets/js/alterCart.js')}}"></script>
 {% endblock %}
