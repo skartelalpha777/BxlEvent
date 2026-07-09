@@ -38,8 +38,10 @@ final class CartController extends AbstractController
         }
 
         foreach ($tickets as $id => $quantity) {
-
-            $cartService->addToCart((int)$id, (int)$quantity);
+            $quantity = (int) $quantity;
+            if ($quantity > 0) {
+                $cartService->addToCart((int)$id, $quantity);
+            }
         }
 
         $this->addFlash('success', 'le ou les tickets selectionés ont bien été ajoutés à votre panier.');
@@ -58,25 +60,17 @@ final class CartController extends AbstractController
                 $this->addFlash('error', 'Vous ne pouvez pas avoir plus de 10 tickets par commande.');
                 return $this->redirectToRoute('app_cart_index');
             }
-            $cartService->addToCart($ticketTypeId, $quantity);
+            $cartService->setQuantity($ticketTypeId, $quantity);
             return $this->redirectToRoute('app_cart_index');
         }
         $this->addFlash('error', 'Erreur lors de la modification du panier.');
         return $this->redirectToRoute('app_cart_index');
     }
 
-
-    #[Route('/decreaseQuatity/{id}', name: 'app_cart_decrease')]
-    public function decreaseQuantity(int $id, CartService $cartService): Response
-    {
-        $cartService->decreaseQuantity($id);
-        return $this->redirectToRoute('app_cart_index');
-    }
-
     #[Route('/remove/{id}', name: 'app_cart_remove')]
     public function remove(int $id, CartService $cartService): Response
     {
-        $cartService->addToCart($id, 0);
+        $cartService->setQuantity($id, 0);
 
         $this->addFlash('success', 'L\'article a bien été supprimé du panier.');
 
