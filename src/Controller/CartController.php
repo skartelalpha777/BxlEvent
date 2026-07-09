@@ -47,13 +47,24 @@ final class CartController extends AbstractController
         return $this->redirectToRoute('app_event_tickets', ['id' => $event->getId()]);
     }
 
-    #[Route('/increaseQuaity/{id}/', name: 'app_cart_increase')]
-    public function increaseQuantity(int $id, CartService $cartService): Response
-    {
 
-        $cartService->increaseQuantity($id);
+    #[Route('/increaseQuaity/{ticketTypeId}', name: 'app_cart_alter_quantity')]
+    public function alterQuantity(int $ticketTypeId,  CartService $cartService, Request $request): Response
+    {
+        $submittedToken = $request->getPayload()->get('token');
+        if ($this->isCsrfTokenValid('alter-cart', $submittedToken)) {
+            $quantity = $request->request->get('quantity');
+            if ($quantity > 10) {
+                $this->addFlash('error', 'Vous ne pouvez pas avoir plus de 10 tickets par commande.');
+                return $this->redirectToRoute('app_cart_index');
+            }
+            $cartService->addToCart($ticketTypeId, $quantity);
+            return $this->redirectToRoute('app_cart_index');
+        }
+        $this->addFlash('error', 'Erreur lors de la modification du panier.');
         return $this->redirectToRoute('app_cart_index');
     }
+
 
     #[Route('/decreaseQuatity/{id}', name: 'app_cart_decrease')]
     public function decreaseQuantity(int $id, CartService $cartService): Response
