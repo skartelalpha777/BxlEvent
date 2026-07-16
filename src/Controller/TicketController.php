@@ -152,6 +152,11 @@ final class TicketController extends AbstractController
         $pdfOptions = new Options();
         $pdfOptions->set('defaultFont', 'Arial');
         $pdfOptions->set('isRemoteEnabled', true); // -> Autorise le chargement d'images via URL HTTP
+       // Autorise l'accès au dossier public-> ce qui permet d'acceder a l'image de 
+       // l'évnèment pour l'afficher dans le ticket
+        $pdfOptions->setChroot([
+            $this->getParameter('kernel.project_dir') . '/public',
+        ]);
 
         $dompdf = new Dompdf($pdfOptions);
         $dompdf->loadHtml($html);

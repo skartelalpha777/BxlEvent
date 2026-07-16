@@ -10,8 +10,10 @@
 		{% for data in ticketsData %}
 			<div class="ticket-page justify-content-center align-items-center">
 				<h1 class="event-title">{{ data.ticket.event.title }}</h1>
-             {# Ici on récupère directement la racine de votre dossier public via la variable Twig globale du serveur car asset ne marche pas #}
-				<img src="{{ app.request.server.get('DOCUMENT_ROOT') }}/assets/img/uploads/events/{{ data.ticket.event.galleries[0].name }}" class="img-fluid rounded-3 w-100" style="object-fit: cover; max-height: 200px;" alt="{{ data.ticket.event.title }}">
+				{% set img = data.ticket.event.galleries[0].name%}
+				{# Ici on récupère directement la racine de votre dossier public via la variable Twig globale du serveur car asset ne marche pas #}
+				{% set url='/assets/img/uploads/events/'  %}
+				<img src="{{ url~img }}" class="img-fluid rounded-3 w-100" style="object-fit: cover; max-height: 200px;" alt="{{ data.ticket.event.title }}">
 				<p>
 					<strong>Date de l'événement :</strong>
 					{{ data.ticket.event.date|date('d/m/Y') }}
