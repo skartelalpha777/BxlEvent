@@ -3,45 +3,110 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Vos Billets</title>
-
+		<link rel="stylesheet" href="{{asset('assets/css/ticket.css')}}">
 	</head>
 	<body>
 
+		{% set uploadsUrl = app.request.server.get('DOCUMENT_ROOT') ~ '/assets/img/uploads/events/' %}
+
 		{% for data in ticketsData %}
-			<div class="ticket-page justify-content-center align-items-center">
-				<h1 class="event-title">{{ data.ticket.event.title }}</h1>
-				{% set img = data.ticket.event.galleries[0].name%}
-				{# Ici on récupère directement la racine de votre dossier public via la variable Twig globale du serveur car asset ne marche pas #}
-				{% set url='/assets/img/uploads/events/'  %}
-				<img src="{{ url~img }}" class="img-fluid rounded-3 w-100" style="object-fit: cover; max-height: 200px;" alt="{{ data.ticket.event.title }}">
-				<p>
-					<strong>Date de l'événement :</strong>
-					{{ data.ticket.event.date|date('d/m/Y') }}
-					à
-					{{ data.ticket.event.hour|date('H:i') }}</p>
+			<div class="ticket-page">
+				<div class="ticket-card">
 
-				<hr>
+					<div class="ticket-banner" style="background-image: url('{{uploadsUrl ~ data.ticket.event.galleries[0].name }}');background-size: cover;background-position: center; position:relative; height: 210px;">
+						<span class="badge">{{ data.ticket.ticketType.label.value }}</span>
+						<div class="overlay">
+							<h1>{{ data.ticket.event.title }}</h1>
+						</div>
+					</div>
 
-				<h3>Billet :
-					{{ data.ticket.ticketType.label.value }}</h3>
-				<p>
-					<strong>Titulaire :</strong>
-					{{ data.ticket.user.firstName }}
-					{{ data.ticket.user.lastName }}</p>
-				<p>
-					<strong>Prix :</strong>
-					{{ data.ticket.ticketType.price }}
-					€</p>
-				<p>
-					<strong>N° Commande :</strong>
-					{{ order.reference }}</p>
+					<div class="ticket-body">
+						<div class="info-row">
+							<div class="dot-cell">
+								<span class="dot"></span>
+							</div>
+							<div class="text-cell">
+								<span class="label">Date & Heure</span>
+								<span class="value text-nowrap">{{ data.ticket.event.date|date('d M Y') }}
 
-				<img src="data:image/png;base64,{{ data.qrBase64 }}" class="qr-code" alt="QR Code Billet">
-				<p>
-					<small>Code:
-						{{ data.ticket.code }}</small>
-				</p>
+									{{ data.ticket.event.hour|date('H:i') }}</span>
+							</div>
+						</div>
+
+						<div class="info-row">
+							<div class="dot-cell">
+								<span class="dot"></span>
+							</div>
+							<div class="text-cell">
+								<span class="label">Lieu</span>
+								<span class="value">{{ data.ticket.event.location.name }}</span>
+								{% set adresse = data.ticket.event.location.street ~ ' ' ~ data.ticket.event.location.number ~ ', ' ~ data.ticket.event.location.postcode ~ ' ' ~ data.ticket.event.location.city %}
+								<span class="sub-value">
+									<a href="https://www.google.com/maps/search/?api=1&query={{ adresse|url_encode }}">{{ adresse }}</a>
+								</span>
+							</div>
+						</div>
+
+						<div class="info-row">
+							<div class="dot-cell">
+								<span class="dot"></span>
+							</div>
+							<div class="text-cell">
+								<span class="label">Type de billet</span>
+								<span class="value">{{ data.ticket.ticketType.label.value }}</span>
+							</div>
+						</div>
+
+						<div class="info-row">
+							<div class="dot-cell">
+								<span class="dot"></span>
+							</div>
+							<div class="text-cell">
+								<span class="label">Prix</span>
+								<span class="value">{{ data.ticket.ticketType.price }}
+									€</span>
+							</div>
+						</div>
+					</div>
+
+					<div style="padding: 0 24px;">
+						<div class="perforation">
+							<span>Votre billet</span>
+						</div>
+					</div>
+
+					<div class="qr-section">
+						<img src="data:image/png;base64,{{ data.qrBase64 }}" alt="QR Code Billet">
+						<p class="qr-ref">{{ order.reference }}</p>
+					</div>
+
+					<div class="ticket-footer">
+						<div class="footer-col">
+							<span class="f-label">Titulaire</span>
+							<span class="f-value">{{ data.ticket.user.firstName }}
+								{{ data.ticket.user.lastName }}</span>
+						</div>
+						<div class="footer-col">
+							<span class="f-label">Acheté le</span>
+							<span class="f-value">{{ data.ticket.date|date('d/m/Y') }}</span>
+						</div>
+						<div class="footer-col">
+							<span class="f-label">Statut</span>
+							<span class="status-badge">{{ data.ticket.isScanned ? 'Utilisé' : 'Valide' }}</span>
+						</div>
+					</div>
+
+					<div class="ticket-note">
+						Présentez ce QR code à l'entrée de l'événement. Ce billet est nominatif et non transférable. Code :
+						{{ data.ticket.code }}
+					</div>
+
+				</div>
 			</div>
+
+			{% if not loop.last %}
+				<div class="page-break"></div>
+			{% endif %}
 		{% endfor %}
 
 	</body>

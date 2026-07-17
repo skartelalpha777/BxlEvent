@@ -63,7 +63,7 @@
 							<div class="info-box h-100">
 								<h2>Informations</h2>
 								<div class="row ">
-									<div class="col   Col ">
+									<div class="col">
 										<li class="list-group-item ">
 											<i class="bi bi-calendar-check-fill me-1"></i>
 											Date
@@ -75,7 +75,7 @@
 									</div>
 								</div>
 								<div class="row ">
-									<div class="col   Col ">
+									<div class="col">
 										<li class="list-group-item ">
 											<i class="bi bi-alarm"></i>
 											Heure
@@ -86,13 +86,13 @@
 									</div>
 								</div>
 								<div class="row ">
-									<div class="col   Col ">
+									<div class="col">
 										<li class="list-group-item ">
 											<i class="bi bi-geo-alt"></i>
 											Lieu
 										</li>
 									</div>
-									<div class="col  ">
+									<div class="col">
 										{% set adress = event.location.name ~','~ event.location.street ~'  '~ event.location.number ~','~ event.location.postcode ~' '~ event.location.city	%}
 										{% set url = 'https://www.google.com/maps/search/?api=1&query=' ~ adress|url_encode%}
 										<p>
@@ -101,14 +101,14 @@
 									</div>
 								</div>
 								<div class="row ">
-									<div class="col   Col ">
+									<div class="col">
 										<li class="list-group-item text-nowrap">
 											<i class="bi bi-bookmark-heart"></i>
 											Catégorie
 
 										</li>
 									</div>
-									<div class="col ">
+									<div class="col">
 										{% set allCategories ='' %}
 										{% for cat  in event.categories %}
 											{% set allCategories = allCategories ~ cat.name ~' '%}
