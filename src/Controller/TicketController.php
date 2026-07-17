@@ -12,7 +12,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use App\Repository\TicketTypeRepository;
 use App\Repository\OrderRepository;
 use App\Entity\Order;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -152,8 +151,8 @@ final class TicketController extends AbstractController
         $pdfOptions = new Options();
         $pdfOptions->set('defaultFont', 'Arial');
         $pdfOptions->set('isRemoteEnabled', true); // -> Autorise le chargement d'images via URL HTTP
-       // Autorise l'accès au dossier public-> ce qui permet d'acceder a l'image de 
-       // l'évnèment pour l'afficher dans le ticket
+        // Autorise l'accès au dossier public-> ce qui permet d'acceder a l'image de 
+        // l'évnèment pour l'afficher dans le ticket
         $pdfOptions->setChroot([
             $this->getParameter('kernel.project_dir') . '/public',
         ]);
@@ -283,7 +282,16 @@ final class TicketController extends AbstractController
                 $entityManager->persist($ticket);
             }
         }
-
+        $lineItems[] = [
+            'price_data' => [
+                'currency' => 'eur',
+                'product_data' => [
+                    'name' => 'Frais de service',
+                ],
+                'unit_amount' => 2 * 100,
+            ],
+            'quantity' => $quantity,
+        ];
         return $lineItems;
     }
 
