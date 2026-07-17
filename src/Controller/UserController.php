@@ -30,7 +30,7 @@ final class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            
+
             $entityManager->persist($user);
             $entityManager->flush();
 
@@ -43,6 +43,13 @@ final class UserController extends AbstractController
         ]);
     }
 
+    #[Route('/{id}', name: 'app_user_profil', methods: ['GET'])]
+    public function profil(User $user): Response
+    {
+        return $this->render('user/profil.html.twig', [
+            'user' => $user,
+        ]);
+    }
     #[Route('/{id}', name: 'app_user_show', methods: ['GET'])]
     public function show(User $user): Response
     {
@@ -72,7 +79,7 @@ final class UserController extends AbstractController
     #[Route('/{id}', name: 'app_user_delete', methods: ['POST'])]
     public function delete(Request $request, User $user, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->getPayload()->getString('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($user);
             $entityManager->flush();
         }
