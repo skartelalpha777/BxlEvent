@@ -84,7 +84,7 @@
 									<div class="row">
 
 										<div class="col">
-											<button class="button " type="button">Tickets</button>
+											<button class="button " type="button" onclick="window.location.href='{{path('app_event_tickets',{id:event.id})}}'">Tickets</button>
 										</div>
 										<div class="col text-end">
 											<button class=" noBackground" type="button" onclick="window.location.href=' {{path('app_event_consult', {id:event.id} )}}'">Consulter l'évenement</button>
