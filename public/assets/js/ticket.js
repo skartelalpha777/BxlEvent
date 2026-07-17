@@ -1,4 +1,3 @@
-const FRAIS_SERVICE = 2;
 
 function updateQty(idTicket, variation) {
     const champInput = document.getElementById('qty-' + idTicket);
@@ -32,7 +31,7 @@ function calculerPanier() {
     if (totalTickets > 0) {
         document.getElementById('summary-text').innerText = totalTickets + " ticket(s)";
         document.getElementById('summary-subtotal').innerText = sousTotal + " €";
-        document.getElementById('summary-total').innerText = (sousTotal + FRAIS_SERVICE) + " €";
+        document.getElementById('summary-total').innerText = sousTotal  + " €";
 
         document.getElementById('btn-submit').disabled = false;
 
