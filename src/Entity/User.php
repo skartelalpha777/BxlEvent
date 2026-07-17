@@ -42,6 +42,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $profileImg = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $street = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $number = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $postcode = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $city = null;
+
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTime $dateRgpd = null;
 
@@ -197,6 +209,54 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setProfileImg(?string $profileImg): static
     {
         $this->profileImg = $profileImg;
+
+        return $this;
+    }
+
+    public function getStreet(): ?string
+    {
+        return $this->street;
+    }
+
+    public function setStreet(?string $street): static
+    {
+        $this->street = $street;
+
+        return $this;
+    }
+
+    public function getNumber(): ?int
+    {
+        return $this->number;
+    }
+
+    public function setNumber(?int $number): static
+    {
+        $this->number = $number;
+
+        return $this;
+    }
+
+    public function getPostcode(): ?int
+    {
+        return $this->postcode;
+    }
+
+    public function setPostcode(?int $postcode): static
+    {
+        $this->postcode = $postcode;
+
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(?string $city): static
+    {
+        $this->city = $city;
 
         return $this;
     }
