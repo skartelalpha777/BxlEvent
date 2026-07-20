@@ -1,0 +1,202 @@
+/*
+Définis le design du tket généer lorsqu'un achat est effectué
+Agit sur la page pdf.html.twig
+*/
+body {
+    font-family: "Roboto", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    color: #101a20;
+    margin: 0;
+    padding: 30px 0;
+}
+
+.ticket-page {
+    width: 480px;
+    margin: 0 auto;
+}
+
+.ticket-card {
+    border: 1px solid #d7dee3;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.ticket-banner .badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background-color: #1387c1;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 20px;
+}
+
+.ticket-banner .overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 40px 20px 16px;
+    background: linear-gradient(to bottom, rgba(16, 26, 32, 0), rgba(16, 26, 32, 0.92));
+}
+
+.ticket-banner .overlay h1 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 26px;
+    line-height: 1.2;
+}
+
+/* Corps du billet : infos pratiques */
+.ticket-body {
+    background-color: #ffffff;
+    padding: 22px 24px 6px;
+}
+
+.info-row {
+    display: table;
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+.info-row .dot-cell {
+    display: table-cell;
+    width: 18px;
+    vertical-align: top;
+    padding-top: 4px;
+}
+
+.info-row .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #1387c1;
+}
+
+.info-row .text-cell {
+    display: table-cell;
+    vertical-align: top;
+}
+
+.info-row .label {
+    display: block;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #6c7a83;
+    margin-bottom: 3px;
+}
+
+.info-row .value {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    color: #101a20;
+}
+
+.info-row .sub-value {
+    display: block;
+    font-size: 12px;
+    color: #6c7a83;
+    margin-top: 2px;
+}
+
+.info-row .sub-value a {
+    color: #1387c1;
+    text-decoration: none;
+}
+
+/* Séparateur "billet déchiré" */
+.perforation {
+    position: relative;
+    border-top: 2px dashed #c8d2d8;
+    margin: 4px 0 22px;
+}
+
+.perforation span {
+    position: absolute;
+    top: -9px;
+    left: 50%;
+    width: 150px;
+    margin-left: -75px;
+    background-color: #ffffff;
+    text-align: center;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #1387c1;
+}
+
+/* QR code */
+.qr-section {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.qr-section img {
+    width: 150px;
+    height: 150px;
+}
+
+.qr-section .qr-ref {
+    margin-top: 10px;
+    font-family: "Courier New", monospace;
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-size: 13px;
+    color: #101a20;
+}
+
+/* Pied du billet */
+.ticket-footer {
+    display: table;
+    width: 100%;
+    background-color: #101a20;
+    padding: 16px 24px;
+}
+
+.ticket-footer .footer-col {
+    display: table-cell;
+    vertical-align: top;
+    color: #e7f2f7;
+}
+
+.ticket-footer .f-label {
+    display: block;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #8a97a0;
+    margin-bottom: 3px;
+}
+
+.ticket-footer .f-value {
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.status-badge {
+    display: inline-block;
+    background-color: #1387c1;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 3px 10px;
+    border-radius: 12px;
+}
+
+.ticket-note {
+    background-color: #0b1419;
+    color: #8a97a0;
+    font-size: 10px;
+    padding: 10px 24px 16px;
+}
+
+.page-break {
+    page-break-after: always;
+}
