@@ -62,13 +62,6 @@ body {
     margin-bottom: 16px;
 }
 
-.info-row .dot-cell {
-    display: table-cell;
-    width: 18px;
-    vertical-align: top;
-    padding-top: 4px;
-}
-
 .info-row .dot {
     width: 10px;
     height: 10px;
@@ -109,21 +102,15 @@ body {
     text-decoration: none;
 }
 
-/* Séparateur "billet déchiré" */
 .perforation {
     position: relative;
     border-top: 2px dashed #c8d2d8;
     margin: 4px 0 22px;
+   text-align: center;
 }
 
 .perforation span {
-    position: absolute;
-    top: -9px;
-    left: 50%;
-    width: 150px;
-    margin-left: -75px;
-    background-color: #ffffff;
-    text-align: center;
+
     font-size: 11px;
     font-weight: bold;
     letter-spacing: 2px;
@@ -131,7 +118,6 @@ body {
     color: #1387c1;
 }
 
-/* QR code */
 .qr-section {
     text-align: center;
     padding-bottom: 20px;
@@ -144,14 +130,11 @@ body {
 
 .qr-section .qr-ref {
     margin-top: 10px;
-    font-family: "Courier New", monospace;
     font-weight: bold;
     letter-spacing: 2px;
     font-size: 13px;
-    color: #101a20;
 }
 
-/* Pied du billet */
 .ticket-footer {
     display: table;
     width: 100%;

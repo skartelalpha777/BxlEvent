@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
 		<meta charset="UTF-8">
 		<title>Vos Billets</title>
-		<link rel="stylesheet" href="{{asset('assets/css/ticket.css')}}">
+		<link rel="stylesheet" href="{{asset('assets/css/ticketpdf.css')}}">
 	</head>
 	<body>
 
@@ -22,9 +23,6 @@
 
 					<div class="ticket-body">
 						<div class="info-row">
-							<div class="dot-cell">
-								<span class="dot"></span>
-							</div>
 							<div class="text-cell">
 								<span class="label">Date & Heure</span>
 								<span class="value text-nowrap">{{ data.ticket.event.date|date('d M Y') }}
@@ -33,10 +31,7 @@
 							</div>
 						</div>
 
-						<div class="info-row">
-							<div class="dot-cell">
-								<span class="dot"></span>
-							</div>
+						<div class="info-row ms-4">
 							<div class="text-cell">
 								<span class="label">Lieu</span>
 								<span class="value">{{ data.ticket.event.location.name }}</span>
@@ -48,9 +43,6 @@
 						</div>
 
 						<div class="info-row">
-							<div class="dot-cell">
-								<span class="dot"></span>
-							</div>
 							<div class="text-cell">
 								<span class="label">Type de billet</span>
 								<span class="value">{{ data.ticket.ticketType.label.value }}</span>
@@ -58,9 +50,6 @@
 						</div>
 
 						<div class="info-row">
-							<div class="dot-cell">
-								<span class="dot"></span>
-							</div>
 							<div class="text-cell">
 								<span class="label">Prix</span>
 								<span class="value">{{ data.ticket.ticketType.price }}
@@ -69,11 +58,9 @@
 						</div>
 					</div>
 
-					<div style="padding: 0 24px;">
 						<div class="perforation">
-							<span>Votre billet</span>
-						</div>
-					</div>
+							<span >Votre billet</span>
+						</div>					
 
 					<div class="qr-section">
 						<img src="data:image/png;base64,{{ data.qrBase64 }}" alt="QR Code Billet">
