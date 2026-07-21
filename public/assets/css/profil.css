@@ -1,3 +1,7 @@
+/*
+Définis le design de designer la page profil et complement du Bootstrap déjà utilisé
+*/
+
 #profil .info-box {
     background: var(--surface-color);
     border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
@@ -66,18 +70,6 @@
     font-size: 1.2rem;
 }
 
-#profil .stat-value {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: var(--heading-color);
-    line-height: 1.1;
-}
-
-#profil .stat-label {
-    font-size: .85rem;
-    color: var(--default-color);
-    margin-bottom: 0;
-}
 
 #profil .stat-sublabel {
     font-size: .75rem;
