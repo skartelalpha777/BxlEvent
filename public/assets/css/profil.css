@@ -1,0 +1,130 @@
+#profil .info-box {
+    background: var(--surface-color);
+    border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+    border-radius: 1rem;
+}
+
+#profil .avatar-wrap {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+#profil .avatar-wrap img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+#profil .avatar-edit {
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #000;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--surface-color);
+    text-decoration: none;
+}
+
+#profil .role-badge {
+    border-radius: 999px;
+    background-color: var(--accent-color);
+    color: var(--contrast-color);
+    display: inline-block;
+    padding: 4px 14px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+#profil .stat-card {
+    background: var(--surface-color);
+    border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+    border-radius: 1rem;
+    padding: 1.1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: .9rem;
+    height: 100%;
+}
+
+#profil .stat-icon {
+    width: 46px;
+    height: 46px;
+    min-width: 46px;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--accent-color), transparent 85%);
+    color: var(--accent-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+#profil .stat-value {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--heading-color);
+    line-height: 1.1;
+}
+
+#profil .stat-label {
+    font-size: .85rem;
+    color: var(--default-color);
+    margin-bottom: 0;
+}
+
+#profil .stat-sublabel {
+    font-size: .75rem;
+    color:rgb(207, 201, 201)
+}
+
+#profil .profile-tabs {
+    border-bottom: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+}
+
+#profil .profile-tabs .nav-link {
+    color: color-mix(in srgb, var(--default-color), transparent 40%);
+    border: none;
+    border-bottom: 2px solid transparent;
+    border-radius: 0;
+    padding: .9rem .25rem;
+    margin-right: 1.75rem;
+    font-weight: 600;
+    background: none;
+}
+
+#profil .profile-tabs .nav-link.active {
+    color: var(--heading-color);
+    border-bottom-color: var(--accent-color);
+}
+
+#profil .account-row {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    padding: .6rem 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--default-color), transparent 93%);
+}
+
+#profil .account-row i {
+    width: 22px;
+    color: var(--accent-color);
+}
+
+#profil .account-row .account-label {
+    flex: 1;
+    color: color-mix(in srgb, var(--default-color), transparent 30%);
+    font-size: .9rem;
+}
+
+#profil .account-row .account-value {
+    font-weight: 600;
+    color: var(--heading-color);
+    text-align: right;
+}

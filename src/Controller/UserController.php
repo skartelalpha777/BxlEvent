@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/user')]
 final class UserController extends AbstractController
@@ -43,9 +44,14 @@ final class UserController extends AbstractController
         ]);
     }
 
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     #[Route('/{id}', name: 'app_user_profil', methods: ['GET'])]
     public function profil(User $user): Response
     {
+        if ($user != $this->getUser()) {
+            $this->addFlash('notice', "Vous ne pouvez pas acceder au profil d'un autre utilisateur. ");
+            $this->redirectToRoute('app_event_index');
+        }
         return $this->render('user/profil.html.twig', [
             'user' => $user,
         ]);

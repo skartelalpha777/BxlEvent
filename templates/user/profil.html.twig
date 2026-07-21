@@ -1,37 +1,338 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}User
+{% block stylesheets %}
+	<link href="{{asset('assets/css/profil.css')}}" rel="stylesheet"/>
 {% endblock %}
+
+
+{% block title %}
+	Profil
+{% endblock %}
+
 {% block body %}
-	<div class="contenair">
-		<header>
+	{% set totalSpent = 0 %}
+	{% for order in user.orders %}
+		{% if order.status.value == 'paid' %}
+			{% set totalSpent = totalSpent + order.totalPrice %}
+		{% endif %}
+	{% endfor %}
 
-			<div class="row">
-				<div class="col profil">
-					<img class="photo rounded-circle" src="https://static.vecteezy.com/ti/vecteur-libre/p1/26625600-la-personne-icone-vecteur-symbole-conception-illustration-vectoriel.jpg" alt="Photo de profil" style="width: 100px;">
+	{% set pastEventIds = [] %}
+	{% set participatedEvents = [] %}
+	{% for ticket in user.tickets %}
+		{% if ticket.event and ticket.event.date and ticket.event.date|date('Y-m-d') < "now"|date('Y-m-d') and ticket.event.id not in pastEventIds %}
+			{% set pastEventIds = pastEventIds|merge([ticket.event.id]) %}
+			{% set participatedEvents = participatedEvents|merge([ticket.event]) %}
+		{% endif %}
+	{% endfor %}
+
+	{% set accountInfo %}
+	<div class="account-row">
+		<i class="bi bi-person"></i>
+		<span class="account-label">Nom complet</span>
+		<span class="account-value">{{ user.firstName }}
+			{{ user.lastName }}</span>
+	</div>
+	<div class="account-row">
+		<i class="bi bi-envelope"></i>
+		<span class="account-label">Email</span>
+		<span class="account-value">{{ user.email }}</span>
+	</div>
+	{% if user.street or user.city %}
+		<div class="account-row">
+			<i class="bi bi-geo-alt"></i>
+			<span class="account-label">Adresse</span>
+			<span class="account-value">
+				{{ user.street }}
+				{% if user.number %}
+					{{ user.number }}
+				{% endif %}
+				{% if user.postcode or user.city %}
+					{{ user.postcode }}
+					{{ user.city }}
+				{% endif %}
+			</span>
+		</div>
+	{% endif %}
+	<div class="account-row">
+		<i class="bi bi-calendar-check"></i>
+		<span class="account-label">Membre depuis</span>
+		<span class="account-value">{{ user.dateRgpd|date('d/m/Y') }}</span>
+	</div>
+	<div class="account-row">
+		<i class="bi bi-lock"></i>
+		<span class="account-label">Mot de passe</span>
+		<span class="account-value">••••••••••</span>
+	</div>
+	<a href="{{ path('app_user_edit', {id: user.id}) }}" class="btn button large w-100 mt-3 text-decoration-none">
+		<i class="bi bi-pencil-square"></i>
+		Voir et modifier
+	</a>
+	{% endset %}
+
+	<main class="main">
+		<section id="profil">
+			<div class="container-fluid container-lg">
+
+				<div class="info-box p-4 mb-4">
+					<div class="row align-items-center gy-3">
+						<div class="col-auto">
+							<div class="avatar-wrap">
+								<img class="rounded-circle" src="{{ user.profileImg ?: 'https://static.vecteezy.com/ti/vecteur-libre/p1/26625600-la-personne-icone-vecteur-symbole-conception-illustration-vectoriel.jpg' }}" alt="Photo de profil">
+								<a href="{{ path('app_user_edit', {id: user.id}) }}" class="avatar-edit" title="Changer la photo">
+									<i class="bi bi-camera-fill"></i>
+								</a>
+							</div>
+						</div>
+
+						<div class="col">
+							<span class="role-badge mb-2">{{ user.role.getLabel() }}</span>
+							<h1 class="mb-1">{{ user.firstName }}
+								{{ user.lastName }}</h1>
+							<p class="mb-1">
+								<i class="bi bi-envelope"></i>
+								{{ user.email }}
+							</p>
+							<p class="mb-0">
+								<i class="bi bi-calendar-check"></i>
+								Membre depuis le
+								{{ user.dateRgpd|date('d/m/Y') }}
+							</p>
+							{% if user.street or user.city %}
+								<p class="mb-0">
+									<i class="bi bi-geo-alt"></i>
+									{{ user.street }}
+									{% if user.number %}
+										{{ user.number }},
+									{% endif %}
+									{% if user.postcode or user.city %}
+										{{ user.postcode }}
+										{{ user.city }}
+									{% endif %}
+								</p>
+							{% endif %}
+						</div>
+
+						<div class="col-auto">
+							<button class="btn button ps-1" onclick="window.location.href='{{ path('app_user_edit', {id: user.id}) }}'">
+								Modifier mon profil
+							</button>
+						</div>
+					</div>
 				</div>
 
-				<div class="col nom">
-					<h1>{{user.firstName}}
-						{{user.lastName}}</h1>
-					<p>Membre depuis{{ ' '~user.dateRgpd|date('Y-m-d')}}</p>
-					<p class="mt-4">{{user.email}}</p>
+				<div class="row gy-3 mb-4">
+					<div class="col-6 col-md-4 col-lg">
+						<div class="stat-card">
+							<div class="stat-icon">
+								<i class="bi bi-bag-check"></i>
+							</div>
+							<div>
+								<p class="fw-bold fs-3 mb-0">{{ user.orders|length }}</p>
+								<p class="mb-0">Commandes</p>
+								<p class="stat-sublabel mb-0">Total effectuées</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-6 col-md-4 col-lg">
+						<div class="stat-card">
+							<div class="stat-icon">
+								<i class="bi bi-ticket-perforated"></i>
+							</div>
+							<div>
+								<p class="fw-bold fs-3 mb-0">{{ user.tickets|length }}</p>
+								<p class="mb-0">Billets</p>
+								<p class="stat-sublabel mb-0">Total obtenus</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-6 col-md-4 col-lg">
+						<div class="stat-card">
+							<div class="stat-icon">
+								<i class="bi bi-wallet2"></i>
+							</div>
+							<div>
+								<p class="fw-bold fs-3 mb-0">{{ totalSpent }}
+									€</p>
+								<p class="mb-0">Total dépensé</p>
+								<p class="stat-sublabel mb-0">Toutes commandes</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-6 col-md-4 col-lg">
+						<div class="stat-card">
+							<div class="stat-icon">
+								<i class="bi bi-calendar-event"></i>
+							</div>
+							<div>
+								<p class="fw-bold fs-3 mb-0">{{ participatedEvents|length }}</p>
+								<p class="mb-0">Événements</p>
+								<p class="stat-sublabel mb-0">Déjà participés</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-6 col-md-4 col-lg">
+						<div class="stat-card">
+							<div class="stat-icon">
+								<i class="bi bi-bell"></i>
+							</div>
+							<div>
+								<p class="fw-bold fs-3 mb-0">{{ user.reports|length }}</p>
+								<p class="mb-0">Signalements</p>
+								<p class="stat-sublabel mb-0">
+									{{ user.reports|length == 0 ? 'Aucun signalement' : 'Total soumis' }}
+								</p>
+							</div>
+						</div>
+					</div>
 				</div>
 
+				<div class="row gx-lg-5 gy-4">
+					<div class="col-lg-7">
+						<ul class="nav profile-tabs mb-4" id="profilTabs" role="tablist">
+							<li class="nav-item" role="presentation">
+								<button class="nav-link active" id="commandes-tab" data-bs-toggle="tab" data-bs-target="#commandes" type="button" role="tab">Mes commandes & billets</button>
+							</li>
+							<li class="nav-item" role="presentation">
+								<button class="nav-link" id="evenements-tab" data-bs-toggle="tab" data-bs-target="#evenements" type="button" role="tab">Événements déjà participés</button>
+							</li>
+							<li class="nav-item" role="presentation">
+								<button class="nav-link" id="signalements-tab" data-bs-toggle="tab" data-bs-target="#signalements" type="button" role="tab">Mes signalements</button>
+							</li>
+						</ul>
 
-				<div class="col ville">
+						<div class="tab-content">
+							<div class="tab-pane fade show active" id="commandes" role="tabpanel">
+								<div class="info-box p-4">
+									{% if user.orders|length == 0 %}
+										<p class="mb-0">Vous n'avez encore passé aucune commande.</p>
+									{% endif %}
 
-					<div class="input-group">
-						<i class="fa-solid fa-location-crosshairs"></i>
-						<span class="input-group-text">{{user.location.citty}}</span>
+									{% for order in user.orders|reverse %}
+										<div class="p-3 mb-3 rounded-3 border border-dark">
+											<div class="d-flex justify-content-between align-items-start ">
+												<div>
+													<h5 class="fw-bold mb-1">{{ order.reference }}</h5>
+													<p class="small text-white-50 mb-0">
+														<i class="bi bi-clock-history"></i>
+														{{ order.createdAt|date('d/m/Y à H:i') }}
+													</p>
+												</div>
+												<div>
+													{% if order.status.value == 'paid' %}
+														<span class="badge bg-success">Payée</span>
+													{% elseif order.status.value == 'pending' %}
+														<span class="badge bg-warning text-dark">En attente</span>
+													{% else %}
+														<span class="badge bg-secondary">Annulée</span>
+													{% endif %}
+													<p class="fw-bold text-info mb-0 mt-1">{{ order.totalPrice }}
+														€
+													</p>
+												</div>
+											</div>
 
+											{% if order.tickets|length > 0 %}
+
+												<ul class="list-unstyled mb-0">
+													{% for ticket in order.tickets %}
+														<li class="d-flex justify-content-between align-items-center py-1">
+															<span>
+																<i class="bi bi-ticket-perforated"></i>
+																{{ ticket.event.title }}
+																<span class="text-white-50 small">({{ ticket.ticketType.label.value }})</span>
+															</span>
+															<span>
+																{% if ticket.isScanned %}
+																	<span class="badge bg-secondary">Utilisé</span>
+																{% else %}
+																	<span class="badge bg-success">Non utilisé</span>
+																{% endif %}
+															</span>
+														</li>
+													{% endfor %}
+												</ul>
+
+												{% if order.status.value == 'paid' %}
+													<button class="noBackground large mt-3" type="button" onclick="window.location.href='{{ path('app_ticket_download', {reference: order.reference}) }}'">
+														<i class="bi bi-download"></i>
+														Télécharger mes billets
+													</button>
+												{% endif %}
+											{% endif %}
+										</div>
+									{% endfor %}
+								</div>
+							</div>
+
+							<div class="tab-pane fade" id="evenements" role="tabpanel">
+								<div class="info-box p-4">
+									{% if participatedEvents|length == 0 %}
+										<p class="text-white-50 mb-0">Vous n'avez pas encore participé à un événement.</p>
+									{% endif %}
+
+									{% for event in participatedEvents|reverse %}
+										<div class="d-flex gap-3 p-3 mb-3 rounded-3 border border-dark">
+											{% if event.galleries|length > 0 %}
+												<img src="{{ asset('assets/img/uploads/events/' ~ event.galleries[0].name) }}" class="rounded-3" style="width: 90px; height: 90px; object-fit: cover;" alt="Image de l'événement">
+											{% endif %}
+											<div class="flex-grow-1">
+												<h5 class="fw-bold mb-1">
+													<a href="{{ path('app_event_consult', {id: event.id}) }}" class="text-decoration-none text-white">{{ event.title }}</a>
+												</h5>
+												<p class="small text-white-50 mb-1">
+													<i class="bi bi-calendar-check"></i>
+													{{ event.date|date('d/m/Y') }}
+													{% if event.hour %}à
+														{{ event.hour|date('H:i') }}
+													{% endif %}
+												</p>
+												{% if event.location %}
+													<p class="small text-white-50 mb-0">
+														<i class="bi bi-geo-alt"></i>
+														{{ event.location.name }}
+													</p>
+												{% endif %}
+											</div>
+										</div>
+									{% endfor %}
+								</div>
+							</div>
+							<div class="tab-pane fade" id="signalements" role="tabpanel">
+								<div class="info-box p-4">
+									{% if user.reports|length == 0 %}
+										<p class="text-white-50 mb-0">Vous n'avez soumis aucun signalement.</p>
+									{% endif %}
+
+									{% for report in user.reports %}
+										<div class="p-3 mb-3 rounded-3">
+											<div class="d-flex justify-content-between align-items-start">
+												<div>
+													<h6 class="fw-bold mb-1">{{ report.event ? report.event.title : 'Événement supprimé' }}</h6>
+													<p class="small mb-0">
+														Date:
+														{{ report.date | date('d/m/Y') }}</p>
+													<p class="small text-white-50 mb-1">{{ report ? report.description : 'Aucune description' }}</p>
+												</div>
+												<span class="badge {{ report.treated ? 'bg-success' : 'bg-warning text-dark' }}">
+													{{ report.treated ? 'Traité' : 'En cours' }}
+												</span>
+											</div>
+										</div>
+									{% endfor %}
+								</div>
+							</div>
+						</div>
 					</div>
 
+					<div class="col-lg-5">
+						<div class="info-box p-4">
+							<h2 class="h5 mb-3">Informations du compte</h2>
+							{{ accountInfo|raw }}
+						</div>
+					</div>
 				</div>
-			</div>
-		</header>
 
-		<main></main>
-		<footer></footer>
-	</div>
+			</div>
+		</section>
+	</main>
 {% endblock %}
