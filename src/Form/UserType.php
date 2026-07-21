@@ -21,6 +21,10 @@ class UserType extends AbstractType
             ->add('lastName')
             ->add('profileImg')
             ->add('dateRgpd')
+            ->add('street')
+            ->add('number')
+            ->add('postcode')
+            ->add('city')
             ->add('role', EnumType::class, [
                 'class' => UserRole::class,
                 'choice_label' => fn(UserRole $choice) => $choice->value, // Affiche 'admin', 'membre', etc.

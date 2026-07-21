@@ -22,6 +22,7 @@
 
 							{{ form_start(form, {'attr': {'class': 'php-email-form'}}) }}
 							<div class="row gy-4">
+
 								<div class="text-danger">
 									{{ form_errors(form) }}
 								</div>
@@ -78,7 +79,6 @@
 									</div>
 									{{ form_errors(form.email) }}
 								</div>
-
 								<div class="col-md-6">
 									{{form_label(form.password, 'Mot de passe')}}
 									<div class="input-group mb-3">
@@ -97,11 +97,77 @@
 									{{ form_errors(form.password) }}
 								</div>
 
+								<div class="col-md-6">
+									{{form_label(form.street, 'Rue')}}
+									<div class="input-group mb-3">
+										<span class="input-group-text">
+											<i class="bi bi-lock-fill"></i>
+										</span>
+
+										{{ form_widget(form.street, {
+                                      
+                                        'attr': {
+                                            'class': 'form-control',   
+                                            'rows': 6
+                                        }
+                                    }) }}
+									</div>
+									{{ form_errors(form.street) }}
+								</div>
+								<div class="col-md-6">
+									{{ form_label(form.number, 'Numero') }}
+									<div class="input-group mb-3">
+										<span class="input-group-text">
+											<i class="bi bi-envelope-at-fill"></i>
+										</span>
+
+										{{ form_widget(form.number, {
+                                        'attr': {
+                                            'class': 'form-control'
+                                            
+                            
+                                        }
+                                    } ) }}
+									</div>
+									{{ form_errors(form.number) }}
+								</div>
+								<div class="col-md-6">
+									{{form_label(form.postcode, 'Code postale')}}
+									<div class="input-group mb-3">
+										<span class="input-group-text">
+											<i class="bi bi-lock-fill"></i>
+										</span>
+
+										{{ form_widget(form.postcode, {
+                                      
+                                        'attr': {
+                                            'class': 'form-control',   
+                                            'rows': 6
+                                        }
+                                    }) }}
+									</div>
+									{{ form_errors(form.postcode) }}
+								</div>
+								<div class="col-md-6">
+									{{ form_label(form.city, 'Ville') }}
+									<div class="input-group mb-3">
+										<span class="input-group-text">
+											<i class="bi bi-envelope-at-fill"></i>
+										</span>
+
+										{{ form_widget(form.city, {
+                                        'attr': {
+                                            'class': 'form-control'
+                                            
+                            
+                                        }
+                                    } ) }}
+									</div>
+									{{ form_errors(form.city) }}
+								</div>
+
 								<div class="col-12 text-center">
-
-									<button type="submit" class="btn button large">Sauvegarder</button>
-
-
+									<button class="btn button large">{{ button_label|default('Sauvegarder') }}</button>
 								</div>
 
 
@@ -118,6 +184,6 @@
 			</div>
 
 		</section>
-		<button class="btn">{{ button_label|default('Save') }}</button>
-		{{ form_end(form) }}
+
+
 	{% endblock %}
