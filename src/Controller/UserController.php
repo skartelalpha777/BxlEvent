@@ -24,6 +24,7 @@ final class UserController extends AbstractController
         ]);
     }
 
+
     #[Route('/new', name: 'app_user_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -64,6 +65,8 @@ final class UserController extends AbstractController
             'user' => $user,
         ]);
     }
+
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     #[Route('/{id}/editProfil', name: 'app_user_edit_own_profil', methods: ['GET', 'POST'])]
     public function editOwnProfil(Request $request, User $user, EntityManagerInterface $entityManager): Response
     {
