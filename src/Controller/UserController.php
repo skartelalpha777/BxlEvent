@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Form\UserTypeEditprofil;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -50,7 +51,7 @@ final class UserController extends AbstractController
     {
         if ($user != $this->getUser()) {
             $this->addFlash('notice', "Vous ne pouvez pas acceder au profil d'un autre utilisateur. ");
-            $this->redirectToRoute('app_event_index');
+            return $this->redirectToRoute('app_user_profil', ['id' => $this->getUser()->getId()], Response::HTTP_SEE_OTHER);
         }
         return $this->render('user/profil.html.twig', [
             'user' => $user,
@@ -61,6 +62,27 @@ final class UserController extends AbstractController
     {
         return $this->render('user/show.html.twig', [
             'user' => $user,
+        ]);
+    }
+    #[Route('/{id}/editProfil', name: 'app_user_edit_own_profil', methods: ['GET', 'POST'])]
+    public function editOwnProfil(Request $request, User $user, EntityManagerInterface $entityManager): Response
+    {
+        if ($user->getId() != $this->getUser()->getId()) {
+            return $this->redirectToRoute('app_user_profil', ['id' => $user->getId()], Response::HTTP_SEE_OTHER);
+        }
+        $form = $this->createForm(UserTypeEditprofil::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+            $this->addFlash('notice', 'Votre profil a bien été modifié.');
+
+            return $this->redirectToRoute('app_user_profil', ['id' => $user->getId()], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('user/edit.html.twig', [
+            'user' => $user,
+            'form' => $form,
         ]);
     }
 

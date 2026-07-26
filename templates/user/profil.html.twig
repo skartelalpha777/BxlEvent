@@ -63,7 +63,7 @@
 		<span class="account-label">Mot de passe</span>
 		<span class="account-value">••••••••••</span>
 	</div>
-	<a href="{{ path('app_user_edit', {id: user.id}) }}" class="btn button large w-100 mt-3 text-decoration-none">
+	<a href="{{ path('app_user_edit_own_profil', {id: user.id}) }}" class="btn button large w-100 mt-3 text-decoration-none">
 		<i class="bi bi-pencil-square"></i>
 		Modifier mes informations
 	</a>
@@ -72,18 +72,22 @@
 	<main class="main">
 		<section id="profil">
 			<div class="container-fluid container-lg">
+				{% for message in app.flashes('notice') %}
+					<div class="flash-notice text-success">
+						{{ message }}
+					</div>
+				{% endfor %}
 
 				<div class="info-box p-4 mb-4">
 					<div class="row align-items-center gy-3">
 						<div class="col-auto">
 							<div class="avatar-wrap">
 								<img class="rounded-circle" src="{{ user.profileImg ?: 'https://static.vecteezy.com/ti/vecteur-libre/p1/26625600-la-personne-icone-vecteur-symbole-conception-illustration-vectoriel.jpg' }}" alt="Photo de profil">
-								<a href="{{ path('app_user_edit', {id: user.id}) }}" class="avatar-edit" title="Changer la photo">
+								<a href="{{ path('app_user_edit_own_profil', {id: user.id}) }}" class="avatar-edit" title="Changer la photo">
 									<i class="bi bi-camera-fill"></i>
 								</a>
 							</div>
 						</div>
-
 						<div class="col">
 							<span class="role-badge mb-2">{{ user.role.getLabel() }}</span>
 							<h1 class="mb-1">{{ user.firstName }}
@@ -113,7 +117,7 @@
 						</div>
 
 						<div class="col-auto">
-							<button class="btn button ps-1" onclick="window.location.href='{{ path('app_user_edit', {id: user.id}) }}'">
+							<button class="btn button ps-1" onclick="window.location.href='{{ path('app_user_edit_own_profil', {id: user.id}) }}'">
 								Modifier mon profil
 							</button>
 						</div>
