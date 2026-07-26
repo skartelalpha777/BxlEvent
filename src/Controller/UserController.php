@@ -73,7 +73,7 @@ final class UserController extends AbstractController
         if ($user->getId() != $this->getUser()->getId()) {
             return $this->redirectToRoute('app_user_profil', ['id' => $user->getId()], Response::HTTP_SEE_OTHER);
         }
-        $form = $this->createForm(UserTypeEditprofil::class, $user);
+        $form = $this->createForm(UserTypeEditProfil::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
