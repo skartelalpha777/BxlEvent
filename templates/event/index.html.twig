@@ -7,6 +7,21 @@
 {% block body %}
 	<main
 		class="mainSection">
+
+		{% set flashes = app.flashes %}
+		{% if flashes|length > 0 %}
+			<div class="container pt-4">
+				{% for label, messages in flashes %}
+					{% for message in messages %}
+						<div class="alert alert-{{ label == 'error' ? 'danger' : 'success' }} d-flex align-items-center gap-2 text-center justify-content-center" role="alert">
+							<i class="bi {{ label == 'error' ? 'bi-exclamation-triangle-fill' : 'bi-check-circle-fill' }}"></i>
+							<span>{{ message }}</span>
+						</div>
+					{% endfor %}
+				{% endfor %}
+			</div>
+		{% endif %}
+
 		<!-- Hero Section -->
 		<section id="hero">
 
@@ -115,14 +130,6 @@
 								<input type="email" name="email" id="email" placeholder="Email" class="form-control rounded" style="max-width: 300px;">
 								<button type="submit" class="button ms-2 ">S'abonner</button>
 								<input type="hidden" name="_token" value="{{ csrf_token('newsletter_token') }}">
-							</div>
-							<div class="message">
-								{% for label, messages in app.flashes %}
-									{% for message in messages %}
-										<div class="justify-content-center alert alert-{{ label == 'error' ? 'danger' : 'success' }}" role=" alert">{{ message }}
-										</div>
-									{% endfor %}
-								{% endfor %}
 							</div>
 						</form>
 
