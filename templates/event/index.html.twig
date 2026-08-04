@@ -67,7 +67,7 @@
 									{% for categorie in categories %}
 										<option value="{{categorie.id}}">{{categorie.name}}</option>
 									{% endfor %}
-									
+
 								</select>
 								<i class="bi bi-chevron-down chevron"></i>
 							</div>
@@ -87,6 +87,9 @@
 								<i class="bi bi-geo-alt"></i>
 								<select id="filter-location" name="location">
 									<option value="">Tous les lieux</option>
+									{% for location in locations %}
+										<option value="{{ location.id }}">{{ location.name }}</option>
+									{% endfor %}
 								</select>
 								<i class="bi bi-chevron-down chevron"></i>
 							</div>
@@ -121,13 +124,8 @@
 								<div class="card-body">
 									{% for cat in event.categories %}
 										<p class="categorie mt-3">{{cat.name}}</p>
-
 									{% endfor %}
-
-
 									<h4 class="card-title">{{ event.title }}</h4>
-									<p class="card-text">{{ event.shortDescription }}</p>
-
 									<!-- DATE BADGE -->
 									<div class="position-absolute top-0 start-0 m-3 px-3 py-2 rounded text-white fw-bold" style="background: #1387c1;">
 										{{ event.date|date('d M')|upper }}
@@ -152,11 +150,9 @@
 										{{ event.hour|date('H:i') }}</li>
 								</ul>
 								<div class="card-body">
-
 									<div class="row">
-
 										<div class="col">
-											<button class="button " type="button" onclick="window.location.href='{{path('app_event_tickets',{id:event.id})}}'">Tickets</button>
+											<button class="button w-100" type="button" onclick="window.location.href='{{path('app_event_tickets',{id:event.id})}}'">Tickets</button>
 										</div>
 										<div class="col text-end">
 											<button class=" noBackground" type="button" onclick="window.location.href=' {{path('app_event_consult', {id:event.id} )}}'">Consulter l'évenement</button>
@@ -200,6 +196,6 @@
 	 <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
 {# 2. Initialisation obligatoire pour activer les animations #}
 	 <script>
-					AOS.init({duration: 1000, easing: 'smart', once: true, mirror: false})
-				</script>
+						AOS.init({duration: 1000, easing: 'smart', once: true, mirror: false})
+					</script>
 {% endblock %}
