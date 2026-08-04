@@ -5,8 +5,7 @@
 {% endblock %}
 
 {% block body %}
-	<main
-		class="mainSection">
+	<main class="mainSection">
 
 		{% set flashes = app.flashes %}
 		{% if flashes|length > 0 %}
@@ -49,13 +48,71 @@
 
 		<section id="hero" class="hero section pb-0">
 			<div class="container">
-				<div class="row">
-					<div class="col">Recherche</div>
-					<div class="col">filtre</div>
-					<div class="col">filtre</div>
-					<div class="col">filtre</div>
-					<div class="col">filtre</div>
-				</div>
+				<form class="event-filters" method="GET" action="{{ path('app_event_index') }}">
+					<div class="row gy-3">
+						<div class="col-md-6 col-lg">
+							<label class="filter-label" for="filter-search">Recherche</label>
+							<div class="filter-control">
+								<i class="bi bi-search"></i>
+								<input type="search" id="filter-search" name="search" placeholder="Rechercher un événement...">
+							</div>
+						</div>
+
+						<div class="col-md-6 col-lg">
+							<label class="filter-label" for="filter-category">Catégories</label>
+							<div class="filter-control">
+								<i class="bi bi-grid"></i>
+								<select id="filter-category" name="category">
+									<option value="">Toutes les catégories</option>
+									{% for categorie in categories %}
+										<option value="{{categorie.id}}">{{categorie.name}}</option>
+									{% endfor %}
+									
+								</select>
+								<i class="bi bi-chevron-down chevron"></i>
+							</div>
+						</div>
+
+						<div class="col-md-6 col-lg">
+							<label class="filter-label" for="filter-date">Date</label>
+							<div class="filter-control">
+								<i class="bi bi-calendar-event"></i>
+								<input type="date" id="filter-date" name="date">
+							</div>
+						</div>
+
+						<div class="col-md-6 col-lg">
+							<label class="filter-label" for="filter-location">Lieu</label>
+							<div class="filter-control">
+								<i class="bi bi-geo-alt"></i>
+								<select id="filter-location" name="location">
+									<option value="">Tous les lieux</option>
+								</select>
+								<i class="bi bi-chevron-down chevron"></i>
+							</div>
+						</div>
+
+						<div class="col-md-6 col-lg">
+							<label class="filter-label" for="filter-sort">Trier par</label>
+							<div class="filter-control">
+								<i class="bi bi-sort-down"></i>
+								<select id="filter-sort" name="sort">
+									<option value="ASC">Date croissante</option>
+									<option value="DESC">Date décroissante</option>
+								</select>
+								<i class="bi bi-chevron-down chevron"></i>
+							</div>
+						</div>
+					</div>
+
+					<div class="text-center mt-3">
+						<a href="{{ path('app_event_index') }}" class="filter-reset">
+							<i class="bi bi-arrow-counterclockwise"></i>
+							Réinitialiser les filtres
+						</a>
+					</div>
+					<input type="hidden" name="filter_token" value="{{ csrf_token('filter') }}">
+				</form>
 				<div class="row mt-4 mb-5">
 					{% for event in events %}
 						<div class="col-12 col-md-4 mt-4">
@@ -143,6 +200,6 @@
 	 <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
 {# 2. Initialisation obligatoire pour activer les animations #}
 	 <script>
-			AOS.init({duration: 1000, easing: 'smart', once: true, mirror: false})
-		</script>
+					AOS.init({duration: 1000, easing: 'smart', once: true, mirror: false})
+				</script>
 {% endblock %}
