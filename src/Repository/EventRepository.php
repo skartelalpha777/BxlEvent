@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Event;
+use App\Entity\Categorie;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -14,6 +15,37 @@ class EventRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Event::class);
+    }
+
+    /** permet d'obtenir la listes des evenements sur base du nom;
+     * @return Event[]
+     */
+    public function findByName(string $name): array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT e
+            FROM App\Entity\Event e
+            WHERE e.title like :name
+            ORDER BY e.date ASC'
+        )->setParameter('name', '%' . $name . '%');
+        return $query->getResult();
+    }
+
+      /** permet d'obtenir la listes des evenements sur base de la categorie;
+     * @return Event[]
+     */
+    public function findByCategory(Categorie $cat): array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT e
+            FROM App\Entity\Event e
+            WHERE :cat   MEMBER OF e.categories'
+        )->setParameter('cat', $cat);
+        return $query->getResult();
     }
 
     //    /**
@@ -40,4 +72,6 @@ class EventRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+
 }
