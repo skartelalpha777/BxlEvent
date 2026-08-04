@@ -2975,32 +2975,23 @@ section,
 }
 
 /*--------------------------------------------------------------
-# Starter Section Section
+# Card Section
 --------------------------------------------------------------*/
-.starter-section {
-  /* Add your styles here */
-}
 
 .main {
-
   margin-top: none;
   background-image: url("../img/Atomium.jpg");
   background-size: cover;
-  /* L'image est affichée en entier */
   background-repeat: no-repeat;
-  /* Évite que l'image ne se répète */
   background-position: center;
-  /* Centre l'image dans le bloc */
-
   min-height: 70vh;
 }
 
 .card {
 
   border-radius: 10px;
-  background-color: #111827;
-  overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  background: var(--surface-color);
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
   margin-bottom: 30px;
   transition: all 0.3s ease;
   color: white;
@@ -3008,13 +2999,11 @@ section,
 }
 
 .card-text {
-  /* color: #b0c8e0;*/
   color: white;
-
 }
 
 .card .list-group-item {
-  background-color: #111827;
+  background: var(--surface-color);
   color: #b0c8e0;
   border: none;
 }
