@@ -4,6 +4,8 @@ namespace App\Repository;
 
 use App\Entity\Event;
 use App\Entity\Categorie;
+use App\Entity\Location;
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -33,7 +35,7 @@ class EventRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
-      /** permet d'obtenir la listes des evenements sur base de la categorie;
+    /** permet d'obtenir la listes des evenements sur base de la categorie;
      * @return Event[]
      */
     public function findByCategory(Categorie $cat): array
@@ -45,6 +47,34 @@ class EventRepository extends ServiceEntityRepository
             FROM App\Entity\Event e
             WHERE :cat   MEMBER OF e.categories'
         )->setParameter('cat', $cat);
+        return $query->getResult();
+    }
+    /** permet d'obtenir la listes des evenements sur base de la date;
+     * @return Event[]
+     */
+    public function findByDate(DateTime $eventDate): array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT e
+            FROM App\Entity\Event e
+            WHERE  e.date= :eventDate'
+        )->setParameter('cat', $eventDate);
+        return $query->getResult();
+    }
+    /** permet d'obtenir la listes des evenements sur base de la date;
+     * @return Event[]
+     */
+    public function findByLocation(Location $loc): array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT e
+            FROM App\Entity\Event e
+            WHERE  :loc MEMBER OF e.location'
+        )->setParameter('loc', $loc);
         return $query->getResult();
     }
 
