@@ -60,7 +60,7 @@ class EventRepository extends ServiceEntityRepository
             'SELECT e
             FROM App\Entity\Event e
             WHERE  e.date= :eventDate'
-        )->setParameter('cat', $eventDate);
+        )->setParameter('eventDate', $eventDate);
         return $query->getResult();
     }
     /** permet d'obtenir la listes des evenements sur base de la date;
@@ -73,10 +73,23 @@ class EventRepository extends ServiceEntityRepository
         $query = $entityManager->createQuery(
             'SELECT e
             FROM App\Entity\Event e
-            WHERE  :loc MEMBER OF e.location'
+            WHERE  :loc = e.location'
         )->setParameter('loc', $loc);
         return $query->getResult();
     }
+    /** permet d'obtenir la listes des evenements sur base de la date;
+     * @param string  aura la valeur ASC ou DESC
+     * @return Event[]
+     */
+public function orderByDate(string $orderBY): array
+{
+    $orderBY = strtoupper($orderBY) === 'DESC' ? 'DESC' : 'ASC'; 
+
+    return $this->createQueryBuilder('e')
+        ->orderBy('e.date', $orderBY)
+        ->getQuery()
+        ->getResult();
+}
 
     //    /**
     //     * @return Event[] Returns an array of Event objects
