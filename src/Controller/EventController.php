@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Event;
 use App\Form\EventType;
 use App\Repository\EventRepository;
+use App\Repository\CategorieRepository;
+use App\Repository\LocationRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,10 +17,41 @@ use Symfony\Component\Routing\Attribute\Route;
 final class EventController extends AbstractController
 {
     #[Route(name: 'app_event_index', methods: ['GET'])]
-    public function index(EventRepository $eventRepository): Response
+    public function index(EventRepository $eventRepository, CategorieRepository $categorieRepository, LocationRepository $locationRepository, Request $request): Response
     {
+        $events = $eventRepository->findAll();
+
+        if ($request->query->count() > 0) {
+            $submittedToken = $request->query->get('filter_token');
+            if ($this->isCsrfTokenValid('filter', $submittedToken)) {
+
+                $search = $request->query->get('search') ?: null;
+
+                $category = null;
+                if ($categoryId = $request->query->get('category')) {
+                    $category = $categorieRepository->find($categoryId);
+                }
+
+                $date = null;
+                if ($dateParam = $request->query->get('date')) {
+                    $date = new \DateTime($dateParam);
+                }
+
+                $location = null;
+                if ($locationId = $request->query->get('location')) {
+                    $location = $locationRepository->find($locationId);
+                }
+
+                $sort = $request->query->get('sort') === 'DESC' ? 'DESC' : 'ASC';
+
+                $events = $eventRepository->findByFilters($search, $category, $date, $location, $sort);
+            }
+        }
+
         return $this->render('event/index.html.twig', [
-            'events' => $eventRepository->findAll(),
+            'events' => $events,
+            'categories' => $categorieRepository->findAll(),
+            'locations' => $locationRepository->findAll(),
         ]);
     }
 
@@ -96,7 +129,7 @@ final class EventController extends AbstractController
     #[Route('/{id}', name: 'app_event_delete', methods: ['POST'])]
     public function delete(Request $request, Event $event, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$event->getId(), $request->getPayload()->getString('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $event->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($event);
             $entityManager->flush();
         }
