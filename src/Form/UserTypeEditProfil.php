@@ -3,10 +3,11 @@
 namespace App\Form;
 
 use App\Entity\User;
-use App\Enum\UserRole;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Length;
 
 class UserTypeEditProfil extends AbstractType
 {
@@ -20,6 +21,18 @@ class UserTypeEditProfil extends AbstractType
             ->add('number')
             ->add('postcode')
             ->add('city')
+            ->add('plainPassword', PasswordType::class, [
+                'mapped' => false,
+                'required' => false,
+                'attr' => ['autocomplete' => 'new-password'],
+                'constraints' => [
+                    new Length(
+                        min: 6,
+                        minMessage: 'Votre mot de passe doit contenir au moins {{ limit }} caractères',
+                        max: 4096,
+                    ),
+                ],
+            ])
 
         ;
     }

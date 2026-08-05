@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
-use App\Form\UserTypeEditprofil;
+use App\Form\UserTypeEditProfil;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 #[Route('/user')]
 final class UserController extends AbstractController
@@ -68,7 +69,7 @@ final class UserController extends AbstractController
 
     #[IsGranted('IS_AUTHENTICATED_FULLY')]
     #[Route('/{id}/editProfil', name: 'app_user_edit_own_profil', methods: ['GET', 'POST'])]
-    public function editOwnProfil(Request $request, User $user, EntityManagerInterface $entityManager): Response
+    public function editOwnProfil(Request $request, User $user, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response
     {
         if ($user->getId() != $this->getUser()->getId()) {
             return $this->redirectToRoute('app_user_profil', ['id' => $user->getId()], Response::HTTP_SEE_OTHER);
@@ -77,6 +78,11 @@ final class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $plainPassword = $form->get('plainPassword')->getData();
+            if ($plainPassword) {
+                $user->setPassword($passwordHasher->hashPassword($user, $plainPassword));
+            }
+
             $entityManager->flush();
             $this->addFlash('notice', 'Votre profil a bien été modifié.');
 

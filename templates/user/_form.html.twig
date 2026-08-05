@@ -74,6 +74,25 @@
 								{{ form_errors(form.email) }}
 							</div>
 
+														{% if form.plainPassword is defined %}
+								<div class="col-md-6">
+									{{ form_label(form.plainPassword, 'Nouveau mot de passe') }}
+									<div class="input-group mb-3">
+										<span class="input-group-text">
+											<i class="bi bi-lock-fill"></i>
+										</span>
+
+										{{ form_widget(form.plainPassword, {
+                                        'attr': {
+                                            'class': 'form-control',
+                                            'placeholder': 'Laisser vide pour ne pas changer'
+                                        }
+                                    }) }}
+									</div>
+									{{ form_errors(form.plainPassword) }}
+								</div>
+							{% endif %}
+
 							<div class="col-md-6">
 								{{form_label(form.street, 'Rue')}}
 								<div class="input-group mb-3">
