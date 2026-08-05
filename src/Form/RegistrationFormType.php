@@ -51,6 +51,11 @@ class RegistrationFormType extends AbstractType
             ->add('firstName')
             ->add('lastName')
 
+            ->add('street', null, ['required' => false])
+            ->add('number', null, ['required' => false])
+            ->add('postcode', null, ['required' => false])
+            ->add('city', null, ['required' => false])
+
             ->add('email', EmailType::class)
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,

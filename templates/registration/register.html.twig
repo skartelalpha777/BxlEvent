@@ -13,7 +13,7 @@
 			<div class="container-fluid container-lg">
 
 				<div class="row  justify-content-center gy-4">
-					
+
 					<div class="col-11 col-md-10 col-lg-8 info-box">
 						<div class="container section-title">
 							<h1>Inscription</h1>
@@ -25,15 +25,14 @@
 							{{ form_start(registrationForm, {'attr': {'class': 'php-email-form'}}) }}
 							<div class="row gy-4">
 								{% for child in registrationForm.role %}
-									<div
-										class="col-md-6">
-						
+									<div class="col-md-6">
+
 										{{ form_widget(child, {'attr': {'class': 'role-input'}}) }}
 
 										<label for="{{ child.vars.id }}" class="role-label">
 											<span class="role-title">{{ child.vars.attr['data-titre'] }}</span>
 											<span class="role-description">{{ child.vars.attr['data-description'] }}</span>
-											
+
 											{% if child.vars.value == 0 %}
 												<i class="bi bi-people-fill"></i>
 											{% else %}
@@ -117,6 +116,69 @@
 									{{ form_errors(registrationForm.plainPassword) }}
 								</div>
 
+								<div class="col-md-6">
+									{{ form_label(registrationForm.street, 'Rue') }}
+									<div class="input-group mb-3">
+										<span class="input-group-text">
+											<i class="bi bi-geo"></i>
+										</span>
+
+										{{ form_widget(registrationForm.street, {
+                                        'attr': {
+                                            'class': 'form-control'
+                                        }
+                                    }) }}
+									</div>
+									{{ form_errors(registrationForm.street) }}
+								</div>
+
+								<div class="col-md-6">
+									{{ form_label(registrationForm.number, 'Numero') }}
+									<div class="input-group mb-3">
+										<span class="input-group-text">
+											<i class="bi bi-123"></i>
+										</span>
+
+										{{ form_widget(registrationForm.number, {
+                                        'attr': {
+                                            'class': 'form-control'
+                                        }
+                                    }) }}
+									</div>
+									{{ form_errors(registrationForm.number) }}
+								</div>
+
+								<div class="col-md-6">
+									{{ form_label(registrationForm.postcode, 'Code postal') }}
+									<div class="input-group mb-3">
+										<span class="input-group-text">
+											<i class="bi bi-house-door"></i>
+										</span>
+
+										{{ form_widget(registrationForm.postcode, {
+                                        'attr': {
+                                            'class': 'form-control'
+                                        }
+                                    }) }}
+									</div>
+									{{ form_errors(registrationForm.postcode) }}
+								</div>
+
+								<div class="col-md-6">
+									{{ form_label(registrationForm.city, 'Ville') }}
+									<div class="input-group mb-3">
+										<span class="input-group-text">
+											<i class="bi bi-geo-alt-fill"></i>
+										</span>
+
+										{{ form_widget(registrationForm.city, {
+                                        'attr': {
+                                            'class': 'form-control'
+                                        }
+                                    }) }}
+									</div>
+									{{ form_errors(registrationForm.city) }}
+								</div>
 
 								<div class="col">
 
@@ -142,7 +204,7 @@
 						</div>
 
 					</div>
-					
+
 				</div>
 
 			</div>
