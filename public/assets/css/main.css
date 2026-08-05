@@ -3119,6 +3119,48 @@ section,
 }
 
 /*--------------------------------------------------------------
+# Pagination (KnpPaginatorBundle)
+--------------------------------------------------------------*/
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+ 
+}
+
+.pagination a,
+.pagination .current {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 42px;
+  height: 42px;
+  border-radius: .6rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.pagination a {
+  background: var(--surface-color);
+  color: var(--default-color);
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 88%);
+}
+
+.pagination a:hover {
+  background: var(--accent-color);
+  color: var(--contrast-color);
+  border-color: var(--accent-color);
+}
+
+.pagination .current {
+  background: var(--accent-color);
+  color: var(--contrast-color);
+  border: 1px solid var(--accent-color);
+}
+
+/*--------------------------------------------------------------
 # Section newslater
 --------------------------------------------------------------*/
 .newsletter {

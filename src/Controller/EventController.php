@@ -12,12 +12,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Knp\Component\Pager\PaginatorInterface;
 
 #[Route('/event')]
 final class EventController extends AbstractController
 {
     #[Route(name: 'app_event_index', methods: ['GET'])]
-    public function index(EventRepository $eventRepository, CategorieRepository $categorieRepository, LocationRepository $locationRepository, Request $request): Response
+    public function index(EventRepository $eventRepository, CategorieRepository $categorieRepository, LocationRepository $locationRepository, PaginatorInterface $paginator, Request $request): Response
     {
         $events = $eventRepository->findAll();
 
@@ -47,6 +48,11 @@ final class EventController extends AbstractController
                 $events = $eventRepository->findByFilters($search, $category, $date, $location, $sort);
             }
         }
+        $events = $paginator->paginate(
+            $events,
+            $request->query->getInt('page', 1),
+            15
+        );
 
         return $this->render('event/index.html.twig', [
             'events' => $events,
