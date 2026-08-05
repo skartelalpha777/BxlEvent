@@ -108,13 +108,16 @@
 						</div>
 					</div>
 
-					<div class="text-center mt-3">
+					<input type="hidden" name="filter_token" value="{{ csrf_token('filter') }}">
+
+					<div class="text-center mt-4 d-flex justify-content-center align-items-center gap-3">
+						<button type="submit" class="button">Appliquer</button>
 						<a href="{{ path('app_event_index') }}" class="filter-reset">
 							<i class="bi bi-arrow-counterclockwise"></i>
 							Réinitialiser les filtres
 						</a>
 					</div>
-					<input type="hidden" name="filter_token" value="{{ csrf_token('filter') }}">
+
 				</form>
 				<div class="row mt-4 mb-5">
 					{% for event in events %}
@@ -196,6 +199,6 @@
 	 <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
 {# 2. Initialisation obligatoire pour activer les animations #}
 	 <script>
-						AOS.init({duration: 1000, easing: 'smart', once: true, mirror: false})
-					</script>
+										AOS.init({duration: 1000, easing: 'smart', once: true, mirror: false})
+									</script>
 {% endblock %}
