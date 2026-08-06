@@ -60,6 +60,15 @@ final class EventController extends AbstractController
             'locations' => $locationRepository->findAll(),
         ]);
     }
+    #[Route('/featured', name: 'app_events_featured',methods:['GET'])]
+    public function featuredEvents(EventRepository $eventRepository):Response
+    {
+       
+        $events = $eventRepository->findBy(['isFeatured' => 1]);
+       return $this->render('event/featured.html.twig', [
+            'events' => $events
+        ]);
+    }
 
     #[Route('/new', name: 'app_event_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response

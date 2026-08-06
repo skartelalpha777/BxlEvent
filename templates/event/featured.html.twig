@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}
+	Consulter évènement
+{% endblock %}
+
+{% block body %}
+
+	<main class="main">
+		<div class="contenair-fluid">
+
+			<div class="row featureEventsHead">
+				<div class="col-2"></div>
+				<div class="col-8 d-flex flex-column align-items-center justify-content-center">
+					<h1>Evènements à ne pas rater</h1>
+					<div id="line"></div>
+					<p class="w-50 text-center mt-2">Découvrez notre selection des meilleurs évènements incontournable sur Bruxelles et dans les alentours
+					</p>
+				</div>
+				<div class="col-2"></div>
+
+			</div>
+
+		</div>
+
+
+		<section id="hero">
+			<section class="pt-0 mt-0">
+				<div class="container-fluid container-lg mt-0">
+
+					<div class="row mt-4 mb-5">
+						<h2>{{ events | length  }}
+							Evènements à ne pas rater</h2>
+						{% for event in events %}
+							<div class="col-12 col-md-4 mt-4">
+								<div class="card">
+									<img src="{{ asset('assets/img/uploads/events/' ~ event.galleries[0].name) }}" class="card-img-top" alt="..." style="height: 250px; object-fit: cover;"/>
+									<div class="card-body">
+										{% for cat in event.categories %}
+											<p class="categorie mt-3">{{cat.name}}</p>
+										{% endfor %}
+										<h4 class="card-title">{{ event.title }}</h4>
+										<!-- DATE BADGE -->
+										<div class="position-absolute top-0 start-0 m-3 px-3 py-2 rounded text-white fw-bold" style="background: #1387c1;">
+											{{ event.date|date('d M')|upper }}
+										</div>
+
+									</div>
+									<ul class="list-group list-group-flush ">
+										<li class="list-group-item">
+											<i class="bi bi-geo-alt"></i>
+											{% set adress = event.location.name ~','~ event.location.street ~'  '~ event.location.number ~','~ event.location.postcode ~' '~ event.location.city	%}
+											{% set url = 'https://www.google.com/maps/search/?api=1&query=' ~ adress|url_encode%}
+
+											<a href="{{url}}" target="_blank">{{event.location.name}}</a>
+										</li>
+
+										<li class="list-group-item ">
+											<i class="bi bi-calendar-check-fill me-1"></i>
+											{{event.date|date('d M Y') }}
+										</li>
+										<li class="list-group-item ">
+											<i class="bi bi-alarm"></i>
+											{{ event.hour|date('H:i') }}</li>
+									</ul>
+									<div class="card-body">
+										<div class="row">
+											<div class="col">
+												<button class="button w-100" type="button" onclick="window.location.href='{{path('app_event_tickets',{id:event.id})}}'">Tickets</button>
+											</div>
+											<div class="col text-end">
+												<button class=" noBackground" type="button" onclick="window.location.href=' {{path('app_event_consult', {id:event.id} )}}'">Consulter l'évenement</button>
+											</div>
+										</div>
+
+
+									</div>
+
+
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+			</section>
+		</section>
+
+	</main>
+{% endblock %}

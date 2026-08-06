@@ -71,6 +71,9 @@ class Event
     #[ORM\Column(length: 255)]
     private ?string $shortDescription = null;
 
+    #[ORM\Column]
+    private ?bool $isFeatured = null;
+
     public function __construct()
     {
         $this->tickets = new ArrayCollection();
@@ -327,6 +330,18 @@ class Event
         public function setShortDescription(string $shortDescription): static
         {
             $this->shortDescription = $shortDescription;
+
+            return $this;
+        }
+
+        public function isFeatured(): ?bool
+        {
+            return $this->isFeatured;
+        }
+
+        public function setIsFeatured(bool $isFeatured): static
+        {
+            $this->isFeatured = $isFeatured;
 
             return $this;
         }

@@ -37,7 +37,7 @@
 							rassemble pour vous toutes les activités incontournables de la capitale.
 						</p>
 						{# Un petit bouton d'appel à l'action ne ferait pas de mal ici ! #}
-						<a href="#events" class="button mt-3 px-4 py-2">Découvrez les événements à ne pas rater</a>
+						<a href="{{path('app_events_featured')}}" class="button mt-3 px-4 py-2">Découvrez les événements à ne pas rater</a>
 					</div>
 
 				</div>
@@ -202,6 +202,6 @@
 	 <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
 {# 2. Initialisation obligatoire pour activer les animations #}
 	 <script>
-												AOS.init({duration: 1000, easing: 'smart', once: true, mirror: false})
-											</script>
+													AOS.init({duration: 1000, easing: 'smart', once: true, mirror: false})
+												</script>
 {% endblock %}
