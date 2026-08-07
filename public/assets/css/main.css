@@ -3135,12 +3135,59 @@ section,
   height: 3px;
   background-color: var(--accent-color);
   margin: 10px auto 0;
+}
 
+.pre-footer .title {
+  color: var(--accent-color);
+}
+
+.icon {
+  font-size: 30px;
+
+}
+
+.newsletter-bar {
+  background: var(--surface-color);
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+  border-radius: 1rem;
+  padding: 1.5rem 2rem;
+}
+
+.newsletter-bar h3 {
+  color: var(--heading-color);
+}
+
+.newsletter-bar p {
+  color: color-mix(in srgb, var(--default-color), transparent 30%);
+}
+
+.newsletter-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--accent-color), transparent 85%);
+  color: var(--accent-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+
+.newsletter-input {
+  min-width: 260px;
+  background: var(--background-color);
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
+  color: var(--default-color);
+  border-radius: .6rem;
+}
+
+.newsletter-input::placeholder {
+  color: color-mix(in srgb, var(--default-color), transparent 50%);
 }
 
 
 /*--------------------------------------------------------------
-# Pagination 
+# Pagination
 --------------------------------------------------------------*/
 .pagination {
   display: flex;

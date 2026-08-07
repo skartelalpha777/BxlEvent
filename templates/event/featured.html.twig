@@ -1,91 +1,142 @@
 {% extends 'base.html.twig' %}
-
-
 {% block title %}
 	Consulter évènement
 {% endblock %}
-
 {% block body %}
-
 	<main class="main">
-		<div class="contenair-fluid">
-
+		<div class="container-fluid">
 			<div class="row featureEventsHead">
 				<div class="col-2"></div>
 				<div class="col-8 d-flex flex-column align-items-center justify-content-center">
 					<h1>Evènements à ne pas rater</h1>
 					<div id="line"></div>
-					<p class=" text-center fs-5 mt-2">Découvrez les événements incontournables de Bruxelles
-												Concerts, festivals, expositions, spectacles, événements sportifs ou activités en famille : retrouvez chaque semaine notre sélection des meilleures sorties à Bruxelles et dans les environs. Réservez vos billets en quelques clics grâce à BxlEvent.
+					<p class=" text-center fs-5 mt-2">Découvrez les événements incontournables de Bruxelles																																												Concerts, festivals, expositions, spectacles, événements sportifs ou activités en famille : retrouvez chaque semaine notre sélection des meilleures sorties à Bruxelles et dans les environs. Réservez vos billets en quelques clics grâce à BxlEvent.
 					</p>
 				</div>
 				<div class="col-2"></div>
-
 			</div>
-
 		</div>
-
-
 		<section id="hero">
-			<section class="pt-0 mt-0">
-				<div class="container-fluid container-lg mt-0">
-					<p class="text">Notre équipe sélectionne les événements les plus populaires et les meilleures nouveautés afin de vous aider à trouver votre prochaine sortie. Que vous soyez amateur de musique, de culture ou de sport, il y en a pour tous les goûts.</p>
+			<div class="container container-lg mt-0">
+				<p>Notre équipe sélectionne les événements les plus populaires et les meilleures nouveautés afin de vous aider à trouver votre prochaine sortie. Que vous soyez amateur de musique, de culture ou de sport, il y en a pour tous les goûts.</p>
+				<div class="row mt-4 mb-5">
+					<h2>{{ events | length  }}
+						Evènements</h2>
+					{% if events | length == 0 %}
+						<p>Aucun événement pour le moment, veillez revenir plus tard</p>
+					{% endif %}
 
-					<div class="row mt-4 mb-5">
-						<h2>{{ events | length  }}
-							Evènements à ne pas rater</h2>
-						{% for event in events %}
-							<div class="col-12 col-md-4 mt-4">
-								<div class="card">
-									<img src="{{ asset('assets/img/uploads/events/' ~ event.galleries[0].name) }}" class="card-img-top" alt="..." style="height: 250px; object-fit: cover;"/>
-									<div class="card-body">
-										{% for cat in event.categories %}
-											<p class="categorie mt-3">{{cat.name}}</p>
-										{% endfor %}
-										<h4 class="card-title">{{ event.title }}</h4>
-										<!-- DATE BADGE -->
-										<div class="position-absolute top-0 start-0 m-3 px-3 py-2 rounded text-white fw-bold" style="background: #1387c1;">
-											{{ event.date|date('d M')|upper }}
-										</div>
+					{% for event in events %}
+						<div class="col-12 col-md-4 mt-4">
+							<div class="card">
 
+								{% if event.galleries|length > 0 %}
+
+									<img src="{{ asset('assets/img/uploads/events/' ~ event.galleries[0].name) }}" class="card-img-top" alt="image de l'évènement{{event.title}}" style="height: 250px; object-fit: cover;"/>
+
+								{% endif %}
+								<div class="card-body">
+									{% for cat in event.categories %}
+										<p class="categorie mt-3">{{cat.name}}</p>
+									{% endfor %}
+									<h4 class="card-title">{{ event.title }}</h4>
+									<!-- DATE BADGE -->
+									<div class="position-absolute top-0 start-0 m-3 px-3 py-2 rounded text-white fw-bold" style="background:var(--accent-color);">
+										{{ event.date|date('d M')|upper }}
 									</div>
-									<ul class="list-group list-group-flush ">
-										<li class="list-group-item">
-											<i class="bi bi-geo-alt"></i>
-											{% set adress = event.location.name ~','~ event.location.street ~'  '~ event.location.number ~','~ event.location.postcode ~' '~ event.location.city	%}
-											{% set url = 'https://www.google.com/maps/search/?api=1&query=' ~ adress|url_encode%}
-
-											<a href="{{url}}" target="_blank">{{event.location.name}}</a>
-										</li>
-
-										<li class="list-group-item ">
-											<i class="bi bi-calendar-check-fill me-1"></i>
-											{{event.date|date('d M Y') }}
-										</li>
-										<li class="list-group-item ">
-											<i class="bi bi-alarm"></i>
-											{{ event.hour|date('H:i') }}</li>
-									</ul>
-									<div class="card-body">
-										<div class="row">
-											<div class="col">
-												<button class="button w-100" type="button" onclick="window.location.href='{{path('app_event_tickets',{id:event.id})}}'">Tickets</button>
-											</div>
-											<div class="col text-end">
-												<button class=" noBackground" type="button" onclick="window.location.href=' {{path('app_event_consult', {id:event.id} )}}'">Consulter l'évenement</button>
-											</div>
+								</div>
+								<ul class="list-group list-group-flush ">
+									<li class="list-group-item">
+										<i class="bi bi-geo-alt"></i>
+										{% set adress = event.location.name ~','~ event.location.street ~'  '~ event.location.number ~','~ event.location.postcode ~' '~ event.location.city	%}
+										{% set url = 'https://www.google.com/maps/search/?api=1&query=' ~ adress|url_encode%}
+										<a href="{{url}}" target="_blank">{{event.location.name}}</a>
+									</li>
+									<li class="list-group-item ">
+										<i class="bi bi-calendar-check-fill me-1"></i>
+										{{event.date|date('d M Y') }}
+									</li>
+									<li class="list-group-item ">
+										<i class="bi bi-alarm"></i>
+										{{ event.hour|date('H:i') }}</li>
+								</ul>
+								<div class="card-body">
+									<div class="row">
+										<div class="col">
+											<button class="button w-100" type="button" onclick="window.location.href='{{path('app_event_tickets',{id:event.id})}}'">Tickets</button>
 										</div>
-
-
+										<div class="col text-end">
+											<button class=" noBackground" type="button" onclick="window.location.href='{{path('app_event_consult', {id:event.id} )}}'">Consulter l'évenement</button>
+										</div>
 									</div>
-
-
 								</div>
 							</div>
-						{% endfor %}
+						</div>
+					{% endfor %}
+				</div>
+				<div class="row gx-0 mx-0 pre-footer event-filters">
+					<div class="col-md-6 col-lg ">
+						<div class="row gx-2">
+							<div class="col-2 d-flex align-items-top">
+								<i class="bi bi-star icon"></i>
+							</div>
+							<div class="col-10">
+								<h3 class="fs-5 title">Selection exclusive</h3>
+								<p>Les meilleurs évènements choisis pour vous</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg">
+						<div class="row gx-2">
+							<div class="col-2 d-flex align-items-top">
+								<i class="bi bi-hand-thumbs-up icon"></i>
+							</div>
+							<div class="col-8">
+								<h3 class="fs-5 title">Billets sécurisés</h3>
+								<p>Achats à 100% sécurisés et garantis</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg">
+						<div class="row gx-2">
+							<div class="col-2 d-flex align-items-top ">
+								<i class="bi bi-headset icon"></i>
+							</div>
+							<div class="col-8">
+								<h3 class="fs-5 title">Support réactif</h3>
+								<p>Notre équipe est là pour vous aider</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg">
+						<div class="row gx-2">
+							<div class="col-2 d-flex align-items-top">
+								<i class="bi bi-calendar-event icon"></i>
+							</div>
+							<div class="col-8">
+								<h3 class="fs-5 title">Mise à jour courante</h3>
+								<p>De nouveaux évènements chaque semaine</p>
+							</div>
+						</div>
 					</div>
 				</div>
-			</section>
+				<div class="newsletter-bar d-flex flex-wrap align-items-center justify-content-between gap-4 mt-4">
+					<div class="d-flex align-items-center gap-3">
+						<div class="newsletter-icon">
+							<i class="bi bi-envelope"></i>
+						</div>
+						<div>
+							<h3 class="h5 mb-1">Ne manquez aucune sortie !</h3>
+							<p class="mb-0 small">Inscrivez-vous à notre newsletter et recevez chaque semaine les événements à ne pas rater.</p>
+						</div>
+					</div>
+					<form name="frmNewsletter" action="{{ path('app_newSuscrib_new') }}" method="post" class="d-flex gap-2">
+						<input type="email" name="email" id="email" placeholder="Votre e-mail" class="form-control newsletter-input">
+						<button type="submit" class="button">S'abonner</button>
+						<input type="hidden" name="_token" value="{{ csrf_token('newsletter_token') }}">
+					</form>
+				</div>
+			</div>
 		</section>
 
 	</main>
