@@ -26,7 +26,7 @@ final class CartController extends AbstractController
     /**
      * Permet d'ajouter un ticket au panier a partir de la page de tickets d'un evenement
      */
-    #[Route('{id}/add', name: 'app_cart_add', methods: ['POST', 'GET'])]
+    #[Route('/{id}/add', name: 'app_cart_add', methods: ['POST', 'GET'])]
     public function add(Event $event, CartService $cartService, Request $request): Response
     {
 
@@ -63,7 +63,6 @@ final class CartController extends AbstractController
             $cartService->setQuantity($ticketTypeId, $quantity);
             return $this->redirectToRoute('app_cart_index');
         }
-        $this->addFlash('error', 'Erreur lors de la modification du panier.');
         return $this->redirectToRoute('app_cart_index');
     }
 
@@ -71,9 +70,6 @@ final class CartController extends AbstractController
     public function remove(int $id, CartService $cartService): Response
     {
         $cartService->setQuantity($id, 0);
-
-        $this->addFlash('success', 'L\'article a bien été supprimé du panier.');
-
         return $this->redirectToRoute('app_cart_index');
     }
 
@@ -81,9 +77,6 @@ final class CartController extends AbstractController
     public function clear(CartService $cartService): Response
     {
         $cartService->clearCart();
-
-        $this->addFlash('success', 'Le panier a été vidé.');
-
         return $this->redirectToRoute('app_cart_index');
     }
 }

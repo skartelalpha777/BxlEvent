@@ -81,6 +81,17 @@ class CartService
     }
 
     /**
+     * Permet d'obtenir le nombre total d'articles dans le panier (somme des quantités)
+     * @return int le nombre total d'articles
+     */
+    public function getItemCount(): int
+    {
+        $cart = $this->requestStack->getSession()->get('cart', []);
+
+        return array_sum($cart);
+    }
+
+    /**
      * Permet d'avoir le prix total du panier
      * @return float le prix total
      */
