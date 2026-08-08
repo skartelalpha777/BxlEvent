@@ -43,8 +43,14 @@ final class ContactController extends AbstractController
         }
 
 
-        return $this->render('contact_contoller/index.html.twig', [
+        return $this->render('contact/index.html.twig', [
             'form' => $form,
         ]);
+    }
+
+    #[Route('/about', name: 'app_contact_about')]
+    public function about(): Response
+    {
+        return $this->render('contact/about.html.twig', []);
     }
 }
