@@ -1279,17 +1279,18 @@ section,
   background-color: var(--accent-color);
 }
 
-.picture-a{
-  background-image: linear-gradient(180deg, color-mix(in srgb, var(--background-color), transparent 100%), color-mix(in srgb, var(--background-color), transparent 50%)), url("../img/TunelCinquentenaire.jpg");
- 
+.picture-a {
+  background-image: linear-gradient(180deg, color-mix(in srgb, var(--background-color), transparent 100%), color-mix(in srgb, var(--background-color), transparent 50%)), url("../img/Tunel-cinquentenaire.jpg");
 }
-.picture-b{
-  background-image: linear-gradient(180deg, color-mix(in srgb, var(--background-color), transparent 100%), color-mix(in srgb, var(--background-color), transparent 50%)), url("../img/Bourse_de_bruxelles.jpg");
- 
+
+.picture-b {
+  background-image: linear-gradient(180deg, color-mix(in srgb, var(--background-color), transparent 100%), color-mix(in srgb, var(--background-color), transparent 50%)), url("../img/Bourse-de-bruxelles.jpg");
+
 }
+
 .pictures {
-  min-height:400px;
- background-size: cover;
+  min-height: 400px;
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 
@@ -1297,13 +1298,70 @@ section,
 
 @media(max-width:767px) {
   .pictures {
-    min-height:200px;
-    margin-bottom:15px ;
+    min-height: 200px;
+    margin-bottom: 15px;
+  }
+}
+
+@media(max-width:767px) {
+  .reverse-column {
+    flex-direction:column-reverse;
   }
 }
 
 .goal {
   color: var(--accent-color);
+}
+
+.discover-card {
+  height: 100%;
+  padding: 1.75rem 1.25rem;
+  text-align: center;
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+  border-radius: 1rem;
+  background: var(--surface-color);
+}
+
+.discover-icon {
+  width: 64px;
+  height: 64px;
+  margin: auto;
+  margin-bottom: 5px;
+  border-radius: 50%;
+  border: 2px solid ;
+  color: var(--accent-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+}
+
+.discover-card h3 {
+  margin-bottom: .5rem;
+}
+
+.discover-card p {
+  color: color-mix(in srgb, var(--default-color), transparent 30%);
+  font-size: .9rem;
+  margin-bottom: 0;
+}
+
+.goal-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.goal-checklist li {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: .6rem 0;
+}
+
+.goal-checklist i {
+  color: var(--accent-color);
+  font-size: 1.1rem;
 }
 
 /*--------------------------------------------------------------

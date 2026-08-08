@@ -5,19 +5,22 @@
 {% block body %}
 	<main class="main">
 
-		<div class="container-fluid AboutHead">
-			<div class="row d-flex">
-				<div class="col-6 col-lg-4 ms-4">
-					<h1>
-						A propos de BxlEvent</h1>
-					<div class="line mb-4"></div>
-					<p class="fs-5">BxlEvent est une plateforme dédiée aux événements récréatifs à Bruxelles et dans ses environs.
-						<br>Notre objectif est de vous aider à découvrir facilement les activités et sorties qui correspondent à vos envies.</p>
+		<section id="about-head" class="AboutHead section">
+			<div class="container-fluid">
+				<div class="row d-flex">
+					<div class="col-6 col-lg-4 ms-4">
+						<h1>
+							A propos de BxlEvent</h1>
+						<div class="line mb-4"></div>
+						<p class="fs-5">BxlEvent est une plateforme dédiée aux événements récréatifs à Bruxelles et dans ses environs.
+							<br>Notre objectif est de vous aider à découvrir facilement les activités et sorties qui correspondent à vos envies.</p>
+					</div>
 				</div>
 			</div>
-		</div>
-		<section class="our-project">
-			<div class="container">
+		</section>
+
+		<section id="about" class="about section">
+			<div class="container-fluid container-lg">
 
 				<div class="row">
 					<div class=" col-lg-6 col-12 ">
@@ -37,7 +40,7 @@
 					</div>
 				</div>
 
-				<div class="row mt-4">
+				<div class="row mt-4 reverse-column">
 					<div class="col-lg-6 col-12 paragraph ">
 						<p class="goal">Pourquoi BxlEvent ?</p>
 						<h2>Bruxelles, une ville pleine d'événements</h2>
@@ -51,9 +54,75 @@
 					</div>
 
 				</div>
+
+				<div class="mt-5">
+					<p class="goal">Ce que vous pouvez trouver sur BxlEvent</p>
+					<div class="row gy-4 mt-2">
+						<div class="col-6 col-lg-3">
+							<div class="discover-card">
+								<div class="discover-icon">
+									<i class="bi bi-music-note-beamed"></i>
+								</div>
+								<h3 class="h5">Concerts & festivals</h3>
+								<p>Découvrez les artistes et événements musicaux qui se déroulent à Bruxelles.</p>
+							</div>
+						</div>
+						<div class="col-6 col-lg-3">
+							<div class="discover-card">
+								<div class="discover-icon">
+									<i class="bi bi-film"></i>
+								</div>
+								<h3 class="h5">Spectacles & culture</h3>
+								<p>Théâtre, spectacles, expositions et autres rendez-vous culturels à ne pas manquer.</p>
+							</div>
+						</div>
+						<div class="col-6 col-lg-3">
+							<div class="discover-card">
+								<div class="discover-icon">
+									<i class="bi bi-trophy"></i>
+								</div>
+								<h3 class="h5">Sports & loisirs</h3>
+								<p>Retrouvez les événements sportifs et activités de loisirs proposés dans la capitale.</p>
+							</div>
+						</div>
+						<div class="col-6 col-lg-3">
+							<div class="discover-card">
+								<div class="discover-icon">
+									<i class="bi bi-people-fill"></i>
+								</div>
+								<h3 class="h5">Sorties & activités</h3>
+								<p>Des idées de sorties pour profiter de Bruxelles seul, entre amis ou en famille.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row align-items-center mt-5">
+					<div class="col-lg-6">
+						<p class="goal">Tout pour</p>
+						<h2>Vous aider à trouver votre prochaine sortie</h2>
+						<p class="mt-3">Nous avons à cœur de rendre la recherche d'événements plus simple, claire et plus agréable. BxlEvent permet de parcourir les événements selon différents critères comme la catégorie, la date ou le lieu afin de trouver plus rapidement une activité qui vous correspond.</p>
+					</div>
+					<div class="col-lg-6">
+						<ul class="goal-checklist">
+							<li>
+								<i class="bi bi-check-circle-fill"></i>
+								Une sélection d'événements récréatifs de qualité</li>
+							<li>
+								<i class="bi bi-check-circle-fill"></i>
+								Des informations claires et mises à jour régulièrement</li>
+							<li>
+								<i class="bi bi-check-circle-fill"></i>
+								Une interface simple, rapide et accessible à tous</li>
+							<li>
+								<i class="bi bi-check-circle-fill"></i>
+								Un projet réalisé avec passion et envie d'apprendre</li>
+						</ul>
+					</div>
+				</div>
+
 			</div>
 		</section>
-
 
 	</main>
 {% endblock %}
