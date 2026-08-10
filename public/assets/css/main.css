@@ -1305,7 +1305,7 @@ section,
 
 @media(max-width:767px) {
   .reverse-column {
-    flex-direction:column-reverse;
+    flex-direction: column-reverse;
   }
 }
 
@@ -1328,7 +1328,7 @@ section,
   margin: auto;
   margin-bottom: 5px;
   border-radius: 50%;
-  border: 2px solid ;
+  border: 2px solid;
   color: var(--accent-color);
   display: flex;
   align-items: center;
@@ -1364,8 +1364,15 @@ section,
   font-size: 1.1rem;
 }
 
+.pre-footer i {
+  font-size: 60px;
+}
+
+
+
+
 /*--------------------------------------------------------------
-# FeaturedEvents
+# Evènement à ne pas rater
 --------------------------------------------------------------*/
 .featureEventsHead {
   height: 400px;
@@ -1475,7 +1482,7 @@ section,
 }
 
 /*--------------------------------------------------------------
-# Section newslater
+# Section newslatter
 --------------------------------------------------------------*/
 .newsletter {
   background: linear-gradient(180deg, #182836 0%, #111c24 100%);
@@ -1492,54 +1499,40 @@ section,
 
 }
 
-/*Force le boutton s'incrire de la page d'inscription à prendre toute la 
-largeur du contenaire */
 .large {
   width: 100%;
   margin-bottom: 5px;
 }
 
-/* 1. On cache le bouton radio (le petit rond) */
 .role-input {
   display: none;
 }
 
-/* 2. Style de la carte (le Label) */
 .role-label {
   display: block;
   position: relative;
   padding: 20px 60px 20px 20px;
-  /* Espace pour l'icône à droite */
   background-color: #1a242f;
-  /* Fond sombre (ajuste selon ton thème) */
   border: 2px solid #343a40;
-  /* Bordure grise par défaut */
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.3s ease;
   height: 100%;
-  /* Pour que les deux cartes aient la même hauteur */
 }
 
-/* 3. Style au survol (hover) */
 .role-label:hover {
   background-color: #24303c;
   border-color: #495057;
 }
 
-/* 4. LE SECRET : Style quand la carte est SÉLECTIONNÉE */
 .role-input:checked+.role-label {
   border-color: #008ecc;
-  /* Bordure bleue de ton image */
   background-color: rgba(0, 142, 204, 0.05);
-  /* Léger fond bleu */
 }
 
-/* 5. Style du Titre et de la Description */
 .role-label .role-title {
   display: block;
   color: #008ecc;
-  /* Titre en bleu */
   font-weight: bold;
   font-size: 1.1rem;
   margin-bottom: 5px;
@@ -1548,12 +1541,10 @@ largeur du contenaire */
 .role-label .role-description {
   display: block;
   color: #adb5bd;
-  /* Texte gris clair */
   font-size: 0.9rem;
   margin-bottom: 0;
 }
 
-/* 6. Positionnement de l'icône à droite */
 .role-label i {
   position: absolute;
   right: 20px;
@@ -1561,17 +1552,13 @@ largeur du contenaire */
   transform: translateY(-50%);
   font-size: 2.5rem;
   color: #3d4954;
-  /* Icône sombre par défaut */
   transition: color 0.3s ease;
 }
 
-/* Changement de couleur de l'icône quand c'est sélectionné */
 .role-input:checked+.role-label i {
   color: #008ecc;
 }
 
-/* permet d'appliquer les mêmes dimensions aux images pricipales de 
-l'événement dans la page consulter un événement */
 .event-card-img {
   width: 100%;
   height: 535px;

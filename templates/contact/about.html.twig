@@ -4,7 +4,6 @@
 {% endblock %}
 {% block body %}
 	<main class="main">
-
 		<section id="about-head" class="AboutHead section">
 			<div class="container-fluid">
 				<div class="row d-flex">
@@ -18,7 +17,6 @@
 				</div>
 			</div>
 		</section>
-
 		<section id="about" class="about section">
 			<div class="container-fluid container-lg">
 
@@ -39,7 +37,6 @@
 							Nous avons voulu proposer une interface simple et intuitive afin que chacun puisse trouver rapidement un événement, consulter ses informations et découvrir de nouvelles activités.</p>
 					</div>
 				</div>
-
 				<div class="row mt-4 reverse-column">
 					<div class="col-lg-6 col-12 paragraph ">
 						<p class="goal">Pourquoi BxlEvent ?</p>
@@ -52,9 +49,7 @@
 					<div class=" col-lg-6 col-12 ">
 						<div class="pictures picture-b rounded"></div>
 					</div>
-
 				</div>
-
 				<div class="mt-5">
 					<p class="goal">Ce que vous pouvez trouver sur BxlEvent</p>
 					<div class="row gy-4 mt-2">
@@ -96,7 +91,6 @@
 						</div>
 					</div>
 				</div>
-
 				<div class="row align-items-center mt-5">
 					<div class="col-lg-6">
 						<p class="goal">Tout pour</p>
@@ -118,6 +112,21 @@
 								<i class="bi bi-check-circle-fill"></i>
 								Un projet réalisé avec passion et envie d'apprendre</li>
 						</ul>
+					</div>
+				</div>
+				<div>
+					<div class="row mt-4 newsletter-bar pre-footer d-flex align-items-center">
+						<div class="col-2">
+							<i class="bi bi-stars"></i>
+						</div>
+						<div class="col-12 col-lg-4 col-md-4">
+							<h3 class="h5">Une sortie vous attend peut-être!</h3>
+							<p>Parcourez les évènements disponibles à Bruxelles et trouvez votre prochaine activité en quelques clics</p>
+						</div>
+						<div class="col col-lg-3"></div>
+						<div class="col-12 col-lg-3 col-md-4 ">
+							<button class="button" onclick="window.location.href='{{path('app_event_index')}}'">Découvrez les évènements</button>
+						</div>
 					</div>
 				</div>
 
