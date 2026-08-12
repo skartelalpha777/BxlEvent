@@ -53,4 +53,10 @@ final class ContactController extends AbstractController
     {
         return $this->render('contact/about.html.twig', []);
     }
+
+    #[Route('/faq', name: 'app_contact_faq')]
+    public function faq(): Response
+    {
+        return $this->render('contact/faq.html.twig', []);
+    }
 }

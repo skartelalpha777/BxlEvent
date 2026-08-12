@@ -1272,7 +1272,6 @@ section,
   position: relative;
   border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
 }
-
 .line {
   width: 60px;
   height: 3px;
@@ -1364,8 +1363,67 @@ section,
   font-size: 1.1rem;
 }
 
+.pre-footer {
+  margin-left: 0;
+  margin-right: 0;
+}
+
 .pre-footer i {
   font-size: 60px;
+}
+
+/*--------------------------------------------------------------
+#FAQ
+--------------------------------------------------------------*/
+.FaqHead {
+  color: var(--default-color);
+  background-color: var(--background-color);
+  background-image: linear-gradient(180deg, color-mix(in srgb, var(--background-color), transparent 10%), color-mix(in srgb, var(--background-color), transparent 50%)), url("../img/Grande-roue-de-bruxelles.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.faq-accordion .accordion-item {
+  background: var(--surface-color);
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+  border-radius: 1rem !important;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.faq-accordion .accordion-button {
+  background: var(--surface-color);
+  color: var(--heading-color);
+  font-weight: 600;
+  box-shadow: none;
+}
+
+.faq-accordion .accordion-button:not(.collapsed) {
+  background: var(--surface-color);
+  color: var(--heading-color);
+  box-shadow: none;
+}
+
+.faq-accordion .accordion-button::after {
+  filter: invert(1) ;
+}
+
+.faq-accordion .accordion-body {
+  color: color-mix(in srgb, var(--default-color), transparent 20%);
+}
+
+.faq-accordion .accordion-icon {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--accent-color), transparent 85%);
+  color: var(--accent-color);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: .75rem;
 }
 
 
