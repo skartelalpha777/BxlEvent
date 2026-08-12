@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+	Politique de confidentialité
+{% endblock %}
+{% block body %}
+	<main class="main">
+
+		<section id="privacy" class="section">
+			<div class="container-fluid container-lg">
+
+				<p class="goal">Confidentialité</p>
+				<h1>Politique de confidentialité</h1>
+				<div class="line mb-4"></div>
+
+				<p class="text-white-50">Dernière mise à jour :
+					{{ "now"|date('d/m/Y') }}</p>
+
+				<p>BxlEvent accorde une grande importance à la protection de vos données personnelles. Cette page explique quelles données nous collectons, pourquoi, et quels sont vos droits.</p>
+
+				<h2 class="mt-5">1. Données collectées</h2>
+				<p>Lors de votre inscription et de l'utilisation du site, nous collectons les informations suivantes : nom, prénom, adresse e-mail, adresse postale (facultative) et, le cas échéant, les informations liées à vos commandes et billets.</p>
+
+				<h2 class="mt-5">2. Utilisation des données</h2>
+				<p>Ces données sont utilisées uniquement pour :</p>
+				<ul>
+					<li>Créer et gérer votre compte utilisateur ;</li>
+					<li>Traiter vos commandes et générer vos billets ;</li>
+					<li>Vous envoyer la newsletter, si vous y êtes inscrit ;</li>
+					<li>Répondre à vos demandes via le formulaire de contact.</li>
+				</ul>
+
+				<h2 class="mt-5">3. Conservation des données</h2>
+				<p>Vos données sont conservées uniquement le temps nécessaire aux finalités décrites ci-dessus, et supprimées  à la clôture de votre compte.</p>
+
+				<h2 class="mt-5">4. Vos droits</h2>
+				<p>Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Vous pouvez à tout moment consulter et modifier vos informations depuis votre profil, ou nous contacter directement pour toute demande.</p>
+
+				<h2 class="mt-5">5. Cookies</h2>
+				<p>BxlEvent utilise uniquement des cookies techniques nécessaires au bon fonctionnement du site (ex : maintien de votre session et de votre panier). Aucun cookie publicitaire n'est utilisé.</p>
+				<h2 class="mt-5">6. Base légale du traitement</h2>
+				<p>Les données personnelles sont traitées sur la base de différentes fondements juridiques prévus par le RGPD :.</p>
+				<ul>
+					<li>l'exécution d'un contrat, notamment pour la création du compte et la gestion des commandes ;</li>
+					<li>le consentement de l'utilisateur, notamment pour l'inscription à la newsletter ;</li>
+					<li>le respect d'obligations légales lorsque cela est nécessaire ;</li>
+					<li>l'intérêt légitime de BxlEvent pour assurer la sécurité et le bon fonctionnement du site.</li>
+				</ul>
+				<h2 class="mt-5">7. Destinataires des données</h2>
+				<p>Les données personnelles sont uniquement accessibles aux personnes nécessaires au fonctionnement de BxlEvent. Elles peuvent notamment être transmises à nos prestataires techniques lorsque cela est nécessaire au fonctionnement du site, au traitement des paiements ou à l'envoi d'e-mails.</p>
+				<h2 class="mt-5">8. Sécurité des données</h2>
+				<p>BxlEvent met en œuvre des mesures techniques et organisationnelles appropriées afin de protéger les données personnelles contre la perte, l'accès non autorisé, la modification ou la divulgation.</p>
+				<h2 class="mt-5">9. Transfert des données hors de l'Union européenne</h2>
+				<p>Lorsque certains prestataires utilisés par BxlEvent peuvent traiter des données personnelles en dehors de l'Union européenne, nous veillons à ce que ces transferts soient réalisés conformément aux exigences du RGPD et bénéficient de garanties appropriées.</p>
+				<h2 class="mt-5">10. Modification de la politique de confidentialité</h2>
+				<p>Cette politique de confidentialité peut être modifiée afin de tenir compte de l'évolution du site, de nos services ou de la réglementation applicable.
+					<br>La date de dernière mise à jour indiquée en haut de cette page permet de connaître la version actuellement en vigueur.</p>
+				<h2 class="mt-5">11. Contact</h2>
+				<p>Pour toute question concernant vos données personnelles, vous pouvez nous contacter via notre
+					<a href="{{ path('app_contact_contoller') }}">page de contact</a>.</p>
+
+			</div>
+		</section>
+
+	</main>
+{% endblock %}

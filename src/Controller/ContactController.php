@@ -59,4 +59,10 @@ final class ContactController extends AbstractController
     {
         return $this->render('contact/faq.html.twig', []);
     }
+
+    #[Route('/politique-de-confidentialite', name: 'app_privacy_policy')]
+    public function privacyPolicy(): Response
+    {
+        return $this->render('contact/privacy.html.twig', []);
+    }
 }
