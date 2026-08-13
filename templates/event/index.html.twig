@@ -119,14 +119,14 @@
 					{% for event in events %}
 						<div class="col-12 col-md-4 mt-4">
 							<div class="card">
-								<img src="{{ asset('assets/img/uploads/events/' ~ event.galleries[0].name) }}" class="card-img-top" alt="..." style="height: 250px; object-fit: cover;"/>
+								<img src="{{ asset('assets/img/uploads/events/' ~ event.galleries[0].name) }}" class="card-img-top" alt="..." style="height: 220px; object-fit: cover;"/>
 								<div class="card-body">
 									{% for cat in event.categories %}
-										<p class="categorie mt-3">{{cat.name}}</p>
+										<p class="categorie">{{cat.name}}</p>
 									{% endfor %}
 									<h4 class="card-title">{{ event.title }}</h4>
 									<!-- DATE BADGE -->
-									<div class="position-absolute top-0 start-0 m-3 px-3 py-2 rounded text-white fw-bold" style="background:var(--accent-color);">
+									<div class="position-absolute top-0 start-0 m-3 px-2 rounded text-white fw-bold" style="background:var(--accent-color);">
 										{{ event.date|date('d M')|upper }}
 									</div>
 
