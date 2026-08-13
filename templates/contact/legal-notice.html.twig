@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+	Mentions légales
+{% endblock %}
+{% block body %}
+	<main class="main">
+		<section id="legal-notice" class="section">
+			<div class="container-fluid container-lg">
+				<p class="goal">Informations légales</p>
+				<h1>Mentions légales</h1>
+				<div class="line mb-4"></div>
+				<p class="texst-white-50">Dernière mise à jour :
+					{{ "now"|date('d/m/Y') }}</p>
+				<p>Cette page présente les informations relatives à l'éditeur et à l'hébergement du site BxlEvent.</p>
+				<h2 class="mt-5">1. Éditeur du site</h2>
+				<p>Le site BxlEvent a été développé dans le cadre d'un projet de formation à l'EPFC (École Pratique des Hautes Études Commerciales).</p>
+				<p>
+					Responsable de la publication : Mamadou Alpha Diallo
+					<br>E-mail :
+					<a href="mailto:3010madiallo@student.epfc.eu">3010madiallo@student.epfc.eu</a>
+				</p>
+				<h2 class="mt-5">2. Hébergement</h2>
+				<p class="text-white-50">
+					Nom de l'hébergeur :
+					<br>Adresse :
+					<br>Contact :
+				</p>
+				<h2 class="mt-5">3. Propriété intellectuelle</h2>
+				<p>Les éléments originaux du site BxlEvent, notamment les textes, le logo, la mise en page et les éléments graphiques créés dans le cadre du projet, sont protégés par les règles applicables en matière de propriété intellectuelle. Toute reproduction ou utilisation non autorisée de ces éléments peut être interdite. Plus de détails dans nos
+					<a href="{{ path('app_terms') }}">conditions générales</a>.</p>
+				<h2 class="mt-5">4. Données personnelles</h2>
+				<p>Le traitement des données personnelles collectées sur le site est détaillé dans notre
+					<a href="{{ path('app_privacy_policy') }}">politique de confidentialité</a>.</p>
+				<h2 class="mt-5">5. Nature du site</h2>
+				<p>BxlEvent est un projet initialement réalisé dans le cadre d'une formation à l'EPFC, dont le déploiement sur un serveur accessible publiquement fait partie des exigences de la formation. Au-delà de ce cadre scolaire, BxlEvent a vocation à être exploité comme un service réel une fois le projet validé.</p>
+				<h2 class="mt-5">6. Contact</h2>
+				<p>Pour toute question relative à ces mentions légales, vous pouvez nous contacter via notre
+					<a href="{{ path('app_contact_contoller') }}">page de contact</a>.</p>
+			</div>
+		</section>
+	</main>
+{% endblock %}

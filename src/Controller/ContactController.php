@@ -65,4 +65,16 @@ final class ContactController extends AbstractController
     {
         return $this->render('contact/privacy.html.twig', []);
     }
+
+    #[Route('/conditions-generales', name: 'app_terms')]
+    public function terms(): Response
+    {
+        return $this->render('contact/terms.html.twig', []);
+    }
+
+    #[Route('/mentions-legales', name: 'app_legal_notice')]
+    public function legalNotice(): Response
+    {
+        return $this->render('contact/legal-notice.html.twig', []);
+    }
 }
