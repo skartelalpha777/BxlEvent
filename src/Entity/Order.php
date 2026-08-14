@@ -138,8 +138,13 @@ class Order
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
-        $this->status=OrderStatus::Pending;
+        $this->status = OrderStatus::Pending;
         $this->tickets = new ArrayCollection();
         $this->reference = 'BXL-Event-Ticket' . strtoupper(bin2hex(random_bytes(3)));
+    }
+
+    public function __toString()
+    {
+        return $this->reference;
     }
 }
