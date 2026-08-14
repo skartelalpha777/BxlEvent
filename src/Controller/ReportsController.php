@@ -21,8 +21,12 @@ final class ReportsController extends AbstractController
     #[Route(name: 'app_reports_index', methods: ['GET'])]
     public function index(ReportsRepository $reportsRepository): Response
     {
+        $reports = $reportsRepository->findAll();
+        if ($this->getUser()->getRoles()[0] == 'ROLE_CONTRIBUTEUR') {
+            $reports = $reportsRepository->findBy(['user' => $this->getUser()]);
+        }
         return $this->render('reports/index.html.twig', [
-            'reports' => $reportsRepository->findAll(),
+            'reports' => $reports,
         ]);
     }
     #[IsGranted('IS_AUTHENTICATED_FULLY')]
@@ -30,27 +34,22 @@ final class ReportsController extends AbstractController
     public function new(Event $event, Request $request, EntityManagerInterface $entityManager): Response
     {
         $report = new Reports();
-
         $report->setEvent($event);
         $report->setUser($this->getUser());
-
         $form = $this->createForm(ReportsType::class, $report);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $entityManager->persist($report);
             $entityManager->flush();
-
             return $this->redirectToRoute('app_reports_index', [], Response::HTTP_SEE_OTHER);
         }
-
         return $this->render('reports/new.html.twig', [
             'report' => $report,
             'form' => $form,
         ]);
     }
-    // a corriger  #[IsGranted(UserRole::ADMIN, UserRole::CONTRIBUTEUR)]
+    #[IsGranted(UserRole::CONTRIBUTEUR)]
     #[Route('/{id}', name: 'app_reports_show', methods: ['GET'])]
     public function show(Reports $report): Response
     {
@@ -58,7 +57,7 @@ final class ReportsController extends AbstractController
             'report' => $report,
         ]);
     }
-    //a coriger  #[IsGranted(UserRole::ADMIN, UserRole::CONTRIBUTEUR)]
+    #[IsGranted(UserRole::CONTRIBUTEUR)]
     #[Route('/{id}/edit', name: 'app_reports_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Reports $report, EntityManagerInterface $entityManager): Response
     {
@@ -76,7 +75,7 @@ final class ReportsController extends AbstractController
             'form' => $form,
         ]);
     }
-
+    #[IsGranted(UserRole::CONTRIBUTEUR)]
     #[Route('/{id}', name: 'app_reports_delete', methods: ['POST'])]
     public function delete(Request $request, Reports $report, EntityManagerInterface $entityManager): Response
     {
