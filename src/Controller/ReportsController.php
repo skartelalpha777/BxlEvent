@@ -25,12 +25,12 @@ final class ReportsController extends AbstractController
             'reports' => $reportsRepository->findAll(),
         ]);
     }
-  // a coriger  #[IsGranted(UserRole::MEMBRE ,UserRole::CONTRIBUTEUR, UserRole::ADMIN)]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     #[Route('/new/{id}', name: 'app_reports_new', methods: ['GET', 'POST'])]
     public function new(Event $event, Request $request, EntityManagerInterface $entityManager): Response
     {
         $report = new Reports();
-        
+
         $report->setEvent($event);
         $report->setUser($this->getUser());
 
@@ -38,7 +38,7 @@ final class ReportsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-           
+
             $entityManager->persist($report);
             $entityManager->flush();
 
@@ -50,7 +50,7 @@ final class ReportsController extends AbstractController
             'form' => $form,
         ]);
     }
-  // a corriger  #[IsGranted(UserRole::ADMIN, UserRole::CONTRIBUTEUR)]
+    // a corriger  #[IsGranted(UserRole::ADMIN, UserRole::CONTRIBUTEUR)]
     #[Route('/{id}', name: 'app_reports_show', methods: ['GET'])]
     public function show(Reports $report): Response
     {
@@ -58,7 +58,7 @@ final class ReportsController extends AbstractController
             'report' => $report,
         ]);
     }
-  //a coriger  #[IsGranted(UserRole::ADMIN, UserRole::CONTRIBUTEUR)]
+    //a coriger  #[IsGranted(UserRole::ADMIN, UserRole::CONTRIBUTEUR)]
     #[Route('/{id}/edit', name: 'app_reports_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Reports $report, EntityManagerInterface $entityManager): Response
     {
