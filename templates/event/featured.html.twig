@@ -29,19 +29,15 @@
 					{% for event in events %}
 						<div class="col-12 col-md-4 mt-4">
 							<div class="card">
-
 								{% if event.galleries|length > 0 %}
-
-									<img src="{{ asset('assets/img/uploads/events/' ~ event.galleries[0].name) }}" class="card-img-top" alt="image de l'évènement{{event.title}}" style="height: 250px; object-fit: cover;"/>
-
+									<img src="{{ asset('assets/img/uploads/events/' ~ event.galleries[0].name) }}" class="card-img-top" alt="image de l'évènement{{event.title}}" style="height: 220px; object-fit: cover;"/>
 								{% endif %}
-								<div class="card-body">
+								<div class="card-body mb-0 pb-0">
 									{% for cat in event.categories %}
-										<p class="categorie mt-3">{{cat.name}}</p>
+										<p class="categorie">{{cat.name}}</p>
 									{% endfor %}
 									<h4 class="card-title">{{ event.title }}</h4>
-									<!-- DATE BADGE -->
-									<div class="position-absolute top-0 start-0 m-3 px-3 py-2 rounded text-white fw-bold" style="background:var(--accent-color);">
+									<div class="position-absolute top-0 start-0 m-3 px-2 rounded text-white fw-bold" style="background:var(--accent-color);">
 										{{ event.date|date('d M')|upper }}
 									</div>
 								</div>
@@ -63,10 +59,10 @@
 								<div class="card-body">
 									<div class="row">
 										<div class="col">
-											<button class="button w-100" type="button" onclick="window.location.href='{{path('app_event_tickets',{id:event.id})}}'">Tickets</button>
+											<button class="button w-100" type="button" onclick="window.location.href='{{path('app_event_tickets',{id:event.id})}}'">Voir les tickets</button>
 										</div>
 										<div class="col text-end">
-											<button class=" noBackground" type="button" onclick="window.location.href='{{path('app_event_consult', {id:event.id} )}}'">Consulter l'évenement</button>
+											<button class="noBackground px-4" type="button" onclick="window.location.href='{{path('app_event_consult', {id:event.id} )}}'">Voir l'évenement</button>
 										</div>
 									</div>
 								</div>
@@ -74,10 +70,10 @@
 						</div>
 					{% endfor %}
 				</div>
-				<div class="row gx-0 mx-0 pre-footer event-filters">
-					<div class="col-md-6 col-lg ">
-						<div class="row gx-2">
-							<div class="col-2 d-flex align-items-top">
+				<div class="row  pre-footer event-filters ">
+					<div class="col-md-6 ">
+						<div class="row ">
+							<div class="col-2">
 								<i class="bi bi-star icon"></i>
 							</div>
 							<div class="col-10">
@@ -86,9 +82,9 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-md-6 col-lg">
+					<div class="col-md-6">
 						<div class="row gx-2">
-							<div class="col-2 d-flex align-items-top">
+							<div class="col-2 d-flex align-items-centers">
 								<i class="bi bi-hand-thumbs-up icon"></i>
 							</div>
 							<div class="col-8">
@@ -97,9 +93,9 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-md-6 col-lg">
+					<div class="col-md-6">
 						<div class="row gx-2">
-							<div class="col-2 d-flex align-items-top ">
+							<div class="col-2 d-flex align-items-center">
 								<i class="bi bi-headset icon"></i>
 							</div>
 							<div class="col-8">
@@ -108,9 +104,9 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-md-6 col-lg">
+					<div class="col-md-6">
 						<div class="row gx-2">
-							<div class="col-2 d-flex align-items-top">
+							<div class="col-2 d-flex align-items-center">
 								<i class="bi bi-calendar-event icon"></i>
 							</div>
 							<div class="col-8">
