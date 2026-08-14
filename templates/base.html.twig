@@ -45,15 +45,14 @@
 								<a href="{{path('app_contact_about')}}">A propos</a>
 							</li>
 							<li class="dropdown">
-								<a href="#">
+								<a href="">
 									<span>Catégories</span>
 									<i class="bi bi-chevron-down toggle-dropdown"></i>
 								</a>
 								<ul>
-									<li><a href="#">Showcase</a></li>
-									<li><a href="#">Concert</a></li>
-									<li><a href="#">Gratuit</a></li>
-									<li><a href="#">Festival</a></li>
+									{% for categorie in categorie_repository.findAll() %}
+										<li><a href="{{ path('app_event_index', {category: categorie.id, filter_token: csrf_token('filter')}) }}#events-results">{{ categorie.name }}</a></li>
+									{% endfor %}
 								</ul>
 							</li>
 							<li>

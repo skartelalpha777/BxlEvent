@@ -44,7 +44,7 @@
 
 		<section class="hero section pb-0">
 			<div class="container">
-				<form class="event-filters" method="GET" action="{{ path('app_event_index') }}">
+				<form class="event-filters" method="GET" action="{{ path('app_event_index') }}#events-results">
 					<div class="row gy-3">
 						<div class="col-md-6 col-lg">
 							<label class="filter-label" for="filter-search">Recherche</label>
@@ -61,7 +61,7 @@
 								<select id="filter-category" name="category">
 									<option value="">Toutes les catégories</option>
 									{% for categorie in categories %}
-										<option value="{{categorie.id}}">{{categorie.name}}</option>
+										<option value="{{categorie.id}}" {{ app.request.query.get('category') == categorie.id ? 'selected' : '' }}>{{categorie.name}}</option>
 									{% endfor %}
 
 								</select>
@@ -115,7 +115,7 @@
 					</div>
 
 				</form>
-				<div class="row mt-4 mb-5">
+				<div id="events-results" class="row mt-4 mb-5">
 					{% for event in events %}
 						<div class="col-12 col-md-4 mt-4">
 							<div class="card">
