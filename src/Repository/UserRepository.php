@@ -38,13 +38,15 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
      */
     public function getTicketsByMonth(): array
     {
-        return $this->createQueryBuilder('user')
-            ->select('MONTH(user.dateRgpd) AS month')
-            ->addSelect('COUNT(user.id) AS total')
-            ->groupBy('month')
-            ->orderBy('month', 'ASC')
-            ->getQuery()
-            ->getResult();
+        $sql = '
+            SELECT MONTH(date_rgpd) AS month, COUNT(id) AS total
+            FROM user
+            GROUP BY month
+            ORDER BY month ASC
+        ';
+        return $this->getEntityManager()->getConnection()
+            ->executeQuery($sql)
+            ->fetchAllAssociative();
     }
 
     //    public function findOneBySomeField($value): ?User
