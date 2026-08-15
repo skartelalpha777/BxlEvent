@@ -27,6 +27,7 @@
 		 <script src="{{asset('assets/js/main.js')}}" defer></script>
 		<!-- Fin import folioOne -->{% block stylesheets %}
 		{% endblock %}{% block javascripts %}
+            {% block importmap %}{{ importmap('app') }}{% endblock %}
 	{% endblock %}
 	</head>
 		<body>

@@ -2,26 +2,71 @@
 
 namespace App\Controller\Admin;
 
+use App\Repository\UserRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Attribute\AdminDashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
+use Symfony\UX\Chartjs\Model\Chart;
 
 #[AdminDashboard(routePath: '/admin', routeName: 'admin')]
 class DashboardController extends AbstractDashboardController
 {
+    public function __construct(
+        private readonly UserRepository $userRepository,
+        private readonly ChartBuilderInterface $chartBuilder
+    ) {}
+
     public function index(): Response
     {
+        $mois = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+        $users = $this->userRepository->getUsersByMonth();
+        $labels = [];
+        $data = [];
+        foreach ($users as $user) {
+            $labels[] = $mois[$user['month'] - 1];
+            $data[] = $user['total'];
+        }
+        $chart = $this->chartBuilder->createChart(Chart::TYPE_LINE);
 
-        return $this->render('admin/dashboard.admin.html.twig');
+        $chart->setData([
+            'labels' => $labels,
+            'datasets' => [
+                [
+                    'label' => 'Statistique de utilisateurs inscrit par mois',
+                    'backgroundColor' => 'rgb(255, 99, 132)',
+                    'borderColor' => 'rgb(255, 99, 132)',
+                    'data' => $data
+                ],
+            ],
+        ]);
+        $chart->setOptions([
+            'scales' => [
+                'y' => [
+                    'suggestedMin' => 0,
+                    'suggestedMax' => 100,
+                ],
+            ],
+        ]);
+        return $this->render('admin/dashboard.admin.html.twig', [
+            'chart' => $chart,
+        ]);
     }
 
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
             ->setTitle('Administration');
+    }
+
+    public function configureAssets(): Assets
+    {
+        return parent::configureAssets()
+            ->addAssetMapperEntry('app');
     }
 
     public function configureMenuItems(): iterable
@@ -44,5 +89,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkTo(ReportsCrudController::class, 'Signalements', 'fas fa-flag')->setAction(Action::INDEX);
         yield MenuItem::linkTo(ReportCategoryCrudController::class, 'Catégories de signalement', 'fas fa-exclamation-circle')->setAction(Action::INDEX);
         yield MenuItem::linkTo(NewsletterCrudController::class, 'Newsletter', 'fas fa-envelope-open-text')->setAction(Action::INDEX);
+
+        yield MenuItem::section('Statistique');
+        yield MenuItem::linkToDashboard('Statistiques des utilisateurs inscrits par mois', 'fas fa-chart-line');
     }
 }

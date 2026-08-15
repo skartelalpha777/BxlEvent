@@ -34,9 +34,9 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     }
 
     /**
-     * @return User[] Returns les utilisateur inscrit par mois
+     *  Returns les utilisateur inscrit par mois
      */
-    public function getTicketsByMonth(): array
+    public function getUsersByMonth(): array
     {
         $sql = '
             SELECT MONTH(date_rgpd) AS month, COUNT(id) AS total
