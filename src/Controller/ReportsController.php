@@ -18,6 +18,7 @@ use App\Enum\UserRole;
 #[Route('/reports')]
 final class ReportsController extends AbstractController
 {
+    #[IsGranted('ROLE_CONTRIBUTEUR')]
     #[Route(name: 'app_reports_index', methods: ['GET'])]
     public function index(ReportsRepository $reportsRepository): Response
     {
@@ -49,18 +50,26 @@ final class ReportsController extends AbstractController
             'form' => $form,
         ]);
     }
-    #[IsGranted(UserRole::CONTRIBUTEUR)]
+    #[IsGranted('ROLE_CONTRIBUTEUR')]
     #[Route('/{id}', name: 'app_reports_show', methods: ['GET'])]
     public function show(Reports $report): Response
     {
+        if ($report->getEvent()->getCreator() != $this->getUser()) {
+            $this->addFlash('notice', 'Vous ne pouvez pas afficher le signalement d\'un évènement dont vous n\'êtes pas le titulaire ');
+            return $this->redirectToRoute('app_user_profil', ['id' => $this->getUser()->getId()], Response::HTTP_SEE_OTHER);
+        }
         return $this->render('reports/show.html.twig', [
             'report' => $report,
         ]);
     }
-    #[IsGranted(UserRole::CONTRIBUTEUR)]
+    #[IsGranted('ROLE_CONTRIBUTEUR')]
     #[Route('/{id}/edit', name: 'app_reports_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Reports $report, EntityManagerInterface $entityManager): Response
     {
+        if ($report->getEvent()->getCreator() != $this->getUser()) {
+            $this->addFlash('notice', 'Vous ne pouvez pas modifier le signalement d\'un évènement dont vous n\'êtes pas le titulaire ');
+            return $this->redirectToRoute('app_user_profil', ['id' => $this->getUser()->getId()], Response::HTTP_SEE_OTHER);
+        }
         $form = $this->createForm(ReportsType::class, $report);
         $form->handleRequest($request);
 
@@ -75,10 +84,14 @@ final class ReportsController extends AbstractController
             'form' => $form,
         ]);
     }
-    #[IsGranted(UserRole::CONTRIBUTEUR)]
-    #[Route('/{id}', name: 'app_reports_delete', methods: ['POST'])]
+    #[IsGranted('ROLE_CONTRIBUTEUR')]
+    #[Route('/{id}/delete', name: 'app_reports_delete', methods: ['POST','GET'])]
     public function delete(Request $request, Reports $report, EntityManagerInterface $entityManager): Response
     {
+        if ($report->getEvent()->getCreator() != $this->getUser()) {
+            $this->addFlash('notice', 'Vous ne pouvez pas supprimer le signalement d\'un évènement dont vous n\'êtes pas le titulaire ');
+            return $this->redirectToRoute('app_user_profil', ['id' => $this->getUser()->getId()], Response::HTTP_SEE_OTHER);
+        }
         if ($this->isCsrfTokenValid('delete' . $report->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($report);
             $entityManager->flush();
