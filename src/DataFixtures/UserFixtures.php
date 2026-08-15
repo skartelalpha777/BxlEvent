@@ -32,7 +32,7 @@ class UserFixtures extends Fixture
             $user->setLastName($data['lastName']);
             if ($data['firstName'] == 'Alpha') {
                 $user->setRole(UserRole::ADMIN);
-            } else if ($data['firstName'] == 'François' || $data['firstName'] == 'Thomas') {
+            } else if ($data['firstName'] == 'Sophie' || $data['firstName'] == 'Thomas') {
                 $user->setRole(UserRole::CONTRIBUTEUR);
             } else {
                 $user->setRole(UserRole::MEMBRE);

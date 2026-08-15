@@ -26,6 +26,7 @@ class EventFixtures extends Fixture implements DependentFixtureInterface
             'location' => 'location_ing_arena',
             'categories' => ['category_concert'],
             'organizer' => 'organizer_1',
+            'isFeatured' => true,
         ],
         'event_1' => [
             'title' => 'Massive Attack Live',
@@ -48,6 +49,7 @@ class EventFixtures extends Fixture implements DependentFixtureInterface
             'location' => 'location_ing_arena',
             'categories' => ['category_concert'],
             'organizer' => 'organizer_1',
+            'isFeatured' => true,
         ],
         'event_3' => [
             'title' => 'Damso - QALF Infinity Tour',
@@ -81,6 +83,7 @@ class EventFixtures extends Fixture implements DependentFixtureInterface
             'location' => 'location_parc_osseghem',
             'categories' => ['category_festival'],
             'organizer' => 'organizer_2',
+            'isFeatured' => true,
         ],
         'event_6' => [
             'title' => 'Leto & Guy2bezbar',
@@ -103,6 +106,7 @@ class EventFixtures extends Fixture implements DependentFixtureInterface
             'location' => 'location_cirque_royal',
             'categories' => ['category_festival'],
             'organizer' => 'organizer_2',
+            'isFeatured' => true,
         ],
         'event_8' => [
             'title' => 'Jazz & Blues Night',
@@ -138,6 +142,7 @@ class EventFixtures extends Fixture implements DependentFixtureInterface
             $event->setStatus($data['status']);
             $event->setLocation($this->getReference($data['location'], Location::class));
             $event->setCreator($this->getReference($data['organizer'], User::class));
+            $event->setIsFeatured($data['isFeatured'] ?? false);
 
             foreach ($data['categories'] as $categoryReference) {
                 $event->addCategory($this->getReference($categoryReference, Categorie::class));
