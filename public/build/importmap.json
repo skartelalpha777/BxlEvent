@@ -1,0 +1,42 @@
+{
+    "app": {
+        "path": "\/build\/app-e7Kje7E.js",
+        "type": "js"
+    },
+    "\/build\/stimulus_bootstrap.js": {
+        "path": "\/build\/stimulus_bootstrap-xCO4u8H.js",
+        "type": "js"
+    },
+    "\/build\/@symfony\/stimulus-bundle\/controllers.js": {
+        "path": "\/build\/@symfony\/stimulus-bundle\/controllers-Lx2044e.js",
+        "type": "js"
+    },
+    "\/build\/@symfony\/ux-chartjs\/controller.js": {
+        "path": "\/build\/@symfony\/ux-chartjs\/controller-Gcnh5ai.js",
+        "type": "js"
+    },
+    "\/build\/controllers\/hello_controller.js": {
+        "path": "\/build\/controllers\/hello_controller-VYgvytJ.js",
+        "type": "js"
+    },
+    "\/build\/controllers\/csrf_protection_controller.js": {
+        "path": "\/build\/controllers\/csrf_protection_controller-6ynUAeX.js",
+        "type": "js"
+    },
+    "@hotwired\/stimulus": {
+        "path": "\/build\/vendor\/@hotwired\/stimulus\/stimulus.index-ryewcoo.js",
+        "type": "js"
+    },
+    "@symfony\/stimulus-bundle": {
+        "path": "\/build\/@symfony\/stimulus-bundle\/loader-IOzBDLu.js",
+        "type": "js"
+    },
+    "chart.js": {
+        "path": "\/build\/vendor\/chart.js\/chart.js.index-XJ2ZKmA.js",
+        "type": "js"
+    },
+    "@kurkle\/color": {
+        "path": "\/build\/vendor\/@kurkle\/color\/color.index-8p4uYqP.js",
+        "type": "js"
+    }
+}

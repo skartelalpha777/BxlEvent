@@ -38,8 +38,8 @@ class DashboardController extends AbstractDashboardController
             'datasets' => [
                 [
                     'label' => 'Statistique de utilisateurs inscrit par mois',
-                    'backgroundColor' => 'rgb(255, 99, 132)',
-                    'borderColor' => 'rgb(255, 99, 132)',
+                    'backgroundColor' => '#1387c1',
+                    'borderColor' => '#1387c1',
                     'data' => $data
                 ],
             ],
@@ -48,7 +48,7 @@ class DashboardController extends AbstractDashboardController
             'scales' => [
                 'y' => [
                     'suggestedMin' => 0,
-                    'suggestedMax' => 100,
+                    'suggestedMax' => 20    ,
                 ],
             ],
         ]);
