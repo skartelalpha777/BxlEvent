@@ -1,6 +1,6 @@
 {
     "app": {
-        "path": "\/build\/app-e7Kje7E.js",
+        "path": "\/build\/app-N7k5Hcg.js",
         "type": "js"
     },
     "\/build\/stimulus_bootstrap.js": {
@@ -36,7 +36,19 @@
         "type": "js"
     },
     "@kurkle\/color": {
-        "path": "\/build\/vendor\/@kurkle\/color\/color.index-8p4uYqP.js",
+        "path": "\/build\/vendor\/@kurkle\/color\/color.index-MyGKlNq.js",
+        "type": "js"
+    },
+    "chartjs-plugin-zoom": {
+        "path": "\/build\/vendor\/chartjs-plugin-zoom\/chartjs-plugin-zoom.index-_YmyZ6j.js",
+        "type": "js"
+    },
+    "hammerjs": {
+        "path": "\/build\/vendor\/hammerjs\/hammerjs.index-1CwjSls.js",
+        "type": "js"
+    },
+    "chart.js\/helpers": {
+        "path": "\/build\/vendor\/chart.js\/helpers-sdwzFRn.js",
         "type": "js"
     }
 }

@@ -26,6 +26,15 @@ return [
         'version' => '4.5.1',
     ],
     '@kurkle/color' => [
-        'version' => '0.3.4',
+        'version' => '0.3.2',
+    ],
+    'chartjs-plugin-zoom' => [
+        'version' => '2.2.0',
+    ],
+    'hammerjs' => [
+        'version' => '2.0.8',
+    ],
+    'chart.js/helpers' => [
+        'version' => '4.4.6',
     ],
 ];

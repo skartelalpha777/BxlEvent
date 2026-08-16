@@ -48,9 +48,23 @@ class DashboardController extends AbstractDashboardController
             'scales' => [
                 'y' => [
                     'suggestedMin' => 0,
-                    'suggestedMax' => 20    ,
+                    'suggestedMax' => 20,
+                    'ticks' => ['stepSize' => 1],
                 ],
             ],
+            'plugins' => [
+                'zoom' => [
+                    'zoom' => [
+                        'wheel' => ['enabled' => true],
+                        'pinch' => ['enabled' => true],
+                        'mode' => 'xy',
+                    ],
+                    'pan' => [
+                        'enabled' => true,
+                        'mode' => 'xy',
+                    ],
+                ]
+            ]
         ]);
         return $this->render('admin/dashboard.admin.html.twig', [
             'chart' => $chart,
@@ -91,6 +105,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkTo(NewsletterCrudController::class, 'Newsletter', 'fas fa-envelope-open-text')->setAction(Action::INDEX);
 
         yield MenuItem::section('Statistique');
-        yield MenuItem::linkToDashboard('Statistiques des utilisateurs inscrits par mois', 'fas fa-chart-line');
+        yield MenuItem::linkToDashboard('Utilisateurs inscrits par mois', 'fas fa-chart-line');
     }
 }

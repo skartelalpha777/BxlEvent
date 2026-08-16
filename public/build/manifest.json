@@ -2,7 +2,7 @@
     "@symfony\/stimulus-bundle\/controllers.js": "\/build\/@symfony\/stimulus-bundle\/controllers-Lx2044e.js",
     "@symfony\/stimulus-bundle\/loader.js": "\/build\/@symfony\/stimulus-bundle\/loader-IOzBDLu.js",
     "@symfony\/ux-chartjs\/controller.js": "\/build\/@symfony\/ux-chartjs\/controller-Gcnh5ai.js",
-    "app.js": "\/build\/app-e7Kje7E.js",
+    "app.js": "\/build\/app-N7k5Hcg.js",
     "bundles\/easyadmin\/app.a0a6f245.css": "\/build\/bundles\/easyadmin\/app.a0a6f245-ehZ_Z-k.css",
     "bundles\/easyadmin\/app.b69d8054.js": "\/build\/bundles\/easyadmin\/app.b69d8054-d3RmDo5.js",
     "bundles\/easyadmin\/app.b69d8054.js.LICENSE.txt": "\/build\/bundles\/easyadmin\/app.b69d8054.js.LICENSE-byj8Rue.txt",
@@ -35,6 +35,9 @@
     "controllers\/hello_controller.js": "\/build\/controllers\/hello_controller-VYgvytJ.js",
     "stimulus_bootstrap.js": "\/build\/stimulus_bootstrap-xCO4u8H.js",
     "vendor\/@hotwired\/stimulus\/stimulus.index.js": "\/build\/vendor\/@hotwired\/stimulus\/stimulus.index-ryewcoo.js",
-    "vendor\/@kurkle\/color\/color.index.js": "\/build\/vendor\/@kurkle\/color\/color.index-8p4uYqP.js",
-    "vendor\/chart.js\/chart.js.index.js": "\/build\/vendor\/chart.js\/chart.js.index-XJ2ZKmA.js"
+    "vendor\/@kurkle\/color\/color.index.js": "\/build\/vendor\/@kurkle\/color\/color.index-MyGKlNq.js",
+    "vendor\/chart.js\/chart.js.index.js": "\/build\/vendor\/chart.js\/chart.js.index-XJ2ZKmA.js",
+    "vendor\/chart.js\/helpers.js": "\/build\/vendor\/chart.js\/helpers-sdwzFRn.js",
+    "vendor\/chartjs-plugin-zoom\/chartjs-plugin-zoom.index.js": "\/build\/vendor\/chartjs-plugin-zoom\/chartjs-plugin-zoom.index-_YmyZ6j.js",
+    "vendor\/hammerjs\/hammerjs.index.js": "\/build\/vendor\/hammerjs\/hammerjs.index-1CwjSls.js"
 }

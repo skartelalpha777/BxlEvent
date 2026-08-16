@@ -1,6 +1,8 @@
 [
     "\/build\/stimulus_bootstrap.js",
+    "chartjs-plugin-zoom",
     "@symfony\/stimulus-bundle",
+    "hammerjs",
     "@hotwired\/stimulus",
     "\/build\/@symfony\/stimulus-bundle\/controllers.js",
     "\/build\/@symfony\/ux-chartjs\/controller.js",
