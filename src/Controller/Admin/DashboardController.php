@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Repository\OrderRepository;
 use App\Repository\UserRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Attribute\AdminDashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
@@ -18,11 +19,26 @@ class DashboardController extends AbstractDashboardController
 {
     public function __construct(
         private readonly UserRepository $userRepository,
-        private readonly ChartBuilderInterface $chartBuilder
+        private readonly ChartBuilderInterface $chartBuilder,
+        private readonly OrderRepository $orderRepository,
     ) {}
 
     public function index(): Response
     {
+        $userByMonth = $this->chartUsersByMonth();
+        $revenuByMonth= $this->chartRevenuByMonth();
+   
+
+        return $this->render('admin/dashboard.admin.html.twig', [
+            'userByMonth' => $userByMonth,
+            'revenuByMonth' => $revenuByMonth,
+        ]);
+    }
+
+
+    public function chartUsersByMonth()
+    {
+
         $mois = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
         $users = $this->userRepository->getUsersByMonth();
         $labels = [];
@@ -37,7 +53,7 @@ class DashboardController extends AbstractDashboardController
             'labels' => $labels,
             'datasets' => [
                 [
-                    'label' => 'Statistique de utilisateurs inscrit par mois',
+                    'label' => 'Utilisateurs inscrit par mois',
                     'backgroundColor' => '#1387c1',
                     'borderColor' => '#1387c1',
                     'data' => $data
@@ -66,9 +82,55 @@ class DashboardController extends AbstractDashboardController
                 ]
             ]
         ]);
-        return $this->render('admin/dashboard.admin.html.twig', [
-            'chart' => $chart,
+        return $chart;
+    }
+    function chartRevenuByMonth()
+    {
+
+        $revenu = $this->orderRepository->getOrderByMonth();
+        $mois = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+        $labels = [];
+        $data = [];
+        foreach ($revenu as $r) {
+            $labels[] = $mois[$r['month'] - 1];
+            $data[] = $r['total'];
+        }
+        $chart = $this->chartBuilder->createChart(Chart::TYPE_LINE);
+
+        $chart->setData([
+            'labels' => $labels,
+            'datasets' => [
+                [
+                    'label' => 'Chiffre d\'affaire par mois en euro',
+                    'backgroundColor' => '#1387c1',
+                    'borderColor' => '#1387c1',
+                    'data' => $data
+                ],
+            ],
         ]);
+        $chart->setOptions([
+            'scales' => [
+                'y' => [
+                    'suggestedMin' => 0,
+                    'suggestedMax' => 20,
+                    'ticks' => ['stepSize' => 1],
+                ],
+            ],
+            'plugins' => [
+                'zoom' => [
+                    'zoom' => [
+                        'wheel' => ['enabled' => true],
+                        'pinch' => ['enabled' => true],
+                        'mode' => 'xy',
+                    ],
+                    'pan' => [
+                        'enabled' => true,
+                        'mode' => 'xy',
+                    ],
+                ]
+            ]
+        ]);
+        return $chart;
     }
 
     public function configureDashboard(): Dashboard
@@ -106,5 +168,6 @@ class DashboardController extends AbstractDashboardController
 
         yield MenuItem::section('Statistique');
         yield MenuItem::linkToDashboard('Utilisateurs inscrits par mois', 'fas fa-chart-line');
+        yield MenuItem::linkToDashboard('Chiffre d\'affaire par mois', 'fas fa-chart-line');
     }
 }

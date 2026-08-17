@@ -22,10 +22,10 @@ class OrderRepository extends ServiceEntityRepository
     public function getOrderByMonth(): array
     {
         $sql = '
-            SELECT MONTH(created_at) AS month, total_price AS total
-            FROM ORDER
-            GROUP BY month, total
-            ORDER BY month ASC
+           SELECT MONTH(created_at) AS month, SUM(total_price) AS total
+        FROM `order`
+        GROUP BY month
+        ORDER BY month ASC
         ';
         return $this->getEntityManager()->getConnection()
             ->executeQuery($sql)
