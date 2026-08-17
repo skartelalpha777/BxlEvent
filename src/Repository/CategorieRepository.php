@@ -15,6 +15,17 @@ class CategorieRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Categorie::class);
     }
+    public function getTopCategories(): array
+    {
+        $sql = '
+            SELECT  count(event_id) as total, categorie_id as categorie
+            FROM event_categorie
+            group by categorie
+        ';
+        return $this->getEntityManager()->getConnection()
+            ->executeQuery($sql)
+            ->fetchAllAssociative();
+    }
 
     //    /**
     //     * @return Categorie[] Returns an array of Categorie objects

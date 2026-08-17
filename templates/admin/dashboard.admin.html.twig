@@ -5,8 +5,44 @@
 {% endblock %}
 
 {% block main %}
-	<div style="width:auto;">
-		{{ render_chart(userByMonth) }}
-		{{ render_chart(revenuByMonth) }}
+	<div class="dashboard-grid">
+		<div class="dashboard-card">
+			<h3 class="dashboard-card-title">Utilisateurs inscrits par mois</h3>
+			{{ render_chart(userByMonth) }}
+		</div>
+		<div class="dashboard-card">
+			<h3 class="dashboard-card-title">Chiffre d'affaires par mois</h3>
+			{{ render_chart(revenuByMonth) }}
+		</div>
+		<div class="dashboard-card dashboard-card--narrow">
+			<h3 class="dashboard-card-title">Top catégories</h3>
+			{{ render_chart(topCategories) }}
+		</div>
 	</div>
+
+	<style>
+		.dashboard-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+			gap: var(--ea-sp-10, 20px);
+			margin-block-end: var(--ea-sp-10, 20px);
+		}
+		.dashboard-card {
+			background: var(--white, #fff);
+			border: var(--border-width, 1px) var(--border-style, solid) var(--border-color, #e5e7eb);
+			border-radius: var(--border-radius, 8px);
+			padding: var(--ea-sp-10, 20px);
+		}
+		.dashboard-card--narrow {
+			max-width: 420px;
+		}
+		.dashboard-card-title {
+			margin: 0 0 var(--ea-sp-8, 12px);
+			padding-bottom: var(--ea-sp-8, 12px);
+			border-bottom: var(--border-width, 1px) var(--border-style, solid) var(--content-section-border-color, #e5e7eb);
+			font-size: var(--font-size-lg, 16px);
+			font-weight: 600;
+			color: #1387c1;
+		}
+	</style>
 {% endblock %}

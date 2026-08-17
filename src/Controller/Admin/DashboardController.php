@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Repository\CategorieRepository;
 use App\Repository\OrderRepository;
 use App\Repository\UserRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Attribute\AdminDashboard;
@@ -21,22 +22,70 @@ class DashboardController extends AbstractDashboardController
         private readonly UserRepository $userRepository,
         private readonly ChartBuilderInterface $chartBuilder,
         private readonly OrderRepository $orderRepository,
+        private readonly CategorieRepository $categorieRepository,
     ) {}
 
     public function index(): Response
     {
         $userByMonth = $this->chartUsersByMonth();
-        $revenuByMonth= $this->chartRevenuByMonth();
-   
-
+        $revenuByMonth = $this->chartRevenuByMonth();
+        $topCategories = $this->getTopCategories();
         return $this->render('admin/dashboard.admin.html.twig', [
             'userByMonth' => $userByMonth,
             'revenuByMonth' => $revenuByMonth,
+            'topCategories' => $topCategories,
         ]);
     }
 
-
-    public function chartUsersByMonth()
+    private function getTopCategories()
+    {
+        $categories = $this->categorieRepository->getTopCategories();
+        $labels = [];
+        $data = [];
+        $backgorungColors = [];
+        foreach ($categories as $category) {
+            $cat = $this->categorieRepository->findBy(['id' => $category['categorie']]);
+            $labels[] =  $cat[0]->getName();
+            $data[] = $category['total'];
+            $backgorungColors[] = sprintf('#%06X', random_int(0, 0xFFFFFF));
+        }
+        $chart = $this->chartBuilder->createChart(Chart::TYPE_PIE);
+        $chart->setData([
+            'labels' => $labels,
+            'datasets' => [
+                [
+                    'label' => 'Evènement par categorie',
+                    'backgroundColor' => $backgorungColors,
+                    'hoverOffset' => 4,
+                    'data' => $data
+                ],
+            ],
+        ]);
+        $chart->setOptions([
+            'scales' => [
+                'y' => [
+                    'suggestedMin' => 0,
+                    'suggestedMax' => 20,
+                    'ticks' => ['stepSize' => 1],
+                ],
+            ],
+            'plugins' => [
+                'zoom' => [
+                    'zoom' => [
+                        'wheel' => ['enabled' => true],
+                        'pinch' => ['enabled' => true],
+                        'mode' => 'xy',
+                    ],
+                    'pan' => [
+                        'enabled' => true,
+                        'mode' => 'xy',
+                    ],
+                ]
+            ]
+        ]);
+        return $chart;
+    }
+    private function chartUsersByMonth()
     {
 
         $mois = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
@@ -84,7 +133,7 @@ class DashboardController extends AbstractDashboardController
         ]);
         return $chart;
     }
-    function chartRevenuByMonth()
+    private function chartRevenuByMonth()
     {
 
         $revenu = $this->orderRepository->getOrderByMonth();
@@ -95,15 +144,43 @@ class DashboardController extends AbstractDashboardController
             $labels[] = $mois[$r['month'] - 1];
             $data[] = $r['total'];
         }
-        $chart = $this->chartBuilder->createChart(Chart::TYPE_LINE);
+        $chart = $this->chartBuilder->createChart(Chart::TYPE_BAR);
 
         $chart->setData([
             'labels' => $labels,
             'datasets' => [
                 [
                     'label' => 'Chiffre d\'affaire par mois en euro',
-                    'backgroundColor' => '#1387c1',
-                    'borderColor' => '#1387c1',
+                    'backgroundColor' => [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 205, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(14, 21, 37, 0.2)',
+                        'rgba(52, 55, 61, 0.2)',
+                        'rgba(198, 165, 245, 0.2)',
+                        'rgba(182, 197, 226, 0.2)',
+                        'rgba(40, 183, 183, 0.2)',
+                        'rgba(212, 230, 238, 0.2)',
+                    ],
+                    'borderColor' => [
+                        'rgb(255, 99, 132)',
+                        'rgb(255, 159, 64)',
+                        'rgb(255, 205, 86)',
+                        'rgb(75, 192, 192)',
+                        'rgb(54, 162, 235)',
+                        'rgb(153, 102, 255)',
+                        'rgb(115, 204, 177)',
+                        'rgb(25, 90, 37)',
+                        'rgb(20, 16, 30)',
+                        'rgb(153, 222, 84)',
+                        'rgb(61, 63, 68)',
+                        'rgb(172, 211, 33)',
+                    ],
+                    'borderWidth' => 1,
+                    'barPercentage' => 0.1,
                     'data' => $data
                 ],
             ],
