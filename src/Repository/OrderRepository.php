@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Order;
+use App\Enum\OrderStatus;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -30,6 +31,30 @@ class OrderRepository extends ServiceEntityRepository
         return $this->getEntityManager()->getConnection()
             ->executeQuery($sql)
             ->fetchAllAssociative();
+    }
+
+    public function countOrdersBetween(\DateTimeInterface $start, \DateTimeInterface $end): int
+    {
+        return (int) $this->createQueryBuilder('o')
+            ->select('COUNT(o.id)')
+            ->andWhere('o.createdAt BETWEEN :start AND :end')
+            ->setParameter('start', $start)
+            ->setParameter('end', $end)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    public function sumRevenueBetween(\DateTimeInterface $start, \DateTimeInterface $end): float
+    {
+        return (float) ($this->createQueryBuilder('o')
+            ->select('SUM(o.totalPrice)')
+            ->andWhere('o.createdAt BETWEEN :start AND :end')
+            ->andWhere('o.status = :status')
+            ->setParameter('start', $start)
+            ->setParameter('end', $end)
+            ->setParameter('status', OrderStatus::Paid)
+            ->getQuery()
+            ->getSingleScalarResult() ?? 0);
     }
 
     //    /**
