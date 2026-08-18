@@ -16,6 +16,16 @@ class ReportsRepository extends ServiceEntityRepository
         parent::__construct($registry, Reports::class);
     }
 
+    public function countUntreated(): int
+    {
+        return (int) $this->createQueryBuilder('r')
+            ->select('COUNT(r.id)')
+            ->andWhere('r.treated = :treated')
+            ->setParameter('treated', false)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
     //    /**
     //     * @return Reports[] Returns an array of Reports objects
     //     */

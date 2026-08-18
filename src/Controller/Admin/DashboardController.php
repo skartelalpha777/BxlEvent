@@ -3,7 +3,9 @@
 namespace App\Controller\Admin;
 
 use App\Repository\CategorieRepository;
+use App\Repository\EventRepository;
 use App\Repository\OrderRepository;
+use App\Repository\ReportsRepository;
 use App\Repository\UserRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Attribute\AdminDashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
@@ -23,6 +25,8 @@ class DashboardController extends AbstractDashboardController
         private readonly ChartBuilderInterface $chartBuilder,
         private readonly OrderRepository $orderRepository,
         private readonly CategorieRepository $categorieRepository,
+        private readonly EventRepository $eventRepository,
+        private readonly ReportsRepository $reportsRepository,
     ) {}
 
     public function index(): Response
@@ -34,7 +38,79 @@ class DashboardController extends AbstractDashboardController
             'userByMonth' => $userByMonth,
             'revenuByMonth' => $revenuByMonth,
             'topCategories' => $topCategories,
+            'pendingEventsCount' => $this->eventRepository->countPendingValidation(),
+            'untreatedReportsCount' => $this->reportsRepository->countUntreated(),
+            'kpis' => $this->buildDatas(),
         ]);
+    }
+
+ 
+    private function buildDatas(): array
+    {
+        $now = new \DateTimeImmutable();
+       
+        $currentStart = $now->modify('first day of this month')->setTime(0, 0);
+        $currentEnd = $now->modify('last day of this month')->setTime(23, 59, 59);
+        $previousStart = $now->modify('first day of last month')->setTime(0, 0);
+        $previousEnd = $now->modify('last day of last month')->setTime(23, 59, 59);
+       
+        $usersCurrent = $this->userRepository->countRegisteredBetween($currentStart, $currentEnd);
+        $usersPrevious = $this->userRepository->countRegisteredBetween($previousStart, $previousEnd);
+
+        $ordersCurrent = $this->orderRepository->countOrdersBetween($currentStart, $currentEnd);
+        $ordersPrevious = $this->orderRepository->countOrdersBetween($previousStart, $previousEnd);
+
+        $revenueCurrent = $this->orderRepository->sumRevenueBetween($currentStart, $currentEnd);
+        $revenuePrevious = $this->orderRepository->sumRevenueBetween($previousStart, $previousEnd);
+
+        $eventsCurrent = $this->eventRepository->countScheduledBetween($currentStart, $currentEnd);
+        $eventsPrevious = $this->eventRepository->countScheduledBetween($previousStart, $previousEnd);
+
+        return [
+            [
+                'label' => 'Utilisateurs',
+                'icon' => 'fa-users',
+                'color' => '#3b82f6',
+                'value' => $usersCurrent,
+                'trend' => $this->percentVariation($usersCurrent, $usersPrevious),
+            ],
+            [
+                'label' => 'Commandes',
+                'icon' => 'fa-cart-shopping',
+                'color' => '#8b5cf6',
+                'value' => $ordersCurrent,
+                'trend' => $this->percentVariation($ordersCurrent, $ordersPrevious),
+            ],
+            [
+                'label' => 'Chiffre d\'affaire',
+                'icon' => 'fa-euro-sign',
+                'color' => '#10b981',
+                'value' => number_format($revenueCurrent) . ' €',
+                'trend' => $this->percentVariation($revenueCurrent, $revenuePrevious),
+            ],
+            [
+                'label' => 'Évènements',
+                'icon' => 'fa-calendar-alt',
+                'color' => '#f97316',
+                'value' => $eventsCurrent,
+                'trend' => $this->percentVariation($eventsCurrent, $eventsPrevious),
+            ],
+        ];
+    }
+
+    /**
+     * Allow to calculate the variation between two periods usig Variation en % = (Valeur d'arrivée -Valeur de départ)/(Valeur de départ) * 100
+     * @param float $current the end value
+     * @param float $previous the start value
+     * @return float the variation
+     */
+    private function percentVariation(float $current, float $previous): float
+    {
+        if ($previous <= 0) {
+            return $current > 0 ? 100.0 : 0.0;
+        }
+
+        return round((($current - $previous) / $previous) * 100, 2);
     }
 
     private function getTopCategories()
