@@ -1,0 +1,25 @@
+{% extends '@!EasyAdmin/layout.html.twig' %}
+
+{% block head_stylesheets %}
+	{{ parent() }}
+	<link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+{% endblock head_stylesheets %}
+
+{% block header_logo %}
+	<a class="logo fs-4" title="{{ ea.dashboardTitle|striptags }}" href="{{ path(ea.dashboardRouteName) }}" style="color: #1387c1;">
+		<span class="logo-custom">
+			<i class="bi bi-ticket-perforated-fill fs-4 me-2"></i>BxlEvent
+		</span>
+	</a>
+{% endblock header_logo %}
+
+{% block sidebar_footer %}
+	<div class="p-3">
+		<div class="fw-bold" style="color: #1387c1;">BxlEvent</div>
+		<div class="small text-muted mb-2">L'agenda de vos meilleures sorties</div>
+		<a href="{{ path('app_event_index') }}" class="btn btn-sm btn-outline-primary w-100" target="_blank" rel="noopener">
+			Voir le site
+			<i class="fas fa-arrow-up-right-from-square ms-1"></i>
+		</a>
+	</div>
+{% endblock sidebar_footer %}
