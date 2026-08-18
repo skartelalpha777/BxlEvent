@@ -319,8 +319,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkTo(ReportCategoryCrudController::class, 'Catégories de signalement', 'fas fa-exclamation-circle')->setAction(Action::INDEX);
         yield MenuItem::linkTo(NewsletterCrudController::class, 'Newsletter', 'fas fa-envelope-open-text')->setAction(Action::INDEX);
 
-        yield MenuItem::section('Statistique');
-        yield MenuItem::linkToDashboard('Utilisateurs inscrits par mois', 'fas fa-chart-line');
-        yield MenuItem::linkToDashboard('Chiffre d\'affaire par mois', 'fas fa-chart-line');
+       // yield MenuItem::section('Statistique');
+       // yield MenuItem::linkToDashboard('Utilisateurs inscrits par mois', 'fas fa-chart-line');
+       // yield MenuItem::linkToDashboard('Chiffre d\'affaire par mois', 'fas fa-chart-line');
     }
 }
