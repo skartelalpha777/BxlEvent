@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/event')]
 final class EventController extends AbstractController
@@ -60,16 +61,29 @@ final class EventController extends AbstractController
             'locations' => $locationRepository->findAll(),
         ]);
     }
-    #[Route('/featured', name: 'app_events_featured',methods:['GET'])]
-    public function featuredEvents(EventRepository $eventRepository):Response
+    #[IsGranted('ROLE_CONTRIBUTEUR')]
+    #[Route('/mes-evenements', name: 'app-mes-evenements', methods: ['GET'])]
+    public function myEvents(EventRepository $eventRepository)
     {
-       
+
+        $userid = $this->getUser()->getId();
+        $events = $eventRepository->findBy(['creator' => $userid]);
+        $this->render('event/index.html.twif', [
+            'myEvents' => $events,
+        ]);
+    }
+
+    #[Route('/featured', name: 'app_events_featured', methods: ['GET'])]
+    public function featuredEvents(EventRepository $eventRepository): Response
+    {
+
         $events = $eventRepository->findBy(['isFeatured' => 1]);
-       return $this->render('event/featured.html.twig', [
+        return $this->render('event/featured.html.twig', [
             'events' => $events
         ]);
     }
 
+      #[IsGranted('ROLE_CONTRIBUTEUR')]
     #[Route('/new', name: 'app_event_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
