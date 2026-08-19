@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Event;
 use App\Entity\Categorie;
 use App\Entity\Location;
+use App\Enum\OrderStatus;
 use App\Enum\Status;
 use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -77,6 +78,20 @@ class EventRepository extends ServiceEntityRepository
             ->getSingleScalarResult();
     }
 
+    public function getEventRevenu(int $eventId): float
+    {
+        return (float) ($this->createQueryBuilder('e')
+            ->select('SUM(o.totalPrice)')
+            ->join('e.tickets', 't')
+            ->join('t.purchase', 'o')
+            ->andWhere('e.id = :eventId')
+            ->andWhere('o.status = :status')
+            ->setParameter('eventId', $eventId)
+            ->setParameter('status', OrderStatus::Paid)
+            ->getQuery()
+            ->getSingleScalarResult() ?? 0);
+    }
+
     //    /**
     //     * @return Event[] Returns an array of Event objects
     //     */
@@ -101,6 +116,4 @@ class EventRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
-
-
 }
