@@ -7,6 +7,7 @@ use App\Form\EventType;
 use App\Repository\EventRepository;
 use App\Repository\CategorieRepository;
 use App\Repository\LocationRepository;
+use App\Repository\ReportsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -64,28 +65,49 @@ final class EventController extends AbstractController
     }
     #[IsGranted('ROLE_CONTRIBUTEUR')]
     #[Route('/mes-evenements', name: 'app-mes-evenements', methods: ['GET'])]
-    public function myEvents(EventRepository $eventRepository)
+    public function myEvents(EventRepository $eventRepository, ReportsRepository $reportsRepository): Response
     {
+        $user = $this->getUser();
+        $events = $eventRepository->findBy(['creator' => $user->getId()], ['date' => 'DESC']);
 
-        $userid = $this->getUser()->getId();
-        $events = $eventRepository->findBy(['creator' => $userid]);
-        if (sizeof($events) > 0) {
-            $revenu = 0;
-            foreach($events as $event){
-                $revenu += $eventRepository->getEventRevenu($event->getId());
+        $revenu = 0;
+        $totalTickets = 0;
+        $upcoming = 0;
+        $past = 0;
+        $now = new \DateTime();
+        foreach ($events as $event) {
+            $revenu += $eventRepository->getEventRevenu($event->getId());
+            $totalTickets += $eventRepository->getEventTotalTickest($event->getId());
+            if ($event->getDate() >= $now) {
+                $upcoming++;
+            } else {
+                $past++;
             }
         }
-        $this->render('event/index.html.twif', [
+
+        return $this->render('event/dashboard.html.twig', [
             'myEvents' => $events,
             'revenu' => $revenu,
+            'totalTickets' => $totalTickets,
+            'upcomingCount' => $upcoming,
+            'pastCount' => $past,
+            'reportsCount' => $reportsRepository->countForCreator($user),
         ]);
+    }
+
+    #[IsGranted('ROLE_CONTRIBUTEUR')]
+    #[Route('/mes-statistiques', name: 'app-mes-statistiques', methods: ['GET'])]
+    public function myStatistics(): Response
+    {
+        // TODO: calculs détaillés à venir (évolution des ventes par mois, etc.)
+        return $this->render('event/statistiques.html.twig');
     }
     #[IsGranted('ROLE_CONTRIBUTEUR')]
     #[Route('/{id}/statistiques', name: 'app-event-stat', methods: ['GET'])]
     public function eventStat(int $id, EventRepository $eventRepository)
     {
         $totalTickets = $eventRepository->getEventTotalTickest($id);
-        $this->render('event/index.html.twif', [
+        $this->render('event/dashboard.html.twig', [
             'totalTickets' => $totalTickets,
         ]);
     }
