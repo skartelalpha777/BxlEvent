@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Component\Validator\Constraints\Length;
 
 #[Route('/event')]
 final class EventController extends AbstractController
@@ -68,8 +69,15 @@ final class EventController extends AbstractController
 
         $userid = $this->getUser()->getId();
         $events = $eventRepository->findBy(['creator' => $userid]);
+        if (sizeof($events) > 0) {
+            $revenu = 0;
+            foreach($events as $event){
+                $revenu += $eventRepository->getEventRevenu($event->getId());
+            }
+        }
         $this->render('event/index.html.twif', [
             'myEvents' => $events,
+            'revenu' => $revenu,
         ]);
     }
     #[IsGranted('ROLE_CONTRIBUTEUR')]

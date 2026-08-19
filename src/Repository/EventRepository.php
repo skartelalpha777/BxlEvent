@@ -97,7 +97,6 @@ class EventRepository extends ServiceEntityRepository
             ->select('Count(t.id)')
             ->join('e.tickets', 't')
             ->andWhere('e.id = :eventId')
-            ->groupBy('t.event')
             ->setParameter('eventId', $eventId)
             ->getQuery()
             ->getSingleScalarResult() ?? 0);
