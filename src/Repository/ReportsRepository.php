@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Reports;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -22,6 +23,17 @@ class ReportsRepository extends ServiceEntityRepository
             ->select('COUNT(r.id)')
             ->andWhere('r.treated = :treated')
             ->setParameter('treated', false)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    public function countForCreator(User $user): int
+    {
+        return (int) $this->createQueryBuilder('r')
+            ->select('COUNT(r.id)')
+            ->join('r.event', 'e')
+            ->andWhere('e.creator = :user')
+            ->setParameter('user', $user)
             ->getQuery()
             ->getSingleScalarResult();
     }
