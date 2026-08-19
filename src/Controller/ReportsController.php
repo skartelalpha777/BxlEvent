@@ -54,9 +54,11 @@ final class ReportsController extends AbstractController
     #[Route('/{id}', name: 'app_reports_show', methods: ['GET'])]
     public function show(Reports $report): Response
     {
-        if ($report->getEvent()->getCreator() != $this->getUser()) {
-            $this->addFlash('error', 'Vous ne pouvez pas afficher le signalement d\'un évènement dont vous n\'êtes pas le titulaire ');
-            return $this->redirectToRoute('app_user_profil', ['id' => $this->getUser()->getId()], Response::HTTP_SEE_OTHER);
+        if ($this->getUser()->getRoles()[0] == 'ROLE_CONTRIBUTEUR') {
+            if ($report->getEvent()->getCreator() != $this->getUser()) {
+                $this->addFlash('error', 'Vous ne pouvez pas afficher le signalement d\'un évènement dont vous n\'êtes pas le titulaire ');
+                return $this->redirectToRoute('app_user_profil', ['id' => $this->getUser()->getId()], Response::HTTP_SEE_OTHER);
+            }
         }
         return $this->render('reports/show.html.twig', [
             'report' => $report,
@@ -85,7 +87,7 @@ final class ReportsController extends AbstractController
         ]);
     }
     #[IsGranted('ROLE_CONTRIBUTEUR')]
-    #[Route('/{id}/delete', name: 'app_reports_delete', methods: ['POST','GET'])]
+    #[Route('/{id}/delete', name: 'app_reports_delete', methods: ['POST', 'GET'])]
     public function delete(Request $request, Reports $report, EntityManagerInterface $entityManager): Response
     {
         if ($report->getEvent()->getCreator() != $this->getUser()) {
