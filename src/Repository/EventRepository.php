@@ -91,6 +91,17 @@ class EventRepository extends ServiceEntityRepository
             ->getQuery()
             ->getSingleScalarResult() ?? 0);
     }
+    public function getEventTotalTickest(int $eventId): int
+    {
+        return (int) ($this->createQueryBuilder('e')
+            ->select('Count(t.id)')
+            ->join('e.tickets', 't')
+            ->andWhere('e.id = :eventId')
+            ->groupBy('t.event')
+            ->setParameter('eventId', $eventId)
+            ->getQuery()
+            ->getSingleScalarResult() ?? 0);
+    }
 
     //    /**
     //     * @return Event[] Returns an array of Event objects

@@ -72,6 +72,15 @@ final class EventController extends AbstractController
             'myEvents' => $events,
         ]);
     }
+    #[IsGranted('ROLE_CONTRIBUTEUR')]
+    #[Route('/{id}/statistiques', name: 'app-event-stat', methods: ['GET'])]
+    public function eventStat(int $id, EventRepository $eventRepository)
+    {
+        $totalTickets = $eventRepository->getEventTotalTickest($id);
+        $this->render('event/index.html.twif', [
+            'totalTickets' => $totalTickets,
+        ]);
+    }
 
     #[Route('/featured', name: 'app_events_featured', methods: ['GET'])]
     public function featuredEvents(EventRepository $eventRepository): Response
@@ -83,7 +92,7 @@ final class EventController extends AbstractController
         ]);
     }
 
-      #[IsGranted('ROLE_CONTRIBUTEUR')]
+    #[IsGranted('ROLE_CONTRIBUTEUR')]
     #[Route('/new', name: 'app_event_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
