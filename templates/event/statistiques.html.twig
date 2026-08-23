@@ -1,12 +1,42 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mes statistiques{% endblock %}
+{% block title %}Mes statistiques
+{% endblock %}
 
 {% block body %}
 	<div class="container py-5">
 		<h1 class="mb-3">Mes statistiques</h1>
+		<form class="event-filters" method="GET" action="{{ path('app-mes-statistiques') }}">
+			<div class="row gy-3">
+				<div class="col-md-6 col-lg">
+					<label class="filter-label" for="filter-date">Date de début</label>
+					<div class="filter-control">
+						<i class="bi bi-calendar-event"></i>
+						<input type="datetime-local" name="start-date">
+					</div>
+				</div>
+				<div class="col-md-6 col-lg">
+					<label class="filter-label" for="filter-date">Date de fin
+					</label>
+					<div class="filter-control">
+						<i class="bi bi-calendar-event"></i>
+						<input type="datetime-local" name="end-date">
+					</div>
+				</div>
+			</div>
+
+			<input type="hidden" name="filter_token" value="{{ csrf_token('filter') }}">
+
+			<div class="text-center mt-4 d-flex justify-content-center align-items-center gap-3">
+				<button type="submit" class="button">Appliquer</button>
+				<a href="{{ path('app-mes-statistiques') }}" class="filter-reset">
+					<i class="bi bi-arrow-counterclockwise"></i>
+					Réinitialiser les filtres
+				</a>
+			</div>
+
+		</form>
 		{{ render_chart(chart, {'data-controller': 'chart'}) }}
-		<p class="text-muted">Cette page est en construction — les calculs détaillés (évolution des ventes par mois, etc.) arrivent bientôt.</p>
 		<a href="{{ path('app-mes-evenements') }}" class="button">Retour à mon tableau de bord</a>
 	</div>
 {% endblock %}

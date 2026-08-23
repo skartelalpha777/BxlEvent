@@ -99,19 +99,24 @@ final class EventController extends AbstractController
 
     #[IsGranted('ROLE_CONTRIBUTEUR')]
     #[Route('/mes-statistiques', name: 'app-mes-statistiques', methods: ['GET'])]
-    public function myStatistics(EventRepository $eventRepository, ChartBuilderInterface $chartBuilder): Response
+    public function myStatistics(EventRepository $eventRepository, Request $request, ChartBuilderInterface $chartBuilder): Response
     {
 
-        $chart = $this->SaledTickest($eventRepository,  $chartBuilder);
-
+        $chart = $this->SaledTickest($eventRepository,  $chartBuilder, $request);
         return $this->render('event/statistiques.html.twig', [
             'chart' => $chart
         ]);
     }
 
-    private function SaledTickest(EventRepository $eventRepository, ChartBuilderInterface $chartBuilder)
+    private function SaledTickest(EventRepository $eventRepository, ChartBuilderInterface $chartBuilder, Request $request)
     {
         $sales = $eventRepository->getTicketsAndRevenuByDay(null, null, $this->getUser()->getId());
+        $submittedToken = $request->query->get('filter_token');
+        if ($this->isCsrfTokenValid('filter', $submittedToken)) {
+            $start = new \DateTime($request->query->get('start-date'));
+            $end = new \DateTime($request->query->get('end-date'));
+            $sales = $eventRepository->getTicketsAndRevenuByDay($start, $end, $this->getUser()->getId());
+        }
 
         $labels = [];
         $data = [];
