@@ -36,7 +36,8 @@
 			</div>
 
 		</form>
-		{{ render_chart(chart, {'data-controller': 'chart'}) }}
+		{{ render_chart(ticketsChart, {'data-controller': 'chart'}) }}
+		{{ render_chart(revenuChart, {'data-controller': 'chart'}) }}
 		<a href="{{ path('app-mes-evenements') }}" class="button">Retour à mon tableau de bord</a>
 	</div>
 {% endblock %}

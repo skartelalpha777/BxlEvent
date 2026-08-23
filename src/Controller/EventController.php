@@ -96,46 +96,64 @@ final class EventController extends AbstractController
             'reportsCount' => $reportsRepository->countForCreator($user),
         ]);
     }
-
+    /**
+     * return un graphique sur l'ensemble du revenu généré par tous les évènements d'un contiributeur ainsi qu'un graphique sur le nombre
+     * de billet total vendu
+     */
     #[IsGranted('ROLE_CONTRIBUTEUR')]
     #[Route('/mes-statistiques', name: 'app-mes-statistiques', methods: ['GET'])]
     public function myStatistics(EventRepository $eventRepository, Request $request, ChartBuilderInterface $chartBuilder): Response
     {
 
-        $chart = $this->SaledTickest($eventRepository,  $chartBuilder, $request);
+        $sales = $this->getFilteredSales($eventRepository, $request);
+        $ticketsChart = $this->buildDayChart($sales, 'tickets', 'Tickets vendus', Chart::TYPE_PIE, $chartBuilder);
+        $revenuChart = $this->buildDayChart($sales, 'revenu', 'Chiffre d\'affaire en €', Chart::TYPE_BAR, $chartBuilder);
         return $this->render('event/statistiques.html.twig', [
-            'chart' => $chart
+            'ticketsChart' => $ticketsChart,
+            'revenuChart' => $revenuChart
         ]);
     }
 
-    private function SaledTickest(EventRepository $eventRepository, ChartBuilderInterface $chartBuilder, Request $request)
+    /**
+     * Récupère les ventes par jour, filtrées sur la période soumise si le formulaire a été validé.
+     */
+    private function getFilteredSales(EventRepository $eventRepository, Request $request): array
     {
-        $sales = $eventRepository->getTicketsAndRevenuByDay(null, null, $this->getUser()->getId());
+        $userId = $this->getUser()->getId();
         $submittedToken = $request->query->get('filter_token');
+
         if ($this->isCsrfTokenValid('filter', $submittedToken)) {
             $start = new \DateTime($request->query->get('start-date'));
             $end = new \DateTime($request->query->get('end-date'));
-            $sales = $eventRepository->getTicketsAndRevenuByDay($start, $end, $this->getUser()->getId());
+            return $eventRepository->getTicketsAndRevenuByDay($start, $end, $userId);
         }
 
+        return $eventRepository->getTicketsAndRevenuByDay(null, null, $userId);
+    }
+
+    /**
+     * Construit un graphique "par jour" à partir des ventes, en lisant la clé demandée ('tickets' ou 'revenu').
+     */
+    private function buildDayChart(array $sales, string $dataKey, string $label, string $chartType, ChartBuilderInterface $chartBuilder): Chart
+    {
         $labels = [];
         $data = [];
         $backgorungColors = [];
         foreach ($sales as $sale) {
-            $date = $sale['day'];
-            $labels[] =  $date->format('d-m-y');
-            $data[] = $sale['tickets'];
+            $labels[] = $sale['day']->format('d-m-y');
+            $data[] = $sale[$dataKey];
             $backgorungColors[] = sprintf('#%06X', random_int(0, 0xFFFFFF));
         }
-        $chart = $chartBuilder->createChart(Chart::TYPE_PIE);
+
+        $chart = $chartBuilder->createChart($chartType);
         $chart->setData([
             'labels' => $labels,
             'datasets' => [
                 [
-                    'label' => 'Tickets vendus',
+                    'label' => $label,
                     'backgroundColor' => $backgorungColors,
                     'hoverOffset' => 4,
-                    'data' => $data
+                    'data' => $data,
                 ],
             ],
         ]);
@@ -161,16 +179,8 @@ final class EventController extends AbstractController
                 ]
             ]
         ]);
+
         return $chart;
-    }
-    #[IsGranted('ROLE_CONTRIBUTEUR')]
-    #[Route('/{id}/statistiques', name: 'app-event-stat', methods: ['GET'])]
-    public function eventStat(int $id, EventRepository $eventRepository)
-    {
-        $totalTickets = $eventRepository->getEventTotalTickest($id);
-        $this->render('event/dashboard.html.twig', [
-            'totalTickets' => $totalTickets,
-        ]);
     }
 
     #[Route('/featured', name: 'app_events_featured', methods: ['GET'])]
