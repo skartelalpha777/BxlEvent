@@ -56,6 +56,25 @@ class EventRepository extends ServiceEntityRepository
 
         return $qb->getQuery()->getResult();
     }
+    function getTicketsAndRevenuByDay(?DateTime $start, ?DateTime $end, int $userID)
+    {
+
+        $qb = $this->createQueryBuilder('e')
+
+            ->select('count(e.id) as tikects, sum(o.totalPrice) as revenu, day(e.date) as jour')
+            ->join('e.tickets', 't')
+            ->join('t.purchase', 'o')
+            ->andWhere('e.creator=:userId');
+        if ($start && $end) {
+            $qb->andWhere('t.date between :start and :end');
+            $qb->setParameter('start', $start);
+            $qb->setParameter('end', $end);
+        }
+        $qb->setParameter('userId', $userID);
+        $qb->groupBy('jour');
+
+        return $qb->getQuery()->getResult();
+    }
 
     public function countScheduledBetween(\DateTimeInterface $start, \DateTimeInterface $end): int
     {
