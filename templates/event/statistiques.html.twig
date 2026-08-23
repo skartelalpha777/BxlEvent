@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes statistiques{% endblock %}
+
+{% block body %}
+	<div class="container py-5">
+		<h1 class="mb-3">Mes statistiques</h1>
+		{{ render_chart(chart, {'data-controller': 'chart'}) }}
+		<p class="text-muted">Cette page est en construction — les calculs détaillés (évolution des ventes par mois, etc.) arrivent bientôt.</p>
+		<a href="{{ path('app-mes-evenements') }}" class="button">Retour à mon tableau de bord</a>
+	</div>
+{% endblock %}

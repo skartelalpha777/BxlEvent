@@ -59,7 +59,7 @@ class EventRepository extends ServiceEntityRepository
     function getTicketsAndRevenuByDay(?DateTime $start, ?DateTime $end, int $userID)
     {
         $qb = $this->createQueryBuilder('e')
-            ->select('count(e.id) as tikects, sum(o.totalPrice) as revenu, t.date as jour')
+            ->select('count(e.id) as tickets, sum(o.totalPrice) as revenu, t.date as day')
             ->join('e.tickets', 't')
             ->join('t.purchase', 'o')
             ->andWhere('e.creator= :userId')
@@ -71,7 +71,7 @@ class EventRepository extends ServiceEntityRepository
         }
         $qb->setParameter('userId', $userID);
         $qb->setParameter('status', OrderStatus::Paid);
-        $qb->groupBy('jour');
+        $qb->groupBy('day');
 
         return $qb->getQuery()->getResult();
     }

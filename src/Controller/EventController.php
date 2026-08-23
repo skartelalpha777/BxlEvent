@@ -16,6 +16,8 @@ use Symfony\Component\Routing\Attribute\Route;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Validator\Constraints\Length;
+use Symfony\UX\Chartjs\Model\Chart;
+use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
 
 #[Route('/event')]
 final class EventController extends AbstractController
@@ -97,10 +99,64 @@ final class EventController extends AbstractController
 
     #[IsGranted('ROLE_CONTRIBUTEUR')]
     #[Route('/mes-statistiques', name: 'app-mes-statistiques', methods: ['GET'])]
-    public function myStatistics(): Response
+    public function myStatistics(EventRepository $eventRepository, ChartBuilderInterface $chartBuilder): Response
     {
-        // TODO: calculs détaillés à venir (évolution des ventes par mois, etc.)
-        return $this->render('event/statistiques.html.twig');
+
+        $chart = $this->SaledTickest($eventRepository,  $chartBuilder);
+
+        return $this->render('event/statistiques.html.twig', [
+            'chart' => $chart
+        ]);
+    }
+
+    private function SaledTickest(EventRepository $eventRepository, ChartBuilderInterface $chartBuilder)
+    {
+        $sales = $eventRepository->getTicketsAndRevenuByDay(null, null, $this->getUser()->getId());
+
+        $labels = [];
+        $data = [];
+        $backgorungColors = [];
+        foreach ($sales as $sale) {
+            $date = $sale['day'];
+            $labels[] =  $date->format('d-m-y');
+            $data[] = $sale['tickets'];
+            $backgorungColors[] = sprintf('#%06X', random_int(0, 0xFFFFFF));
+        }
+        $chart = $chartBuilder->createChart(Chart::TYPE_PIE);
+        $chart->setData([
+            'labels' => $labels,
+            'datasets' => [
+                [
+                    'label' => 'Tickets vendus',
+                    'backgroundColor' => $backgorungColors,
+                    'hoverOffset' => 4,
+                    'data' => $data
+                ],
+            ],
+        ]);
+        $chart->setOptions([
+            'scales' => [
+                'y' => [
+                    'suggestedMin' => 0,
+                    'suggestedMax' => 100,
+                    'ticks' => ['stepSize' => 1],
+                ],
+            ],
+            'plugins' => [
+                'zoom' => [
+                    'zoom' => [
+                        'wheel' => ['enabled' => true],
+                        'pinch' => ['enabled' => true],
+                        'mode' => 'xy',
+                    ],
+                    'pan' => [
+                        'enabled' => true,
+                        'mode' => 'xy',
+                    ],
+                ]
+            ]
+        ]);
+        return $chart;
     }
     #[IsGranted('ROLE_CONTRIBUTEUR')]
     #[Route('/{id}/statistiques', name: 'app-event-stat', methods: ['GET'])]
