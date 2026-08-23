@@ -21,10 +21,10 @@ class EventRepository extends ServiceEntityRepository
         parent::__construct($registry, Event::class);
     }
 
-
     /**
      * Combine tous les filtres actifs dans une seule requête (au lieu d'exécuter
      * une requête séparée par filtre qui écraserait les résultats précédents).
+     *
      * @return Event[]
      */
     public function findByFilters(?string $search, ?Categorie $category, ?DateTime $date, ?Location $location, string $orderBY = 'ASC'): array
@@ -56,6 +56,13 @@ class EventRepository extends ServiceEntityRepository
 
         return $qb->getQuery()->getResult();
     }
+    /**
+     * Nombre de billets vendus et revenu généré par jour, tous événements confondus,
+     * pour les événements créés par l'utilisateur donné. Ne compte que les commandes payées.
+     * Si $start et $end sont fournis, restreint le résultat à cette période.
+     *
+     * @return array<int, array{day: DateTime, tickets: int, revenu: float}>
+     */
     function getTicketsAndRevenuByDay(?DateTime $start, ?DateTime $end, int $userID)
     {
         $qb = $this->createQueryBuilder('e')
@@ -76,6 +83,9 @@ class EventRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
+    /**
+     * Nombre d'événements dont la date a lieu entre $start et $end (bornes incluses).
+     */
     public function countScheduledBetween(\DateTimeInterface $start, \DateTimeInterface $end): int
     {
         return (int) $this->createQueryBuilder('e')
@@ -87,6 +97,9 @@ class EventRepository extends ServiceEntityRepository
             ->getSingleScalarResult();
     }
 
+    /**
+     * Nombre d'événements en attente de validation par l'admin (statut NOTCHECKED).
+     */
     public function countPendingValidation(): int
     {
         return (int) $this->createQueryBuilder('e')
@@ -97,6 +110,10 @@ class EventRepository extends ServiceEntityRepository
             ->getSingleScalarResult();
     }
 
+    /**
+     * Revenu total généré par un événement (somme des commandes payées liées à ses billets).
+     * Retourne 0 si aucune vente payée n'existe pour cet événement.
+     */
     public function getEventRevenu(int $eventId): float
     {
         return (float) ($this->createQueryBuilder('e')
@@ -110,6 +127,9 @@ class EventRepository extends ServiceEntityRepository
             ->getQuery()
             ->getSingleScalarResult() ?? 0);
     }
+    /**
+     * Nombre total de billets émis pour un événement, quel que soit leur statut de vente.
+     */
     public function getEventTotalTickest(int $eventId): int
     {
         return (int) ($this->createQueryBuilder('e')
