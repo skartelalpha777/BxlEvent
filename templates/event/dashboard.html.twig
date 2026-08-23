@@ -1,0 +1,161 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon tableau de bord
+{% endblock %}
+
+{% block body %}
+	<section class="pt-5 pb-5">
+		<div class="container-fluid container-lg">
+
+			<div class="row g-4">
+
+				<div class="col-lg-3">
+					<div class="dash-card p-4 text-center mb-4">
+						<a href="{{path('app_user_profil',{'id':app.user.id})}}">
+							<img class="rounded-circle mb-3" width="90" height="90" style="object-fit: cover;" src="{{ app.user.profileImg ?: 'https://static.vecteezy.com/ti/vecteur-libre/p1/26625600-la-personne-icone-vecteur-symbole-conception-illustration-vectoriel.jpg' }}" alt="Photo de profil">
+						</a>
+						<h5 class="mb-1">{{ app.user.firstName }}
+							{{ app.user.lastName }}</h5>
+						<span class="dash-badge mb-2 d-inline-block">Contributeur</span>
+						<p class="small  mb-0">{{ app.user.email }}</p>
+					</div>
+
+					<div class="dash-card p-2">
+						<nav class="nav flex-column dash-nav">
+							<a class="nav-link active" href="{{ path('app-mes-evenements') }}">
+								<i class="bi bi-grid-1x2-fill"></i>
+								Vue d'ensemble
+							</a>
+							<a class="nav-link" href="{{ path('app-mes-evenements') }}">
+								<i class="bi bi-calendar-event"></i>
+								Mes événements
+							</a>
+							<a class="nav-link" href="{{ path('app-mes-statistiques') }}">
+								<i class="bi bi-bar-chart-fill"></i>
+								Statistiques
+							</a>
+							<a class="nav-link" href="{{ path('app_reports_index') }}">
+								<i class="bi bi-flag-fill"></i>
+								Signalements
+							</a>
+						</nav>
+					</div>
+				</div>
+
+				<div class="col-lg-9">
+
+					<div class="mb-4">
+						<h2 class="mb-1">Bonjour
+							{{ app.user.firstName }}
+						</h2>
+						<p class="mb-0">Voici un aperçu de votre activité sur BxlEvent.</p>
+					</div>
+
+					<div class="row g-3 mb-4">
+						<div class="col-6 col-md-3">
+							<div class="dash-card p-3 h-100">
+								<div class="newsletter-icon mb-2">
+									<i class="bi bi-ticket-perforated-fill"></i>
+								</div>
+								<div class="fs-4 fw-bold">{{ totalTickets }}</div>
+								<p class="small">Billets vendus</p>
+							</div>
+						</div>
+						<div class="col-6 col-md-3">
+							<div class="dash-card p-3 h-100">
+								<div class="newsletter-icon mb-2">
+									<i class="bi bi-currency-euro"></i>
+								</div>
+								<div class="fs-4 fw-bold">{{ revenu|number_format(0, ',', ' ') }}
+									€</div>
+								<p class="small">Revenus générés</p>
+							</div>
+						</div>
+						<div class="col-6 col-md-3">
+							<div class="dash-card p-3 h-100">
+								<div class="newsletter-icon mb-2">
+									<i class="bi bi-calendar-event-fill"></i>
+								</div>
+								<div class="fs-4 fw-bold">{{ myEvents|length }}</div>
+								<p class="small">Événements créés</p>
+							</div>
+						</div>
+						<div class="col-6 col-md-3">
+							<div class="dash-card p-3 h-100">
+								<div class="newsletter-icon mb-2">
+									<i class="bi bi-flag-fill"></i>
+								</div>
+								<div class="fs-4 fw-bold">{{ reportsCount }}</div>
+								<p class="small">Signalements reçus</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="row g-3 mb-4">
+						<div class="col-md-6">
+							<div class="dash-card p-3 h-100 d-flex align-items-center justify-content-between">
+								<span>
+									<i class="bi bi-calendar-check text-success me-2"></i>Événements à venir</span>
+								<span class="fs-5 fw-bold">{{ upcomingCount }}</span>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="dash-card p-3 h-100 d-flex align-items-center justify-content-between">
+								<span>
+									<i class="bi bi-calendar-x text-warning me-2"></i>Événements passés</span>
+								<span class="fs-5 fw-bold">{{ pastCount }}</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="dash-card p-4">
+						<div class="d-flex justify-content-between align-items-center mb-3">
+							<h5 class="mb-0">Mes événements récents</h5>
+							<a href="{{ path('app-mes-evenements') }}" class="small">Voir tous mes événements</a>
+						</div>
+
+						{% if myEvents|length == 0 %}
+							<p class="text-muted mb-0">Vous n'avez pas encore créé d'événement.</p>
+						{% else %}
+							<div class="table-responsive">
+								<table class="table event-table border-0 align-middle mb-0">
+									<thead>
+										<tr>
+											<th>Événement</th>
+											<th>Date</th>
+											<th>Lieu</th>
+											<th>Statut</th>
+										</tr>
+									</thead>
+									<tbody>
+										{% for event in myEvents|slice(0, 5) %}
+											<tr>
+												<td>{{ event.title }}</td>
+												<td>{{ event.date|date('d M Y') }}</td>
+												<td>{{ event.location ? event.location.name : '—' }}</td>
+												<td>
+													{% if event.date >= date() %}
+														<span class="badge text-bg-success">
+															À venir
+														</span>
+													{% else  %}
+														<span class="badge text-bg-warning">
+															Passé
+														</span>
+													{% endif %}
+
+
+												</td>
+											</tr>
+										{% endfor %}
+									</tbody>
+								</table>
+							</div>
+						{% endif %}
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}
