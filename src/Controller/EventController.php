@@ -22,6 +22,11 @@ use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
 #[Route('/event')]
 final class EventController extends AbstractController
 {
+
+    /**
+     * Renvois la liste des évènements à afficher dans l'accueil avec un maximum de 15 par page
+     * cette fonction permet également le filtrage des évènements par catégorie, lieux et autre.
+     */
     #[Route(name: 'app_event_index', methods: ['GET'])]
     public function index(EventRepository $eventRepository, CategorieRepository $categorieRepository, LocationRepository $locationRepository, PaginatorInterface $paginator, Request $request): Response
     {
