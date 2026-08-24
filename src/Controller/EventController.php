@@ -70,6 +70,10 @@ final class EventController extends AbstractController
             'locations' => $locationRepository->findAll(),
         ]);
     }
+    /**
+     * Permet d'obtenir les informations tel que le revenu, les tickets vendu, les évènements passé et futur 
+     * lié à un contributeur
+     */
     #[IsGranted('ROLE_CONTRIBUTEUR')]
     #[Route('/mes-evenements', name: 'app-mes-evenements', methods: ['GET'])]
     public function myEvents(EventRepository $eventRepository, ReportsRepository $reportsRepository): Response
