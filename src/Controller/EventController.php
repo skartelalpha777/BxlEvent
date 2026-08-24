@@ -108,9 +108,25 @@ final class EventController extends AbstractController
         $sales = $this->getFilteredSales($eventRepository, $request);
         $ticketsChart = $this->buildDayChart($sales, 'tickets', 'Tickets vendus', Chart::TYPE_PIE, $chartBuilder);
         $revenuChart = $this->buildDayChart($sales, 'revenu', 'Chiffre d\'affaire en €', Chart::TYPE_BAR, $chartBuilder);
+
+        $events = $eventRepository->findBy(['creator' => $this->getUser()->getId()]);
+        $eventRows = [];
+        foreach ($events as $event) {
+            $eventRows[] = [
+                'title' => $event->getTitle(),
+                'revenu' => $eventRepository->getEventRevenu($event->getId()),
+                'tickets' => $eventRepository->getEventTotalTickest($event->getId()),
+            ];
+        }
+
+        $revenuePerEventChart = $this->buildEventRankingChart($eventRows, 'revenu', 'CA par événement', '#8b5cf6', $chartBuilder);
+        $ticketsPerEventChart = $this->buildEventRankingChart($eventRows, 'tickets', 'Billets vendus par événement', '#3b82f6', $chartBuilder);
+
         return $this->render('event/statistiques.html.twig', [
             'ticketsChart' => $ticketsChart,
-            'revenuChart' => $revenuChart
+            'revenuChart' => $revenuChart,
+            'revenuePerEventChart' => $revenuePerEventChart,
+            'ticketsPerEventChart' => $ticketsPerEventChart,
         ]);
     }
 
@@ -162,7 +178,10 @@ final class EventController extends AbstractController
                 'y' => [
                     'suggestedMin' => 0,
                     'suggestedMax' => 100,
-                    'ticks' => ['stepSize' => 1],
+                    'ticks' => ['stepSize' => 1, 'color' => 'rgba(255, 255, 255, 0.7)'],
+                ],
+                'x' => [
+                    'ticks' => ['color' => 'rgba(255, 255, 255, 0.7)'],
                 ],
             ],
             'plugins' => [
@@ -178,6 +197,46 @@ final class EventController extends AbstractController
                     ],
                 ]
             ]
+        ]);
+
+        return $chart;
+    }
+
+    /**
+     * Construit un graphique en barres horizontales comparant tous les événements sur la valeur
+     * demandée ('revenu' ou 'tickets'), triés du plus haut au plus bas. Pas de limite de nombre.
+     *
+     * @param array<int, array{title: string, revenu: float, tickets: int}> $eventRows
+     */
+    private function buildEventRankingChart(array $eventRows, string $dataKey, string $label, string $color, ChartBuilderInterface $chartBuilder): Chart
+    {
+        usort($eventRows, fn($a, $b) => $b[$dataKey] <=> $a[$dataKey]);
+
+        $chart = $chartBuilder->createChart(Chart::TYPE_BAR);
+        $chart->setData([
+            'labels' => array_column($eventRows, 'title'),
+            'datasets' => [
+                [
+                    'label' => $label,
+                    'backgroundColor' => $color,
+                    'data' => array_column($eventRows, $dataKey),
+                ],
+            ],
+        ]);
+        $chart->setOptions([
+            'indexAxis' => 'y',
+            'plugins' => [
+                'legend' => ['display' => false],
+            ],
+            'scales' => [
+                'x' => [
+                    'beginAtZero' => true,
+                    'ticks' => ['color' => 'rgba(255, 255, 255, 0.7)'],
+                ],
+                'y' => [
+                    'ticks' => ['color' => 'rgba(255, 255, 255, 0.7)'],
+                ],
+            ],
         ]);
 
         return $chart;

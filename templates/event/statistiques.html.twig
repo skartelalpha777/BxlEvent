@@ -4,6 +4,8 @@
 {% endblock %}
 
 {% block body %}
+	<pre>
+</pre>
 	<div class="container py-5">
 		<h1 class="mb-3">Mes statistiques</h1>
 		<form class="event-filters" method="GET" action="{{ path('app-mes-statistiques') }}">
@@ -36,8 +38,49 @@
 			</div>
 
 		</form>
-		{{ render_chart(ticketsChart, {'data-controller': 'chart'}) }}
-		{{ render_chart(revenuChart, {'data-controller': 'chart'}) }}
+		<div class="row g-3 my-3">
+			<div class="col-12 col-lg-6">
+				<div class="card border-0 shadow-lg ">
+					<div class="card-body rounded">
+						<h3 class="title  fs-6 fw-semibold pb-2 mb-3">Chiffre d'affaires par événement</h3>
+						{{ render_chart(revenuePerEventChart) }}
+					</div>
+				</div>
+			</div>
+			<div class="col-12 col-lg-6">
+				<div class="card border-0  shadow-lg ">
+					<div class="card-body rounded">
+						<h3 class="title fs-6 fw-semibold pb-2 mb-3">Billets vendus par événement</h3>
+						{{ render_chart(ticketsPerEventChart) }}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row g-3 my-3">
+			<div class="col-12 col-lg-6">
+				<div class="card  border-0 shadow-lg">
+					<div class="card-body rounded">
+						<h3 class="title fs-6 fw-semibold pb-2 mb-3">Chiffre d'affaires par jour</h3>
+						{{ render_chart(revenuChart) }}
+					</div>
+				</div>
+			</div>
+			<div class="col-12 col-lg-6">
+				<div class="card border-0 shadow-lg ">
+					<div class="card-body rounded">
+						<h3 class="title fs-6 fw-semibold pb-2 mb-3">Tickets vendu par jour</h3>
+						{{ render_chart(ticketsChart) }}
+					</div>
+				</div>
+			</div>
+
+		</div>
+
 		<a href="{{ path('app-mes-evenements') }}" class="button">Retour à mon tableau de bord</a>
 	</div>
+	<style>
+		.card-body {
+			background-color: var(--surface-color);
+		}
+	</style>
 {% endblock %}
