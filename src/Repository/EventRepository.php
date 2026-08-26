@@ -141,6 +141,41 @@ class EventRepository extends ServiceEntityRepository
             ->getSingleScalarResult() ?? 0);
     }
 
+    /**
+     * Nombre de billets émis, groupés par type de billet (Standard, VIP, ...),
+     * pour les événements créés par l'utilisateur donné.
+     *
+     * @return array<int, array{label: \App\Enum\TicketLabel, total: int}>
+     */
+    public function getTicketsByType(int $userId): array
+    {
+        return $this->createQueryBuilder('e')
+            ->select('tt.label as label, count(t.id) as total')
+            ->join('e.tickets', 't')
+            ->join('t.ticketType', 'tt')
+            ->andWhere('e.creator = :userId')
+            ->setParameter('userId', $userId)
+            ->groupBy('tt.label')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * Nombre d'événements créés par l'utilisateur donné, groupés par statut de modération.
+     *
+     * @return array<int, array{status: Status, total: int}>
+     */
+    public function countEventsByStatus(int $userId): array
+    {
+        return $this->createQueryBuilder('e')
+            ->select('e.status as status, count(e.id) as total')
+            ->andWhere('e.creator = :userId')
+            ->setParameter('userId', $userId)
+            ->groupBy('e.status')
+            ->getQuery()
+            ->getResult();
+    }
+
     //    /**
     //     * @return Event[] Returns an array of Event objects
     //     */
