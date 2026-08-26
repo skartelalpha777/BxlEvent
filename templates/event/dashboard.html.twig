@@ -26,10 +26,6 @@
 								<i class="bi bi-grid-1x2-fill"></i>
 								Vue d'ensemble
 							</a>
-							<a class="nav-link" href="{{ path('app-mes-evenements') }}">
-								<i class="bi bi-calendar-event"></i>
-								Mes événements
-							</a>
 							<a class="nav-link" href="{{ path('app-mes-statistiques') }}">
 								<i class="bi bi-bar-chart-fill"></i>
 								Statistiques
@@ -130,14 +126,19 @@
 											<th>Date</th>
 											<th>Lieu</th>
 											<th>Statut</th>
+											<th>Ventes</th>
 										</tr>
 									</thead>
 									<tbody>
 										{% for event in myEvents %}
 											<tr>
-												<td>{{ event.title }}</td>
-												<td>{{ event.date|date('d M Y') }}</td>
-												<td>{{ event.location ? event.location.name : '—' }}</td>
+
+												<td>
+													<a href="{{path('app_event_consult',{'id':event.id})}}">{{ event.title }}</a>
+												</td>
+
+												<td class="text-white-50">{{ event.date|date('d M Y') }}</td>
+												<td class="text-white-50">{{ event.location ? event.location.name : '—' }}</td>
 												<td>
 
 
@@ -151,8 +152,14 @@
 														<span class="badge text-bg-success">À venir</span>
 													{% endif %}
 												</td>
+												<td>
+
+													{% if event.status.value != 'notchecked' and event.status.value != 'refused' %}
+														<a href="">Voir les Statistiques</a>
+													{% endif %}
+												</td>
 											</tr>
-										</td>
+										</tbody>
 									</tbody>
 								</tr>
 							{% endfor %}
