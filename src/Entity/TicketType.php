@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use App\Enum\TicketLabel;
 use App\Repository\TicketTypeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -17,11 +16,14 @@ class TicketType
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(enumType: TicketLabel::class)]
-    private ?TicketLabel $label = null;
+    #[ORM\Column(length: 255)]
+    private ?string $label = null;
 
     #[ORM\Column]
     private ?int $price = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $maxTicket = null;
 
 
 
@@ -49,13 +51,13 @@ class TicketType
 
 
 
-    public function getLabel(): ?TicketLabel
+    public function getLabel(): ?string
     {
 
         return $this->label;
     }
 
-    public function setLabel(TicketLabel $label): static
+    public function setLabel(string $label): static
     {
         $this->label = $label;
 
@@ -71,6 +73,18 @@ class TicketType
     public function setPrice(int $price): static
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    public function getMaxTicket(): ?int
+    {
+        return $this->maxTicket;
+    }
+
+    public function setMaxTicket(?int $maxTicket): static
+    {
+        $this->maxTicket = $maxTicket;
 
         return $this;
     }
@@ -121,7 +135,7 @@ class TicketType
 
     function __toString()
     {
-        return $this->label ? (string) $this->label->value : '';
+        return $this->label ?? '';
     }
 
     public function getDescription(): ?string
