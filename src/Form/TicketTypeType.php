@@ -4,7 +4,6 @@ namespace App\Form;
 
 use App\Entity\Event;
 use App\Entity\TicketType;
-use App\Enum\TicketLabel;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -17,6 +16,7 @@ class TicketTypeType extends AbstractType
         $builder
             ->add('label')
             ->add('price')
+            ->add('maxTicket')
             ->add('event', EntityType::class, [
                 'class' => Event::class,
                 'choice_label' => 'id',

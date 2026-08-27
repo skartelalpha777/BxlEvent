@@ -32,7 +32,7 @@ class TicketFormType extends AbstractType
             ->add('ticketType', EntityType::class, [
                 'class' => TicketType::class,
                 'choice_label' => function (TicketType $ticketType) {
-                    return $ticketType->getLabel()->value;
+                    return $ticketType->getLabel();
                 },
                 /*'expanded' => true,*/
             ])
