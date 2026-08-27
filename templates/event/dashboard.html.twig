@@ -8,7 +8,6 @@
 		<div class="container-fluid container-lg">
 
 			<div class="row g-4">
-
 				<div class="col-lg-3">
 					<div class="dash-card p-4 text-center mb-4">
 						<a href="{{path('app_user_profil',{'id':app.user.id})}}">
@@ -19,7 +18,6 @@
 						<span class="dash-badge mb-2 d-inline-block">Contributeur</span>
 						<p class="small  mb-0">{{ app.user.email }}</p>
 					</div>
-
 					<div class="dash-card p-2">
 						<nav class="nav flex-column dash-nav">
 							<a class="nav-link active" href="{{ path('app-mes-evenements') }}">
@@ -37,16 +35,13 @@
 						</nav>
 					</div>
 				</div>
-
 				<div class="col-lg-9">
-
 					<div class="mb-4">
 						<h2 class="mb-1">Bonjour
 							{{ app.user.firstName }}
 						</h2>
 						<p class="mb-0">Voici un aperçu de votre activité sur BxlEvent.</p>
 					</div>
-
 					<div class="row g-3 mb-4">
 						<div class="col-6 col-md-3">
 							<div class="dash-card p-3 h-100">
@@ -86,7 +81,6 @@
 							</div>
 						</div>
 					</div>
-
 					<div class="row g-3 mb-4">
 						<div class="col-md-4">
 							<div class="dash-card p-3 h-100 d-flex align-items-center justify-content-between">
@@ -110,13 +104,12 @@
 							</div>
 						</div>
 					</div>
-
 					<div class="dash-card p-4">
 						<div class="d-flex justify-content-between align-items-center mb-3">
 							<h5 class="mb-0">Mes événements</h5>
 						</div>
 						{% if myEvents|length == 0 %}
-							<p class="text-muted mb-0">Vous n'avez pas encore créé d'événement.</p>
+							<p class="text-white-50 mb-0">Vous n'avez pas encore créé d'événement.</p>
 						{% else %}
 							<div class="table-responsive">
 								<table class="table event-table border-0 align-middle mb-0">
@@ -132,16 +125,12 @@
 									<tbody>
 										{% for event in myEvents %}
 											<tr>
-
 												<td>
 													<a href="{{path('app_event_consult',{'id':event.id})}}">{{ event.title }}</a>
 												</td>
-
 												<td class="text-white-50">{{ event.date|date('d M Y') }}</td>
 												<td class="text-white-50">{{ event.location ? event.location.name : '—' }}</td>
 												<td>
-
-
 													{% if event.status.value == 'refused' %}
 														<span class="badge text-bg-danger">Réfusé</span>
 													{% elseif event.status.value == 'notchecked' %}
@@ -153,9 +142,8 @@
 													{% endif %}
 												</td>
 												<td>
-
 													{% if event.status.value != 'notchecked' and event.status.value != 'refused' %}
-														<a href="">Voir les Statistiques</a>
+														<a href="{{path('app-event-statistiques',{'eventId':event.id})}}">Voir les Statistiques</a>
 													{% endif %}
 												</td>
 											</tr>
@@ -168,6 +156,5 @@
 				</div>
 			{% endif %}
 		</div>
-
 	</div>
 </div></div></section>{% endblock %}
