@@ -23,7 +23,6 @@ use App\Enum\Status;
 #[Route('/event')]
 final class EventController extends AbstractController
 {
-
     /**
      * Renvois la liste des évènements à afficher dans l'accueil avec un maximum de 15 par page
      * cette fonction permet également le filtrage des évènements par catégorie, lieux et autre.
@@ -32,13 +31,10 @@ final class EventController extends AbstractController
     public function index(EventRepository $eventRepository, CategorieRepository $categorieRepository, LocationRepository $locationRepository, PaginatorInterface $paginator, Request $request): Response
     {
         $events = $eventRepository->findAll();
-
         if ($request->query->count() > 0) {
             $submittedToken = $request->query->get('filter_token');
             if ($this->isCsrfTokenValid('filter', $submittedToken)) {
-
                 $search = $request->query->get('search') ?: null;
-
                 $category = null;
                 if ($categoryId = $request->query->get('category')) {
                     $category = $categorieRepository->find($categoryId);
@@ -55,7 +51,6 @@ final class EventController extends AbstractController
                 }
 
                 $sort = $request->query->get('sort') === 'DESC' ? 'DESC' : 'ASC';
-
                 $events = $eventRepository->findByFilters($search, $category, $date, $location, $sort);
             }
         }
@@ -81,7 +76,6 @@ final class EventController extends AbstractController
     {
         $user = $this->getUser();
         $events = $eventRepository->findBy(['creator' => $user->getId()], ['date' => 'DESC']);
-
         $revenu = 0;
         $totalTickets = 0;
         $upcoming = 0;
@@ -119,11 +113,9 @@ final class EventController extends AbstractController
     #[Route('/mes-statistiques', name: 'app-mes-statistiques', methods: ['GET'])]
     public function myStatistics(EventRepository $eventRepository, Request $request, ChartBuilderInterface $chartBuilder): Response
     {
-
         $sales = $this->getFilteredSales($eventRepository, $request);
         $ticketsChart = $this->buildDayChart($sales, 'tickets', 'Tickets vendus', Chart::TYPE_BAR, $chartBuilder);
         $revenuChart = $this->buildDayChart($sales, 'revenu', 'Chiffre d\'affaire en €', Chart::TYPE_BAR, $chartBuilder);
-
         $events = $eventRepository->findBy(['creator' => $this->getUser()->getId()]);
         $eventRows = [];
         foreach ($events as $event) {
@@ -142,7 +134,6 @@ final class EventController extends AbstractController
             $ticketTypeRows[] = ['label' => $row['label'], 'total' => $row['total']];
         }
         $ticketTypeDistribution = $this->buildDongnhutChart($ticketTypeRows, $chartBuilder);
-
         $statusLabels = [
             Status::VALIDATED->value => 'Validés',
             Status::REFUSED->value => 'Refusés',
@@ -232,10 +223,8 @@ final class EventController extends AbstractController
             $end = new \DateTime($request->query->get('end-date'));
             return $eventRepository->getTicketsAndRevenuByDay($start, $end, $userId);
         }
-
         return $eventRepository->getTicketsAndRevenuByDay(null, null, $userId);
     }
-
     /**
      * Récupère les ventes par jour d'un seul événement, filtrées sur la période soumise
      * si le formulaire a été validé.
@@ -311,10 +300,10 @@ final class EventController extends AbstractController
     /**
      * Construit un graphique en barres verticales comparant tous les événements sur la valeur
      * demandée ('revenu' ou 'tickets'), dans l'ordre où ils sont fournis. Pas de limite de nombre.
-     * @param array $eventRows represente le tableau des label et leur valeur
+     * @param array $eventRows réprésente le tableau des label et leur valeur
      * @param string $dataKey  revenu ou tickets permet de determiner le type de graphique a construire
-     * @param string $label répresente le titre du graphique
-     * @param string $color répresete la couleur des bar
+     * @param string $label réprésente le titre du graphique
+     * @param string $color réprésente la couleur des bar
      * @return Chart un graphique
      * 
      */
@@ -354,9 +343,10 @@ final class EventController extends AbstractController
     /**
      * Construit un donut ainsi que les données de légende (couleur, total, %) associées,
      * à partir de lignes {label, total}.
-     *
-     * @param array<int, array{label: string, total: int}> $rows
-     * @return array{chart: Chart, legend: array<int, array{label: string, total: int, percentage: int, color: string}>, total: int}
+     * @param array $rows réprésente le tabelau de label et les valeur qui  vont avec 
+     * @param ChartBuilderInterface $chartBuilder l'interface pour contruire le graphique
+     * @return array un tableau contenant le grahique, la légende et le nombre total par rapport a la répation du graphique
+
      */
     private function buildDongnhutChart(array $rows, ChartBuilderInterface $chartBuilder): array
     {
@@ -372,7 +362,6 @@ final class EventController extends AbstractController
         array_sum($tab); // 100
         */
         $total = array_sum(array_column($rows, 'total'));
-
         $donughtLegend = [];
         foreach ($rows as $row) {
             $percentage = $total > 0 ? round($row['total'] / $total * 100) : 0;
@@ -406,7 +395,6 @@ final class EventController extends AbstractController
     #[Route('/featured', name: 'app_events_featured', methods: ['GET'])]
     public function featuredEvents(EventRepository $eventRepository): Response
     {
-
         $events = $eventRepository->findBy(['isFeatured' => 1]);
         return $this->render('event/featured.html.twig', [
             'events' => $events
@@ -442,12 +430,9 @@ final class EventController extends AbstractController
         ]);
     }
 
-
-
     #[Route('/{id}/consult', name: 'app_event_consult', methods: ['GET'])]
     public function consult(Event $event, EventRepository $eventRepository): Response
     {
-
         return $this->render('event/consult.html.twig', [
             'event' => $event,
             'events' => $eventRepository->findAll(),
@@ -456,16 +441,11 @@ final class EventController extends AbstractController
     #[Route('/{id}/tickets', name: 'app_event_tickets', methods: ['GET'])]
     public function tickets(Event $event, EventRepository $eventRepository): Response
     {
-
         return $this->render('event/tickets.html.twig', [
             'event' => $event,
             'events' => $eventRepository->findAll(),
         ]);
     }
-
-
-
-
 
     #[Route('/{id}/edit', name: 'app_event_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Event $event, EntityManagerInterface $entityManager): Response
@@ -478,7 +458,6 @@ final class EventController extends AbstractController
 
             return $this->redirectToRoute('app_event_index', [], Response::HTTP_SEE_OTHER);
         }
-
         return $this->render('event/edit.html.twig', [
             'event' => $event,
             'form' => $form,
@@ -492,7 +471,6 @@ final class EventController extends AbstractController
             $entityManager->remove($event);
             $entityManager->flush();
         }
-
         return $this->redirectToRoute('app_event_index', [], Response::HTTP_SEE_OTHER);
     }
 }
