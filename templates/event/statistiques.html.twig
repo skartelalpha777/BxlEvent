@@ -4,9 +4,7 @@
 {% endblock %}
 
 {% block body %}
-	<pre>
-</pre>
-	<div class="container py-5">
+	<div class="container py-5 stats-page">
 		<h1 class="mb-3">Mes statistiques</h1>
 		<form class="event-filters" method="GET" action="{{ path('app-mes-statistiques') }}">
 			<div class="row gy-3">
@@ -26,18 +24,71 @@
 					</div>
 				</div>
 			</div>
-
 			<input type="hidden" name="filter_token" value="{{ csrf_token('filter') }}">
-
 			<div class="text-center mt-4 d-flex justify-content-center align-items-center gap-3">
 				<button type="submit" class="button">Appliquer</button>
-				<a href="{{ path('app-mes-statistiques') }}" class="filter-reset">
+				<a href="{{ path('app-mes-statistiques') }}">
 					<i class="bi bi-arrow-counterclockwise"></i>
 					Réinitialiser les filtres
 				</a>
 			</div>
-
 		</form>
+				<div class="row g-3 my-3">
+			<div class="col-12 col-lg-6">
+				<div class="card border-0 shadow-lg">
+					<div class="card-body rounded">
+						<h3 class="title fs-6 fw-semibold pb-2 mb-3">Répartition par type de billet</h3>
+						<div class="d-flex align-items-center gap-4 flex-wrap">
+							<div class="donut-wrap">
+								{{ render_chart(ticketTypeChart) }}
+								<div class="donut-center">
+									<span class="donut-center-label-value">{{ ticketTypeTotal }}</span>
+									<span class="donut-center-label-value">billets</span>
+								</div>
+							</div>
+							<ul class="donut-legend list-unstyled mb-0 flex-grow-1">
+								{% for row in ticketTypeLegend %}
+									<li class="d-flex align-items-center justify-content-between mb-2">
+										<span class="d-flex align-items-center gap-2">
+											<span class="legend-dot" style="background: {{ row.color }};"></span>
+											{{ row.label }}
+										</span>
+										<span class="text-white-50">{{ row.total }} ({{ row.percentage }}%)</span>
+									</li>
+								{% endfor %}
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-12 col-lg-6">
+				<div class="card border-0 shadow-lg">
+					<div class="card-body rounded">
+						<h3 class="title fs-6 fw-semibold pb-2 mb-3">État de vos événements</h3>
+						<div class="d-flex align-items-center gap-4 flex-wrap">
+							<div class="donut-wrap">
+								{{ render_chart(eventStatusChart) }}
+								<div class="donut-center">
+									<span class="donut-center-label-value">{{ eventStatusTotal }}</span>
+									<span class="donut-center-label-value">événements</span>
+								</div>
+							</div>
+							<ul class="donut-legend list-unstyled mb-0 flex-grow-1">
+								{% for row in eventStatusLegend %}
+									<li class="d-flex align-items-center justify-content-between mb-2">
+										<span class="d-flex align-items-center gap-2">
+											<span class="legend-dot" style="background: {{ row.color }};"></span>
+											{{ row.label }}
+										</span>
+										<span class="text-white-50">{{ row.total }} ({{ row.percentage }}%)</span>
+									</li>
+								{% endfor %}
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="row g-3 my-3">
 			<div class="col-12 col-lg-6">
 				<div class="card border-0 shadow-lg ">
@@ -73,14 +124,7 @@
 					</div>
 				</div>
 			</div>
-
 		</div>
-
 		<a href="{{ path('app-mes-evenements') }}" class="button">Retour à mon tableau de bord</a>
 	</div>
-	<style>
-		.card-body {
-			background-color: var(--surface-color);
-		}
-	</style>
 {% endblock %}
