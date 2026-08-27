@@ -26,29 +26,19 @@ class EventType extends AbstractType
             ->add('date')
             ->add('hour')
             ->add('shortDescription', TextType::class, [
-    'constraints' => [
-        new NotBlank(message: 'La description courte est obligatoire.'),
-        new Length( 
-            min: 50,
-            max: 110,
-            minMessage: 'Votre description doit faire au moins {{ limit }} caractères.',
-            maxMessage: 'Votre description ne peut pas dépasser {{ limit }} caractères.',
-        )
-    ]
-])
-            /*
-            ->add('status', EnumType::class, [
-                'class' => Status::class,
-                'choice_label' => 'value',
-            ])*/
-
+                'constraints' => [
+                    new NotBlank(message: 'La description courte est obligatoire.'),
+                    new Length(
+                        min: 50,
+                        max: 110,
+                        minMessage: 'Votre description doit faire au moins {{ limit }} caractères.',
+                        maxMessage: 'Votre description ne peut pas dépasser {{ limit }} caractères.',
+                    )
+                ]
+            ])
             ->add('location', EntityType::class, [
                 'class' => Location::class,
                 'choice_label' => 'name',
-            ])
-            ->add('creator', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'id',
             ])
             ->add('categories', EntityType::class, [
                 'class' => Categorie::class,
