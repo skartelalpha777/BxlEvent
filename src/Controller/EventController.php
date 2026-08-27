@@ -188,12 +188,19 @@ final class EventController extends AbstractController
         $totalTickets = $eventRepository->getEventTotalTickest($eventId);
         $totalRevenue = $eventRepository->getEventRevenu($eventId);
         $capacity = $eventRepository->getEventCapacity($eventId);
-        $fillRate = $capacity ? round($totalTickets / $capacity * 100) : null;
 
-        $fillRateDistribution = $capacity ? $this->buildDongnhutChart([
-            ['label' => 'Vendus', 'total' => min($totalTickets, $capacity)],
-            ['label' => 'Restants', 'total' => max($capacity - $totalTickets, 0)],
-        ], $chartBuilder) : null;
+        if ($capacity === null) {
+            $fillRate = null;
+            $fillRateDistribution = null;
+        } else {
+            // $capacity > 0 : calcul normal, plafonné à 100% même si totalTickets le dépasse.
+            // $capacity === 0 : aucune division, le taux est forcément 0%.
+            $fillRate = $capacity > 0 ? min(100, (int) round($totalTickets / $capacity * 100)) : 0;
+            $fillRateDistribution = $this->buildDongnhutChart([
+                ['label' => 'Vendus', 'total' => min($totalTickets, $capacity)],
+                ['label' => 'Restants', 'total' => max($capacity - $totalTickets, 0)],
+            ], $chartBuilder);
+        }
 
         return $this->render('event/event-statistiques.html.twig', [
             'event' => $event,
@@ -361,10 +368,10 @@ final class EventController extends AbstractController
         array_sum($tab); // 100
         */
         $total = array_sum(array_column($rows, 'total'));
-        $dontLegend = [];
+        $legend = [];
         foreach ($rows as $row) {
             $percentage = $total > 0 ? round($row['total'] / $total * 100) : 0;
-            $dontLegend[] = [
+            $legend[] = [
                 'label' => $row['label'],
                 'total' => $row['total'],
                 'percentage' => $percentage,
@@ -374,11 +381,11 @@ final class EventController extends AbstractController
 
         $chart = $chartBuilder->createChart(Chart::TYPE_DOUGHNUT);
         $chart->setData([
-            'labels' => array_column($donughtLegend, 'label'),
+            'labels' => array_column($legend, 'label'),
             'datasets' => [
                 [
-                    'backgroundColor' => array_column($donughtLegend, 'color'),
-                    'data' => array_column($donughtLegend, 'total'),
+                    'backgroundColor' => array_column($legend, 'color'),
+                    'data' => array_column($legend, 'total'),
                 ],
             ],
         ]);
@@ -388,7 +395,7 @@ final class EventController extends AbstractController
             ],
         ]);
 
-        return ['chart' => $chart, 'legend' => $donughtLegend, 'total' => $total];
+        return ['chart' => $chart, 'legend' => $legend, 'total' => $total];
     }
 
     #[Route('/featured', name: 'app_events_featured', methods: ['GET'])]

@@ -92,7 +92,7 @@
 				<div class="card border-0 shadow-lg h-100">
 					<div class="card-body rounded text-center">
 						<h3 class="title fs-6 fw-semibold pb-2 mb-3">Taux de remplissage</h3>
-						{% if capacity %}
+						{% if capacity is not null %}
 							<div class="donut-wrap mx-auto">
 								{{ render_chart(fillRateChart) }}
 								<div class="donut-center">
