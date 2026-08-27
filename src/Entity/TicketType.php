@@ -25,8 +25,6 @@ class TicketType
     #[ORM\Column(nullable: true)]
     private ?int $maxTicket = null;
 
-
-
     #[ORM\ManyToOne(inversedBy: 'tickettypes')]
     private ?Event $event = null;
 
