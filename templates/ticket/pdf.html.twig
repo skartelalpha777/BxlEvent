@@ -15,7 +15,7 @@
 				<div class="ticket-card">
 
 					<div class="ticket-banner" style="background-image: url('{{uploadsUrl ~ data.ticket.event.galleries[0].name }}');background-size: cover;background-position: center; position:relative; height: 210px;">
-						<span class="badge">{{ data.ticket.ticketType.label.value }}</span>
+						<span class="badge">{{ data.ticket.ticketType.label }}</span>
 						<div class="overlay">
 							<h1>{{ data.ticket.event.title }}</h1>
 						</div>
@@ -45,7 +45,7 @@
 						<div class="info-row">
 							<div class="text-cell">
 								<span class="label">Type de billet</span>
-								<span class="value">{{ data.ticket.ticketType.label.value }}</span>
+								<span class="value">{{ data.ticket.ticketType.label }}</span>
 							</div>
 						</div>
 
