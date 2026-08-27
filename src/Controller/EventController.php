@@ -134,14 +134,14 @@ final class EventController extends AbstractController
             ];
         }
 
-        $revenuePerEventChart = $this->buildEventRankingChart($eventRows, 'revenu', 'CA par événement', '#8b5cf6', $chartBuilder);
-        $ticketsPerEventChart = $this->buildEventRankingChart($eventRows, 'tickets', 'Billets vendus par événement', '#3b82f6', $chartBuilder);
+        $revenuePerEventChart = $this->buildEventRevenuTicketsBarChart($eventRows, 'revenu', 'CA par événement', '#8b5cf6', $chartBuilder);
+        $ticketsPerEventChart = $this->buildEventRevenuTicketsBarChart($eventRows, 'tickets', 'Billets vendus par événement', '#3b82f6', $chartBuilder);
 
         $ticketTypeRows = [];
         foreach ($eventRepository->getTicketsByType($this->getUser()->getId()) as $row) {
-            $ticketTypeRows[] = ['label' => $row['label']->value, 'total' => $row['total']];
+            $ticketTypeRows[] = ['label' => $row['label'], 'total' => $row['total']];
         }
-        $ticketTypeDistribution = $this->buildDistribution($ticketTypeRows, $chartBuilder);
+        $ticketTypeDistribution = $this->buildDongnhutChart($ticketTypeRows, $chartBuilder);
 
         $statusLabels = [
             Status::VALIDATED->value => 'Validés',
@@ -152,7 +152,7 @@ final class EventController extends AbstractController
         foreach ($eventRepository->countEventsByStatus($this->getUser()->getId()) as $row) {
             $eventStatusRows[] = ['label' => $statusLabels[$row['status']->value], 'total' => $row['total']];
         }
-        $eventStatusDistribution = $this->buildDistribution($eventStatusRows, $chartBuilder);
+        $eventStatusDistribution = $this->buildDongnhutChart($eventStatusRows, $chartBuilder);
 
         return $this->render('event/statistiques.html.twig', [
             'ticketsChart' => $ticketsChart,
@@ -165,6 +165,57 @@ final class EventController extends AbstractController
             'eventStatusChart' => $eventStatusDistribution['chart'],
             'eventStatusLegend' => $eventStatusDistribution['legend'],
             'eventStatusTotal' => $eventStatusDistribution['total'],
+        ]);
+    }
+
+    /**
+     * Statistiques détaillées d'un seul événement (répartition par type de billet,
+     * ventes et revenu par jour), avec le même filtre de dates que /mes-statistiques.
+     */
+    #[IsGranted('ROLE_CONTRIBUTEUR')]
+    #[Route('/{eventId}/event-statistiques', name: 'app-event-statistiques', methods: ['GET'])]
+    public function eventStats(EventRepository $eventRepository, Request $request, ChartBuilderInterface $chartBuilder, int $eventId): Response
+    {
+        $event = $eventRepository->find($eventId);
+        if (!$event) {
+            throw $this->createNotFoundException('Événement introuvable.');
+        }
+        if ($event->getCreator() !== $this->getUser()) {
+            throw $this->createAccessDeniedException('Vous ne pouvez pas consulter les statistiques d\'un événement dont vous n\'êtes pas le créateur.');
+        }
+
+        $sales = $this->getFilteredSalesForEvent($eventRepository, $request, $eventId);
+        $ticketsChart = $this->buildDayChart($sales, 'tickets', 'Tickets vendus', Chart::TYPE_BAR, $chartBuilder);
+        $revenuChart = $this->buildDayChart($sales, 'revenu', 'Chiffre d\'affaire en €', Chart::TYPE_BAR, $chartBuilder);
+
+        $ticketTypeRows = [];
+        foreach ($eventRepository->getTicketsByTypeForEvent($eventId) as $row) {
+            $ticketTypeRows[] = ['label' => $row['label'], 'total' => $row['total']];
+        }
+        $ticketTypeDistribution = $this->buildDongnhutChart($ticketTypeRows, $chartBuilder);
+
+        $totalTickets = $eventRepository->getEventTotalTickest($eventId);
+        $totalRevenue = $eventRepository->getEventRevenu($eventId);
+        $capacity = $eventRepository->getEventCapacity($eventId);
+        $fillRate = $capacity ? round($totalTickets / $capacity * 100) : null;
+
+        $fillRateDistribution = $capacity ? $this->buildDongnhutChart([
+            ['label' => 'Vendus', 'total' => min($totalTickets, $capacity)],
+            ['label' => 'Restants', 'total' => max($capacity - $totalTickets, 0)],
+        ], $chartBuilder) : null;
+
+        return $this->render('event/event-statistiques.html.twig', [
+            'event' => $event,
+            'ticketsChart' => $ticketsChart,
+            'revenuChart' => $revenuChart,
+            'ticketTypeChart' => $ticketTypeDistribution['chart'],
+            'ticketTypeLegend' => $ticketTypeDistribution['legend'],
+            'ticketTypeTotal' => $ticketTypeDistribution['total'],
+            'totalTickets' => $totalTickets,
+            'totalRevenue' => $totalRevenue,
+            'capacity' => $capacity,
+            'fillRate' => $fillRate,
+            'fillRateChart' => $fillRateDistribution['chart'] ?? null,
         ]);
     }
 
@@ -183,6 +234,23 @@ final class EventController extends AbstractController
         }
 
         return $eventRepository->getTicketsAndRevenuByDay(null, null, $userId);
+    }
+
+    /**
+     * Récupère les ventes par jour d'un seul événement, filtrées sur la période soumise
+     * si le formulaire a été validé.
+     */
+    private function getFilteredSalesForEvent(EventRepository $eventRepository, Request $request, int $eventId): array
+    {
+        $submittedToken = $request->query->get('filter_token');
+
+        if ($this->isCsrfTokenValid('filter', $submittedToken)) {
+            $start = new \DateTime($request->query->get('start-date'));
+            $end = new \DateTime($request->query->get('end-date'));
+            return $eventRepository->getTicketsAndRevenuByDayForEvent($start, $end, $eventId);
+        }
+
+        return $eventRepository->getTicketsAndRevenuByDayForEvent(null, null, $eventId);
     }
 
     /**
@@ -241,37 +309,40 @@ final class EventController extends AbstractController
     }
 
     /**
-     * Construit un graphique en barres horizontales comparant tous les événements sur la valeur
-     * demandée ('revenu' ou 'tickets'), triés du plus haut au plus bas. Pas de limite de nombre.
-     *
-     * @param array<int, array{title: string, revenu: float, tickets: int}> $eventRows
+     * Construit un graphique en barres verticales comparant tous les événements sur la valeur
+     * demandée ('revenu' ou 'tickets'), dans l'ordre où ils sont fournis. Pas de limite de nombre.
+     * @param array $eventRows represente le tableau des label et leur valeur
+     * @param string $dataKey  revenu ou tickets permet de determiner le type de graphique a construire
+     * @param string $label répresente le titre du graphique
+     * @param string $color répresete la couleur des bar
+     * @return Chart un graphique
+     * 
      */
-    private function buildEventRankingChart(array $eventRows, string $dataKey, string $label, string $color, ChartBuilderInterface $chartBuilder): Chart
+    private function buildEventRevenuTicketsBarChart(array $eventRows, string $dataKey, string $label, string $color, ChartBuilderInterface $chartBuilder): Chart
     {
-        usort($eventRows, fn($a, $b) => $b[$dataKey] <=> $a[$dataKey]);
-
+        $titles = array_column($eventRows, 'title');
+        $values = array_column($eventRows, $dataKey); // array_column() récupère une seule colonne (ex. 'revenu') de chaque événement
         $chart = $chartBuilder->createChart(Chart::TYPE_BAR);
         $chart->setData([
-            'labels' => array_column($eventRows, 'title'),
+            'labels' => $titles,
             'datasets' => [
                 [
                     'label' => $label,
                     'backgroundColor' => $color,
-                    'data' => array_column($eventRows, $dataKey),
+                    'data' => $values,
                 ],
             ],
         ]);
         $chart->setOptions([
-            'indexAxis' => 'y',
             'plugins' => [
                 'legend' => ['display' => false],
             ],
             'scales' => [
                 'x' => [
-                    'beginAtZero' => true,
                     'ticks' => ['color' => 'rgba(255, 255, 255, 0.7)'],
                 ],
                 'y' => [
+                    'beginAtZero' => true,
                     'ticks' => ['color' => 'rgba(255, 255, 255, 0.7)'],
                 ],
             ],
@@ -287,28 +358,39 @@ final class EventController extends AbstractController
      * @param array<int, array{label: string, total: int}> $rows
      * @return array{chart: Chart, legend: array<int, array{label: string, total: int, percentage: int, color: string}>, total: int}
      */
-    private function buildDistribution(array $rows, ChartBuilderInterface $chartBuilder): array
+    private function buildDongnhutChart(array $rows, ChartBuilderInterface $chartBuilder): array
     {
-        $palette = ['#3b82f6', '#10b981', '#8b5cf6', '#f97316', '#ef4444'];
+        /* ici row peut valoir à ça par exemple
+         $rows = [
+        ['label' => 'Standard', 'total' => 320],
+        ['label' => 'Vip', 'total' => 45],
+        ['label' => 'Promo', 'total' => 12],
+        ]; */
+        /* array_sum()
+        Additionne les valeurs :
+        $tab = [10, 20, 30, 40];
+        array_sum($tab); // 100
+        */
         $total = array_sum(array_column($rows, 'total'));
 
-        $legend = [];
-        foreach ($rows as $i => $row) {
-            $legend[] = [
+        $donughtLegend = [];
+        foreach ($rows as $row) {
+            $percentage = $total > 0 ? round($row['total'] / $total * 100) : 0;
+            $donughtLegend[] = [
                 'label' => $row['label'],
                 'total' => $row['total'],
-                'percentage' => $total > 0 ? (int) round($row['total'] / $total * 100) : 0,
-                'color' => $palette[$i % count($palette)],
+                'percentage' => $percentage,
+                'color' => sprintf('#%06X', random_int(0, 0xFFFFFF)),
             ];
         }
 
         $chart = $chartBuilder->createChart(Chart::TYPE_DOUGHNUT);
         $chart->setData([
-            'labels' => array_column($legend, 'label'),
+            'labels' => array_column($donughtLegend, 'label'),
             'datasets' => [
                 [
-                    'backgroundColor' => array_column($legend, 'color'),
-                    'data' => array_column($legend, 'total'),
+                    'backgroundColor' => array_column($donughtLegend, 'color'),
+                    'data' => array_column($donughtLegend, 'total'),
                 ],
             ],
         ]);
@@ -318,7 +400,7 @@ final class EventController extends AbstractController
             ],
         ]);
 
-        return ['chart' => $chart, 'legend' => $legend, 'total' => $total];
+        return ['chart' => $chart, 'legend' => $donughtLegend, 'total' => $total];
     }
 
     #[Route('/featured', name: 'app_events_featured', methods: ['GET'])]
