@@ -1,0 +1,140 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Statistiques —
+	{{ event.title }}
+{% endblock %}
+
+{% block body %}
+	<div class="container py-5 stats-page">
+		<h1 class="mb-3">Statistiques —
+			{{ event.title }}</h1>
+		<form class="event-filters" method="GET" action="{{ path('app-event-statistiques', {eventId: event.id}) }}">
+			<div class="row gy-3">
+				<div class="col-md-6 col-lg">
+					<label class="filter-label" for="filter-start-date">Date de début</label>
+					<div class="filter-control">
+						<i class="bi bi-calendar-event"></i>
+						<input type="datetime-local" id="filter-start-date" name="start-date">
+					</div>
+				</div>
+				<div class="col-md-6 col-lg">
+					<label class="filter-label" for="filter-end-date">Date de fin</label>
+					<div class="filter-control">
+						<i class="bi bi-calendar-event"></i>
+						<input type="datetime-local" id="filter-end-date" name="end-date">
+					</div>
+				</div>
+			</div>
+
+			<input type="hidden" name="filter_token" value="{{ csrf_token('filter') }}">
+
+			<div class="text-center mt-4 d-flex justify-content-center align-items-center gap-3">
+				<button type="submit" class="button">Appliquer</button>
+				<a href="{{ path('app-event-statistiques', {eventId: event.id}) }}" class="filter-reset">
+					<i class="bi bi-arrow-counterclockwise"></i>
+					Réinitialiser les filtres
+				</a>
+			</div>
+		</form>
+
+		<div class="row g-3 my-3">
+			<div class="col-6 col-lg-6">
+				<div class="dash-card p-3 h-100">
+					<div class="newsletter-icon mb-2">
+						<i class="bi bi-currency-euro"></i>
+					</div>
+					<div class="fs-4 fw-bold">{{ totalRevenue|number_format(0, ',', ' ') }}
+						€</div>
+					<p class="small mb-0">Chiffre d'affaires total</p>
+				</div>
+			</div>
+			<div class="col-6 col-lg-6">
+				<div class="dash-card p-3 h-100">
+					<div class="newsletter-icon mb-2">
+						<i class="bi bi-ticket-perforated-fill"></i>
+					</div>
+					<div class="fs-4 fw-bold">{{ totalTickets }}</div>
+					<p class="small mb-0">Billets vendus au total</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="row g-3 my-3">
+			<div class="col-12 col-lg-6">
+				<div class="card border-0 shadow-lg h-100">
+					<div class="card-body rounded">
+						<h3 class="title fs-6 fw-semibold pb-2 mb-3">Répartition par type de billet</h3>
+						<div class="d-flex align-items-center gap-4 flex-wrap">
+							<div class="donut-wrap">
+								{{ render_chart(ticketTypeChart) }}
+								<div class="donut-center">
+									<span class="donut-center-label-value">{{ ticketTypeTotal }}</span>
+									<span class="donut-center-label-value">billets</span>
+								</div>
+							</div>
+							<ul class="donut-legend list-unstyled mb-0 flex-grow-1">
+								{% for row in ticketTypeLegend %}
+									<li class="d-flex align-items-center justify-content-between mb-2">
+										<span class="d-flex align-items-center gap-2">
+											<span class="legend-dot" style="background: {{ row.color }};"></span>
+											{{ row.label }}
+										</span>
+										<span class="text-white-50">{{ row.total }}
+											({{ row.percentage }}%)</span>
+									</li>
+								{% endfor %}
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-12 col-lg-6">
+				<div class="card border-0 shadow-lg h-100">
+					<div class="card-body rounded text-center">
+						<h3 class="title fs-6 fw-semibold pb-2 mb-3">Taux de remplissage</h3>
+						{% if capacity %}
+							<div class="donut-wrap mx-auto">
+								{{ render_chart(fillRateChart) }}
+								<div class="donut-center">
+									<span class="donut-center-label-value">{{ fillRate }}%</span>
+									<span class="donut-center-label-value">rempli</span>
+								</div>
+							</div>
+							<p class="mb-0 mt-2">{{ totalTickets }}
+								/
+								{{ capacity }}
+								billets vendus</p>
+							<p class="text-white-50 small mb-0">Capacité totale :
+								{{ capacity }}
+								billets</p>
+						{% else %}
+							<p class="text-white-50 mb-0">Aucune limite de billets définie pour cet événement.</p>
+						{% endif %}
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="row g-3 my-3">
+			<div class="col-12 col-lg-6">
+				<div class="card border-0 shadow-lg">
+					<div class="card-body rounded">
+						<h3 class="title fs-6 fw-semibold pb-2 mb-3">Chiffre d'affaires par jour</h3>
+						{{ render_chart(revenuChart) }}
+					</div>
+				</div>
+			</div>
+			<div class="col-12 col-lg-6">
+				<div class="card border-0 shadow-lg">
+					<div class="card-body rounded">
+						<h3 class="title fs-6 fw-semibold pb-2 mb-3">Tickets vendu par jour</h3>
+						{{ render_chart(ticketsChart) }}
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<a href="{{ path('app-mes-evenements') }}" class="button">Retour à mon tableau de bord</a>
+	</div>
+{% endblock %}
