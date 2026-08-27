@@ -1247,16 +1247,6 @@ section,
   color: var(--default-color);
 }
 
-.event-filters .filter-reset {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  color: var(--accent-color);
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.9rem;
-}
-
 .event-filters .filter-reset:hover {
   text-decoration: underline;
 }
@@ -1689,4 +1679,39 @@ section,
 .signaler {
 
   height: 200px;
+}
+
+
+/*--------------------------------------------------------------
+Pages de statistiques contributeur (mes-statistiques, event-statistiques 
+*/
+.stats-page .card-body {
+  background-color: var(--surface-color);
+}
+
+.stats-page .donut-wrap {
+  position: relative;
+  width: 160px;
+  height: 160px;
+}
+
+.stats-page .donut-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+
+}
+
+.stats-page .donut-center-label-value {
+  display: block;
+  font-size: 0.80rem;
+  font-weight: 300;
+}
+
+.stats-page .legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
 }
