@@ -262,7 +262,7 @@ final class TicketController extends AbstractController
                 'price_data' => [
                     'currency' => 'eur',
                     'product_data' => [
-                        'name' => $ticketType->getLabel()->value . ' - ' . $ticketType->getEvent()->getTitle(),
+                        'name' => $ticketType->getLabel() . ' - ' . $ticketType->getEvent()->getTitle(),
                     ],
                     'unit_amount' => $ticketType->getPrice() * 100,
                 ],
