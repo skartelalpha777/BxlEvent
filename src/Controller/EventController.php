@@ -24,7 +24,7 @@ use App\Enum\Status;
 final class EventController extends AbstractController
 {
     /**
-     * Renvois la liste des évènements à afficher dans l'accueil avec un maximum de 15 par page
+     * Renvoie la liste des évènements à afficher dans l'accueil avec un maximum de 15 par page
      * cette fonction permet également le filtrage des évènements par catégorie, lieux et autre.
      */
     #[Route(name: 'app_event_index', methods: ['GET'])]
@@ -106,7 +106,7 @@ final class EventController extends AbstractController
         ]);
     }
     /**
-     * return un graphique sur l'ensemble du revenu généré par tous les évènements d'un contiributeur ainsi qu'un graphique sur le nombre
+     * return un graphique sur l'ensemble du revenu généré par tous les évènements d'un contributeur ainsi qu'un graphique sur le nombre
      * de billet total vendu
      */
     #[IsGranted('ROLE_CONTRIBUTEUR')]
@@ -249,11 +249,11 @@ final class EventController extends AbstractController
     {
         $labels = [];
         $data = [];
-        $backgorungColors = [];
+        $backgroundColors = [];
         foreach ($sales as $sale) {
             $labels[] = $sale['day']->format('d-m-y');
             $data[] = $sale[$dataKey];
-            $backgorungColors[] = sprintf('#%06X', random_int(0, 0xFFFFFF));
+            $backgroundColors[] = sprintf('#%06X', random_int(0, 0xFFFFFF));
         }
 
         $chart = $chartBuilder->createChart($chartType);
@@ -262,7 +262,7 @@ final class EventController extends AbstractController
             'datasets' => [
                 [
                     'label' => $label,
-                    'backgroundColor' => $backgorungColors,
+                    'backgroundColor' => $backgroundColors,
                     'hoverOffset' => 4,
                     'data' => $data,
                 ],
@@ -299,10 +299,10 @@ final class EventController extends AbstractController
     /**
      * Construit un graphique en barres verticales comparant tous les événements sur la valeur
      * demandée ('revenu' ou 'tickets'), dans l'ordre où ils sont fournis. Pas de limite de nombre.
-     * @param array $eventRows réprésente le tableau des label et leur valeur
+     * @param array $eventRows représente le tableau des label et leur valeur
      * @param string $dataKey  revenu ou tickets permet de determiner le type de graphique a construire
-     * @param string $label réprésente le titre du graphique
-     * @param string $color réprésente la couleur des bar
+     * @param string $label représente le titre du graphique
+     * @param string $color représente la couleur des bar
      * @return Chart un graphique
      * 
      */
@@ -343,8 +343,8 @@ final class EventController extends AbstractController
      * Construit un donut ainsi que les données de légende (couleur, total, %) associées,
      * à partir de lignes {label, total}.
      * @param array $rows réprésente le tabelau de label et les valeur qui  vont avec 
-     * @param ChartBuilderInterface $chartBuilder l'interface pour contruire le graphique
-     * @return array un tableau contenant le grahique, la légende et le nombre total par rapport a la répation du graphique
+     * @param ChartBuilderInterface $chartBuilder l'interface pour construire le graphique
+     * @return array un tableau contenant le grahique, la légende et le nombre total par rapport a la répartition du graphique
 
      */
     private function buildDongnhutChart(array $rows, ChartBuilderInterface $chartBuilder): array
@@ -361,10 +361,10 @@ final class EventController extends AbstractController
         array_sum($tab); // 100
         */
         $total = array_sum(array_column($rows, 'total'));
-        $donughtLegend = [];
+        $dontLegend = [];
         foreach ($rows as $row) {
             $percentage = $total > 0 ? round($row['total'] / $total * 100) : 0;
-            $donughtLegend[] = [
+            $dontLegend[] = [
                 'label' => $row['label'],
                 'total' => $row['total'],
                 'percentage' => $percentage,
