@@ -272,8 +272,7 @@ final class EventController extends AbstractController
             'scales' => [
                 'y' => [
                     'suggestedMin' => 0,
-                    'suggestedMax' => 100,
-                    'ticks' => ['stepSize' => 1, 'color' => 'rgba(255, 255, 255, 0.7)'],
+                    'ticks' => ['color' => 'rgba(255, 255, 255, 0.7)'],
                 ],
                 'x' => [
                     'ticks' => ['color' => 'rgba(255, 255, 255, 0.7)'],
