@@ -67,6 +67,12 @@
 		<i class="bi bi-pencil-square"></i>
 		Modifier mes informations
 	</a>
+	{% if app.user.role.getLabel == 'Administrateur' or app.user.role.getLabel == 'Contributeur' %}
+		<a href="{{ path('app-mes-evenements', {id: user.id}) }}" class="btn button large w-100 mt-3 text-decoration-none">
+			<i class="bi bi-pencil-square"></i>
+			Gestion des événements
+		</a>
+	{% endif %}
 	{% endset %}
 
 	<main class="main">
