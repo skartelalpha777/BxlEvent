@@ -20,6 +20,7 @@
 								<th>Date</th>
 								<th>Categorie</th>
 								<th>Traité</th>
+								<th>Actions</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -41,11 +42,14 @@
 												<input type="checkbox" onchange="this.form.submit()" {{ report.treated ? 'checked' : '' }}>
 											</form>
 										</td>
+										<td>
+											<a href="{{ path('app_reports_show', {'id': report.id}) }}">Voir</a>
+										</td>
 									</tr>
 								{% endif %}
 							{% else %}
 								<tr>
-									<td colspan="5">Aucun Signalement</td>
+									<td colspan="7">Aucun Signalement</td>
 								</tr>
 							{% endfor %}
 						</tbody>
