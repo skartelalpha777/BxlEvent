@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Categorie;
 use App\Entity\Event;
+use App\Entity\Location;
 use App\Form\EventType;
 use App\Repository\EventRepository;
 use App\Repository\CategorieRepository;
@@ -10,6 +12,7 @@ use App\Repository\LocationRepository;
 use App\Repository\ReportsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -414,11 +417,38 @@ final class EventController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $event->setCreator($this->getUser());
-            $entityManager->persist($event);
-            $entityManager->flush();
+            // Aucun lieu existant sélectionné : on en crée un nouveau à partir des champs dédiés.
+            if (!$event->getLocation() && $form->get('newLocationName')->getData()) {
+                $location = new Location();
+                $location->setName($form->get('newLocationName')->getData());
+                $location->setStreet($form->get('newLocationStreet')->getData());
+                $location->setNumber((int) $form->get('newLocationNumber')->getData());
+                $location->setPostcode((int) $form->get('newLocationPostcode')->getData());
+                $location->setCity($form->get('newLocationCity')->getData());
+                $entityManager->persist($location);
+                $event->setLocation($location);
+            }
 
-            return $this->redirectToRoute('app_event_index', [], Response::HTTP_SEE_OTHER);
+            if (!$event->getLocation()) {
+                $form->get('location')->addError(new FormError('Choisissez un lieu existant ou renseignez les informations du nouveau lieu.'));
+            }
+
+            // Une catégorie qui n'existe pas encore a été saisie : on la crée à la volée.
+            $newCategoryName = $form->get('newCategoryName')->getData();
+            if ($newCategoryName) {
+                $category = new Categorie();
+                $category->setName($newCategoryName);
+                $entityManager->persist($category);
+                $event->addCategory($category);
+            }
+
+            if ($event->getLocation()) {
+                $event->setCreator($this->getUser());
+                $entityManager->persist($event);
+                $entityManager->flush();
+
+                return $this->redirectToRoute('app_event_index', [], Response::HTTP_SEE_OTHER);
+            }
         }
 
         return $this->render('event/new.html.twig', [
