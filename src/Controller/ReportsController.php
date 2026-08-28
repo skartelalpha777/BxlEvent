@@ -24,7 +24,7 @@ final class ReportsController extends AbstractController
     {
         $reports = $reportsRepository->findAll();
         if ($this->getUser()->getRoles()[0] == 'ROLE_CONTRIBUTEUR') {
-            $reports = $reportsRepository->findBy(['user' => $this->getUser()]);
+            $reports = $reportsRepository->findByCreator($this->getUser());
         }
         return $this->render('reports/index.html.twig', [
             'reports' => $reports,

@@ -38,6 +38,22 @@ class ReportsRepository extends ServiceEntityRepository
             ->getSingleScalarResult();
     }
 
+    /**
+     * Signalements portant sur les événements créés par l'utilisateur donné
+     * (et non les signalements que cet utilisateur a lui-même soumis).
+     *
+     * @return Reports[]
+     */
+    public function findByCreator(User $user): array
+    {
+        return $this->createQueryBuilder('r')
+            ->join('r.event', 'e')
+            ->andWhere('e.creator = :user')
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->getResult();
+    }
+
     //    /**
     //     * @return Reports[] Returns an array of Reports objects
     //     */
