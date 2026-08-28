@@ -17,17 +17,22 @@ class TicketTypeType extends AbstractType
             ->add('label')
             ->add('price')
             ->add('maxTicket')
-            ->add('event', EntityType::class, [
+            ->add('description')
+        ;
+
+        if ($options['include_event']) {
+            $builder->add('event', EntityType::class, [
                 'class' => Event::class,
                 'choice_label' => 'id',
-            ])
-        ;
+            ]);
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => TicketType::class,
+            'include_event' => true,
         ]);
     }
 }

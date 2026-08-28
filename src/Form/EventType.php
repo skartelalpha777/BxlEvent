@@ -5,16 +5,15 @@ namespace App\Form;
 use App\Entity\Categorie;
 use App\Entity\Event;
 use App\Entity\Location;
-use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use App\Enum\Status;
-use Symfony\Component\Form\Extension\Core\Type\EnumType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Component\Validator\Constraints\NotBlank;
 
 class EventType extends AbstractType
 {
@@ -22,29 +21,39 @@ class EventType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('description')
-            ->add('date')
-            ->add('hour')
-            ->add('shortDescription', TextType::class, [
-                'constraints' => [
-                    new NotBlank(message: 'La description courte est obligatoire.'),
-                    new Length(
-                        min: 50,
-                        max: 110,
-                        minMessage: 'Votre description doit faire au moins {{ limit }} caractères.',
-                        maxMessage: 'Votre description ne peut pas dépasser {{ limit }} caractères.',
-                    )
-                ]
+            ->add('description', TextareaType::class)
+            ->add('date', DateType::class, [      
+            ])
+            ->add('hour', TimeType::class, [
             ])
             ->add('location', EntityType::class, [
                 'class' => Location::class,
                 'choice_label' => 'name',
+                'placeholder' => '-- Créer un nouveau lieu --',
+                'required' => false,
             ])
+            // Champs utilisés uniquement si aucun lieu existant n'est sélectionné ci-dessus lors de la création de l'évènement afin de creer un nouveau lieu.
+            ->add('newLocationName', TextType::class, ['mapped' => false, 'required' => false, 'label' => 'Nom du nouveau lieu'])
+            ->add('newLocationStreet', TextType::class, ['mapped' => false, 'required' => false, 'label' => 'Rue'])
+            ->add('newLocationNumber', TextType::class, ['mapped' => false, 'required' => false, 'label' => 'Numéro'])
+            ->add('newLocationPostcode', TextType::class, ['mapped' => false, 'required' => false, 'label' => 'Code postal'])
+            ->add('newLocationCity', TextType::class, ['mapped' => false, 'required' => false, 'label' => 'Ville'])
             ->add('categories', EntityType::class, [
                 'class' => Categorie::class,
                 'choice_label' => 'name',
                 'multiple' => true,
                 'expanded' => true,
+                'required' => false,
+            ])
+            // Permet d'ajouter une catégorie qui n'existe pas encore dans la liste ci-dessus lors de la creation d'un évenement.
+            ->add('newCategoryName', TextType::class, ['mapped' => false, 'required' => false, 'label' => 'Nouvelle catégorie'])
+            ->add('tickettypes', CollectionType::class, [
+                'entry_type' => TicketTypeType::class,
+                'entry_options' => ['include_event' => false],
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'label' => 'Types de billets',
             ])
         ;
     }
