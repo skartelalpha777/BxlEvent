@@ -27,7 +27,6 @@ class EventCrudController extends AbstractCrudController
         return [
             IdField::new('id')->hideOnForm(),
             TextField::new('title', 'Titre'),
-            TextField::new('shortDescription', 'Description courte'),
             TextEditorField::new('description', 'Description'),
             DateField::new('date', 'Date'),
             TimeField::new('hour', 'Heure'),
