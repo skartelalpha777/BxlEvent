@@ -30,7 +30,7 @@
 						<p class=" text-center fs-5 my-4">
 							Concerts, expositions, festivals ou événements sportifs...
 							<br>BxlEvent
-														rassemble pour vous toutes les activités incontournables de la capitale.
+																												rassemble pour vous toutes les activités incontournables de la capitale.
 						</p>
 
 						<button class="button" id="featured-events" onclick="window.location.href=' {{path('app_events_featured')}} ' ">Découvrez les évènements à ne pas rater</button>
@@ -119,7 +119,12 @@
 					{% for event in events %}
 						<div class="col-12 col-md-4 mt-4">
 							<div class="card">
-								<img src="{{ asset('assets/img/uploads/events/' ~ event.galleries[0].name) }}" class="card-img-top" alt="..." style="height: 220px; object-fit: cover;"/>
+								{% if event.galleries is not empty %}
+
+									<img src="{{ asset('assets/img/uploads/events/' ~ event.galleries[0].name) }}" class="card-img-top" alt="..." style="height: 220px; object-fit: cover;"/>
+								{% else %}
+									<img src="https://c8.alamy.com/compfr/2fa5h0c/icone-aucune-image-disponible-signe-d-image-manquant-ou-aucune-image-pour-le-site-web-ou-l-application-mobile-symbole-vectoriel-2fa5h0c.jpg" class="img-fluid rounded-3 w-100" style="object-fit: cover; max-height: 220px;" alt="Image anonyme de l'évènement">
+								{% endif %}
 								<div class="card-body mb-0 pb-0">
 									{% for cat in event.categories %}
 										<p class="categorie">{{cat.name}}</p>
@@ -197,6 +202,6 @@
 	 <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
 {# 2. Initialisation obligatoire pour activer les animations #}
 	 <script>
-																					AOS.init({duration: 1000, easing: 'smart', once: true, mirror: false})
-																				</script>
+																							AOS.init({duration: 1000, easing: 'smart', once: true, mirror: false})
+																						</script>
 {% endblock %}

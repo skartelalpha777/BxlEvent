@@ -18,7 +18,11 @@
 					<div class="info-box p-4 rounded-4 mb-4 shadow">
 						<div class="row align-items-center g-4">
 							<div class="col-md-4">
-								<img src="{{ asset('assets/img/uploads/events/' ~ event.galleries[0].name) }}" class="img-fluid rounded-3 w-100" style="object-fit: cover; max-height: 200px;" alt="{{ event.title }}">
+								{% if event.galleries is not empty %}
+									<img src="{{ asset('assets/img/uploads/events/' ~ event.galleries[0].name) }}" class="img-fluid rounded-3 w-100" style="object-fit: cover; max-height: 200px;" alt="{{ event.title }}">
+								{% else %}
+									<img src="https://c8.alamy.com/compfr/2fa5h0c/icone-aucune-image-disponible-signe-d-image-manquant-ou-aucune-image-pour-le-site-web-ou-l-application-mobile-symbole-vectoriel-2fa5h0c.jpg" class="img-fluid rounded-3 w-100" style="object-fit: cover; max-height: 200px;" alt="Image anonyme de l'évènement">
+								{% endif %}
 							</div>
 							<div class="col-md-8">
 								<div class="d-flex gap-2 mb-2">
@@ -159,5 +163,5 @@
 		</div>
 	</main>
 
-	<script src="{{asset('assets/js/ticket.js')}}"></script>
+	 <script src="{{asset('assets/js/ticket.js')}}"></script>
 {% endblock %}
