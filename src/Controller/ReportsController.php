@@ -64,14 +64,10 @@ final class ReportsController extends AbstractController
             'report' => $report,
         ]);
     }
-    #[IsGranted('ROLE_CONTRIBUTEUR')]
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}/edit', name: 'app_reports_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Reports $report, EntityManagerInterface $entityManager): Response
     {
-        if ($report->getEvent()->getCreator() != $this->getUser()) {
-            $this->addFlash('error', 'Vous ne pouvez pas modifier le signalement d\'un évènement dont vous n\'êtes pas le titulaire ');
-            return $this->redirectToRoute('app_user_profil', ['id' => $this->getUser()->getId()], Response::HTTP_SEE_OTHER);
-        }
         $form = $this->createForm(ReportsType::class, $report);
         $form->handleRequest($request);
 
@@ -87,13 +83,26 @@ final class ReportsController extends AbstractController
         ]);
     }
     #[IsGranted('ROLE_CONTRIBUTEUR')]
+    #[Route('/{id}/set-treated', name: 'app_reports_toggle_treated', methods: ['POST'])]
+    public function setTreated(Request $request, Reports $report, EntityManagerInterface $entityManager): Response
+    {
+        if ($report->getEvent()->getCreator() != $this->getUser()) {
+            $this->addFlash('error', 'Vous ne pouvez pas modifier le signalement d\'un évènement dont vous n\'êtes pas le titulaire ');
+            return $this->redirectToRoute('app_user_profil', ['id' => $this->getUser()->getId()], Response::HTTP_SEE_OTHER);
+        }
+
+        if ($this->isCsrfTokenValid('toggle-treated' . $report->getId(), $request->getPayload()->getString('_token'))) {
+            $report->setTreated(!$report->isTreated());
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('app_reports_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}/delete', name: 'app_reports_delete', methods: ['POST', 'GET'])]
     public function delete(Request $request, Reports $report, EntityManagerInterface $entityManager): Response
     {
-        if ($report->getEvent()->getCreator() != $this->getUser()) {
-            $this->addFlash('error', 'Vous ne pouvez pas supprimer le signalement d\'un évènement dont vous n\'êtes pas le titulaire ');
-            return $this->redirectToRoute('app_user_profil', ['id' => $this->getUser()->getId()], Response::HTTP_SEE_OTHER);
-        }
         if ($this->isCsrfTokenValid('delete' . $report->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($report);
             $entityManager->flush();
