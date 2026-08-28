@@ -24,7 +24,8 @@ class ReportsType extends AbstractType
                 'choice_label' => 'label',
                 'expanded' => true
             ])
-            /* ->add('treated')
+            ->add('treated')
+            /*
             ->add('event', EntityType::class, [
                 'class' => Event::class,
                 'choice_label' => 'id',
