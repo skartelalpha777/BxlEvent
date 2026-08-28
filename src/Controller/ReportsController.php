@@ -23,7 +23,7 @@ final class ReportsController extends AbstractController
     public function index(ReportsRepository $reportsRepository): Response
     {
         $reports = $reportsRepository->findAll();
-        if ($this->getUser()->getRoles()[0] == 'ROLE_CONTRIBUTEUR') {
+        if (!$this->isGranted('ROLE_ADMIN')) {
             $reports = $reportsRepository->findByCreator($this->getUser());
         }
         return $this->render('reports/index.html.twig', [
@@ -54,11 +54,9 @@ final class ReportsController extends AbstractController
     #[Route('/{id}', name: 'app_reports_show', methods: ['GET'])]
     public function show(Reports $report): Response
     {
-        if ($this->getUser()->getRoles()[0] == 'ROLE_CONTRIBUTEUR') {
-            if ($report->getEvent()->getCreator() != $this->getUser()) {
-                $this->addFlash('error', 'Vous ne pouvez pas afficher le signalement d\'un évènement dont vous n\'êtes pas le titulaire ');
-                return $this->redirectToRoute('app_user_profil', ['id' => $this->getUser()->getId()], Response::HTTP_SEE_OTHER);
-            }
+        if (!$this->isGranted('ROLE_ADMIN') && $report->getEvent()->getCreator() != $this->getUser()) {
+            $this->addFlash('error', 'Vous ne pouvez pas afficher le signalement d\'un évènement dont vous n\'êtes pas le titulaire ');
+            return $this->redirectToRoute('app_user_profil', ['id' => $this->getUser()->getId()], Response::HTTP_SEE_OTHER);
         }
         return $this->render('reports/show.html.twig', [
             'report' => $report,
