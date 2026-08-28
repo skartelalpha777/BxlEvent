@@ -59,7 +59,7 @@ class Event
     /**
      * @var Collection<int, TicketType>
      */
-    #[ORM\OneToMany(targetEntity: TicketType::class, mappedBy: 'event')]
+    #[ORM\OneToMany(targetEntity: TicketType::class, mappedBy: 'event', cascade: ['persist'])]
     private Collection $tickettypes;
 
     /**
@@ -68,11 +68,8 @@ class Event
     #[ORM\ManyToMany(targetEntity: Categorie::class, inversedBy: 'events')]
     private Collection $categories;
 
-    #[ORM\Column(length: 255)]
-    private ?string $shortDescription = null;
-
     #[ORM\Column]
-    private ?bool $isFeatured = null;
+    private ?bool $isFeatured = false;
 
     public function __construct()
     {
@@ -321,18 +318,6 @@ class Event
     {
         return $this->title;
     }
-
-        public function getShortDescription(): ?string
-        {
-            return $this->shortDescription;
-        }
-
-        public function setShortDescription(string $shortDescription): static
-        {
-            $this->shortDescription = $shortDescription;
-
-            return $this;
-        }
 
         public function isFeatured(): ?bool
         {
