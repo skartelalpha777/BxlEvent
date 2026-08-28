@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Créer un événement{% endblock %}
+{% block title %}Créer un événement
+{% endblock %}
 
 {% block body %}
 
@@ -147,29 +148,6 @@
 
 						</div>
 
-						<script>
-							(function () {
-								const list = document.getElementById('ticket-types-list');
-								const addButton = document.getElementById('add-ticket-type');
-
-								addButton.addEventListener('click', function () {
-									const index = list.dataset.index;
-									const prototype = list.dataset.prototype.replace(/__name__/g, index);
-									const wrapper = document.createElement('div');
-									wrapper.classList.add('ticket-type-row', 'border', 'border-secondary', 'border-opacity-25', 'rounded-3', 'p-3', 'mb-3');
-									wrapper.innerHTML = prototype + '<button type="button" class="btn btn-outline-danger btn-sm remove-ticket-type mt-2">Retirer ce type de billet</button>';
-									list.appendChild(wrapper);
-									list.dataset.index = parseInt(index, 10) + 1;
-								});
-
-								list.addEventListener('click', function (e) {
-									if (e.target.classList.contains('remove-ticket-type')) {
-										e.target.closest('.ticket-type-row').remove();
-									}
-								});
-							})();
-						</script>
-
 					</div>
 
 				</div>
@@ -179,4 +157,5 @@
 		</section>
 
 	</main>
+	 <script src="{{asset('assets/js/newEvent.js')}}"></script>
 {% endblock %}
