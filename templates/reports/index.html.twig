@@ -20,13 +20,11 @@
 								<th>Date</th>
 								<th>Categorie</th>
 								<th>Traité</th>
-								<th>actions</th>
 							</tr>
 						</thead>
 						<tbody>
 							{% for report in reports %}
 								{% if report.treated == false %}
-
 									<tr>
 										<td>
 											<a href="{{path('app_event_consult',{'id':report.event.id})}}">{{ report.event.title}}</a>
@@ -37,10 +35,11 @@
 										<td>{{ report.description }}</td>
 										<td>{{ report.date ? report.date|date('Y-m-d') : '' }}</td>
 										<td>{{ report.category.label}}</td>
-										<td>{{ report.treated ? 'Yes' : 'No' }}</td>
 										<td>
-											<a href="{{ path('app_reports_show', {'id': report.id}) }}">show</a>
-											<a href="{{ path('app_reports_edit', {'id': report.id}) }}">edit</a>
+											<form method="POST" action="{{ path('app_reports_toggle_treated', {'id': report.id}) }}">
+												<input type="hidden" name="_token" value="{{ csrf_token('toggle-treated' ~ report.id) }}">
+												<input type="checkbox" onchange="this.form.submit()" {{ report.treated ? 'checked' : '' }}>
+											</form>
 										</td>
 									</tr>
 								{% endif %}

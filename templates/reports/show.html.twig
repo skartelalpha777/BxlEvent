@@ -1,34 +1,50 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Reports{% endblock %}
+{% block title %}Signalement{% endblock %}
 
 {% block body %}
-    <h1>Reports</h1>
+	<section class="pt-5 pb-5">
+		<div class="container-fluid container-lg">
+			<h1>Signalement</h1>
+			<div class="dash-card p-4 mt-4">
+				<div class="table-responsive rounded">
+					<table class="table event-table border-0 align-middle">
+						<thead>
+							<tr>
+								<th>Evènement concerné</th>
+								<th>Utilisateur</th>
+								<th>Description</th>
+								<th>Date</th>
+								<th>Categorie</th>
+								<th>Traité</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<a href="{{path('app_event_consult',{'id':report.event.id})}}">{{ report.event.title }}</a>
+								</td>
+								<td>{{ report.user.email }}</td>
+								<td>{{ report.description }}</td>
+								<td>{{ report.date ? report.date|date('Y-m-d') : '' }}</td>
+								<td>{{ report.category.label }}</td>
+								<td>
+									<form method="POST" action="{{ path('app_reports_toggle_treated', {'id': report.id}) }}">
+										<input type="hidden" name="_token" value="{{ csrf_token('toggle-treated' ~ report.id) }}">
+										<input type="checkbox" onchange="this.form.submit()" {{ report.treated ? 'checked' : '' }}>
+									</form>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ report.id }}</td>
-            </tr>
-            <tr>
-                <th>Date</th>
-                <td>{{ report.date ? report.date|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Reason</th>
-                <td>{{ report.description }}</td>
-            </tr>
-            <tr>
-                <th>Treated</th>
-                <td>{{ report.treated ? 'Yes' : 'No' }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_reports_index') }}">back to list</a>
-
-    <a href="{{ path('app_reports_edit', {'id': report.id}) }}">edit</a>
-
-    {{ include('reports/_delete_form.html.twig') }}
+				<div class="d-flex gap-3 mt-3">
+					<a href="{{ path('app_reports_index') }}" class="button">Retour à la liste</a>
+					<a href="{{ path('app_reports_edit', {'id': report.id}) }}" class="button">Modifier</a>
+					{{ include('reports/_delete_form.html.twig') }}
+				</div>
+			</div>
+		</div>
+	</section>
 {% endblock %}
