@@ -193,9 +193,7 @@ final class EventController extends AbstractController
             $fillRate = null;
             $fillRateDistribution = null;
         } else {
-            // $capacity > 0 : calcul normal, plafonné à 100% même si totalTickets le dépasse.
-            // $capacity === 0 : aucune division, le taux est forcément 0%.
-            $fillRate = $capacity > 0 ? min(100, (int) round($totalTickets / $capacity * 100)) : 0;
+            $fillRate = $capacity > 0 ? min(100,  round($totalTickets / $capacity * 100)) : 0;
             $fillRateDistribution = $this->buildDongnhutChart([
                 ['label' => 'Vendus', 'total' => min($totalTickets, $capacity)],
                 ['label' => 'Restants', 'total' => max($capacity - $totalTickets, 0)],

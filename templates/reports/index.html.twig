@@ -4,39 +4,55 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Reports index</h1>
+	<section class="pt-5 pb-5">
+		<div class="container-fluid container-lg">
+			<h1>Signalements</h1>
+			<div class="dash-card p-4 mt-4">
+				<div class="table-responsive rounded">
+					<table class="table event-table border-0 align-middle">
+						<thead>
+							<tr>
+								<th>Evènement concerné</th>
 
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Id</th>
-				<th>Date</th>
-				<th>Description</th>
-				<th>Category</th>
-				<th>Treated</th>
-				<th>actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for report in reports %}
-				<tr>
-					<td>{{ report.id }}</td>
-					<td>{{ report.date ? report.date|date('Y-m-d') : '' }}</td>
-					<td>{{ report.description }}</td>
-					<td>{{ report.category.label}}</td>
-					<td>{{ report.treated ? 'Yes' : 'No' }}</td>
-					<td>
-						<a href="{{ path('app_reports_show', {'id': report.id}) }}">show</a>
-						<a href="{{ path('app_reports_edit', {'id': report.id}) }}">edit</a>
-					</td>
-				</tr>
-			{% else %}
-				<tr>
-					<td colspan="5">no records found</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+								<th>Utilisateur</th>
 
-	<a href="">Create new</a>
+								<th>Description</th>
+								<th>Date</th>
+								<th>Categorie</th>
+								<th>Traité</th>
+								<th>actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for report in reports %}
+								{% if report.treated == false %}
+
+									<tr>
+										<td>
+											<a href="{{path('app_event_consult',{'id':report.event.id})}}">{{ report.event.title}}</a>
+										</td>
+
+										<td>{{ report.user.email}}</td>
+
+										<td>{{ report.description }}</td>
+										<td>{{ report.date ? report.date|date('Y-m-d') : '' }}</td>
+										<td>{{ report.category.label}}</td>
+										<td>{{ report.treated ? 'Yes' : 'No' }}</td>
+										<td>
+											<a href="{{ path('app_reports_show', {'id': report.id}) }}">show</a>
+											<a href="{{ path('app_reports_edit', {'id': report.id}) }}">edit</a>
+										</td>
+									</tr>
+								{% endif %}
+							{% else %}
+								<tr>
+									<td colspan="5">Aucun Signalement</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</section>
 {% endblock %}
