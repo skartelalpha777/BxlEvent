@@ -145,18 +145,13 @@
 									}) }}
 									{{ form_errors(form.fileName) }}
 								</div>
-
-
-								<div class="col-12 text-center mt-0">
-									<button type="submit" class="btn button large mt-4">Créer l'événement</button>
-
-									<p>
-										<a href="{{ path('app-mes-evenements') }}">Retour à la liste des événements</a>
-									</p>
+								
+								<div class="col-12 text-center mt-">
+									<button type="submit" class="btn button large my-4">Créer l'événement</button>	
+										<a href="{{ path('app-mes-evenements') }}">Retour à la liste des événements</a>			
 								</div>
-
 							</div>
-							{{ form_end(form) }}
+							{{ form_end(form, {'render_rest': false}) }}
 
 						</div>
 
