@@ -26,6 +26,7 @@ class TicketType
     private ?int $maxTicket = null;
 
     #[ORM\ManyToOne(inversedBy: 'tickettypes')]
+    #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     private ?Event $event = null;
 
     /**

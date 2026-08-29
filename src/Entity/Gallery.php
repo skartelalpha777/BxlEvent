@@ -20,6 +20,7 @@ class Gallery
     private ?bool $isMain = null;
 
     #[ORM\ManyToOne(inversedBy: 'galleries')]
+    #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     private ?Event $event = null;
 
     public function getId(): ?int
