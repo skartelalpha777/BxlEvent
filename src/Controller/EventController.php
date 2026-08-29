@@ -115,7 +115,7 @@ final class EventController extends AbstractController
      * de billet total vendu
      */
     #[IsGranted('ROLE_CONTRIBUTEUR')]
-    #[Route('/mes-statistiques', name: 'app-mes-statistiques', methods: ['GET'])]
+    #[Route('/mes-statistiques', name: 'app_mes_statistiques', methods: ['GET'])]
     public function myStatistics(EventRepository $eventRepository, Request $request, ChartBuilderInterface $chartBuilder): Response
     {
         $sales = $this->getFilteredSales($eventRepository, $request);
@@ -475,7 +475,7 @@ final class EventController extends AbstractController
             'form' => $form,
         ]);
     }
-
+    #[IsGranted('ROLE_CONTRIBUTEUR')]
     #[Route('/{id}', name: 'app_event_show', methods: ['GET'])]
     public function show(Event $event): Response
     {
