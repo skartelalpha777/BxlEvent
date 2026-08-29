@@ -32,6 +32,10 @@ class EventRepository extends ServiceEntityRepository
         $orderBY = strtoupper($orderBY) === 'DESC' ? 'DESC' : 'ASC';
 
         $qb = $this->createQueryBuilder('e')
+            ->andWhere('e.status = :status')
+            ->andWhere('e.date >= :now')
+            ->setParameter('status', Status::VALIDATED)
+            ->setParameter('now', new DateTime())
             ->orderBy('e.date', $orderBY);
 
         if ($search) {
@@ -56,6 +60,24 @@ class EventRepository extends ServiceEntityRepository
 
         return $qb->getQuery()->getResult();
     }
+
+    /**
+     * Événements mis en avant, validés et pas encore passés.
+     *
+     * @return Event[]
+     */
+    public function findFeatured(): array
+    {
+        return $this->createQueryBuilder('e')
+            ->andWhere('e.isFeatured = true')
+            ->andWhere('e.status = :status')
+            ->andWhere('e.date >= :now')
+            ->setParameter('status', Status::VALIDATED)
+            ->setParameter('now', new DateTime())
+            ->getQuery()
+            ->getResult();
+    }
+
     /**
      * Nombre de billets vendus et revenu généré par jour, tous événements confondus,
      * pour les événements créés par l'utilisateur donné. Ne compte que les commandes payées.
