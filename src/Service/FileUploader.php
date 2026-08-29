@@ -4,7 +4,6 @@ namespace App\Service;
 
 use App\Entity\Event;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
@@ -22,10 +21,7 @@ class FileUploader
         $date = $event->getDate()->format('Y-m-d');
         $fileName = $safeTitle . '-' . $date . '-' . uniqid() . '.' . $file->guessExtension();
 
-        try {
-            $file->move($this->getTargetDirectory(), $fileName);
-        } catch (FileException $e) {
-        }
+        $file->move($this->getTargetDirectory(), $fileName);
 
         return $fileName;
     }

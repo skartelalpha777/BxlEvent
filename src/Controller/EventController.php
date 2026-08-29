@@ -465,7 +465,7 @@ final class EventController extends AbstractController
                 }
 
                 $entityManager->flush();
-                $this->addFlash('succes', 'Votre évènement à été crée avec succès. vous pouvez le rétrouver dans la page gestion des évènements');
+                $this->addFlash('succes', 'Votre évènement à été créé avec succès. Vous pouvez le rétrouver dans la page gestion des évènements');
                 return $this->redirectToRoute('app_user_profil', ['id' => $this->getUser()->getId()], Response::HTTP_SEE_OTHER);
             }
         }
