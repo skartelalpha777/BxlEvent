@@ -1,42 +1,73 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Event{% endblock %}
+{% block title %}
+	{{ event.title }}
+{% endblock %}
 
 {% block body %}
-    <h1>Event</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ event.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ event.title }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ event.description }}</td>
-            </tr>
-            <tr>
-                <th>Date</th>
-                <td>{{ event.date ? event.date|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Hour</th>
-                <td>{{ event.hour ? event.hour|date('H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Status</th>
-                <td>{{ event.status.value }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_event_index') }}">back to list</a>
-
-    <a href="{{ path('app_event_edit', {'id': event.id}) }}">edit</a>
-
-    {{ include('event/_delete_form.html.twig') }}
+	<main>
+		<section class="pt-5 pb-5">
+			<div class="container-fluid container-lg">
+				<div class="row justify-content-center">
+					<div class="col-12 col-md-8 col-lg-6">
+						<div class="card">
+							{% if event.galleries is not empty %}
+									<img src="{{ asset('assets/img/uploads/events/' ~ event.galleries[0].name) }}" class="card-img-top" alt="{{ event.title }}" style="height: 320px; object-fit: cover;"/>			
+							{% else %}
+								<img src="https://c8.alamy.com/compfr/2fa5h0c/icone-aucune-image-disponible-signe-d-image-manquant-ou-aucune-image-pour-le-site-web-ou-l-application-mobile-symbole-vectoriel-2fa5h0c.jpg" class="img-fluid rounded-3 w-100" style="object-fit: cover; max-height: 320px;" alt="Image anonyme de l'évènement">
+							{% endif %}
+							<div class="card-body mb-0 pb-0">
+								{% for cat in event.categories %}
+									<p class="categorie">{{ cat.name }}</p>
+								{% endfor %}
+								<h4 class="card-title">{{ event.title }}</h4>
+								<div class="position-absolute top-0 start-0 m-3 px-2 rounded text-white fw-bold" style="background:var(--accent-color);">
+									{{ event.date|date('d M')|upper }}
+								</div>
+							</div>
+							<div class="card-body">
+								<p>{{ event.description }}</p>
+							</div>
+							<ul class="list-group list-group-flush">
+								<li class="list-group-item">
+									<i class="bi bi-geo-alt"></i>
+									{% set adress = event.location.name ~','~ event.location.street ~' '~ event.location.number ~','~ event.location.postcode ~' '~ event.location.city %}
+									{% set url = 'https://www.google.com/maps/search/?api=1&query=' ~ adress|url_encode %}
+									<a href="{{ url }}" target="_blank">{{ event.location.name }}</a>
+								</li>
+								<li class="list-group-item">
+									<i class="bi bi-calendar-check-fill me-1"></i>
+									{{ event.date|date('d M Y') }}
+								</li>
+								<li class="list-group-item">
+									<i class="bi bi-alarm"></i>
+									{{ event.hour|date('H:i') }}
+								</li>
+								<li class="list-group-item">
+									<i class="bi bi-info-circle"></i>
+									Statut :
+									{{ event.status.value }}
+								</li>
+							</ul>
+							<div class="card-body">
+								<div class="row">
+									<div class="col-6">
+										<button class="button w-100" type="button" onclick="window.location.href='{{ path('app_event_edit', {id: event.id}) }}'">Modifier</button>
+									</div>
+									<div class="col-6">
+										<button class="noBackground w-100 px-4" onclick="window.location.href='{{path('app-mes-evenements')}}'">
+											Rétour à la liste
+										</button>
+									</div>
+								</div>
+								<div class="d-flex gap-2 mt-3">
+									{{ include('event/_delete_form.html.twig') }}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
 {% endblock %}
