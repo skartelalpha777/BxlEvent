@@ -454,7 +454,7 @@ final class EventController extends AbstractController
                 foreach ($brochureFiles as $brochureFile) {
                     if ($brochureFile) {
                         $gallery = new Gallery();
-                        $filename = $fileUploader->upload($brochureFile);
+                        $filename = $fileUploader->upload($brochureFile, $event);
                         $gallery->setEvent($event);
                         $gallery->setname($filename);
                         $gallery->setIsMain($isFirstImage);
@@ -465,8 +465,8 @@ final class EventController extends AbstractController
                 }
 
                 $entityManager->flush();
-
-                return $this->redirectToRoute('app_event_index', [], Response::HTTP_SEE_OTHER);
+                $this->addFlash('succes', 'Votre évènement à été crée avec succès. vous pouvez le rétrouver dans la page gestion des évènements');
+                return $this->redirectToRoute('app_user_profil', ['id' => $this->getUser()->getId()], Response::HTTP_SEE_OTHER);
             }
         }
 
