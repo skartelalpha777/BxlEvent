@@ -2,6 +2,7 @@
 // src/Service/FileUploader.php
 namespace App\Service;
 
+use App\Entity\Event;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -10,22 +11,20 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class FileUploader
 {
     public function __construct(
-        #[Autowire('%kernel.project_dir%/public/assets/img/uploads/')]
+        #[Autowire('%kernel.project_dir%/public/assets/img/uploads/events')]
         private string $targetDirectory,
         private SluggerInterface $slugger,
-    ) {
-    }
+    ) {}
 
-    public function upload(UploadedFile $file): string
+    public function upload(UploadedFile $file, Event $event): string
     {
-        $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-        $safeFilename = $this->slugger->slug($originalFilename);
-        $fileName = $safeFilename.'-'.uniqid().'.'.$file->guessExtension();
+        $safeTitle = $this->slugger->slug($event->getTitle());
+        $date = $event->getDate()->format('Y-m-d');
+        $fileName = $safeTitle . '-' . $date . '-' . uniqid() . '.' . $file->guessExtension();
 
         try {
             $file->move($this->getTargetDirectory(), $fileName);
         } catch (FileException $e) {
-            // ... handle exception if something happens during file upload
         }
 
         return $fileName;
