@@ -35,7 +35,7 @@ final class EventController extends AbstractController
     #[Route(name: 'app_event_index', methods: ['GET'])]
     public function index(EventRepository $eventRepository, CategorieRepository $categorieRepository, LocationRepository $locationRepository, PaginatorInterface $paginator, Request $request): Response
     {
-        $events = $eventRepository->findAll();
+        $events = $eventRepository->findByFilters(null, null, null, null);
         if ($request->query->count() > 0) {
             $submittedToken = $request->query->get('filter_token');
             if ($this->isCsrfTokenValid('filter', $submittedToken)) {
@@ -404,7 +404,7 @@ final class EventController extends AbstractController
     #[Route('/featured', name: 'app_events_featured', methods: ['GET'])]
     public function featuredEvents(EventRepository $eventRepository): Response
     {
-        $events = $eventRepository->findBy(['isFeatured' => 1]);
+        $events = $eventRepository->findFeatured();
         return $this->render('event/featured.html.twig', [
             'events' => $events
         ]);
@@ -487,9 +487,14 @@ final class EventController extends AbstractController
     #[Route('/{id}/consult', name: 'app_event_consult', methods: ['GET'])]
     public function consult(Event $event, EventRepository $eventRepository): Response
     {
+        $isOwnerOrAdmin = $this->getUser() && ($event->getCreator() === $this->getUser() || $this->isGranted('ROLE_ADMIN'));
+        if ($event->getStatus() !== Status::VALIDATED && !$isOwnerOrAdmin) {
+            throw $this->createNotFoundException('Événement introuvable.');
+        }
+
         return $this->render('event/consult.html.twig', [
             'event' => $event,
-            'events' => $eventRepository->findAll(),
+            'events' => $eventRepository->findByFilters(null, null, null, null),
         ]);
     }
     #[Route('/{id}/tickets', name: 'app_event_tickets', methods: ['GET'])]
