@@ -48,8 +48,8 @@ class EventType extends AbstractType
             ])
 
             //permet d'ajouter des images a l'évènement
-            ->add('name', FileType::class, [
-
+            ->add('fileName', FileType::class, [
+                
                 'label' => 'Afiches pour l\'évènement',
                 'mapped' => false,
                 'required' => true,
@@ -57,7 +57,6 @@ class EventType extends AbstractType
                 'constraints' => [
                     new Assert\All([
                         new Assert\File(
-                            maxSize: '1024k',
                             extensions: ['jpg', 'jpeg', 'png', 'webp'],
                             extensionsMessage: 'Veillez ajouter des images valide',
                         ),

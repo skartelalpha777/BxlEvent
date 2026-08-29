@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Categorie;
 use App\Entity\Event;
+use App\Entity\Gallery;
 use App\Entity\Location;
 use App\Form\EventType;
 use App\Repository\EventRepository;
@@ -22,6 +23,7 @@ use Symfony\Component\Validator\Constraints\Length;
 use Symfony\UX\Chartjs\Model\Chart;
 use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
 use App\Enum\Status;
+use App\Service\FileUploader;
 
 #[Route('/event')]
 final class EventController extends AbstractController
@@ -410,7 +412,7 @@ final class EventController extends AbstractController
 
     #[IsGranted('ROLE_CONTRIBUTEUR')]
     #[Route('/new', name: 'app_event_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader): Response
     {
         $event = new Event();
         $form = $this->createForm(EventType::class, $event);
@@ -445,6 +447,23 @@ final class EventController extends AbstractController
             if ($event->getLocation()) {
                 $event->setCreator($this->getUser());
                 $entityManager->persist($event);
+
+                $brochureFiles = $form->get('fileName')->getData();
+                $isFirstImage = true;
+
+                foreach ($brochureFiles as $brochureFile) {
+                    if ($brochureFile) {
+                        $gallery = new Gallery();
+                        $filename = $fileUploader->upload($brochureFile);
+                        $gallery->setEvent($event);
+                        $gallery->setname($filename);
+                        $gallery->setIsMain($isFirstImage);
+                        $isFirstImage = false;
+                        $event->addGallery($gallery);
+                        $entityManager->persist($gallery);
+                    }
+                }
+
                 $entityManager->flush();
 
                 return $this->redirectToRoute('app_event_index', [], Response::HTTP_SEE_OTHER);
