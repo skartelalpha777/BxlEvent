@@ -135,11 +135,23 @@
 									<button type="button" id="add-ticket-type" class="btn btn-outline-light btn-sm">+ Ajouter un type de billet</button>
 								</div>
 
+								<div class="col-12">
+									{{ form_label(form.fileName, 'Afiches *') }}
+									{{ form_widget(form.fileName, {
+										'attr': {
+											'class': 'form-control bg-dark text-white border-opacity-25 p-3 rounded-3',
+											'rows': 6
+										}
+									}) }}
+									{{ form_errors(form.fileName) }}
+								</div>
+
+
 								<div class="col-12 text-center mt-0">
-									<button type="submit" class="btn button large">Créer l'événement</button>
+									<button type="submit" class="btn button large mt-4">Créer l'événement</button>
 
 									<p>
-										<a href="{{ path('app_event_index') }}">Retour à la liste des événements</a>
+										<a href="{{ path('app-mes-evenements') }}">Retour à la liste des événements</a>
 									</p>
 								</div>
 
