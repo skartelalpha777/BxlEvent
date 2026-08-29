@@ -59,7 +59,7 @@ class EventType extends AbstractType
                         new Assert\File(
                             maxSize: '1024k',
                             extensions: ['jpg', 'jpeg', 'png', 'webp'],
-                            extensionsMessage: 'Please upload a valid PDF document',
+                            extensionsMessage: 'Veillez ajouter des images valide',
                         ),
                     ]),
                 ],
