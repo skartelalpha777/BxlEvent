@@ -4,16 +4,19 @@ namespace App\Form;
 
 use App\Entity\Categorie;
 use App\Entity\Event;
+use App\Entity\Gallery;
 use App\Entity\Location;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class EventType extends AbstractType
 {
@@ -22,10 +25,8 @@ class EventType extends AbstractType
         $builder
             ->add('title')
             ->add('description', TextareaType::class)
-            ->add('date', DateType::class, [      
-            ])
-            ->add('hour', TimeType::class, [
-            ])
+            ->add('date', DateType::class, [])
+            ->add('hour', TimeType::class, [])
             ->add('location', EntityType::class, [
                 'class' => Location::class,
                 'choice_label' => 'name',
@@ -45,6 +46,26 @@ class EventType extends AbstractType
                 'expanded' => true,
                 'required' => false,
             ])
+
+            //permet d'ajouter des images a l'évènement
+            ->add('name', FileType::class, [
+
+                'label' => 'Afiches pour l\'évènement',
+                'mapped' => false,
+                'required' => true,
+                'multiple' => true,
+                'constraints' => [
+                    new Assert\All([
+                        new Assert\File(
+                            maxSize: '1024k',
+                            extensions: ['jpg', 'jpeg', 'png', 'webp'],
+                            extensionsMessage: 'Please upload a valid PDF document',
+                        ),
+                    ]),
+                ],
+            ])
+
+
             // Permet d'ajouter une catégorie qui n'existe pas encore dans la liste ci-dessus lors de la creation d'un évenement.
             ->add('newCategoryName', TextType::class, ['mapped' => false, 'required' => false, 'label' => 'Nouvelle catégorie'])
             ->add('tickettypes', CollectionType::class, [
