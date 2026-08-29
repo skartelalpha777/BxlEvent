@@ -49,16 +49,22 @@ class EventType extends AbstractType
 
             //permet d'ajouter des images a l'évènement
             ->add('fileName', FileType::class, [
-                
+
                 'label' => 'Afiches pour l\'évènement',
                 'mapped' => false,
                 'required' => true,
                 'multiple' => true,
                 'constraints' => [
+                    new Assert\Count(
+                        max: 3,
+                        min: 1,
+                        minMessage: 'Vous devez ajouter au moins une image',
+                        maxMessage: 'Vous pouvez ajouter au maximum 3 images'
+                    ),
                     new Assert\All([
                         new Assert\File(
                             extensions: ['jpg', 'jpeg', 'png', 'webp'],
-                            extensionsMessage: 'Veillez ajouter des images valide',
+                            extensionsMessage: 'Veillez ajouter au moins une image',
                         ),
                     ]),
                 ],
@@ -73,7 +79,6 @@ class EventType extends AbstractType
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,
-                'label' => 'Types de billets',
             ])
         ;
     }
