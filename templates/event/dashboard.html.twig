@@ -24,7 +24,7 @@
 								<i class="bi bi-grid-1x2-fill"></i>
 								Vue d'ensemble
 							</a>
-							<a class="nav-link" href="{{ path('app-mes-statistiques') }}">
+							<a class="nav-link" href="{{ path('app_mes_statistiques') }}">
 								<i class="bi bi-bar-chart-fill"></i>
 								Statistiques
 							</a>
@@ -120,13 +120,14 @@
 											<th>Lieu</th>
 											<th>Statut</th>
 											<th>Ventes</th>
+											<th>Affiche</th>
 										</tr>
 									</thead>
 									<tbody>
 										{% for event in myEvents %}
 											<tr>
 												<td>
-													<a href="{{path('app_event_consult',{'id':event.id})}}">{{ event.title }}</a>
+													<a href="{{path('app_event_show',{'id':event.id})}}">{{ event.title }}
 												</td>
 												<td class="text-white-50">{{ event.date|date('d M Y') }}</td>
 												<td class="text-white-50">{{ event.location ? event.location.name : '—' }}</td>
@@ -143,9 +144,15 @@
 												</td>
 												<td>
 													{% if event.status.value != 'notchecked' and event.status.value != 'refused' %}
-														<a href="{{path('app-event-statistiques',{'eventId':event.id})}}">Voir les Statistiques</a>
+														<a href="{{path('app_event_statistiques',{'eventId':event.id})}}">Voir les Statistiques</a>
 													{% endif %}
 												</td>
+												<td>
+													{% if event.status.value != 'notchecked' and event.status.value != 'refused' %}
+														<a href="{{path('app_event_consult',{'id':event.id})}}">Voir l'affiche</a>
+													{% endif %}
+												</td>
+												
 											</tr>
 										{% endfor %}
 									</tbody>
