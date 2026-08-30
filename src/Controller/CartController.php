@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Event;
+use App\Enum\Status;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -29,6 +30,10 @@ final class CartController extends AbstractController
     #[Route('/{id}/add', name: 'app_cart_add', methods: ['POST', 'GET'])]
     public function add(Event $event, CartService $cartService, Request $request): Response
     {
+        if ($event->getStatus() !== Status::VALIDATED || $event->getDate() < new \DateTime()) {
+            $this->addFlash('error', 'Cet évènement n\'est plus disponible à la vente.');
+            return $this->redirectToRoute('app_event_index');
+        }
 
         $tickets = $request->request->all('tickets');
 

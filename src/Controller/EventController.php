@@ -494,14 +494,18 @@ final class EventController extends AbstractController
 
         return $this->render('event/consult.html.twig', [
             'event' => $event,
+            'isPurchasable' => $event->getStatus() === Status::VALIDATED && $event->getDate() >= new \DateTime(),
             'events' => $eventRepository->findByFilters(null, null, null, null),
         ]);
     }
     #[Route('/{id}/tickets', name: 'app_event_tickets', methods: ['GET'])]
     public function tickets(Event $event, EventRepository $eventRepository): Response
     {
+        $isPurchasable = $event->getStatus() === Status::VALIDATED && $event->getDate() >= new \DateTime();
+
         return $this->render('event/tickets.html.twig', [
             'event' => $event,
+            'isPurchasable' => $isPurchasable,
             'events' => $eventRepository->findAll(),
         ]);
     }
