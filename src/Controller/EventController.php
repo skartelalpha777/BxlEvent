@@ -169,7 +169,7 @@ final class EventController extends AbstractController
      * ventes et revenu par jour), avec le même filtre de dates que /mes-statistiques.
      */
     #[IsGranted('ROLE_CONTRIBUTEUR')]
-    #[Route('/{eventId}/event-statistiques', name: 'app-event-statistiques', methods: ['GET'])]
+    #[Route('/{eventId}/event-statistiques', name: 'app_event_statistiques', methods: ['GET'])]
     public function eventStats(EventRepository $eventRepository, Request $request, ChartBuilderInterface $chartBuilder, int $eventId): Response
     {
         $event = $eventRepository->find($eventId);

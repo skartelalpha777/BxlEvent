@@ -8,7 +8,7 @@
 	<div class="container py-5 stats-page">
 		<h1 class="mb-3">Statistiques —
 			{{ event.title }}</h1>
-		<form class="event-filters" method="GET" action="{{ path('app-event-statistiques', {eventId: event.id}) }}">
+		<form class="event-filters" method="GET" action="{{ path('app_event_statistiques', {eventId: event.id}) }}">
 			<div class="row gy-3">
 				<div class="col-md-6 col-lg">
 					<label class="filter-label" for="filter-start-date">Date de début</label>
@@ -30,7 +30,7 @@
 
 			<div class="text-center mt-4 d-flex justify-content-center align-items-center gap-3">
 				<button type="submit" class="button">Appliquer</button>
-				<a href="{{ path('app-event-statistiques', {eventId: event.id}) }}" class="filter-reset">
+				<a href="{{ path('app_event_statistiques', {eventId: event.id}) }}" class="filter-reset">
 					<i class="bi bi-arrow-counterclockwise"></i>
 					Réinitialiser les filtres
 				</a>
