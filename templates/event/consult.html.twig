@@ -117,9 +117,16 @@
 									</div>
 
 								</div>
-								<button class="btn button large " onclick="window.location.href='{{path('app_event_tickets',{id:event.id})}}'">
-									Acheter un ticket
-								</button>
+								{% if isPurchasable %}
+									<button class="btn button large " onclick="window.location.href='{{path('app_event_tickets',{id:event.id})}}'">
+										Acheter un ticket
+									</button>
+								{% else %}
+									<p class="text-white-50 small mb-0">
+										<i class="bi bi-exclamation-circle"></i>
+										Billets non disponibles pour cet évènement
+									</p>
+								{% endif %}
 								<button class=" noBackground large mt-2" type="button">Ajouter à mes favoris</button>
 
 							</div>
@@ -167,9 +174,16 @@
 												</div>
 											{% endfor %}
 										</div>
-										<button class="btn button large mt-3 " onclick="window.location.href='{{path('app_event_tickets',{id:event.id})}}'">
-											Acheter un ticket
-										</button>
+										{% if isPurchasable %}
+											<button class="btn button large mt-3 " onclick="window.location.href='{{path('app_event_tickets',{id:event.id})}}'">
+												Acheter un ticket
+											</button>
+										{% else %}
+											<p class="text-white-50 small mt-3 mb-0">
+												<i class="bi bi-exclamation-circle"></i>
+												Billets non disponibles pour cet évènement
+											</p>
+										{% endif %}
 									</div>
 								</div>
 							</div>

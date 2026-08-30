@@ -43,94 +43,109 @@
 						</div>
 					</div>
 
-					<div class="info-box p-4 rounded-4 mb-4 shadow">
-						<h2 class="h4 fw-bold text-white mb-1">Choisissez vos tickets</h2>
-						<p class="text-white-50 small mb-4">Sélectionnez le type de ticket qui vous convient</p>
+					{% if isPurchasable %}
+						<div class="info-box p-4 rounded-4 mb-4 shadow">
+							<h2 class="h4 fw-bold text-white mb-1">Choisissez vos tickets</h2>
+							<p class="text-white-50 small mb-4">Sélectionnez le type de ticket qui vous convient</p>
 
-						<form action="{{path('app_cart_add',{id:event.id})}}" method="POST" id="ticket-form">
-							{% for type in event.tickettypes %}
-								<div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between p-3 mb-3 border border-secondary border-opacity-25 rounded-3 bg-dark">
-									<div class="d-flex align-items-center gap-3 mb-3 mb-sm-0">
-										<div class="rounded bg-primary bg-opacity-10 d-flex align-items-center justify-content-center" style="width: 45px; height: 45px;">
-											<i class="bi bi-ticket-perforated text-primary fs-5"></i>
-										</div>
-										<div>
-											<div class="d-flex align-items-center gap-2">
-												<h3 class="h6 fw-bold text-white mb-0">{{ type.label }}</h3>
+							<form action="{{path('app_cart_add',{id:event.id})}}" method="POST" id="ticket-form">
+								{% for type in event.tickettypes %}
+									<div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between p-3 mb-3 border border-secondary border-opacity-25 rounded-3 bg-dark">
+										<div class="d-flex align-items-center gap-3 mb-3 mb-sm-0">
+											<div class="rounded bg-primary bg-opacity-10 d-flex align-items-center justify-content-center" style="width: 45px; height: 45px;">
+												<i class="bi bi-ticket-perforated text-primary fs-5"></i>
 											</div>
-											<p class="text-white-50 small mb-0">{{ type.description }}</p>
+											<div>
+												<div class="d-flex align-items-center gap-2">
+													<h3 class="h6 fw-bold text-white mb-0">{{ type.label }}</h3>
+												</div>
+												<p class="text-white-50 small mb-0">{{ type.description }}</p>
+											</div>
 										</div>
-									</div>
 
-									<div class="d-flex align-items-center gap-4">
-										<span class="fs-5 fw-bold text-white text-nowrap ">{{ type.price }}€</span>
+										<div class="d-flex align-items-center gap-4">
+											<span class="fs-5 fw-bold text-white text-nowrap ">{{ type.price }}€</span>
 
-										<div class="input-group" style="width: 120px;">
+											<div class="input-group" style="width: 120px;">
 
-											<button class="btn btn-outline-secondary border-opacity-50 text-white" type="button" onclick="updateQty('{{ type.id }}', -1)">
-												<i class="bi bi-dash"></i>
-											</button>
-
-
-											<input type="number" name="tickets[{{ type.id }}]" id="qty-{{ type.id }}" class="form-control bg-transparent text-white text-center border-secondary border-opacity-50 px-1 ticket-qty" value="0" min="0" max="10" readonly data-price="{{ type.price }}">
+												<button class="btn btn-outline-secondary border-opacity-50 text-white" type="button" onclick="updateQty('{{ type.id }}', -1)">
+													<i class="bi bi-dash"></i>
+												</button>
 
 
-											<button class="btn btn-outline-secondary border-opacity-50 text-white" type="button" onclick="updateQty('{{ type.id }}', 1)">
-												<i class="bi bi-plus"></i>
-											</button>
+												<input type="number" name="tickets[{{ type.id }}]" id="qty-{{ type.id }}" class="form-control bg-transparent text-white text-center border-secondary border-opacity-50 px-1 ticket-qty" value="0" min="0" max="10" readonly data-price="{{ type.price }}">
+
+
+												<button class="btn btn-outline-secondary border-opacity-50 text-white" type="button" onclick="updateQty('{{ type.id }}', 1)">
+													<i class="bi bi-plus"></i>
+												</button>
+											</div>
 										</div>
-									</div>
 
+									</div>
+								{% endfor %}
+
+								<div class="d-flex align-items-start gap-2 mt-4 text-info small">
+									<i class="bi bi-info-circle mt-1"></i>
+									<span>
+										<strong>Bon à savoir :</strong>
+										Les billets sont non remboursables sauf en cas d'annulation de l'événement.</span>
 								</div>
-							{% endfor %}
-
-							<div class="d-flex align-items-start gap-2 mt-4 text-info small">
-								<i class="bi bi-info-circle mt-1"></i>
-								<span>
-									<strong>Bon à savoir :</strong>
-									Les billets sont non remboursables sauf en cas d'annulation de l'événement.</span>
-							</div>
-							<input type="hidden" name="_token" value="{{ csrf_token('_token') }}"/>
-						</form>
-					</div>
+								<input type="hidden" name="_token" value="{{ csrf_token('_token') }}"/>
+							</form>
+						</div>
+					{% else %}
+						<div class="info-box p-4 rounded-4 mb-4 shadow text-center">
+							<i class="bi bi-exclamation-circle fs-2 text-warning mb-3"></i>
+							<h2 class="h5 fw-bold text-white mb-2">Billets non disponibles</h2>
+							<p class="text-white-50 mb-0">
+								{% if event.status.value != 'validated' %}
+									Cet évènement est en attente de validation ou n'a pas été approuvé, les billets ne sont pas encore en vente.
+								{% else %}
+									Cet évènement est déjà passé, il n'est plus possible d'acheter de billets.
+								{% endif %}
+							</p>
+						</div>
+					{% endif %}
 				</div>
 
 				<div class="col-lg-4">
 					<div class="position-sticky" style="top: 2rem;">
 
-
-						<div class="info-box p-4 rounded-4 mb-4 shadow">
-							<div class="d-flex align-items-center gap-2 mb-4">
-								<i class="bi bi-receipt fs-4 text-white"></i>
-								<h2 class="h5 fw-bold text-white mb-0">Votre commande</h2>
-							</div>
-
-							<div class="mb-4">
-								<p class="fw-bold text-white mb-2">Tickets sélectionnés</p>
-								<div class="d-flex justify-content-between text-white-50 small mb-2">
-									<span id="summary-text">Aucun ticket sélectionné</span>
-									<span id="summary-subtotal">0 €</span>
+						{% if isPurchasable %}
+							<div class="info-box p-4 rounded-4 mb-4 shadow">
+								<div class="d-flex align-items-center gap-2 mb-4">
+									<i class="bi bi-receipt fs-4 text-white"></i>
+									<h2 class="h5 fw-bold text-white mb-0">Votre commande</h2>
 								</div>
-								<div class="d-flex justify-content-between align-items-center text-white mt-3">
-									<span class="fs-5 fw-bold">Total</span>
-									<span class="fs-4 fw-bold" id="summary-total">0 €</span>
-								</div>
-							</div>
 
-							<button form="ticket-form" type="submit" class="button large w-100 py-3 border-0 d-flex justify-content-center align-items-center gap-2" id="btn-submit" disabled="true">
-								Ajouter au panier
-								<i class="bi bi-arrow-right"></i>
-							</button>
-							{% for message in app.flashes('success') %}
-								<div class="flash-notice text-success">
-									{{ message }}
+								<div class="mb-4">
+									<p class="fw-bold text-white mb-2">Tickets sélectionnés</p>
+									<div class="d-flex justify-content-between text-white-50 small mb-2">
+										<span id="summary-text">Aucun ticket sélectionné</span>
+										<span id="summary-subtotal">0 €</span>
+									</div>
+									<div class="d-flex justify-content-between align-items-center text-white mt-3">
+										<span class="fs-5 fw-bold">Total</span>
+										<span class="fs-4 fw-bold" id="summary-total">0 €</span>
+									</div>
 								</div>
-							{% endfor %}
-							<div class="text-center mt-3 text-white-50 small">
-								<i class="bi bi-lock-fill"></i>
-								Paiement 100% sécurisé
+
+								<button form="ticket-form" type="submit" class="button large w-100 py-3 border-0 d-flex justify-content-center align-items-center gap-2" id="btn-submit" disabled="true">
+									Ajouter au panier
+									<i class="bi bi-arrow-right"></i>
+								</button>
+								{% for message in app.flashes('success') %}
+									<div class="flash-notice text-success">
+										{{ message }}
+									</div>
+								{% endfor %}
+								<div class="text-center mt-3 text-white-50 small">
+									<i class="bi bi-lock-fill"></i>
+									Paiement 100% sécurisé
+								</div>
 							</div>
-						</div>
+						{% endif %}
 						<div class="info-box p-4 rounded-4 shadow">
 							<h3 class="h6 fw-bold text-white mb-4">Pourquoi acheter sur BxlEvent ?</h3>
 							<div class="d-flex align-items-start gap-3 mb-3">
