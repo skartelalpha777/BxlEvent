@@ -1,9 +1,29 @@
 {% extends 'base.html.twig' %}
 
+{% macro ticketTypeRow(ticketType) %}
+	<div class="mb-2">
+		{{ form_label(ticketType.label, 'Titre') }}
+		{{ form_widget(ticketType.label, {'attr': {'class': 'form-control bg-dark text-white border-opacity-25 p-3 rounded-3'}}) }}
+	</div>
+	<div class="mb-2">
+		{{ form_label(ticketType.price, 'Prix (€)') }}
+		{{ form_widget(ticketType.price, {'attr': {'class': 'form-control bg-dark text-white border-opacity-25 p-3 rounded-3'}}) }}
+	</div>
+	<div class="mb-2">
+		{{ form_label(ticketType.maxTicket, 'Nombre maximum de billets') }}
+		{{ form_widget(ticketType.maxTicket, {'attr': {'class': 'form-control bg-dark text-white border-opacity-25 p-3 rounded-3'}}) }}
+	</div>
+	<div class="mb-2">
+		{{ form_label(ticketType.description, 'Description') }}
+		{{ form_widget(ticketType.description, {'attr': {'class': 'form-control bg-dark text-white border-opacity-25 p-3 rounded-3'}}) }}
+	</div>
+{% endmacro %}
+
 {% block title %}Créer un événement
 {% endblock %}
 
 {% block body %}
+	{% import _self as macros %}
 
 	<main class="main">
 
@@ -124,10 +144,10 @@
 
 								<div class="col-12">
 									<label class="mb-2">Types de billets</label>
-									<div id="ticket-types-list" data-prototype="{{ form_widget(form.tickettypes.vars.prototype)|e('html_attr') }}" data-index="{{ form.tickettypes|length }}">
+									<div id="ticket-types-list" data-prototype="{{ macros.ticketTypeRow(form.tickettypes.vars.prototype)|e('html_attr') }}" data-index="{{ form.tickettypes|length }}">
 										{% for ticketType in form.tickettypes %}
 											<div class="ticket-type-row border border-secondary border-opacity-25 rounded-3 p-3 mb-3">
-												{{ form_widget(ticketType) }}
+												{{ macros.ticketTypeRow(ticketType) }}
 												<button type="button" class="btn btn-outline-danger btn-sm remove-ticket-type mt-2">Retirer ce type de billet</button>
 											</div>
 										{% endfor %}
@@ -147,8 +167,8 @@
 								</div>
 
 								<div class="col-12 text-center">
-									<button type="submit" class="btn button large my-4">Créer l'événement</button>	
-										<a href="{{ path('app-mes-evenements') }}">Retour à la liste des événements</a>			
+									<button type="submit" class="btn button large my-4">Créer l'événement</button>
+									<a href="{{ path('app-mes-evenements') }}">Retour à la liste des événements</a>
 								</div>
 							</div>
 							{{ form_widget(form._token) }}
