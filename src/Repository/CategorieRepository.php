@@ -15,16 +15,23 @@ class CategorieRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Categorie::class);
     }
-    public function getTopCategories(): array
+    /**
+     * Returns le nombre d'évènements par catégorie, filtré sur la date de l'évènement si une période est donnée
+     */
+    public function getTopCategories(?\DateTimeInterface $start = null, ?\DateTimeInterface $end = null): array
     {
-        $sql = '
-            SELECT  count(event_id) as total, categorie_id as categorie
-            FROM event_categorie
-            group by categorie
-        ';
-        return $this->getEntityManager()->getConnection()
-            ->executeQuery($sql)
-            ->fetchAllAssociative();
+        $qb = $this->createQueryBuilder('c')
+            ->select('c.id as categorie', 'COUNT(e.id) as total')
+            ->join('c.events', 'e')
+            ->groupBy('c.id');
+
+        if ($start !== null && $end !== null) {
+            $qb->andWhere('e.date BETWEEN :start AND :end')
+                ->setParameter('start', $start)
+                ->setParameter('end', $end);
+        }
+
+        return $qb->getQuery()->getResult();
     }
 
     //    /**
