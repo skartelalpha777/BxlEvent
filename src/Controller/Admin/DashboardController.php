@@ -13,6 +13,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
 use Symfony\UX\Chartjs\Model\Chart;
@@ -27,95 +28,107 @@ class DashboardController extends AbstractDashboardController
         private readonly CategorieRepository $categorieRepository,
         private readonly EventRepository $eventRepository,
         private readonly ReportsRepository $reportsRepository,
+        private readonly RequestStack $requestStack,
     ) {}
 
+    /**
+     * Page d'accueil du back-office : KPIs, graphiques (utilisateurs/mois, revenus/mois, top catégories)
+     * et compteurs de modération, tous filtrables sur une période via getFilteredPeriod().
+     */
     public function index(): Response
     {
-        $userByMonth = $this->chartUsersByMonth();
-        $revenuByMonth = $this->chartRevenuByMonth();
-        $topCategories = $this->getTopCategories();
+        [$start, $end] = $this->getFilteredPeriod();
+        $userByMonth = $this->chartUsersByMonth($start, $end);
+        $revenuByMonth = $this->chartRevenuByMonth($start, $end);
+        $topCategories = $this->getTopCategories($start, $end);
         return $this->render('admin/dashboard.admin.html.twig', [
             'userByMonth' => $userByMonth,
             'revenuByMonth' => $revenuByMonth,
             'topCategories' => $topCategories,
             'pendingEventsCount' => $this->eventRepository->countPendingValidation(),
             'untreatedReportsCount' => $this->reportsRepository->countUntreated(),
-            'kpis' => $this->buildDatas(),
+            'kpis' => $this->buildDatas($start, $end),
         ]);
     }
 
- 
-    private function buildDatas(): array
+    /**
+     * Lit et valide le filtre de dates soumis par le formulaire (start-date/end-date + token CSRF).
+     * @return array{0: ?\DateTime, 1: ?\DateTime} [start, end], ou [null, null] si aucun filtre valide n'est fourni
+     */
+    private function getFilteredPeriod(): array
     {
-        $now = new \DateTimeImmutable();
-       
-        $currentStart = $now->modify('first day of this month')->setTime(0, 0);
-        $currentEnd = $now->modify('last day of this month')->setTime(23, 59, 59);
-        $previousStart = $now->modify('first day of last month')->setTime(0, 0);
-        $previousEnd = $now->modify('last day of last month')->setTime(23, 59, 59);
-       
-        $usersCurrent = $this->userRepository->countRegisteredBetween($currentStart, $currentEnd);
-        $usersPrevious = $this->userRepository->countRegisteredBetween($previousStart, $previousEnd);
+        $request = $this->requestStack->getCurrentRequest();
+        $submittedToken = $request->query->get('filter_token');
+        if (!$this->isCsrfTokenValid('filter', $submittedToken)) {
+            return [null, null];
+        }
 
-        $ordersCurrent = $this->orderRepository->countOrdersBetween($currentStart, $currentEnd);
-        $ordersPrevious = $this->orderRepository->countOrdersBetween($previousStart, $previousEnd);
+        $start = $request->query->get('start-date');
+        $end = $request->query->get('end-date');
+        if (!$start || !$end) {
+            return [null, null];
+        }
 
-        $revenueCurrent = $this->orderRepository->sumRevenueBetween($currentStart, $currentEnd);
-        $revenuePrevious = $this->orderRepository->sumRevenueBetween($previousStart, $previousEnd);
+        return [new \DateTime($start), new \DateTime($end)];
+    }
 
-        $eventsCurrent = $this->eventRepository->countScheduledBetween($currentStart, $currentEnd);
-        $eventsPrevious = $this->eventRepository->countScheduledBetween($previousStart, $previousEnd);
+    /**
+     * Calcule les 4 KPIs (utilisateurs, commandes, chiffre d'affaire, évènements) sur la période filtrée,
+     * ou sur le mois civil en cours si aucun filtre n'est fourni.
+     * @param ?\DateTimeInterface $start début de la période filtrée (null si pas de filtre)
+     * @param ?\DateTimeInterface $end fin de la période filtrée (null si pas de filtre)
+     * @return array les 4 cartes KPI (label, icon, color, value)
+     */
+    private function buildDatas(?\DateTimeInterface $start, ?\DateTimeInterface $end): array
+    {
+        if ($start === null || $end === null) {
+            $now = new \DateTimeImmutable();
+            $start = $now->modify('first day of this month')->setTime(0, 0);
+            $end = $now->modify('last day of this month')->setTime(23, 59, 59);
+        }
+
+        $usersCount = $this->userRepository->countRegisteredBetween($start, $end);
+        $ordersCount = $this->orderRepository->countOrdersBetween($start, $end);
+        $revenueCount = $this->orderRepository->sumRevenueBetween($start, $end);
+        $eventsCount = $this->eventRepository->countScheduledBetween($start, $end);
 
         return [
             [
                 'label' => 'Utilisateurs',
                 'icon' => 'fa-users',
                 'color' => '#3b82f6',
-                'value' => $usersCurrent,
-                'trend' => $this->percentVariation($usersCurrent, $usersPrevious),
+                'value' => $usersCount,
             ],
             [
                 'label' => 'Commandes',
                 'icon' => 'fa-cart-shopping',
                 'color' => '#8b5cf6',
-                'value' => $ordersCurrent,
-                'trend' => $this->percentVariation($ordersCurrent, $ordersPrevious),
+                'value' => $ordersCount,
             ],
             [
                 'label' => 'Chiffre d\'affaire',
                 'icon' => 'fa-euro-sign',
                 'color' => '#10b981',
-                'value' => number_format($revenueCurrent) . ' €',
-                'trend' => $this->percentVariation($revenueCurrent, $revenuePrevious),
+                'value' => number_format($revenueCount) . ' €',
             ],
             [
                 'label' => 'Évènements',
                 'icon' => 'fa-calendar-alt',
                 'color' => '#f97316',
-                'value' => $eventsCurrent,
-                'trend' => $this->percentVariation($eventsCurrent, $eventsPrevious),
+                'value' => $eventsCount,
             ],
         ];
     }
 
     /**
-     * Allow to calculate the variation between two periods usig Variation en % = (Valeur d'arrivée -Valeur de départ)/(Valeur de départ) * 100
-     * @param float $current the end value
-     * @param float $previous the start value
-     * @return float the variation
+     * Construit le graphique en camembert du nombre d'évènements par catégorie, filtré sur la période si fournie.
+     * @param ?\DateTimeInterface $start début de la période filtrée (null si pas de filtre)
+     * @param ?\DateTimeInterface $end fin de la période filtrée (null si pas de filtre)
+     * @return Chart
      */
-    private function percentVariation(float $current, float $previous): float
+    private function getTopCategories(?\DateTimeInterface $start, ?\DateTimeInterface $end)
     {
-        if ($previous <= 0) {
-            return $current > 0 ? 100.0 : 0.0;
-        }
-
-        return round((($current - $previous) / $previous) * 100, 2);
-    }
-
-    private function getTopCategories()
-    {
-        $categories = $this->categorieRepository->getTopCategories();
+        $categories = $this->categorieRepository->getTopCategories($start, $end);
         $labels = [];
         $data = [];
         $backgorungColors = [];
@@ -161,11 +174,17 @@ class DashboardController extends AbstractDashboardController
         ]);
         return $chart;
     }
-    private function chartUsersByMonth()
+    /**
+     * Construit le graphique en ligne du nombre d'utilisateurs inscrits par mois, filtré sur la période si fournie.
+     * @param ?\DateTimeInterface $start début de la période filtrée (null si pas de filtre)
+     * @param ?\DateTimeInterface $end fin de la période filtrée (null si pas de filtre)
+     * @return Chart
+     */
+    private function chartUsersByMonth(?\DateTimeInterface $start, ?\DateTimeInterface $end)
     {
 
         $mois = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
-        $users = $this->userRepository->getUsersByMonth();
+        $users = $this->userRepository->getUsersByMonth($start, $end);
         $labels = [];
         $data = [];
         foreach ($users as $user) {
@@ -209,10 +228,16 @@ class DashboardController extends AbstractDashboardController
         ]);
         return $chart;
     }
-    private function chartRevenuByMonth()
+    /**
+     * Construit le graphique en barres du chiffre d'affaire par mois, filtré sur la période si fournie.
+     * @param ?\DateTimeInterface $start début de la période filtrée (null si pas de filtre)
+     * @param ?\DateTimeInterface $end fin de la période filtrée (null si pas de filtre)
+     * @return Chart
+     */
+    private function chartRevenuByMonth(?\DateTimeInterface $start, ?\DateTimeInterface $end)
     {
 
-        $revenu = $this->orderRepository->getOrderByMonth();
+        $revenu = $this->orderRepository->getOrderByMonth($start, $end);
         $mois = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
         $labels = [];
         $data = [];
@@ -286,18 +311,29 @@ class DashboardController extends AbstractDashboardController
         return $chart;
     }
 
+    /**
+     * Configuration EasyAdmin du dashboard (appelée par le bundle, pas par notre code) : titre affiché dans le back-office.
+     */
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
             ->setTitle('Administration');
     }
 
+    /**
+     * Configuration EasyAdmin des assets (appelée par le bundle) : charge l'entrée AssetMapper "app"
+     * (assets/app.js) pour avoir les graphiques Chart.js et le zoom/pan sur les pages du back-office.
+     */
     public function configureAssets(): Assets
     {
         return parent::configureAssets()
             ->addAssetMapperEntry('app');
     }
 
+    /**
+     * Configuration EasyAdmin du menu latéral (appelée par le bundle) : déclare les entrées de menu
+     * et les regroupe par section (Catalogue, Billetterie, Utilisateurs & Modération).
+     */
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');

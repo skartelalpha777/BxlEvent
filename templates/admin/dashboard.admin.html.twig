@@ -46,12 +46,7 @@
 								<div class="small title text-uppercase fw-semibold">{{ stat.label }}</div>
 								<div class="d-flex align-items-baseline gap-2">
 									<span class="fs-4 fw-bold">{{ stat.value }}</span>
-									<span class="small fw-semibold {{ stat.trend < 0 ? 'text-danger' : 'text-success' }}">
-										<i class="fas {{ stat.trend < 0 ? 'fa-arrow-down' : 'fa-arrow-up' }}"></i>
-										{{ stat.trend|abs }}%
-									</span>
 								</div>
-								<div class="small text-muted">vs période précédente</div>
 							</div>
 						</div>
 					</div>
