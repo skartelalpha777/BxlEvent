@@ -6,6 +6,34 @@
 
 {% block main %}
 	<div class="dashboard-page">
+		<form class="event-filters mb-3" method="GET" action="{{ path('admin') }}">
+			<div class="row gy-3">
+				<div class="col-md-6 col-lg">
+					<label class="filter-label" for="filter-date">Date de début</label>
+					<div class="filter-control">
+						<i class="bi bi-calendar-event"></i>
+						<input type="datetime-local" name="start-date">
+					</div>
+				</div>
+				<div class="col-md-6 col-lg">
+					<label class="filter-label" for="filter-date">Date de fin
+					</label>
+					<div class="filter-control">
+						<i class="bi bi-calendar-event"></i>
+						<input type="datetime-local" name="end-date">
+					</div>
+				</div>
+			</div>
+			<input type="hidden" name="filter_token" value="{{ csrf_token('filter') }}">
+			<div class="text-center mt-4 d-flex justify-content-center align-items-center gap-3">
+				<button type="submit" class="button">Appliquer</button>
+				<a href="{{ path('admin') }}">
+					<i class="bi bi-arrow-counterclockwise"></i>
+					Réinitialiser les filtres
+				</a>
+			</div>
+		</form>
+
 		<div class="row g-3 mb-3">
 			{% for stat in kpis %}
 				<div class="col-6 col-lg-3">
@@ -83,6 +111,62 @@
 
 		.title {
 			color: #1387c1;
+		}
+
+		.event-filters {
+			background: var(--bs-tertiary-bg);
+			border: 1px solid var(--bs-border-color);
+			border-radius: 1rem;
+			padding: 1.75rem;
+		}
+
+		.event-filters .filter-label {
+			display: block;
+			font-weight: 600;
+			font-size: 0.9rem;
+			margin-bottom: 0.5rem;
+		}
+
+		.event-filters .filter-control {
+			display: flex;
+			align-items: center;
+			gap: 0.6rem;
+			background: var(--bs-body-bg);
+			border: 1px solid var(--bs-border-color);
+			border-radius: 0.6rem;
+			padding: 0.65rem 0.9rem;
+			transition: 0.3s;
+		}
+
+		.event-filters .filter-control:focus-within {
+			border-color: #1387c1;
+		}
+
+		.event-filters .filter-control>i:first-child {
+			color: #1387c1;
+			font-size: 1rem;
+		}
+
+		.event-filters .filter-control input {
+			flex: 1;
+			min-width: 0;
+			border: none;
+			background: transparent;
+			color: var(--bs-body-color);
+			padding: 0;
+		}
+
+		.event-filters .filter-control input:focus {
+			outline: none;
+			box-shadow: none;
+		}
+
+		.event-filters .button {
+			background: #1387c1;
+			color: #fff;
+			border: none;
+			border-radius: 0.6rem;
+			padding: 0.6rem 1.5rem;
 		}
 	</style>
 {% endblock %}
