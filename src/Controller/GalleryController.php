@@ -10,10 +10,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/gallery')]
 final class GalleryController extends AbstractController
 {
+    #[IsGranted('ROLE_ADMIN')]
     #[Route(name: 'app_gallery_index', methods: ['GET'])]
     public function index(GalleryRepository $galleryRepository): Response
     {
@@ -22,6 +24,7 @@ final class GalleryController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/new', name: 'app_gallery_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -42,6 +45,7 @@ final class GalleryController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}', name: 'app_gallery_show', methods: ['GET'])]
     public function show(Gallery $gallery): Response
     {
@@ -50,6 +54,7 @@ final class GalleryController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}/edit', name: 'app_gallery_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Gallery $gallery, EntityManagerInterface $entityManager): Response
     {
@@ -68,10 +73,11 @@ final class GalleryController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}', name: 'app_gallery_delete', methods: ['POST'])]
     public function delete(Request $request, Gallery $gallery, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$gallery->getId(), $request->getPayload()->getString('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $gallery->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($gallery);
             $entityManager->flush();
         }
