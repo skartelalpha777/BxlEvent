@@ -1,13 +1,192 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Edit Event{% endblock %}
+{% import 'event/new.html.twig' as new_macros %}
+{% block title %}Modifier l'événement
+{% endblock %}
 
 {% block body %}
-    <h1>Edit Event</h1>
 
-    {{ include('event/_form.html.twig', {'button_label': 'Update'}) }}
+	<main class="main">
 
-    <a href="{{ path('app_event_index') }}">back to list</a>
+		<section id="contact" class="contact section">
 
-    {{ include('event/_delete_form.html.twig') }}
+			<div class="container-fluid container-lg">
+
+				<div class="row justify-content-center gy-4">
+
+					<div class="col-11 col-md-10 col-lg-8 info-box">
+						<div class="container section-title">
+							<h1>Modifier l'événement</h1>
+						</div>
+
+						<div class="event-form">
+
+							{{ form_start(form, {'attr': {'class': 'php-email-form'}}) }}
+							<div class="row gy-4">
+
+								<div class="col-md-6">
+									{{ form_label(form.title, 'Titre *') }}
+									<div class="input-group mb-3">
+										<span class="input-group-text">
+											<i class="bi bi-type"></i>
+										</span>
+										{{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+									</div>
+									{{ form_errors(form.title) }}
+								</div>
+
+								<div class="col-md-6">
+									{{ form_label(form.location, 'Lieu *') }}
+									<div class="input-group mb-3">
+										<span class="input-group-text">
+											<i class="bi bi-geo-alt-fill"></i>
+										</span>
+										{{ form_widget(form.location, {'attr': {'class': 'form-select'}}) }}
+									</div>
+									{{ form_errors(form.location) }}
+
+									<details class="mb-3">
+										<summary>Le lieu n'existe pas ? Créez-en un nouveau</summary>
+										<div class="row gy-2 mt-2">
+											<div class="col-md-6">
+												{{ form_label(form.newLocationName) }}
+												{{ form_widget(form.newLocationName, {'attr': {'class': 'form-control'}}) }}
+											</div>
+											<div class="col-md-6">
+												{{ form_label(form.newLocationStreet) }}
+												{{ form_widget(form.newLocationStreet, {'attr': {'class': 'form-control'}}) }}
+											</div>
+											<div class="col-md-4">
+												{{ form_label(form.newLocationNumber) }}
+												{{ form_widget(form.newLocationNumber, {'attr': {'class': 'form-control'}}) }}
+											</div>
+											<div class="col-md-4">
+												{{ form_label(form.newLocationPostcode) }}
+												{{ form_widget(form.newLocationPostcode, {'attr': {'class': 'form-control'}}) }}
+											</div>
+											<div class="col-md-4">
+												{{ form_label(form.newLocationCity) }}
+												{{ form_widget(form.newLocationCity, {'attr': {'class': 'form-control'}}) }}
+											</div>
+										</div>
+									</details>
+								</div>
+
+								<div class="col-md-6">
+									{{ form_label(form.date, 'Date *') }}
+									<div class="input-group mb-3">
+										<span class="input-group-text">
+											<i class="bi bi-calendar-event"></i>
+										</span>
+										{{ form_widget(form.date, {'attr': {'class': 'form-control'}}) }}
+									</div>
+									{{ form_errors(form.date) }}
+								</div>
+
+								<div class="col-md-6">
+									{{ form_label(form.hour, 'Heure *') }}
+									<div class="input-group mb-3">
+										<span class="input-group-text">
+											<i class="bi bi-clock"></i>
+										</span>
+										{{ form_widget(form.hour, {'attr': {'class': 'form-control'}}) }}
+									</div>
+									{{ form_errors(form.hour) }}
+								</div>
+
+								<div class="col-12">
+									{{ form_label(form.description, 'Description *') }}
+									{{ form_widget(form.description, {
+										'attr': {
+											'class': 'form-control bg-dark text-white border-secondary border-opacity-25 p-3 rounded-3',
+											'rows': 6
+										}
+									}) }}
+									{{ form_errors(form.description) }}
+								</div>
+
+								<div class="col-12">
+									{{ form_label(form.categories, 'Catégories') }}
+									<div class="d-flex flex-wrap gap-3">
+										{% for child in form.categories %}
+											<div class="form-check">
+												{{ form_widget(child, {'attr': {'class': 'form-check-input'}}) }}
+												{{ form_label(child, null, {'label_attr': {'class': 'form-check-label'}}) }}
+											</div>
+										{% endfor %}
+									</div>
+									{{ form_errors(form.categories) }}
+
+									<div class="mt-2">
+										{{ form_label(form.newCategoryName) }}
+										{{ form_widget(form.newCategoryName, {'attr': {'class': 'form-control', 'placeholder': "Catégorie absente de la liste ? Tapez-la ici"}}) }}
+									</div>
+								</div>
+
+								<div class="col-12">
+									<label class="mb-2">Types de billets</label>
+									<div id="ticket-types-list" data-prototype="{{ new_macros.ticketTypeRow(form.tickettypes.vars.prototype)|e('html_attr') }}" data-index="{{ form.tickettypes|length }}">
+										{% for ticketType in form.tickettypes %}
+											<div class="ticket-type-row border border-secondary border-opacity-25 rounded-3 p-3 mb-3">
+												{{ new_macros.ticketTypeRow(ticketType) }}
+												<button type="button" class="btn btn-outline-danger btn-sm remove-ticket-type mt-2">Retirer ce type de billet</button>
+											</div>
+										{% endfor %}
+									</div>
+									<button type="button" id="add-ticket-type" class="btn btn-outline-light btn-sm">+ Ajouter un type de billet</button>
+								</div>
+
+								<div class="col-12">
+									{% if event.galleries is not empty %}
+										<label class="mb-2">Affiches actuelles (maximum 3 images au total)</label>
+										<div class="d-flex flex-wrap gap-3 mb-3">
+											{% for gallery in event.galleries %}
+												<div class="text-center" id="gallery-{{ gallery.id }}">
+													<img src="{{ asset('assets/img/uploads/events/' ~ gallery.name) }}" alt="{{ event.title }}" class="rounded-3 d-block mb-1" style="width: 100px; height: 100px; object-fit: cover;">
+													<a href="#" class="small text-danger delete-gallery-link" data-gallery-id="{{ gallery.id }}">Supprimer</a>
+													<input type="checkbox" name="deleteGalleries[]" value="{{ gallery.id }}" id="delete-gallery-{{ gallery.id }}" class="d-none">
+												</div>
+											{% endfor %}
+										</div>
+									{% endif %}
+									{{ form_label(form.fileName, 'Ajouter de nouvelles affiches (optionnel)') }}
+									{{ form_widget(form.fileName, {
+										'attr': {
+											'class': 'form-control bg-dark text-white border-opacity-25 p-3 rounded-3',
+											'rows': 6
+										}
+									}) }}
+									{{ form_errors(form.fileName) }}
+
+								</div>
+								<p class="mt-4">* Champs obligatoire</p>
+
+								<div class="col-6">
+									<button type="submit" class="btn button w-100">Enregistrer les modificatios</button>
+
+								</div>
+								<div class="col-6">
+									<button type="button" class="noBackground w-100 px-4" onclick="window.location.href='{{path('app-mes-evenements')}}'">
+										Rétour à la liste
+									</button>
+								</div>
+							</div>
+							{{ form_widget(form._token) }}
+							{{ form_end(form, {'render_rest': false}) }}
+
+							<div class="mt-3">
+								{{ include('event/_delete_form.html.twig') }}
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</section>
+
+	</main>
+	 <script src="{{asset('assets/js/newEvent.js')}}"></script>
 {% endblock %}
