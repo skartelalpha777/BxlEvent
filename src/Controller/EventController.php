@@ -14,6 +14,7 @@ use App\Repository\ReportsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -419,50 +420,15 @@ final class EventController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Aucun lieu existant sélectionné : on en crée un nouveau à partir des champs dédiés.
-            if (!$event->getLocation() && $form->get('newLocationName')->getData()) {
-                $location = new Location();
-                $location->setName($form->get('newLocationName')->getData());
-                $location->setStreet($form->get('newLocationStreet')->getData());
-                $location->setNumber((int) $form->get('newLocationNumber')->getData());
-                $location->setPostcode((int) $form->get('newLocationPostcode')->getData());
-                $location->setCity($form->get('newLocationCity')->getData());
-                $entityManager->persist($location);
-                $event->setLocation($location);
-            }
-
-            if (!$event->getLocation()) {
-                $form->get('location')->addError(new FormError('Choisissez un lieu existant ou renseignez les informations du nouveau lieu.'));
-            }
-
-            // Une catégorie qui n'existe pas encore a été saisie : on la crée à la volée.
-            $newCategoryName = $form->get('newCategoryName')->getData();
-            if ($newCategoryName) {
-                $category = new Categorie();
-                $category->setName($newCategoryName);
-                $entityManager->persist($category);
-                $event->addCategory($category);
-            }
+            $this->resolveEventLocation($event, $form, $entityManager);
+            $this->resolveNewCategory($event, $form, $entityManager);
 
             if ($event->getLocation()) {
                 $event->setCreator($this->getUser());
                 $entityManager->persist($event);
 
-                $brochureFiles = $form->get('fileName')->getData();
-                $isFirstImage = true;
-
-                foreach ($brochureFiles as $brochureFile) {
-                    if ($brochureFile) {
-                        $gallery = new Gallery();
-                        $filename = $fileUploader->upload($brochureFile, $event);
-                        $gallery->setEvent($event);
-                        $gallery->setname($filename);
-                        $gallery->setIsMain($isFirstImage);
-                        $isFirstImage = false;
-                        $event->addGallery($gallery);
-                        $entityManager->persist($gallery);
-                    }
-                }
+                $brochureFiles = array_filter($form->get('fileName')->getData());
+                $this->addEventGalleries($brochureFiles, $event, $entityManager, $fileUploader);
 
                 $entityManager->flush();
                 $this->addFlash('succes', 'Votre évènement à été créé avec succès. Vous pouvez le rétrouver dans la page gestion des évènements');
@@ -474,6 +440,105 @@ final class EventController extends AbstractController
             'event' => $event,
             'form' => $form,
         ]);
+    }
+
+    /**
+     * Utilise le lieu existant sélectionné dans le formulaire, ou en crée un nouveau à partir
+     * des champs dédiés si aucun lieu existant n'a été choisi. Ajoute une erreur au formulaire
+     * si l'évènement se retrouve sans aucun lieu à la fin.
+     */
+    private function resolveEventLocation(Event $event, FormInterface $form, EntityManagerInterface $entityManager): void
+    {
+        if (!$event->getLocation() && $form->get('newLocationName')->getData()) {
+            $location = new Location();
+            $location->setName($form->get('newLocationName')->getData());
+            $location->setStreet($form->get('newLocationStreet')->getData());
+            $location->setNumber((int) $form->get('newLocationNumber')->getData());
+            $location->setPostcode((int) $form->get('newLocationPostcode')->getData());
+            $location->setCity($form->get('newLocationCity')->getData());
+            $entityManager->persist($location);
+            $event->setLocation($location);
+        }
+
+        if (!$event->getLocation()) {
+            $form->get('location')->addError(new FormError('Choisissez un lieu existant ou renseignez les informations du nouveau lieu.'));
+        }
+    }
+
+    /**
+     * Crée et attache une nouvelle catégorie si un nom a été saisi dans le champ dédié.
+     */
+    private function resolveNewCategory(Event $event, FormInterface $form, EntityManagerInterface $entityManager): void
+    {
+        $newCategoryName = $form->get('newCategoryName')->getData();
+        if ($newCategoryName) {
+            $category = new Categorie();
+            $category->setName($newCategoryName);
+            $entityManager->persist($category);
+            $event->addCategory($category);
+        }
+    }
+
+    /**
+     * Retrouve, parmi les images déjà liées à l'évènement, celles dont la case "Supprimer"
+     * a été cochée dans le formulaire.
+     *
+     * @return Gallery[]
+     */
+    private function findGalleriesToDelete(Event $event, Request $request): array
+    {
+        $idsToDelete = $request->request->all('deleteGalleries');
+
+        $galleriesToDelete = [];
+        foreach ($event->getGalleries() as $gallery) {
+            if (in_array((string) $gallery->getId(), $idsToDelete, true)) {
+                $galleriesToDelete[] = $gallery;
+            }
+        }
+
+        return $galleriesToDelete;
+    }
+
+    /**
+     * Supprime les images données : le fichier sur le disque, et la ligne en base.
+     *
+     * @param Gallery[] $galleries
+     */
+    private function deleteEventGalleries(array $galleries, Event $event, EntityManagerInterface $entityManager, FileUploader $fileUploader): void
+    {
+        foreach ($galleries as $gallery) {
+            $filePath = $fileUploader->getTargetDirectory() . '/' . $gallery->getName();
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            }
+            $event->removeGallery($gallery);
+            $entityManager->remove($gallery);
+        }
+    }
+
+    /**
+     * Upload et attache les nouvelles images à l'évènement. La première image ajoutée devient
+     * l'image principale, sauf si l'évènement en a déjà une.
+     */
+    private function addEventGalleries(array $imgFiles, Event $event, EntityManagerInterface $entityManager, FileUploader $fileUploader): void
+    {
+        $hasMainImage = false;
+        foreach ($event->getGalleries() as $existingGallery) {
+            if ($existingGallery->isMain()) {
+                $hasMainImage = true;
+            }
+        }
+
+        foreach ($imgFiles as $img) {
+            $gallery = new Gallery();
+            $filename = $fileUploader->upload($img, $event);
+            $gallery->setEvent($event);
+            $gallery->setname($filename);
+            $gallery->setIsMain(!$hasMainImage);
+            $hasMainImage = true;
+            $event->addGallery($gallery);
+            $entityManager->persist($gallery);
+        }
     }
     #[IsGranted('ROLE_CONTRIBUTEUR')]
     #[Route('/{id}', name: 'app_event_show', methods: ['GET'])]
@@ -512,21 +577,40 @@ final class EventController extends AbstractController
 
     #[IsGranted('ROLE_CONTRIBUTEUR')]
     #[Route('/{id}/edit', name: 'app_event_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Event $event, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, Event $event, EntityManagerInterface $entityManager, FileUploader $fileUploader): Response
     {
         if ($event->getCreator() !== $this->getUser() && !$this->isGranted('ROLE_ADMIN')) {
             throw $this->createAccessDeniedException('Vous ne pouvez modifier que vos propres événements.');
         }
 
-        $form = $this->createForm(EventType::class, $event);
+        $form = $this->createForm(EventType::class, $event, ['is_edit' => true]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $event->setCreator($this->getUser());
-            $entityManager->flush();
+            $this->resolveEventLocation($event, $form, $entityManager);
+            $this->resolveNewCategory($event, $form, $entityManager);
 
-            return $this->redirectToRoute('app_event_index', [], Response::HTTP_SEE_OTHER);
+            if ($event->getLocation()) {
+                $galleriesToDelete = $this->findGalleriesToDelete($event, $request);
+                $brochureFiles = array_filter($form->get('fileName')->getData());
+
+                // Un évènement ne peut pas avoir plus de 3 images au total (existantes + nouvelles).
+                $remainingCount = count($event->getGalleries()) - count($galleriesToDelete) + count($brochureFiles);
+
+                if ($remainingCount > 3) {
+                    $form->get('fileName')->addError(new FormError('Un évènement ne peut pas avoir plus de 3 images au total.'));
+                } else {
+                    $this->deleteEventGalleries($galleriesToDelete, $event, $entityManager, $fileUploader);
+                    $this->addEventGalleries($brochureFiles, $event, $entityManager, $fileUploader);
+
+                    $entityManager->flush();
+                    $this->addFlash('succes', 'Votre évènement a bien été mis à jour.');
+
+                    return $this->redirectToRoute('app_user_profil', ['id' => $this->getUser()->getId()], Response::HTTP_SEE_OTHER);
+                }
+            }
         }
+
         return $this->render('event/edit.html.twig', [
             'event' => $event,
             'form' => $form,
