@@ -53,13 +53,13 @@ class Event
     /**
      * @var Collection<int, Gallery>
      */
-    #[ORM\OneToMany(targetEntity: Gallery::class, mappedBy: 'event')]
+    #[ORM\OneToMany(targetEntity: Gallery::class, mappedBy: 'event', orphanRemoval: true)]
     private Collection $galleries;
 
     /**
      * @var Collection<int, TicketType>
      */
-    #[ORM\OneToMany(targetEntity: TicketType::class, mappedBy: 'event', cascade: ['persist'])]
+    #[ORM\OneToMany(targetEntity: TicketType::class, mappedBy: 'event', cascade: ['persist'], orphanRemoval: true)]
     private Collection $tickettypes;
 
     /**

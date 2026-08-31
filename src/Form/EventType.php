@@ -52,12 +52,12 @@ class EventType extends AbstractType
 
                 'label' => 'Afiches pour l\'évènement',
                 'mapped' => false,
-                'required' => true,
+                'required' => !$options['is_edit'],
                 'multiple' => true,
                 'constraints' => [
                     new Assert\Count(
                         max: 3,
-                        min: 1,
+                        min: $options['is_edit'] ? 0 : 1,
                         minMessage: 'Vous devez ajouter au moins une image',
                         maxMessage: 'Vous pouvez ajouter au maximum 3 images'
                     ),
@@ -87,6 +87,7 @@ class EventType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Event::class,
+            'is_edit' => false,
         ]);
     }
 }
