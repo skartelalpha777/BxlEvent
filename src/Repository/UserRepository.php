@@ -34,19 +34,22 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     }
 
     /**
-     *  Returns les utilisateur inscrit par mois
+     *  Returns les utilisateur inscrit par mois, filtré sur la période donnée si fournie
      */
-    public function getUsersByMonth(): array
+    public function getUsersByMonth(?\DateTimeInterface $start = null, ?\DateTimeInterface $end = null): array
     {
-        $sql = '
-            SELECT MONTH(date_rgpd) AS month, COUNT(id) AS total
-            FROM user
-            GROUP BY month
-            ORDER BY month ASC
-        ';
-        return $this->getEntityManager()->getConnection()
-            ->executeQuery($sql)
-            ->fetchAllAssociative();
+        $qb = $this->createQueryBuilder('u')
+            ->select('MONTH(u.dateRgpd) as month', 'COUNT(u.id) as total')
+            ->groupBy('month')
+            ->orderBy('month', 'ASC');
+
+        if ($start !== null && $end !== null) {
+            $qb->andWhere('u.dateRgpd BETWEEN :start AND :end')
+                ->setParameter('start', $start)
+                ->setParameter('end', $end);
+        }
+
+        return $qb->getQuery()->getResult();
     }
 
     public function countRegisteredBetween(\DateTimeInterface $start, \DateTimeInterface $end): int

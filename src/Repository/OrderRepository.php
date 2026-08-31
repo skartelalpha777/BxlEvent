@@ -18,19 +18,22 @@ class OrderRepository extends ServiceEntityRepository
     }
 
     /**
-     *  Returns le total de vente par mois par mois
+     *  Returns le total de vente par mois, filtré sur la période donnée si fournie
      */
-    public function getOrderByMonth(): array
+    public function getOrderByMonth(?\DateTimeInterface $start = null, ?\DateTimeInterface $end = null): array
     {
-        $sql = '
-           SELECT MONTH(created_at) AS month, SUM(total_price) AS total
-        FROM `order`
-        GROUP BY month
-        ORDER BY month ASC
-        ';
-        return $this->getEntityManager()->getConnection()
-            ->executeQuery($sql)
-            ->fetchAllAssociative();
+        $qb = $this->createQueryBuilder('o')
+            ->select('MONTH(o.createdAt) as month', 'SUM(o.totalPrice) as total')
+            ->groupBy('month')
+            ->orderBy('month', 'ASC');
+
+        if ($start !== null && $end !== null) {
+            $qb->andWhere('o.createdAt BETWEEN :start AND :end')
+                ->setParameter('start', $start)
+                ->setParameter('end', $end);
+        }
+
+        return $qb->getQuery()->getResult();
     }
 
     public function countOrdersBetween(\DateTimeInterface $start, \DateTimeInterface $end): int
