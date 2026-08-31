@@ -593,19 +593,14 @@ final class EventController extends AbstractController
             if ($event->getLocation()) {
                 $galleriesToDelete = $this->findGalleriesToDelete($event, $request);
                 $brochureFiles = array_filter($form->get('fileName')->getData());
-
-                // Un évènement ne peut pas avoir plus de 3 images au total (existantes + nouvelles).
                 $remainingCount = count($event->getGalleries()) - count($galleriesToDelete) + count($brochureFiles);
-
                 if ($remainingCount > 3) {
                     $form->get('fileName')->addError(new FormError('Un évènement ne peut pas avoir plus de 3 images au total.'));
                 } else {
                     $this->deleteEventGalleries($galleriesToDelete, $event, $entityManager, $fileUploader);
                     $this->addEventGalleries($brochureFiles, $event, $entityManager, $fileUploader);
-
                     $entityManager->flush();
                     $this->addFlash('succes', 'Votre évènement a bien été mis à jour.');
-
                     return $this->redirectToRoute('app_user_profil', ['id' => $this->getUser()->getId()], Response::HTTP_SEE_OTHER);
                 }
             }
