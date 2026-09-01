@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Enum\Status;
 use App\Repository\CategorieRepository;
 use App\Repository\EventRepository;
 use App\Repository\OrderRepository;
@@ -41,10 +42,14 @@ class DashboardController extends AbstractDashboardController
         $userByMonth = $this->chartUsersByMonth($start, $end);
         $revenuByMonth = $this->chartRevenuByMonth($start, $end);
         $topCategories = $this->getTopCategories($start, $end);
+        $eventsByStatus = $this->chartEventsByStatus($start, $end);
+        $topEvents = $this->eventRepository->getTopEvents(5, $start, $end);
         return $this->render('admin/dashboard.admin.html.twig', [
             'userByMonth' => $userByMonth,
             'revenuByMonth' => $revenuByMonth,
             'topCategories' => $topCategories,
+            'eventsByStatus' => $eventsByStatus,
+            'topEvents' => $topEvents,
             'pendingEventsCount' => $this->eventRepository->countPendingValidation(),
             'untreatedReportsCount' => $this->reportsRepository->countUntreated(),
             'kpis' => $this->buildDatas($start, $end),
@@ -126,27 +131,67 @@ class DashboardController extends AbstractDashboardController
      * @param ?\DateTimeInterface $end fin de la période filtrée (null si pas de filtre)
      * @return Chart
      */
-    private function getTopCategories(?\DateTimeInterface $start, ?\DateTimeInterface $end)
+    private function getTopCategories(?\DateTimeInterface $start, ?\DateTimeInterface $end): Chart
     {
         $categories = $this->categorieRepository->getTopCategories($start, $end);
         $labels = [];
         $data = [];
-        $backgorungColors = [];
         foreach ($categories as $category) {
             $cat = $this->categorieRepository->findBy(['id' => $category['categorie']]);
-            $labels[] =  $cat[0]->getName();
+            $labels[] = $cat[0]->getName();
             $data[] = $category['total'];
-            $backgorungColors[] = sprintf('#%06X', random_int(0, 0xFFFFFF));
         }
+
+        return $this->buildPieChart($labels, $data, 'Evènement par categorie');
+    }
+
+    /**
+     * Construit le graphique en camembert du nombre d'évènements par statut de modération, filtré sur la période si fournie.
+     * @param ?\DateTimeInterface $start début de la période filtrée (null si pas de filtre)
+     * @param ?\DateTimeInterface $end fin de la période filtrée (null si pas de filtre)
+     * @return Chart
+     */
+    private function chartEventsByStatus(?\DateTimeInterface $start, ?\DateTimeInterface $end): Chart
+    {
+        $statusLabels = [
+            Status::VALIDATED->value => 'Validés',
+            Status::REFUSED->value => 'Refusés',
+            Status::NOTCHECKED->value => 'En attente',
+        ];
+
+        $rows = $this->eventRepository->countAllEventsByStatus($start, $end);
+        $labels = [];
+        $data = [];
+        foreach ($rows as $row) {
+            $labels[] = $statusLabels[$row['status']->value];
+            $data[] = $row['total'];
+        }
+
+        return $this->buildPieChart($labels, $data, 'Évènements par statut');
+    }
+
+    /**
+     * Construit un graphique en camembert générique à partir de labels et de valeurs déjà préparés,
+     * avec une couleur aléatoire par tranche. Partagé par getTopCategories() et chartEventsByStatus().
+     * @param string[] $labels
+     * @param int[] $data
+     */
+    private function buildPieChart(array $labels, array $data, string $datasetLabel): Chart
+    {
+        $backgroundColors = [];
+        foreach ($data as $value) {
+            $backgroundColors[] = sprintf('#%06X', random_int(0, 0xFFFFFF));
+        }
+
         $chart = $this->chartBuilder->createChart(Chart::TYPE_PIE);
         $chart->setData([
             'labels' => $labels,
             'datasets' => [
                 [
-                    'label' => 'Evènement par categorie',
-                    'backgroundColor' => $backgorungColors,
+                    'label' => $datasetLabel,
+                    'backgroundColor' => $backgroundColors,
                     'hoverOffset' => 4,
-                    'data' => $data
+                    'data' => $data,
                 ],
             ],
         ]);
@@ -174,6 +219,7 @@ class DashboardController extends AbstractDashboardController
         ]);
         return $chart;
     }
+
     /**
      * Construit le graphique en ligne du nombre d'utilisateurs inscrits par mois, filtré sur la période si fournie.
      * @param ?\DateTimeInterface $start début de la période filtrée (null si pas de filtre)
