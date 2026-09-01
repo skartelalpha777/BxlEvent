@@ -100,6 +100,48 @@
 					</div>
 				</div>
 			</div>
+			<div class="col-12 col-lg-6">
+				<div class="card border-0 shadow-lg bg-body-tertiary">
+					<div class="card-body">
+						<h3 class="title fs-6 fw-semibold border-bottom pb-2 mb-3" >Évènements par statut</h3>
+						{{ render_chart(eventsByStatus) }}
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row g-3 mb-3">
+			<div class="col-12">
+				<div class="card border-0 shadow-lg bg-body-tertiary">
+					<div class="card-body">
+						<h3 class="title fs-6 fw-semibold border-bottom pb-2 mb-3">Top 5 évènements (par revenu)</h3>
+						{% if topEvents is empty %}
+							<p class="small text-muted mb-0">Aucune vente sur cette période.</p>
+						{% else %}
+							<div class="table-responsive">
+								<table class="table table-sm align-middle mb-0">
+									<thead>
+										<tr>
+											<th>Évènement</th>
+											<th class="text-end">Billets vendus</th>
+											<th class="text-end">Revenu</th>
+										</tr>
+									</thead>
+									<tbody>
+										{% for event in topEvents %}
+											<tr>
+												<td>{{ event.title }}</td>
+												<td class="text-end">{{ event.tickets }}</td>
+												<td class="text-end">{{ event.revenu|number_format(2, ',', ' ') }} €</td>
+											</tr>
+										{% endfor %}
+									</tbody>
+								</table>
+							</div>
+						{% endif %}
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 	<style>
