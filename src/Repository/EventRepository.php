@@ -273,6 +273,55 @@ class EventRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    /**
+     * Nombre d'événements groupés par statut de modération, tous créateurs confondus.
+     * Si $start et $end sont fournis, restreint aux événements dont la date a lieu dans cette période.
+     *
+     * @return array<int, array{status: Status, total: int}>
+     */
+    public function countAllEventsByStatus(?\DateTimeInterface $start = null, ?\DateTimeInterface $end = null): array
+    {
+        $qb = $this->createQueryBuilder('e')
+            ->select('e.status as status, count(e.id) as total')
+            ->groupBy('e.status');
+
+        if ($start !== null && $end !== null) {
+            $qb->andWhere('e.date BETWEEN :start AND :end')
+                ->setParameter('start', $start)
+                ->setParameter('end', $end);
+        }
+
+        return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * Classement des événements générant le plus de revenu (commandes payées uniquement),
+     * limité à $limit résultats. Si $start et $end sont fournis, ne compte que les billets
+     * achetés dans cette période.
+     *
+     * @return array<int, array{title: string, revenu: float, tickets: int}>
+     */
+    public function getTopEvents(int $limit = 5, ?\DateTimeInterface $start = null, ?\DateTimeInterface $end = null): array
+    {
+        $qb = $this->createQueryBuilder('e')
+            ->select('e.title as title, SUM(o.totalPrice) as revenu, COUNT(t.id) as tickets')
+            ->join('e.tickets', 't')
+            ->join('t.purchase', 'o')
+            ->andWhere('o.status = :status')
+            ->setParameter('status', OrderStatus::Paid)
+            ->groupBy('e.id')
+            ->orderBy('revenu', 'DESC')
+            ->setMaxResults($limit);
+
+        if ($start !== null && $end !== null) {
+            $qb->andWhere('t.date BETWEEN :start AND :end')
+                ->setParameter('start', $start)
+                ->setParameter('end', $end);
+        }
+
+        return $qb->getQuery()->getResult();
+    }
+
     //    /**
     //     * @return Event[] Returns an array of Event objects
     //     */
