@@ -77,7 +77,7 @@ final class EventController extends AbstractController
      * lié à un contributeur
      */
     #[IsGranted('ROLE_CONTRIBUTEUR')]
-    #[Route('/mes-evenements', name: 'app-mes-evenements', methods: ['GET'])]
+    #[Route('/mes-evenements', name: 'app_mes_evenements', methods: ['GET'])]
     public function myEvents(EventRepository $eventRepository, ReportsRepository $reportsRepository): Response
     {
         $user = $this->getUser();

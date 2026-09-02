@@ -182,49 +182,6 @@ h6 {
   color: var(--heading-color);
 }
 
-.header .header-social-links {
-  padding-right: 15px;
-}
-
-.header .header-social-links a {
-  color: var(--nav-color);
-  font-size: 15px;
-  font-family: var(--nav-font);
-  font-weight: 400;
-  padding-left: 6px;
-  display: inline-flex;
-  align-items: center;
-  position: relative;
-  transition: 0.3s;
-}
-
-.header .header-social-links a:hover {
-  color: var(--nav-hover-color);
-}
-
-.header .header-social-links a:before {
-  content: "";
-  position: absolute;
-  height: 2px;
-  bottom: -6px;
-  left: 6px;
-  background-color: var(--nav-hover-color);
-  visibility: hidden;
-  width: 0px;
-  transition: all 0.3s ease-in-out 0s;
-}
-
-.header .header-social-links a:hover:before {
-  visibility: visible;
-  width: 25px;
-}
-
-.header .header-social-links a i {
-  line-height: 0px;
-  font-size: 15px;
-  margin-right: 4px;
-}
-
 .header .cart-link {
   position: relative;
 }
@@ -248,11 +205,6 @@ h6 {
   .header .logo {
     order: 1;
   }
-
-  .header .header-social-links {
-    order: 2;
-  }
-
   .header .navmenu {
     order: 3;
   }
