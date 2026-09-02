@@ -26,8 +26,11 @@
 		 <script src="{{asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}" defer></script>
 		 <script src="{{asset('assets/js/main.js')}}" defer></script>
 		<!-- Fin import folioOne -->{% block stylesheets %}
-		{% endblock %}{% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
+		{% endblock %}
+			{% block javascripts %}
+				{% block importmap %}
+			{{ importmap('app') }}
+		{% endblock %}
 	{% endblock %}
 	</head>
 		<body>
@@ -52,7 +55,9 @@
 								</a>
 								<ul>
 									{% for categorie in categorie_repository.findAll() %}
-										<li><a href="{{ path('app_event_index', {category: categorie.id, filter_token: csrf_token('filter')}) }}#events-results">{{ categorie.name }}</a></li>
+										<li>
+											<a href="{{ path('app_event_index', {category: categorie.id, filter_token: csrf_token('filter')}) }}#events-results">{{ categorie.name }}</a>
+										</li>
 									{% endfor %}
 								</ul>
 							</li>
@@ -63,163 +68,191 @@
 						<i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
 					</nav>
 				</div>
-				<div class="header-social-links">
-					<a href="{{ path('app_cart_index') }}" class="cart-link">
-						<i class="bi bi-cart3"></i>
-						Panier
-						{% if cart_service.getItemCount() > 0 %}
-							<span class="cart-badge">{{ cart_service.getItemCount() }}</span>
-						{% endif %}
-					</a>
-					{% if not app.user %}
-						<a href="{{ path('app_login') }}">
-							<i class="bi bi-box-arrow-in-right"></i>
-							Connexion</a>
-					{% else %}
-						<a href="{{ path('app_user_profil', {'id': app.user.id}) }}">
-							<i class="bi bi-person"></i>
-							Profil</a>
-						<a href="{{ path('app_logout') }}">
-							<i class="bi bi-box-arrow-right"></i>
-							Déconnexion</a>
-					{% endif %}
-				</div>
+				<div>
+					<nav id="navmenu" class="navmenu">
+						<ul>
+							<li class="p-0">
+								<a href="{{ path('app_cart_index') }}" class="cart-link">
+									<i class="bi bi-cart fs-5 me-1"></i>
+									<span>
+										Panier
+									</span>
+									{% if cart_service.getItemCount() > 0 %}
+										<span class="cart-badge">{{ cart_service.getItemCount() }}</span>
+									{% endif %}
+								</a>
+							</li>
+							<li class="dropdown">
+								<a href="">
+									<i class="bi bi-person fs-5 me-1"></i>
+									<span>Profil</span>
+								</a>
+								<ul>
+									{% if not app.user %}
+
+										<li>
+											<a href="{{ path('app_login') }}">
+												Connexion</a>
+										</li>
+									{% else %}
+										<li>
+											<a href="{{ path('app_user_profil', {'id': app.user.id}) }}">
+												Mon profil</a>
+										</li>
+										{% if  app.user.role.value =='admin' %}
+											<li>
+												<a href="{{ path('admin') }}">
+													Administration</a>
+											</li>
+											<li>
+												<a href="{{ path('app_mes_evenements') }}">
+													Gestion des évènements</a>
+											</li>
+										{% endif %}
+										{% if  app.user.role.value=='contributeur' %}
+											<li>
+												<a href="{{ path('app_mes_evenements') }}">
+													Mes évènements</a>
+											</li>
+										{% endif %}
+										<li>
+											<a href="{{ path('app_logout') }}">
+												Déconnexion</a>
+										</li>
+									{% endif %}
+								</ul>
+							</li>
+						</li>
+					</ul>
+				</nav>
+
 			</div>
-		</header>
-		{% block body %}{% endblock %}
-		<footer id="footer" class="footer mt-0">
-			<div class="container position-relative">
-				<div class="row gy-4 justify-content-between">
-					<div class="col-lg-4">
-						<a href="{{ path('app_event_index') }}" class="d-inline-flex align-items-center text-decoration-none mb-3">
-							<i class="bi bi-ticket-perforated-fill fs-2 me-2"></i>
-							<span class="fs-3 fw-bold">BxlEvent</span>
-						</a>
-						<p>La billetterie qui réunit les meilleurs événements de Bruxelles, du showcase intime au grand festival.</p>
-						<div class="footer-trust d-flex align-items-start gap-3 mt-4">
-							<i class="bi bi-ticket-perforated"></i>
-							<div>
-								<p class="footer-trust-title mb-0">Billets sécurisés</p>
-								<p class="footer-trust-subtitle mb-0">Achat 100% sécurisé</p>
-							</div>
-						</div>
-						<div class="footer-trust d-flex align-items-start gap-3 mt-3">
-							<i class="bi bi-headset"></i>
-							<div>
-								<p class="footer-trust-title mb-0">Support réactif</p>
-								<p class="footer-trust-subtitle mb-0">Notre équipe est là pour vous</p>
-							</div>
-						</div>
-						<div class="footer-trust d-flex align-items-start gap-3 mt-3">
-							<i class="bi bi-patch-check"></i>
-							<div>
-								<p class="footer-trust-title mb-0">Événements vérifiés</p>
-								<p class="footer-trust-subtitle mb-0">Qualité et fiabilité garanties</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-2 col-3">
-						<h5 class="footer-title">Navigation</h5>
-						<ul class="footer-links">
-							<li>
-								<a href="{{ path('app_event_index') }}">
-									<i class="bi bi-chevron-right"></i>
-									Accueil</a>
-							</li>
-							<li>
-								<a href="{{ path('app_contact_contoller') }}">
-									<i class="bi bi-chevron-right"></i>
-									Contact</a>
-							</li>
-						</ul>
-					</div>
-					<div class="col-lg-2 col-4">
-						<h5 class="footer-title">Mon compte</h5>
-						<ul class="footer-links">
-							<li>
-								<a href="{{ path('app_login') }}">
-									<i class="bi bi-chevron-right"></i>
-									Connexion</a>
-							</li>
-							<li>
-								<a href="{{ path('app_register') }}">
-									<i class="bi bi-chevron-right"></i>
-									S'inscrire</a>
-							</li>
-							<li>
-								<a href="{{ path('app_cart_index') }}">
-									<i class="bi bi-chevron-right"></i>
-									Panier</a>
-							</li>
-						</ul>
-					</div>
-					<div class="col-lg-2 col-5">
-						<h5 class="footer-title">Aide</h5>
-						<ul class="footer-links">
-							<li>
-								<a href="{{ path('app_contact_faq') }}">
-									<i class="bi bi-chevron-right"></i>
-									FAQ</a>
-							</li>
-							<li>
-								<a href="{{ path('app_terms') }}">
-									<i class="bi bi-chevron-right"></i>
-									Conditions générales</a>
-							</li>
-							<li>
-								<a href="{{ path('app_privacy_policy') }}">
-									<i class="bi bi-chevron-right"></i>
-									Politique de confidentialité</a>
-							</li>
-							<li>
-								<a href="{{ path('app_legal_notice') }}">
-									<i class="bi bi-chevron-right"></i>
-									Mentions légales</a>
-							</li>
-						</ul>
-					</div>
-					<div class="col-lg-3">
-						<h5 class="footer-title">Suivez-nous</h5>
-						<div class="social-links d-flex">
-							<a href="#">
-								<i class="bi bi-facebook"></i>
-							</a>
-							<a href="#">
-								<i class="bi bi-instagram"></i>
-							</a>
-							<a href="#">
-								<i class="bi bi-twitter-x"></i>
-							</a>
-							<a href="#">
-								<i class="bi bi-linkedin"></i>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="footer-bottom d-flex flex-wrap justify-content-between align-items-center gap-3">
-					<div class="footer-contact d-flex flex-wrap gap-4">
-						<span>
-							<i class="bi bi-geo-alt"></i>
-							Bruxelles, Belgique</span>
-						<span>
-							<a href="mailto:contact@bxlevent.be">
-								<i class="bi bi-envelope"></i>
-								contact@bxlevent.be</a>
-						</span>
-						<span>
-							<a href="tel:+3221234567">
-								<i class="bi bi-telephone"></i>
-								+32 2 123 45 67</a>
-						</span>
-					</div>
-					<div class="footer-legal d-flex flex-wrap align-items-center gap-3">
-						<p class="mb-0">&copy;
-							{{ "now"|date('Y') }}
-							<strong>BxlEvent</strong>. Tous droits réservés.</p>
-						<a href="{{path('app_legal_notice')}}">Mentions légales</a>
-					</div>
-				</div>
-			</div>
-		</footer>
+		</div>
 	</body>
-</html></body></body></html>
+</html></body></html></header>{% block body %}{% endblock %}<footer id="footer" class="footer mt-0"><div class="container position-relative"><div class="row gy-4 justify-content-between">
+<div class="col-lg-4">
+	<a href="{{ path('app_event_index') }}" class="d-inline-flex align-items-center text-decoration-none mb-3">
+		<i class="bi bi-ticket-perforated-fill fs-2 me-2"></i>
+		<span class="fs-3 fw-bold">BxlEvent</span>
+	</a>
+	<p>La billetterie qui réunit les meilleurs événements de Bruxelles, du showcase intime au grand festival.</p>
+	<div class="footer-trust d-flex align-items-start gap-3 mt-4">
+		<i class="bi bi-ticket-perforated"></i>
+		<div>
+			<p class="footer-trust-title mb-0">Billets sécurisés</p>
+			<p class="footer-trust-subtitle mb-0">Achat 100% sécurisé</p>
+		</div>
+	</div>
+	<div class="footer-trust d-flex align-items-start gap-3 mt-3">
+		<i class="bi bi-headset"></i>
+		<div>
+			<p class="footer-trust-title mb-0">Support réactif</p>
+			<p class="footer-trust-subtitle mb-0">Notre équipe est là pour vous</p>
+		</div>
+	</div>
+	<div class="footer-trust d-flex align-items-start gap-3 mt-3">
+		<i class="bi bi-patch-check"></i>
+		<div>
+			<p class="footer-trust-title mb-0">Événements vérifiés</p>
+			<p class="footer-trust-subtitle mb-0">Qualité et fiabilité garanties</p>
+		</div>
+	</div>
+</div>
+<div class="col-lg-2 col-3">
+	<h5 class="footer-title">Navigation</h5>
+	<ul class="footer-links">
+		<li>
+			<a href="{{ path('app_event_index') }}">
+				<i class="bi bi-chevron-right"></i>
+				Accueil</a>
+		</li>
+		<li>
+			<a href="{{ path('app_contact_contoller') }}">
+				<i class="bi bi-chevron-right"></i>
+				Contact</a>
+		</li>
+	</ul>
+</div>
+<div class="col-lg-2 col-4">
+	<h5 class="footer-title">Mon compte</h5>
+	<ul class="footer-links">
+		<li>
+			<a href="{{ path('app_login') }}">
+				<i class="bi bi-chevron-right"></i>
+				Connexion</a>
+		</li>
+		<li>
+			<a href="{{ path('app_register') }}">
+				<i class="bi bi-chevron-right"></i>
+				S'inscrire</a>
+		</li>
+		<li>
+			<a href="{{ path('app_cart_index') }}">
+				<i class="bi bi-chevron-right "></i>
+				Panier</a>
+		</li>
+	</ul>
+</div>
+<div class="col-lg-2 col-5">
+	<h5 class="footer-title">Aide</h5>
+	<ul class="footer-links">
+		<li>
+			<a href="{{ path('app_contact_faq') }}">
+				<i class="bi bi-chevron-right"></i>
+				FAQ</a>
+		</li>
+		<li>
+			<a href="{{ path('app_terms') }}">
+				<i class="bi bi-chevron-right"></i>
+				Conditions générales</a>
+		</li>
+		<li>
+			<a href="{{ path('app_privacy_policy') }}">
+				<i class="bi bi-chevron-right"></i>
+				Politique de confidentialité</a>
+		</li>
+		<li>
+			<a href="{{ path('app_legal_notice') }}">
+				<i class="bi bi-chevron-right"></i>
+				Mentions légales</a>
+		</li>
+	</ul>
+</div>
+<div class="col-lg-3">
+	<h5 class="footer-title">Suivez-nous</h5>
+	<div class="social-links d-flex">
+		<a href="#">
+			<i class="bi bi-facebook"></i>
+		</a>
+		<a href="#">
+			<i class="bi bi-instagram"></i>
+		</a>
+		<a href="#">
+			<i class="bi bi-twitter-x"></i>
+		</a>
+		<a href="#">
+			<i class="bi bi-linkedin"></i>
+		</a>
+	</div>
+</div></div><div class="footer-bottom d-flex flex-wrap justify-content-between align-items-center gap-3">
+<div class="footer-contact d-flex flex-wrap gap-4">
+	<span>
+		<i class="bi bi-geo-alt"></i>
+		Bruxelles, Belgique</span>
+	<span>
+		<a href="mailto:contact@bxlevent.be">
+			<i class="bi bi-envelope"></i>
+			contact@bxlevent.be</a>
+	</span>
+	<span>
+		<a href="tel:+3221234567">
+			<i class="bi bi-telephone"></i>
+			+32 2 123 45 67</a>
+	</span>
+</div>
+<div class="footer-legal d-flex flex-wrap align-items-center gap-3">
+	<p class="mb-0">&copy;
+		{{ "now"|date('Y') }}
+		<strong>BxlEvent</strong>. Tous droits réservés.</p>
+	<a href="{{path('app_legal_notice')}}">Mentions légales</a>
+</div></div></div></footer></body></html></body></body></html>
