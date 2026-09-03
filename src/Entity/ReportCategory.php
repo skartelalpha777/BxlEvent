@@ -18,8 +18,6 @@ class ReportCategory
     #[ORM\Column(length: 255)]
     private ?string $label = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $icon = null;
 
     /**
      * @var Collection<int, Reports>
