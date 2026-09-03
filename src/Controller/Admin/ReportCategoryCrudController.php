@@ -20,7 +20,6 @@ class ReportCategoryCrudController extends AbstractCrudController
         return [
             IdField::new('id')->hideOnForm(),
             TextField::new('label', 'Libellé'),
-            TextField::new('icon', 'Icône (classe Bootstrap Icons)'),
             AssociationField::new('reports', 'Signalements')->hideOnForm(),
         ];
     }

@@ -47,18 +47,6 @@ class ReportCategory
         return $this;
     }
 
-    public function getIcon(): ?string
-    {
-        return $this->icon;
-    }
-
-    public function setIcon(?string $icon): static
-    {
-        $this->icon = $icon;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Reports>
      */

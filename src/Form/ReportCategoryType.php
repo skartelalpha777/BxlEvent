@@ -13,7 +13,6 @@ class ReportCategoryType extends AbstractType
     {
         $builder
             ->add('label')
-            ->add('icon')
         ;
     }
 
