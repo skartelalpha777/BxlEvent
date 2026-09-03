@@ -69,12 +69,12 @@
 					</nav>
 				</div>
 				<div>
-					<nav id="navmenu" class="navmenu">
+					<nav class="navmenu-right">
 						<ul>
 							<li class="p-0">
 								<a href="{{ path('app_cart_index') }}" class="cart-link">
 									<i class="bi bi-cart fs-5 me-1"></i>
-									<span>
+									<span class="nav-label">
 										Panier
 									</span>
 									{% if cart_service.getItemCount() > 0 %}
@@ -85,7 +85,8 @@
 							<li class="dropdown">
 								<a href="">
 									<i class="bi bi-person fs-5 me-1"></i>
-									<span>Profil</span>
+									<span class="nav-label">Profil</span>
+									<i class="bi bi-chevron-down toggle-dropdown"></i>
 								</a>
 								<ul>
 									{% if not app.user %}
