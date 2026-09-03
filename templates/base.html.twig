@@ -95,6 +95,10 @@
 											<a href="{{ path('app_login') }}">
 												Connexion</a>
 										</li>
+										<li>
+											<a href="{{ path('app_register') }}">
+												Inscription</a>
+										</li>
 									{% else %}
 										<li>
 											<a href="{{ path('app_user_profil', {'id': app.user.id}) }}">

@@ -9,30 +9,22 @@
 	<main class="main">
 
 		<section id="contact" class="contact section">
-
 			<div class="container-fluid container-lg">
-
 				<div class="row  justify-content-center gy-4">
-
 					<div class="col-11 col-md-10 col-lg-8 info-box">
 						<div class="container section-title">
 							<h1>Inscription</h1>
 						</div>
 
 						<div class="inscription-form">
-
-
 							{{ form_start(registrationForm, {'attr': {'class': 'php-email-form'}}) }}
 							<div class="row gy-4">
 								{% for child in registrationForm.role %}
 									<div class="col-md-6">
-
 										{{ form_widget(child, {'attr': {'class': 'role-input'}}) }}
-
 										<label for="{{ child.vars.id }}" class="role-label">
 											<span class="role-title">{{ child.vars.attr['data-titre'] }}</span>
 											<span class="role-description">{{ child.vars.attr['data-description'] }}</span>
-
 											{% if child.vars.value == 0 %}
 												<i class="bi bi-people-fill"></i>
 											{% else %}
@@ -53,16 +45,13 @@
 											<i class="bi bi-person-fill"></i>
 										</span>
 										{{ form_widget(registrationForm.lastName, {
-                                        'attr': {
-                                          
-                                            'class': 'form-control', 
-                                          
+                                        'attr': {    
+                                            'class': 'form-control',                                           
                                         }
                                     }) }}
 									</div>
 									{{ form_errors(registrationForm.firstName) }}
 								</div>
-
 
 								<div class="col-md-6">
 									{{ form_label(registrationForm.firstName, 'Prenom *') }}
@@ -72,8 +61,7 @@
 										</span>
 										{{ form_widget(registrationForm.firstName, {
                                         'attr': {
-                                            'class': 'form-control', 
-                                            
+                                            'class': 'form-control',                                             
                                         }
                                     }) }}
 									</div>
@@ -181,25 +169,17 @@
 								</div>
 
 								<div class="col">
-									
 									{{ form_row(registrationForm.agreeTerms)}}
 								</div>
 
-
 								<div class="col-12 text-center mt-0">
-
 									<button type="submit" class="btn button large">S'incrire</button>
-
 									<p>Vous disposez déja d'un compte?
 										<a href="{{path('app_login')}}">Connectez vous</a>
 									</p>
 								</div>
-
-
 							</div>
 							{{ form_end(registrationForm) }}
-
-
 						</div>
 
 					</div>
