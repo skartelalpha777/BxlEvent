@@ -200,4 +200,4 @@
     selector: '.glightbox'
   });
 
-})();
+});
