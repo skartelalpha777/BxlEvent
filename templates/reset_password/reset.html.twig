@@ -1,12 +1,55 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Reset your password{% endblock %}
+{% block title %}Réinitialiser le mot de passe
+{% endblock %}
 
 {% block body %}
-    <h1>Reset your password</h1>
+	<main class="main">
 
-    {{ form_start(resetForm) }}
-        {{ form_row(resetForm.plainPassword) }}
-        <button class="btn btn-primary">Reset password</button>
-    {{ form_end(resetForm) }}
+		<section id="contact" class="contact section">
+
+			<div class="container-fluid container-lg">
+				<div class="row  justify-content-center gy-4">
+
+
+					<div class="col-11 col-md-10 col-lg-8 info-box">
+						<div class="container section-title">
+							<h1>Réinitialiser le mot de passe</h1>
+						</div>
+						<div class="inscription-form">
+							{{ form_start(resetForm) }}
+
+							<div>
+								{{ form_label(resetForm.plainPassword.first, 'Nouveau mot de passe') }}
+								<div class="input-group mb-3">
+									<span class="input-group-text">
+										<i class="bi bi-lock-fill"></i>
+									</span>
+									{{ form_widget(resetForm.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
+								</div>
+								{{ form_errors(resetForm.plainPassword.first) }}
+							</div>
+
+							<div class="mt-4">
+								{{ form_label(resetForm.plainPassword.second, 'Confirmer le mot de passe') }}
+								<div class="input-group mb-3">
+									<span class="input-group-text">
+										<i class="bi bi-lock-fill"></i>
+									</span>
+									{{ form_widget(resetForm.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
+								</div>
+								{{ form_errors(resetForm.plainPassword.second) }}
+							</div>
+
+							<button class="btn button large mt-4" type="submit">
+								Réinitialiser
+							</button>
+							{{ form_end(resetForm) }}
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</section>
+	</main>
 {% endblock %}
