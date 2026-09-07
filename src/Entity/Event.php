@@ -8,8 +8,17 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Metadata\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 
 #[ORM\Entity(repositoryClass: EventRepository::class)]
+#[ApiResource(
+    normalizationContext: ['groups' => ['event:read']],
+    denormalizationContext: ['groups' => ['event:write']],
+    paginationEnabled: false
+)]
+
 class Event
 {
     #[ORM\Id]
@@ -18,15 +27,19 @@ class Event
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['event:read'])]
     private ?string $title = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['event:read', 'event:write'])]
     private ?string $description = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Groups(['event:read'])]
     private ?\DateTime $date = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
+    #[Groups(['event:read'])]
     private ?\DateTime $hour = null;
 
     #[ORM\Column(enumType: Status::class)]
@@ -314,21 +327,20 @@ class Event
         return $this;
     }
 
-        function __toString()
+    function __toString()
     {
         return $this->title;
     }
 
-        public function isFeatured(): ?bool
-        {
-            return $this->isFeatured;
-        }
+    public function isFeatured(): ?bool
+    {
+        return $this->isFeatured;
+    }
 
-        public function setIsFeatured(bool $isFeatured): static
-        {
-            $this->isFeatured = $isFeatured;
+    public function setIsFeatured(bool $isFeatured): static
+    {
+        $this->isFeatured = $isFeatured;
 
-            return $this;
-        }
-
+        return $this;
+    }
 }

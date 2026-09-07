@@ -4,12 +4,6 @@
  * This file will be included onto the page via the importmap() Twig function,
  * which should already be in your base.html.twig.
  */
-import './stimulus_bootstrap.js';
+import './styles/app.css';
 
-/* assets/app.js
- register globally for all charts */
-import zoomPlugin from 'chartjs-plugin-zoom';
-document.addEventListener('chartjs:init', function (event) {
-    const Chart = event.detail.Chart;
-    Chart.register(zoomPlugin);
-});
+console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
