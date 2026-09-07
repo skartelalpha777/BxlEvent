@@ -130,7 +130,9 @@ final class UserController extends AbstractController
             $entityManager->remove($user);
             $entityManager->flush();
             $this->addFlash('notice', 'Votre profil à été supprimer avec succès.');
-            $tokenStorage->setToken(null);
+            if ($user === $this->getUser()) {
+                $tokenStorage->setToken(null);
+            }
         }
 
         return $this->redirectToRoute('app_event_index', [], Response::HTTP_SEE_OTHER);
