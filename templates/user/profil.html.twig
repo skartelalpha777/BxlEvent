@@ -345,8 +345,18 @@
 						<div class="info-box p-4">
 							<h2 class="h5 mb-3">Informations du compte</h2>
 							{{ accountInfo|raw }}
+							<form id="delete-account-form" method="post" action="{{ path('app_user_delete', {'id': user.id}) }}">
+
+								<button type="button" id="deleteAccount" class="btn btn-outline-danger w-100 mt-3 py-2">
+									Supprimer mon profil
+								</button>
+								<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+							</form>
 						</div>
+
 					</div>
+
+
 				</div>
 
 			</div>

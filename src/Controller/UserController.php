@@ -17,6 +17,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 #[Route('/user')]
 final class UserController extends AbstractController
 {
+    #[IsGranted('ROLE_ADMIN')]
     #[Route(name: 'app_user_index', methods: ['GET'])]
     public function index(UserRepository $userRepository): Response
     {
@@ -25,7 +26,7 @@ final class UserController extends AbstractController
         ]);
     }
 
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/new', name: 'app_user_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -59,7 +60,8 @@ final class UserController extends AbstractController
             'user' => $user,
         ]);
     }
-    #[Route('/{id}', name: 'app_user_show', methods: ['GET'])]
+    #[IsGranted('ROLE_ADMIN')]
+    #[Route('/{id}/show', name: 'app_user_show', methods: ['GET'])]
     public function show(User $user): Response
     {
         return $this->render('user/show.html.twig', [
@@ -96,7 +98,6 @@ final class UserController extends AbstractController
     }
 
     #[IsGranted('ROLE_ADMIN')]
-
     #[Route('/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, User $user, EntityManagerInterface $entityManager): Response
     {
@@ -114,15 +115,22 @@ final class UserController extends AbstractController
             'form' => $form,
         ]);
     }
-
+    #[IsGranted('ROLE_USER')]
     #[Route('/{id}', name: 'app_user_delete', methods: ['POST'])]
     public function delete(Request $request, User $user, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->getPayload()->getString('_token'))) {
+
+        if (!$this->isGranted('ROLE_ADMIN') && $user !== $this->getUser()) {
+            throw $this->createAccessDeniedException('Vous ne pouvez supprimer que votre propre compte.');
+        }
+        $token = $request->request->get('_token');
+
+        if ($this->isCsrfTokenValid('delete' . $user->getId(), $token)) {
             $entityManager->remove($user);
             $entityManager->flush();
+            $this->addFlash('notice', 'Votre profil à été supprimer avec succès.');
         }
 
-        return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_event_index', [], Response::HTTP_SEE_OTHER);
     }
 }
