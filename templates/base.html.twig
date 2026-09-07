@@ -22,11 +22,10 @@
 		<!-- Fin import folioOne -->{% block stylesheets %}
 		{% endblock %}
 			{% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
 				{% block importmap %}
-			{{ importmap('app') }}
-		{% endblock %}
-	{% endblock %}
+					{{ importmap('app') }}
+				{% endblock %}
+			{% endblock %}
 	</head>
 		<body>
 			<header id="header" class="header d-flex align-items-center light-background sticky-top"> <div class="container position-relative d-flex align-items-center justify-content-between">

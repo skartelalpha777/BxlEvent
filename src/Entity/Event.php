@@ -16,7 +16,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ApiResource(
     normalizationContext: ['groups' => ['event:read']],
     denormalizationContext: ['groups' => ['event:write']],
-    paginationEnabled: false
+    paginationEnabled: false,
+    security: "is_granted('ROLE_ADMIN')", // Nécessite une authentification pour accéder à cette ressource
+    securityPostDenormalize: "is_granted('ROLE_ADMIN') or object.getId() == user.getId()" // Contrôle après la désérialisation
+
 )]
 
 class Event
@@ -326,7 +329,7 @@ class Event
     }
 
     #[Groups(['event:read'])]
-    public function getEventTicketTypes():array
+    public function getEventTicketTypes(): array
     {
         $types = [];
         foreach ($this->tickettypes as $ticketType) {
