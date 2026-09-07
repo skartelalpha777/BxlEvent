@@ -5,6 +5,7 @@ framework:
             - assets/
         excluded_patterns:
             - '*/api-platform/symfony/Bundle/Resources/public/*'
+            - '*/easycorp/easyadmin-bundle/public/*'
         missing_import_mode: strict
 
 when@prod:
