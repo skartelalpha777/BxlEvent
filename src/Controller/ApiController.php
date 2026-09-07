@@ -25,7 +25,7 @@ final class ApiController extends AbstractController
                 'tittre' => $event->getTitle(),
                 'description' => $event->getDescription(),
                 'date' => $event->getDate()->format('d/m/y'),
-                'heure' => $event->getDate()->format('H:i'),
+                'heure' => $event->getHour()->format('H:i'),
                 'lieu' => $event->getLocation()->getName(),
                 'catégorie' => $this->getCategories($event),
             ];

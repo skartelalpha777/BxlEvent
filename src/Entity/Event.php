@@ -138,6 +138,11 @@ class Event
     {
         return $this->hour;
     }
+    #[Groups(['event:read'])]
+    public function getFormatedHour()
+    {
+        return $this->hour->format('H:i');
+    }
 
     public function setHour(\DateTime $hour): static
     {
@@ -310,6 +315,37 @@ class Event
     {
         return $this->categories;
     }
+    #[Groups(['event:read'])]
+    public function getCategoryNames(): array
+    {
+        $names = [];
+        foreach ($this->categories as $categorie) {
+            $names[] = $categorie->getName();
+        }
+        return $names;
+    }
+
+    #[Groups(['event:read'])]
+    public function getEventTicketTypes():array
+    {
+        $types = [];
+        foreach ($this->tickettypes as $ticketType) {
+            array_push($types, [
+                'label' => $ticketType->getLabel(),
+                'prix' => $ticketType->getPrice(),
+                'maxBillet' => $ticketType->getMaxTicket(),
+            ]);
+        }
+        return $types;
+    }
+
+    #[Groups(['event:read'])]
+    public function getLocationName(): ?string
+    {
+        return $this->location?->getName();
+    }
+
+
 
     public function addCategory(Categorie $category): static
     {
