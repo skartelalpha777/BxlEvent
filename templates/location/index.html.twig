@@ -1,21 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Lieux | BxlEvent{% endblock %}
+{% block title %}{% trans %}Lieux{% endtrans %} | BxlEvent{% endblock %}
 
 {% block body %}
-    <h1>Location index</h1>
+    <h1>{% trans %}Location index{% endtrans %}</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Id</th>
-                <th>Street</th>
-                <th>Number</th>
-                <th>Postcode</th>
-                <th>City</th>
-                <th>Details</th>
-                <th>actions</th>
+                <th>{% trans %}Name{% endtrans %}</th>
+                <th>{% trans %}Id{% endtrans %}</th>
+                <th>{% trans %}Street{% endtrans %}</th>
+                <th>{% trans %}Number{% endtrans %}</th>
+                <th>{% trans %}Postcode{% endtrans %}</th>
+                <th>{% trans %}City{% endtrans %}</th>
+                <th>{% trans %}Details{% endtrans %}</th>
+                <th>{% trans %}actions{% endtrans %}</th>
             </tr>
         </thead>
         <tbody>
@@ -29,17 +29,17 @@
                 <td>{{ location.city }}</td>
                 <td>{{ location.details }}</td>
                 <td>
-                    <a href="{{ path('app_location_show', {'id': location.id}) }}">show</a>
-                    <a href="{{ path('app_location_edit', {'id': location.id}) }}">edit</a>
+                    <a href="{{ path('app_location_show', {'id': location.id}) }}">{% trans %}show{% endtrans %}</a>
+                    <a href="{{ path('app_location_edit', {'id': location.id}) }}">{% trans %}edit{% endtrans %}</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="7">{% trans %}no records found{% endtrans %}</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_location_new') }}">Create new</a>
+    <a href="{{ path('app_location_new') }}">{% trans %}Create new{% endtrans %}</a>
 {% endblock %}

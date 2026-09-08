@@ -37,14 +37,14 @@
 					<nav id="navmenu" class="navmenu">
 						<ul>
 							<li>
-								<a href="{{ path('app_event_index') }}">Accueil</a>
+								<a href="{{ path('app_event_index') }}">{% trans %}Accueil{% endtrans %}</a>
 							</li>
 							<li>
-								<a href="{{path('app_contact_about')}}">A propos</a>
+								<a href="{{path('app_contact_about')}}">{% trans %}A propos{% endtrans %}</a>
 							</li>
 							<li class="dropdown">
 								<a href="">
-									<span>Catégories</span>
+									<span>{% trans %}Catégories{% endtrans %}</span>
 									<i class="bi bi-chevron-down toggle-dropdown"></i>
 								</a>
 								<ul>
@@ -56,7 +56,7 @@
 								</ul>
 							</li>
 							<li>
-								<a href="{{ path('app_contact_contoller') }}">Contact</a>
+								<a href="{{ path('app_contact_contoller') }}">{% trans %}Contact{% endtrans %}</a>
 							</li>
 						</ul>
 						<i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -68,9 +68,7 @@
 							<li class="p-0">
 								<a href="{{ path('app_cart_index') }}" class="cart-link">
 									<i class="bi bi-cart fs-5 me-1"></i>
-									<span class="nav-label">
-										Panier
-									</span>
+									<span class="nav-label">{% trans %}Panier{% endtrans %}</span>
 									{% if cart_service.getItemCount() > 0 %}
 										<span class="cart-badge">{{ cart_service.getItemCount() }}</span>
 									{% endif %}
@@ -79,44 +77,37 @@
 							<li class="dropdown">
 								<a href="">
 									<i class="bi bi-person fs-5 me-1"></i>
-									<span class="nav-label">Profil</span>
+									<span class="nav-label">{% trans %}Profil{% endtrans %}</span>
 									<i class="bi bi-chevron-down toggle-dropdown"></i>
 								</a>
 								<ul>
 									{% if not app.user %}
 
 										<li>
-											<a href="{{ path('app_login') }}">
-												Connexion</a>
+											<a href="{{ path('app_login') }}">{% trans %}Connexion{% endtrans %}</a>
 										</li>
 										<li>
-											<a href="{{ path('app_register') }}">
-												Inscription</a>
+											<a href="{{ path('app_register') }}">{% trans %}Inscription{% endtrans %}</a>
 										</li>
 									{% else %}
 										<li>
-											<a href="{{ path('app_user_profil', {'id': app.user.id}) }}">
-												Mon profil</a>
+											<a href="{{ path('app_user_profil', {'id': app.user.id}) }}">{% trans %}Mon profil{% endtrans %}</a>
 										</li>
 										{% if  app.user.role.value =='admin' %}
 											<li>
-												<a href="{{ path('admin') }}">
-													Administration</a>
+												<a href="{{ path('admin') }}">{% trans %}Administration{% endtrans %}</a>
 											</li>
 											<li>
-												<a href="{{ path('app_mes_evenements') }}">
-													Gestion des évènements</a>
+												<a href="{{ path('app_mes_evenements') }}">{% trans %}Gestion des évènements{% endtrans %}</a>
 											</li>
 										{% endif %}
 										{% if  app.user.role.value=='contributeur' %}
 											<li>
-												<a href="{{ path('app_mes_evenements') }}">
-													Mes évènements</a>
+												<a href="{{ path('app_mes_evenements') }}">{% trans %}Mes évènements{% endtrans %}</a>
 											</li>
 										{% endif %}
 										<li>
-											<a href="{{ path('app_logout') }}">
-												Déconnexion</a>
+											<a href="{{ path('app_logout') }}">{% trans %}Déconnexion{% endtrans %}</a>
 										</li>
 									{% endif %}
 								</ul>
@@ -136,91 +127,91 @@
 				<i class="bi bi-ticket-perforated-fill fs-2 me-2"></i>
 				<span class="fs-3 fw-bold">BxlEvent</span>
 			</a>
-			<p>La billetterie qui réunit les meilleurs événements de Bruxelles, du showcase intime au grand festival.</p>
+			<p>{% trans %}La billetterie qui réunit les meilleurs événements de Bruxelles, du showcase intime au grand festival.{% endtrans %}</p>
 			<div class="footer-trust d-flex align-items-start gap-3 mt-4">
 				<i class="bi bi-ticket-perforated"></i>
 				<div>
-					<p class="footer-trust-title mb-0">Billets sécurisés</p>
-					<p class="footer-trust-subtitle mb-0">Achat 100% sécurisé</p>
+					<p class="footer-trust-title mb-0">{% trans %}Billets sécurisés{% endtrans %}</p>
+					<p class="footer-trust-subtitle mb-0">{% trans %}Achat 100% sécurisé{% endtrans %}</p>
 				</div>
 			</div>
 			<div class="footer-trust d-flex align-items-start gap-3 mt-3">
 				<i class="bi bi-headset"></i>
 				<div>
-					<p class="footer-trust-title mb-0">Support réactif</p>
-					<p class="footer-trust-subtitle mb-0">Notre équipe est là pour vous</p>
+					<p class="footer-trust-title mb-0">{% trans %}Support réactif{% endtrans %}</p>
+					<p class="footer-trust-subtitle mb-0">{% trans %}Notre équipe est là pour vous{% endtrans %}</p>
 				</div>
 			</div>
 			<div class="footer-trust d-flex align-items-start gap-3 mt-3">
 				<i class="bi bi-patch-check"></i>
 				<div>
-					<p class="footer-trust-title mb-0">Événements vérifiés</p>
-					<p class="footer-trust-subtitle mb-0">Qualité et fiabilité garanties</p>
+					<p class="footer-trust-title mb-0">{% trans %}Événements vérifiés{% endtrans %}</p>
+					<p class="footer-trust-subtitle mb-0">{% trans %}Qualité et fiabilité garanties{% endtrans %}</p>
 				</div>
 			</div>
 		</div>
 		<div class="col-lg-2 col-3">
-			<h5 class="footer-title">Navigation</h5>
+			<h5 class="footer-title">{% trans %}Navigation{% endtrans %}</h5>
 			<ul class="footer-links">
 				<li>
 					<a href="{{ path('app_event_index') }}">
 						<i class="bi bi-chevron-right"></i>
-						Accueil</a>
+						{% trans %}Accueil{% endtrans %}</a>
 				</li>
 				<li>
 					<a href="{{ path('app_contact_contoller') }}">
 						<i class="bi bi-chevron-right"></i>
-						Contact</a>
+						{% trans %}Contact{% endtrans %}</a>
 				</li>
 			</ul>
 		</div>
 		<div class="col-lg-2 col-4">
-			<h5 class="footer-title">Mon compte</h5>
+			<h5 class="footer-title">{% trans %}Mon compte{% endtrans %}</h5>
 			<ul class="footer-links">
 				<li>
 					<a href="{{ path('app_login') }}">
 						<i class="bi bi-chevron-right"></i>
-						Connexion</a>
+						{% trans %}Connexion{% endtrans %}</a>
 				</li>
 				<li>
 					<a href="{{ path('app_register') }}">
 						<i class="bi bi-chevron-right"></i>
-						S'inscrire</a>
+						{% trans %}S'inscrire{% endtrans %}</a>
 				</li>
 				<li>
 					<a href="{{ path('app_cart_index') }}">
 						<i class="bi bi-chevron-right "></i>
-						Panier</a>
+						{% trans %}Panier{% endtrans %}</a>
 				</li>
 			</ul>
 		</div>
 		<div class="col-lg-2 col-5">
-			<h5 class="footer-title">Aide</h5>
+			<h5 class="footer-title">{% trans %}Aide{% endtrans %}</h5>
 			<ul class="footer-links">
 				<li>
 					<a href="{{ path('app_contact_faq') }}">
 						<i class="bi bi-chevron-right"></i>
-						FAQ</a>
+						{% trans %}FAQ{% endtrans %}</a>
 				</li>
 				<li>
 					<a href="{{ path('app_terms') }}">
 						<i class="bi bi-chevron-right"></i>
-						Conditions générales</a>
+						{% trans %}Conditions générales{% endtrans %}</a>
 				</li>
 				<li>
 					<a href="{{ path('app_privacy_policy') }}">
 						<i class="bi bi-chevron-right"></i>
-						Politique de confidentialité</a>
+						{% trans %}Politique de confidentialité{% endtrans %}</a>
 				</li>
 				<li>
 					<a href="{{ path('app_legal_notice') }}">
 						<i class="bi bi-chevron-right"></i>
-						Mentions légales</a>
+						{% trans %}Mentions légales{% endtrans %}</a>
 				</li>
 			</ul>
 		</div>
 		<div class="col-lg-3">
-			<h5 class="footer-title">Suivez-nous</h5>
+			<h5 class="footer-title">{% trans %}Suivez-nous{% endtrans %}</h5>
 			<div class="social-links d-flex">
 				<a href="#">
 					<i class="bi bi-facebook"></i>
@@ -241,11 +232,11 @@
 		<div class="footer-contact d-flex flex-wrap gap-4">
 			<span>
 				<i class="bi bi-geo-alt"></i>
-				Bruxelles, Belgique</span>
+				{% trans %}Bruxelles, Belgique{% endtrans %}</span>
 			<span>
 				<a href="mailto:contact@bxlevent.be">
 					<i class="bi bi-envelope"></i>
-					contact@bxlevent.be</a>
+					{% trans %}contact@bxlevent.be{% endtrans %}</a>
 			</span>
 			<span>
 				<a href="tel:+3221234567">
@@ -256,8 +247,8 @@
 		<div class="footer-legal d-flex flex-wrap align-items-center gap-3">
 			<p class="mb-0">&copy;
 				{{ "now"|date('Y') }}
-				<strong>BxlEvent</strong>. Tous droits réservés.</p>
-			<a href="{{path('app_legal_notice')}}">Mentions légales</a>
+				<strong>BxlEvent</strong>. {% trans %}Tous droits réservés.{% endtrans %}</p>
+			<a href="{{path('app_legal_notice')}}">{% trans %}Mentions légales{% endtrans %}</a>
 		</div>
 	</div>
 </footer></body></html>

@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Modifier le lieu | BxlEvent{% endblock %}
+{% block title %}{% trans %}Modifier le lieu{% endtrans %} | BxlEvent{% endblock %}
 
 {% block body %}
-    <h1>Edit Location</h1>
+    <h1>{% trans %}Edit Location{% endtrans %}</h1>
 
     {{ include('location/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('app_location_index') }}">back to list</a>
+    <a href="{{ path('app_location_index') }}">{% trans %}back to list{% endtrans %}</a>
 
     {{ include('location/_delete_form.html.twig') }}
 {% endblock %}

@@ -1,42 +1,42 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Lieu | BxlEvent{% endblock %}
+{% block title %}{% trans %}Lieu{% endtrans %} | BxlEvent{% endblock %}
 
 {% block body %}
-    <h1>Location</h1>
+    <h1>{% trans %}Location{% endtrans %}</h1>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>{% trans %}Id{% endtrans %}</th>
                 <td>{{ location.id }}</td>
             </tr>
             <tr>
-                <th>Street</th>
+                <th>{% trans %}Street{% endtrans %}</th>
                 <td>{{ location.street }}</td>
             </tr>
             <tr>
-                <th>Number</th>
+                <th>{% trans %}Number{% endtrans %}</th>
                 <td>{{ location.number }}</td>
             </tr>
             <tr>
-                <th>Postcode</th>
+                <th>{% trans %}Postcode{% endtrans %}</th>
                 <td>{{ location.postcode }}</td>
             </tr>
             <tr>
-                <th>City</th>
+                <th>{% trans %}City{% endtrans %}</th>
                 <td>{{ location.city }}</td>
             </tr>
             <tr>
-                <th>Details</th>
+                <th>{% trans %}Details{% endtrans %}</th>
                 <td>{{ location.details }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_location_index') }}">back to list</a>
+    <a href="{{ path('app_location_index') }}">{% trans %}back to list{% endtrans %}</a>
 
-    <a href="{{ path('app_location_edit', {'id': location.id}) }}">edit</a>
+    <a href="{{ path('app_location_edit', {'id': location.id}) }}">{% trans %}edit{% endtrans %}</a>
 
     {{ include('location/_delete_form.html.twig') }}
 {% endblock %}

@@ -8,7 +8,7 @@
 				<div class="mb-4">
 					<a href="{{path('app_event_consult', {id:report.event.id} )}}" class="text-decoration-none text-info">
 						<i class="bi bi-arrow-left"></i>
-						Retour à l'événement
+						{% trans %}Retour à l'événement{% endtrans %}
 					</a>
 				</div>
 
@@ -16,11 +16,11 @@
 				<div class="mb-5 ms-2">
 					<div class="d-flex align-items-center gap-3 mb-2">
 						<i class="bi bi-shield-exclamation text-danger fs-1"></i>
-						<h1>Signaler un événement</h1>
+						<h1>{% trans %}Signaler un événement{% endtrans %}</h1>
 					</div>
 					<p>
-						Vous avez remarqué un problème avec cet événement ?<br>
-						Signalez-le à notre équipe et nous l'examinerons rapidement.
+						{% trans %}Vous avez remarqué un problème avec cet événement ?{% endtrans %}<br>
+						{% trans %}Signalez-le à notre équipe et nous l'examinerons rapidement.{% endtrans %}
 					</p>
 				</div>
 				<div class="info-box">
@@ -29,8 +29,8 @@
 
 
 					<div class="mb-5">
-						<h2>1. Quel est le problème ?</h2>
-						<p class="mb-4">Sélectionnez le type de problème rencontré</p>
+						<h2>{% trans %}1. Quel est le problème ?{% endtrans %}</h2>
+						<p class="mb-4">{% trans %}Sélectionnez le type de problème rencontré{% endtrans %}</p>
 
 						<div class="row g-3">
 
@@ -51,8 +51,8 @@
 
 
 					<div class="mb-5">
-						<h2 class>2. Décrivez le problème</h2>
-						<p class="mb-3">Donnez-nous plus de détails sur le problème rencontré</p>
+						<h2 class>{% trans %}2. Décrivez le problème{% endtrans %}</h2>
+						<p class="mb-3">{% trans %}Donnez-nous plus de détails sur le problème rencontré{% endtrans %}</p>
 
 						{{ form_widget(form.description, {
                     'attr': {
@@ -67,7 +67,7 @@
 					<div class="mt-4">
 						<button type="submit" class="button large  py-3 border-0" >
 							<i class="bi bi-send-check me-2"></i>
-							Envoyer le signalement
+							{% trans %}Envoyer le signalement{% endtrans %}
 						</button>
 					</div>
 

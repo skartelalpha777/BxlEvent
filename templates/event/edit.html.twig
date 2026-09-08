@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 {% import 'event/new.html.twig' as new_macros %}
-{% block title %}Modifier l'évènement | BxlEvent
-{% endblock %}
+{% block title %}{% trans %}Modifier l'évènement{% endtrans %} | BxlEvent{% endblock %}
 
 {% block body %}
 
@@ -15,7 +14,7 @@
 
 					<div class="col-11 col-md-10 col-lg-8 info-box">
 						<div class="container section-title">
-							<h1>Modifier l'événement</h1>
+							<h1>{% trans %}Modifier l'événement{% endtrans %}</h1>
 						</div>
 
 						<div class="event-form">
@@ -45,7 +44,7 @@
 									{{ form_errors(form.location) }}
 
 									<details class="mb-3">
-										<summary>Le lieu n'existe pas ? Créez-en un nouveau</summary>
+										<summary>{% trans %}Le lieu n'existe pas ? Créez-en un nouveau{% endtrans %}</summary>
 										<div class="row gy-2 mt-2">
 											<div class="col-md-6">
 												{{ form_label(form.newLocationName) }}
@@ -123,26 +122,26 @@
 								</div>
 
 								<div class="col-12">
-									<label class="mb-2">Types de billets</label>
+									<label class="mb-2">{% trans %}Types de billets{% endtrans %}</label>
 									<div id="ticket-types-list" data-prototype="{{ new_macros.ticketTypeRow(form.tickettypes.vars.prototype)|e('html_attr') }}" data-index="{{ form.tickettypes|length }}">
 										{% for ticketType in form.tickettypes %}
 											<div class="ticket-type-row border border-secondary border-opacity-25 rounded-3 p-3 mb-3">
 												{{ new_macros.ticketTypeRow(ticketType) }}
-												<button type="button" class="btn btn-outline-danger btn-sm remove-ticket-type mt-2">Retirer ce type de billet</button>
+												<button type="button" class="btn btn-outline-danger btn-sm remove-ticket-type mt-2">{% trans %}Retirer ce type de billet{% endtrans %}</button>
 											</div>
 										{% endfor %}
 									</div>
-									<button type="button" id="add-ticket-type" class="btn btn-outline-light btn-sm">+ Ajouter un type de billet</button>
+									<button type="button" id="add-ticket-type" class="btn btn-outline-light btn-sm">{% trans %}+ Ajouter un type de billet{% endtrans %}</button>
 								</div>
 
 								<div class="col-12">
 									{% if event.galleries is not empty %}
-										<label class="mb-2">Affiches actuelles (maximum 3 images au total)</label>
+										<label class="mb-2">{% trans %}Affiches actuelles (maximum 3 images au total){% endtrans %}</label>
 										<div class="d-flex flex-wrap gap-3 mb-3">
 											{% for gallery in event.galleries %}
 												<div class="text-center" id="gallery-{{ gallery.id }}">
 													<img src="{{ asset('assets/img/uploads/events/' ~ gallery.name) }}" alt="{{ event.title }}" class="rounded-3 d-block mb-1" style="width: 100px; height: 100px; object-fit: cover;">
-													<a href="#" class="small text-danger delete-gallery-link" data-gallery-id="{{ gallery.id }}">Supprimer</a>
+													<a href="#" class="small text-danger delete-gallery-link" data-gallery-id="{{ gallery.id }}">{% trans %}Supprimer{% endtrans %}</a>
 													<input type="checkbox" name="deleteGalleries[]" value="{{ gallery.id }}" id="delete-gallery-{{ gallery.id }}" class="d-none">
 												</div>
 											{% endfor %}
@@ -158,16 +157,14 @@
 									{{ form_errors(form.fileName) }}
 
 								</div>
-								<p class="mt-4">* Champs obligatoire</p>
+								<p class="mt-4">{% trans %}* Champs obligatoire{% endtrans %}</p>
 
 								<div class="col-6">
-									<button type="submit" class="btn button w-100">Enregistrer les modificatios</button>
+									<button type="submit" class="btn button w-100">{% trans %}Enregistrer les modificatios{% endtrans %}</button>
 
 								</div>
 								<div class="col-6">
-									<button type="button" class="noBackground w-100 px-4" onclick="window.location.href='{{path('app_mes_evenements')}}'">
-										Rétour à la liste
-									</button>
+									<button type="button" class="noBackground w-100 px-4" onclick="window.location.href='{{path('app_mes_evenements')}}'">{% trans %}Rétour à la liste{% endtrans %}</button>
 								</div>
 							</div>
 							{{ form_widget(form._token) }}

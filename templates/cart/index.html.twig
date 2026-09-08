@@ -1,13 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Panier | BxlEvent
-{% endblock %}
+{% block title %}{% trans %}Panier{% endtrans %} | BxlEvent{% endblock %}
 
 {% block body %}
 	<main class="mainSection">
 		<div class="container py-5">
 			<div class="section-title">
-				<h2>Votre Panier</h2>
+				<h2>{% trans %}Votre Panier{% endtrans %}</h2>
 			</div>
 
 			{% if items|length > 0 %}
@@ -46,7 +45,7 @@
 							{% endfor %}
 
 							<div class="d-flex justify-content-between align-items-center mt-4">
-								<a href="{{ path('app_cart_clear') }}" class="btn btn-outline-danger">Vider le panier</a>
+								<a href="{{ path('app_cart_clear') }}" class="btn btn-outline-danger">{% trans %}Vider le panier{% endtrans %}</a>
 								<div class="text-danger">
 									{% for message in app.flashes('error') %}
 										<div class="flash-notice text-error">
@@ -62,29 +61,29 @@
 							<div class="info-box p-4 rounded-4 mb-4 shadow">
 								<div class="d-flex align-items-center gap-2 mb-4">
 									<i class="bi bi-receipt fs-4 text-white"></i>
-									<h2 class="h5 fw-bold text-white mb-0">Votre commande</h2>
+									<h2 class="h5 fw-bold text-white mb-0">{% trans %}Votre commande{% endtrans %}</h2>
 								</div>
 								<div class="mb-4">
 									<div class="d-flex justify-content-between text-white-50 small mb-2">
-										<span>Sous-total</span>
+										<span>{% trans %}Sous-total{% endtrans %}</span>
 										<span>{{ subTotal|number_format(2, ',', ' ') }} €</span>
 									</div>
 									<div class="d-flex justify-content-between text-white-50 small pb-3 border-bottom border-secondary border-opacity-25">
-										<span>Frais de service</span>
+										<span>{% trans %}Frais de service{% endtrans %}</span>
 										<span>{{ serviceFee|number_format(2, ',', ' ') }} €</span>
 									</div>
 									<div class="d-flex justify-content-between align-items-center text-white mt-3">
-										<span class="fs-5 fw-bold">Total</span>
+										<span class="fs-5 fw-bold">{% trans %}Total{% endtrans %}</span>
 										<span class="fs-4 fw-bold">{{ total|number_format(2, ',', ' ') }} €</span>
 									</div>
 								</div>
 								<a href="{{ path('app_ticket_newTicket') }}" class="button large w-100 py-3 border-0 d-flex justify-content-center align-items-center gap-2">
-									Procéder au paiement
+									{% trans %}Procéder au paiement{% endtrans %}
 									<i class="bi bi-arrow-right"></i>
 								</a>
 								<div class="text-center mt-3 text-white-50 small">
 									<i class="bi bi-lock-fill"></i>
-									Paiement 100% sécurisé
+									{% trans %}Paiement 100% sécurisé{% endtrans %}
 								</div>
 							</div>
 						</div>
@@ -92,11 +91,9 @@
 				</div>
 			{% else %}
 				<div class="info-box p-5 rounded-4 mb-4 shadow text-center">
-					<p class="h4 text-white">Votre panier est vide.</p>
-					<p class="text-white-50">Parcourez nos événements pour trouver votre prochaine sortie !</p>
-					<a href="{{ path('app_event_index') }}" class="btn button mt-3 ">			
-						Retourner à l'accueil
-					</a>
+					<p class="h4 text-white">{% trans %}Votre panier est vide.{% endtrans %}</p>
+					<p class="text-white-50">{% trans %}Parcourez nos événements pour trouver votre prochaine sortie !{% endtrans %}</p>
+					<a href="{{ path('app_event_index') }}" class="btn button mt-3 ">{% trans %}Retourner à l'accueil{% endtrans %}</a>
 				</div>
 			{% endif %}
 		</div>

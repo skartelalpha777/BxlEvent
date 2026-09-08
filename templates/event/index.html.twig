@@ -1,7 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	Accueil | BxlEvent
+	{% trans %}
+	Accueil
+	{% endtrans %}
+	| BxlEvent
 {% endblock %}
 
 {% block body %}
@@ -26,14 +29,16 @@
 					<div class="col-10 col-md-8 col-lg-6 hero-content text-white">
 						<h1 class="display-3 fw-bold">BxlEvent</h1>
 						<div id="line"></div>
-						<p class="fs-5 my-4">L'AGENDA DE VOS MEILLEURS SORTIES</p>
-						<p class=" text-center fs-5 my-4">
+						<p class="fs-5 my-4">
+							{% trans %}
+							L'AGENDA DE VOS MEILLEURS SORTIES
+							{% endtrans %}</p>
+						<p class=" text-center fs-5 my-4">{% trans %}
 							Concerts, expositions, festivals ou événements sportifs...
-							<br>BxlEvent
-																												rassemble pour vous toutes les activités incontournables de la capitale.
-						</p>
+							<br>BxlEvent rassemble pour vous toutes les activités incontournables de la capitale.
+							{% endtrans %}</p>
 
-						<button class="button" id="featured-events" onclick="window.location.href=' {{path('app_events_featured')}} ' ">Découvrez les évènements à ne pas rater</button>
+						<button class="button" id="featured-events" onclick="window.location.href=' {{path('app_events_featured')}} ' ">{% trans %}Découvrez les évènements à ne pas rater{% endtrans %}</button>
 					</div>
 
 				</div>
@@ -47,19 +52,19 @@
 				<form class="event-filters" method="GET" action="{{ path('app_event_index') }}#events-results">
 					<div class="row gy-3">
 						<div class="col-md-6 col-lg">
-							<label class="filter-label" for="filter-search">Recherche</label>
+							<label class="filter-label" for="filter-search">{% trans %}Recherche{% endtrans %}</label>
 							<div class="filter-control">
 								<i class="bi bi-search"></i>
-								<input type="search" id="filter-search" name="search" placeholder="Rechercher un événement...">
+								<input type="search" id="filter-search" name="search" placeholder="{{ 'Rechercher un événement...'|trans }}">
 							</div>
 						</div>
 
 						<div class="col-md-6 col-lg">
-							<label class="filter-label" for="filter-category">Catégories</label>
+							<label class="filter-label" for="filter-category">{% trans %}Catégories{% endtrans %}</label>
 							<div class="filter-control">
 								<i class="bi bi-grid"></i>
 								<select id="filter-category" name="category">
-									<option value="">Toutes les catégories</option>
+									<option value="">{% trans %}Toutes les catégories{% endtrans %}</option>
 									{% for categorie in categories %}
 										<option value="{{categorie.id}}" {{ app.request.query.get('category') == categorie.id ? 'selected' : '' }}>{{categorie.name}}</option>
 									{% endfor %}
@@ -70,7 +75,7 @@
 						</div>
 
 						<div class="col-md-6 col-lg">
-							<label class="filter-label" for="filter-date">Date</label>
+							<label class="filter-label" for="filter-date">{% trans %}Date{% endtrans %}</label>
 							<div class="filter-control">
 								<i class="bi bi-calendar-event"></i>
 								<input type="date" id="filter-date" name="date">
@@ -78,11 +83,11 @@
 						</div>
 
 						<div class="col-md-6 col-lg">
-							<label class="filter-label" for="filter-location">Lieu</label>
+							<label class="filter-label" for="filter-location">{% trans %}Lieu{% endtrans %}</label>
 							<div class="filter-control">
 								<i class="bi bi-geo-alt"></i>
 								<select id="filter-location" name="location">
-									<option value="">Tous les lieux</option>
+									<option value="">{% trans %}Tous les lieux{% endtrans %}</option>
 									{% for location in locations %}
 										<option value="{{ location.id }}">{{ location.name }}</option>
 									{% endfor %}
@@ -92,12 +97,12 @@
 						</div>
 
 						<div class="col-md-6 col-lg">
-							<label class="filter-label" for="filter-sort">Trier par</label>
+							<label class="filter-label" for="filter-sort">{% trans %}Trier par{% endtrans %}</label>
 							<div class="filter-control">
 								<i class="bi bi-sort-down"></i>
 								<select id="filter-sort" name="sort">
-									<option value="ASC">Date croissante</option>
-									<option value="DESC">Date décroissante</option>
+									<option value="ASC">{% trans %}Date croissante{% endtrans %}</option>
+									<option value="DESC">{% trans %}Date décroissante{% endtrans %}</option>
 								</select>
 								<i class="bi bi-chevron-down chevron"></i>
 							</div>
@@ -107,10 +112,10 @@
 					<input type="hidden" name="filter_token" value="{{ csrf_token('filter') }}">
 
 					<div class="text-center mt-4 d-flex justify-content-center align-items-center gap-3">
-						<button type="submit" class="button">Appliquer</button>
+						<button type="submit" class="button">{% trans %}Appliquer{% endtrans %}</button>
 						<a href="{{ path('app_event_index') }}" class="filter-reset">
 							<i class="bi bi-arrow-counterclockwise"></i>
-							Réinitialiser les filtres
+							{% trans %}Réinitialiser les filtres{% endtrans %}
 						</a>
 					</div>
 
@@ -123,7 +128,7 @@
 
 									<img src="{{ asset('assets/img/uploads/events/' ~ event.galleries[0].name) }}" class="card-img-top" alt="..." style="height: 220px; object-fit: cover;"/>
 								{% else %}
-									<img src="https://c8.alamy.com/compfr/2fa5h0c/icone-aucune-image-disponible-signe-d-image-manquant-ou-aucune-image-pour-le-site-web-ou-l-application-mobile-symbole-vectoriel-2fa5h0c.jpg" class="img-fluid rounded-3 w-100" style="object-fit: cover; max-height: 220px;" alt="Image anonyme de l'évènement">
+									<img src="https://c8.alamy.com/compfr/2fa5h0c/icone-aucune-image-disponible-signe-d-image-manquant-ou-aucune-image-pour-le-site-web-ou-l-application-mobile-symbole-vectoriel-2fa5h0c.jpg" class="img-fluid rounded-3 w-100" style="object-fit: cover; max-height: 220px;" alt="{{ 'Image anonyme de l\'évènement'|trans }}">
 								{% endif %}
 								<div class="card-body mb-0 pb-0">
 									{% for cat in event.categories %}
@@ -155,10 +160,10 @@
 								<div class="card-body">
 									<div class="row">
 										<div class="col">
-											<button class="button w-100" type="button" onclick="window.location.href='{{path('app_event_tickets',{id:event.id})}}'">Voir les tickets</button>
+											<button class="button w-100" type="button" onclick="window.location.href='{{path('app_event_tickets',{id:event.id})}}'">{% trans %}Voir les tickets{% endtrans %}</button>
 										</div>
 										<div class="col text-end">
-											<button class=" noBackground px-4" type="button" onclick="window.location.href=' {{path('app_event_consult', {id:event.id} )}}'">Voir l'évènement</button>
+											<button class=" noBackground px-4" type="button" onclick="window.location.href=' {{path('app_event_consult', {id:event.id} )}}'">{% trans %}Voir l'évènement{% endtrans %}</button>
 										</div>
 									</div>
 
@@ -182,12 +187,12 @@
 			<div class="container-fluid p-0  newsletter mt-0">
 				<div class="row   d-flex align-items-center justify-content-center text-center">
 					<div class="col my-5">
-						<h2>Ne manquez aucune sortie</h2>
-						<p>Inscrivez vous a notre newletter</p>
+						<h2>{% trans %}Ne manquez aucune sortie{% endtrans %}</h2>
+						<p>{% trans %}Inscrivez vous a notre newletter{% endtrans %}</p>
 						<form name="frmNewsletter" action="{{path('app_newSuscrib_new')}}" method="post">
 							<div class="input-group justify-content-center">
-								<input type="email" name="email" id="email" placeholder="Email" class="form-control rounded" style="max-width: 300px;">
-								<button type="submit" class="button ms-2 ">S'abonner</button>
+								<input type="email" name="email" id="email" placeholder="{{ 'Email'|trans }}" class="form-control rounded" style="max-width: 300px;">
+								<button type="submit" class="button ms-2 ">{% trans %}S'abonner{% endtrans %}</button>
 								<input type="hidden" name="_token" value="{{ csrf_token('newsletter_token') }}">
 							</div>
 						</form>
@@ -202,6 +207,6 @@
 	 <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
 {# 2. Initialisation obligatoire pour activer les animations #}
 	 <script>
-																							AOS.init({duration: 1000, easing: 'smart', once: true, mirror: false})
-																						</script>
+																											AOS.init({duration: 1000, easing: 'smart', once: true, mirror: false})
+																										</script>
 {% endblock %}

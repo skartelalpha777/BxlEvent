@@ -1,17 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Newsletter | BxlEvent{% endblock %}
+{% block title %}{% trans %}Newsletter{% endtrans %} | BxlEvent{% endblock %}
 
 {% block body %}
-    <h1>Newsletter index</h1>
+    <h1>{% trans %}Newsletter index{% endtrans %}</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Email</th>
-                <th>InscriptionDate</th>
-                <th>actions</th>
+                <th>{% trans %}Id{% endtrans %}</th>
+                <th>{% trans %}Email{% endtrans %}</th>
+                <th>{% trans %}InscriptionDate{% endtrans %}</th>
+                <th>{% trans %}actions{% endtrans %}</th>
             </tr>
         </thead>
         <tbody>
@@ -21,17 +21,17 @@
                 <td>{{ newsletter.email }}</td>
                 <td>{{ newsletter.inscriptionDate ? newsletter.inscriptionDate|date('Y-m-d') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_newsletter_show', {'id': newsletter.id}) }}">show</a>
-                    <a href="{{ path('app_newsletter_edit', {'id': newsletter.id}) }}">edit</a>
+                    <a href="{{ path('app_newsletter_show', {'id': newsletter.id}) }}">{% trans %}show{% endtrans %}</a>
+                    <a href="{{ path('app_newsletter_edit', {'id': newsletter.id}) }}">{% trans %}edit{% endtrans %}</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">{% trans %}no records found{% endtrans %}</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_newsletter_new') }}">Create new</a>
+    <a href="{{ path('app_newsletter_new') }}">{% trans %}Create new{% endtrans %}</a>
 {% endblock %}

@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Nouvelle catégorie de signalement | BxlEvent{% endblock %}
+{% block title %}{% trans %}Nouvelle catégorie de signalement{% endtrans %} | BxlEvent{% endblock %}
 
 {% block body %}
-    <h1>Create new ReportCategory</h1>
+    <h1>{% trans %}Create new ReportCategory{% endtrans %}</h1>
 
     {{ include('report_category/_form.html.twig') }}
 
-    <a href="{{ path('app_report_category_index') }}">back to list</a>
+    <a href="{{ path('app_report_category_index') }}">{% trans %}back to list{% endtrans %}</a>
 {% endblock %}

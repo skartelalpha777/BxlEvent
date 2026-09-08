@@ -3,7 +3,7 @@
 <html lang="fr">
 	<head>
 		<meta charset="UTF-8">
-		<title>Vos Billets</title>
+		<title>{% trans %}Vos Billets{% endtrans %}</title>
 		<link rel="stylesheet" href="{{asset('assets/css/ticketpdf.css')}}">
 	</head>
 	<body>
@@ -24,7 +24,7 @@
 					<div class="ticket-body">
 						<div class="info-row">
 							<div class="text-cell">
-								<span class="label">Date & Heure</span>
+								<span class="label">{% trans %}Date & Heure{% endtrans %}</span>
 								<span class="value text-nowrap">{{ data.ticket.event.date|date('d M Y') }}
 
 									{{ data.ticket.event.hour|date('H:i') }}</span>
@@ -33,7 +33,7 @@
 
 						<div class="info-row ms-4">
 							<div class="text-cell">
-								<span class="label">Lieu</span>
+								<span class="label">{% trans %}Lieu{% endtrans %}</span>
 								<span class="value">{{ data.ticket.event.location.name }}</span>
 								{% set adresse = data.ticket.event.location.street ~ ' ' ~ data.ticket.event.location.number ~ ', ' ~ data.ticket.event.location.postcode ~ ' ' ~ data.ticket.event.location.city %}
 								<span class="sub-value">
@@ -44,14 +44,14 @@
 
 						<div class="info-row">
 							<div class="text-cell">
-								<span class="label">Type de billet</span>
+								<span class="label">{% trans %}Type de billet{% endtrans %}</span>
 								<span class="value">{{ data.ticket.ticketType.label }}</span>
 							</div>
 						</div>
 
 						<div class="info-row">
 							<div class="text-cell">
-								<span class="label">Prix</span>
+								<span class="label">{% trans %}Prix{% endtrans %}</span>
 								<span class="value">{{ data.ticket.ticketType.price }}
 									€</span>
 							</div>
@@ -59,7 +59,7 @@
 					</div>
 
 						<div class="perforation">
-							<span >Votre billet</span>
+							<span >{% trans %}Votre billet{% endtrans %}</span>
 						</div>					
 
 					<div class="qr-section">
@@ -69,22 +69,22 @@
 
 					<div class="ticket-footer">
 						<div class="footer-col">
-							<span class="f-label">Titulaire</span>
+							<span class="f-label">{% trans %}Titulaire{% endtrans %}</span>
 							<span class="f-value">{{ data.ticket.user.firstName }}
 								{{ data.ticket.user.lastName }}</span>
 						</div>
 						<div class="footer-col">
-							<span class="f-label">Acheté le</span>
+							<span class="f-label">{% trans %}Acheté le{% endtrans %}</span>
 							<span class="f-value">{{ data.ticket.date|date('d/m/Y') }}</span>
 						</div>
 						<div class="footer-col">
-							<span class="f-label">Statut</span>
+							<span class="f-label">{% trans %}Statut{% endtrans %}</span>
 							<span class="status-badge">{{ data.ticket.isScanned ? 'Utilisé' : 'Valide' }}</span>
 						</div>
 					</div>
 
 					<div class="ticket-note">
-						Présentez ce QR code à l'entrée de l'événement. Ce billet est nominatif et non transférable. Code :
+						{% trans %}Présentez ce QR code à l'entrée de l'événement. Ce billet est nominatif et non transférable. Code :{% endtrans %}
 						{{ data.ticket.code }}
 					</div>
 

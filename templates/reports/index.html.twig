@@ -1,26 +1,26 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Signalements | BxlEvent
+{% block title %}{% trans %}Signalements{% endtrans %} | BxlEvent
 {% endblock %}
 
 {% block body %}
 	<section class="pt-5 pb-5">
 		<div class="container-fluid container-lg">
-			<h1>Signalements</h1>
+			<h1>{% trans %}Signalements{% endtrans %}</h1>
 			<div class="dash-card p-4 mt-4">
 				<div class="table-responsive rounded">
 					<table class="table event-table border-0 align-middle">
 						<thead>
 							<tr>
-								<th>Evènement concerné</th>
+								<th>{% trans %}Evènement concerné{% endtrans %}</th>
 
-								<th>Utilisateur</th>
+								<th>{% trans %}Utilisateur{% endtrans %}</th>
 
-								<th>Description</th>
-								<th>Date</th>
-								<th>Categorie</th>
-								<th>Traité</th>
-								<th>Actions</th>
+								<th>{% trans %}Description{% endtrans %}</th>
+								<th>{% trans %}Date{% endtrans %}</th>
+								<th>{% trans %}Categorie{% endtrans %}</th>
+								<th>{% trans %}Traité{% endtrans %}</th>
+								<th>{% trans %}Actions{% endtrans %}</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -43,13 +43,13 @@
 											</form>
 										</td>
 										<td>
-											<a href="{{ path('app_reports_show', {'id': report.id}) }}">Voir</a>
+											<a href="{{ path('app_reports_show', {'id': report.id}) }}">{% trans %}Voir{% endtrans %}</a>
 										</td>
 									</tr>
 								{% endif %}
 							{% else %}
 								<tr>
-									<td colspan="7">Aucun Signalement</td>
+									<td colspan="7">{% trans %}Aucun Signalement{% endtrans %}</td>
 								</tr>
 							{% endfor %}
 						</tbody>

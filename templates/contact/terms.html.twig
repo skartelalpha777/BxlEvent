@@ -1,80 +1,78 @@
 {% extends 'base.html.twig' %}
-{% block title %}
-	Conditions générales | BxlEvent
-{% endblock %}
+{% block title %}{% trans %}Conditions générales{% endtrans %} | BxlEvent{% endblock %}
 {% block body %}
 	<main class="main">
 
 		<section id="terms" class="section">
 			<div class="container-fluid container-lg">
 
-				<p class="goal">Conditions</p>
-				<h1>Conditions générales d'utilisation</h1>
+				<p class="goal">{% trans %}Conditions{% endtrans %}</p>
+				<h1>{% trans %}Conditions générales d'utilisation{% endtrans %}</h1>
 				<div class="line mb-4"></div>
 
-				<p class="text-white-50">Dernière mise à jour :
+				<p class="text-white-50">{% trans %}Dernière mise à jour :{% endtrans %}
 					{{ "now"|date('d/m/Y') }}</p>
 
-				<p>Les présentes conditions générales régissent l'utilisation du site BxlEvent. En créant un compte ou en utilisant le site, vous acceptez sans réserve les conditions décrites ci-dessous.</p>
+				<p>{% trans %}Les présentes conditions générales régissent l'utilisation du site BxlEvent. En créant un compte ou en utilisant le site, vous acceptez sans réserve les conditions décrites ci-dessous.{% endtrans %}</p>
 
-				<h2 class="mt-5">1. Objet</h2>
-				<p>BxlEvent est une plateforme permettant de découvrir des événements organisés à Bruxelles et dans ses environs, de réserver des billets, et pour les Contributeurs, de publier et gérer leurs propres événements.</p>
+				<h2 class="mt-5">{% trans %}1. Objet{% endtrans %}</h2>
+				<p>{% trans %}BxlEvent est une plateforme permettant de découvrir des événements organisés à Bruxelles et dans ses environs, de réserver des billets, et pour les Contributeurs, de publier et gérer leurs propres événements.{% endtrans %}</p>
 
-				<h2 class="mt-5">2. Création d'un compte</h2>
-				<p>L'utilisation de certaines fonctionnalités de BxlEvent (réservation de billets, publication d'événements, gestion du profil) nécessite la création d'un compte. Lors de l'inscription, vous devez choisir un profil :</p>
+				<h2 class="mt-5">{% trans %}2. Création d'un compte{% endtrans %}</h2>
+				<p>{% trans %}L'utilisation de certaines fonctionnalités de BxlEvent (réservation de billets, publication d'événements, gestion du profil) nécessite la création d'un compte. Lors de l'inscription, vous devez choisir un profil :{% endtrans %}</p>
 				<ul>
 					<li>
-						<strong>Membre</strong>
-						: permet de parcourir les événements, réserver des billets et gérer ses commandes ;</li>
+						<strong>{% trans %}Membre{% endtrans %}</strong>
+						{% trans %}: permet de parcourir les événements, réserver des billets et gérer ses commandes ;{% endtrans %}</li>
 					<li>
-						<strong>Contributeur</strong>
-						: permet en plus de publier et gérer ses propres événements.</li>
+						<strong>{% trans %}Contributeur{% endtrans %}</strong>
+						{% trans %}: permet en plus de publier et gérer ses propres événements.{% endtrans %}</li>
 				</ul>
-				<p>Vous vous engagez à fournir des informations exactes, à jour, et à les maintenir à jour depuis votre profil. Vous êtes responsable de la confidentialité de votre mot de passe et de toute activité effectuée depuis votre compte.</p>
+				<p>{% trans %}Vous vous engagez à fournir des informations exactes, à jour, et à les maintenir à jour depuis votre profil. Vous êtes responsable de la confidentialité de votre mot de passe et de toute activité effectuée depuis votre compte.{% endtrans %}</p>
 
-				<h2 class="mt-5">3. Comportement des utilisateurs</h2>
-				<p>En utilisant BxlEvent, vous vous engagez à :</p>
+				<h2 class="mt-5">{% trans %}3. Comportement des utilisateurs{% endtrans %}</h2>
+				<p>{% trans %}En utilisant BxlEvent, vous vous engagez à :{% endtrans %}</p>
 				<ul>
-					<li>Ne pas créer plusieurs comptes dans le but de contourner une restriction ;</li>
-					<li>Ne pas publier de contenu trompeur, injurieux, illicite ou portant atteinte aux droits d'autrui ;</li>
-					<li>Ne pas utiliser le site à des fins frauduleuses (fausses réservations, faux événements, usurpation d'identité) ;</li>
-					<li>Respecter les autres utilisateurs et organisateurs.</li>
+					<li>{% trans %}Ne pas créer plusieurs comptes dans le but de contourner une restriction ;{% endtrans %}</li>
+					<li>{% trans %}Ne pas publier de contenu trompeur, injurieux, illicite ou portant atteinte aux droits d'autrui ;{% endtrans %}</li>
+					<li>{% trans %}Ne pas utiliser le site à des fins frauduleuses (fausses réservations, faux événements, usurpation d'identité) ;{% endtrans %}</li>
+					<li>{% trans %}Respecter les autres utilisateurs et organisateurs.{% endtrans %}</li>
 				</ul>
-				<p>Tout utilisateur constatant un comportement abusif ou un événement suspect peut le signaler directement depuis la page de l'événement concerné.</p>
+				<p>{% trans %}Tout utilisateur constatant un comportement abusif ou un événement suspect peut le signaler directement depuis la page de l'événement concerné.{% endtrans %}</p>
 
-				<h2 class="mt-5">4. Fonctionnement des événements</h2>
-				<p>Les événements affichés sur BxlEvent peuvent être créés par l'équipe BxlEvent ou publiés par des utilisateurs Contributeurs. Chaque événement passe par un statut de validation avant d'être visible publiquement, afin de limiter la publication de contenus non conformes.</p>
-				<p>Les Contributeurs sont responsables de l'exactitude des informations qu'ils publient (description, date, heure, lieu, catégories, tarifs des billets). Il leur appartient de tenir ces informations à jour, notamment en cas de report ou d'annulation.</p>
+				<h2 class="mt-5">{% trans %}4. Fonctionnement des événements{% endtrans %}</h2>
+				<p>{% trans %}Les événements affichés sur BxlEvent peuvent être créés par l'équipe BxlEvent ou publiés par des utilisateurs Contributeurs. Chaque événement passe par un statut de validation avant d'être visible publiquement, afin de limiter la publication de contenus non conformes.{% endtrans %}</p>
+				<p>{% trans %}Les Contributeurs sont responsables de l'exactitude des informations qu'ils publient (description, date, heure, lieu, catégories, tarifs des billets). Il leur appartient de tenir ces informations à jour, notamment en cas de report ou d'annulation.{% endtrans %}</p>
 
-				<h2 class="mt-5">5. Réservation et paiement des billets</h2>
-				<p>Toute commande de billets via BxlEvent est ferme dès sa confirmation. Les billets sont nominatifs et non transférables, sauf indication contraire de l'organisateur de l'événement. Après paiement, les billets sont accessibles au format PDF depuis votre profil.</p>
+				<h2 class="mt-5">{% trans %}5. Réservation et paiement des billets{% endtrans %}</h2>
+				<p>{% trans %}Toute commande de billets via BxlEvent est ferme dès sa confirmation. Les billets sont nominatifs et non transférables, sauf indication contraire de l'organisateur de l'événement. Après paiement, les billets sont accessibles au format PDF depuis votre profil.{% endtrans %}</p>
 
-				<h2 class="mt-5">6. Responsabilité de BxlEvent</h2>
-				<p>BxlEvent agit en tant qu'intermédiaire technique entre les organisateurs et les participants. À ce titre, BxlEvent ne peut être tenu responsable :</p>
+				<h2 class="mt-5">{% trans %}6. Responsabilité de BxlEvent{% endtrans %}</h2>
+				<p>{% trans %}BxlEvent agit en tant qu'intermédiaire technique entre les organisateurs et les participants. À ce titre, BxlEvent ne peut être tenu responsable :{% endtrans %}</p>
 				<ul>
-					<li>Du déroulement, du report ou de l'annulation d'un événement, ces responsabilités incombant à l'organisateur ;</li>
-					<li>De l'exactitude des informations publiées par les Contributeurs ;</li>
-					<li>D'une interruption temporaire du site liée à la maintenance ou à un incident technique.</li>
+					<li>{% trans %}Du déroulement, du report ou de l'annulation d'un événement, ces responsabilités incombant à l'organisateur ;{% endtrans %}</li>
+					<li>{% trans %}De l'exactitude des informations publiées par les Contributeurs ;{% endtrans %}</li>
+					<li>{% trans %}D'une interruption temporaire du site liée à la maintenance ou à un incident technique.{% endtrans %}</li>
 				</ul>
-				<p>BxlEvent met cependant tout en œuvre pour vérifier les événements publiés et retirer rapidement tout contenu signalé comme non conforme.</p>
+				<p>{% trans %}BxlEvent met cependant tout en œuvre pour vérifier les événements publiés et retirer rapidement tout contenu signalé comme non conforme.{% endtrans %}</p>
 
-				<h2 class="mt-5">7. Suspension et suppression d'un compte</h2>
-				<p>BxlEvent se réserve le droit de suspendre ou de supprimer, temporairement ou définitivement, tout compte ne respectant pas les présentes conditions générales, notamment en cas de comportement frauduleux, de publication de contenu non conforme ou de signalements répétés et justifiés.</p>
-				<p>Vous pouvez également demander la suppression de votre compte à tout moment, en nous contactant via notre page de contact.</p>
+				<h2 class="mt-5">{% trans %}7. Suspension et suppression d'un compte{% endtrans %}</h2>
+				<p>{% trans %}BxlEvent se réserve le droit de suspendre ou de supprimer, temporairement ou définitivement, tout compte ne respectant pas les présentes conditions générales, notamment en cas de comportement frauduleux, de publication de contenu non conforme ou de signalements répétés et justifiés.{% endtrans %}</p>
+				<p>{% trans %}Vous pouvez également demander la suppression de votre compte à tout moment, en nous contactant via notre page de contact.{% endtrans %}</p>
 
-				<h2 class="mt-5">8. Propriété intellectuelle</h2>
-				<p>L'ensemble des contenus du site (textes, logo, mise en page, charte graphique) est protégé et ne peut être reproduit sans autorisation préalable. Les contenus publiés par les Contributeurs (descriptions, visuels d'événements) restent leur propriété, mais sont mis à disposition de BxlEvent pour affichage sur la plateforme.</p>
+				<h2 class="mt-5">{% trans %}8. Propriété intellectuelle{% endtrans %}</h2>
+				<p>{% trans %}L'ensemble des contenus du site (textes, logo, mise en page, charte graphique) est protégé et ne peut être reproduit sans autorisation préalable. Les contenus publiés par les Contributeurs (descriptions, visuels d'événements) restent leur propriété, mais sont mis à disposition de BxlEvent pour affichage sur la plateforme.{% endtrans %}</p>
 
-				<h2 class="mt-5">9. Données personnelles</h2>
-				<p>Le traitement de vos données personnelles est détaillé dans notre
-					<a href="{{ path('app_privacy_policy') }}">politique de confidentialité</a>.</p>
+				<h2 class="mt-5">{% trans %}9. Données personnelles{% endtrans %}</h2>
+				<p>{% trans %}Le traitement de vos données personnelles est détaillé dans notre{% endtrans %}
+					<a href="{{ path('app_privacy_policy') }}">{% trans %}politique de confidentialité{% endtrans %}</a>.</p>
 
-				<h2 class="mt-5">10. Modification des conditions</h2>
-				<p>BxlEvent se réserve le droit de modifier les présentes conditions générales à tout moment. La date de dernière mise à jour indiquée en haut de cette page permet de connaître la version en vigueur.</p>
+				<h2 class="mt-5">{% trans %}10. Modification des conditions{% endtrans %}</h2>
+				<p>{% trans %}BxlEvent se réserve le droit de modifier les présentes conditions générales à tout moment. La date de dernière mise à jour indiquée en haut de cette page permet de connaître la version en vigueur.{% endtrans %}</p>
 
-				<h2 class="mt-5">11. Contact</h2>
-				<p>Pour toute question relative à ces conditions générales, vous pouvez nous contacter via notre
-					<a href="{{ path('app_contact_contoller') }}">page de contact</a>.</p>
+				<h2 class="mt-5">{% trans %}11. Contact{% endtrans %}</h2>
+				<p>{% trans %}Pour toute question relative à ces conditions générales, vous pouvez nous contacter via notre{% endtrans %}
+					<a href="{{ path('app_contact_contoller') }}">{% trans %}page de contact{% endtrans %}</a>.</p>
 
 			</div>
 		</section>

@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Réinitialiser le mot de passe | BxlEvent
-{% endblock %}
+{% block title %}{% trans %}Réinitialiser le mot de passe{% endtrans %} | BxlEvent{% endblock %}
 
 {% block body %}
 	<main class="main">
@@ -14,7 +13,7 @@
 
 					<div class="col-11 col-md-10 col-lg-8 info-box">
 						<div class="container section-title">
-							<h1>Réinitialiser le mot de passe</h1>
+							<h1>{% trans %}Réinitialiser le mot de passe{% endtrans %}</h1>
 						</div>
 						<div class="inscription-form">
 							{{ form_start(resetForm) }}
@@ -41,9 +40,7 @@
 								{{ form_errors(resetForm.plainPassword.second) }}
 							</div>
 
-							<button class="btn button large mt-4" type="submit">
-								Réinitialiser
-							</button>
+							<button class="btn button large mt-4" type="submit">{% trans %}Réinitialiser{% endtrans %}</button>
 							{{ form_end(resetForm) }}
 						</div>
 					</div>

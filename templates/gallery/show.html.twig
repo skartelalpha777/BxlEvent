@@ -1,30 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Galerie | BxlEvent{% endblock %}
+{% block title %}{% trans %}Galerie{% endtrans %} | BxlEvent{% endblock %}
 
 {% block body %}
-    <h1>Gallery</h1>
+    <h1>{% trans %}Gallery{% endtrans %}</h1>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>{% trans %}Id{% endtrans %}</th>
                 <td>{{ gallery.id }}</td>
             </tr>
             <tr>
-                <th>FilePath</th>
+                <th>{% trans %}FilePath{% endtrans %}</th>
                 <td>{{ gallery.filePath }}</td>
             </tr>
             <tr>
-                <th>IsMain</th>
-                <td>{{ gallery.isMain ? 'Yes' : 'No' }}</td>
+                <th>{% trans %}IsMain{% endtrans %}</th>
+                <td>{{ (gallery.isMain ? 'Yes' : 'No')|trans }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_gallery_index') }}">back to list</a>
+    <a href="{{ path('app_gallery_index') }}">{% trans %}back to list{% endtrans %}</a>
 
-    <a href="{{ path('app_gallery_edit', {'id': gallery.id}) }}">edit</a>
+    <a href="{{ path('app_gallery_edit', {'id': gallery.id}) }}">{% trans %}edit{% endtrans %}</a>
 
     {{ include('gallery/_delete_form.html.twig') }}
 {% endblock %}

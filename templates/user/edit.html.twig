@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block title %}
-	Modifier le profil | BxlEvent
+	{% trans %}Modifier le profil{% endtrans %} | BxlEvent
 {% endblock %}
 {% block body %}
 	{{ include('user/_form.html.twig', {'button_label': 'Mettre à jour le profil'}) }}

@@ -19,8 +19,7 @@
 	</div>
 {% endmacro %}
 
-{% block title %}Créer un évènement | BxlEvent
-{% endblock %}
+{% block title %}{% trans %}Créer un évènement{% endtrans %} | BxlEvent{% endblock %}
 
 {% block body %}
 	{% import _self as macros %}
@@ -35,7 +34,7 @@
 
 					<div class="col-11 col-md-10 col-lg-8 info-box">
 						<div class="container section-title">
-							<h1>Créer un événement</h1>
+							<h1>{% trans %}Créer un événement{% endtrans %}</h1>
 						</div>
 
 						<div class="event-form">
@@ -65,7 +64,7 @@
 									{{ form_errors(form.location) }}
 
 									<details class="mb-3">
-										<summary>Le lieu n'existe pas ? Créez-en un nouveau</summary>
+										<summary>{% trans %}Le lieu n'existe pas ? Créez-en un nouveau{% endtrans %}</summary>
 										<div class="row gy-2 mt-2">
 											<div class="col-md-6">
 												{{ form_label(form.newLocationName) }}
@@ -143,16 +142,16 @@
 								</div>
 
 								<div class="col-12">
-									<label class="mb-2">Types de billets</label>
+									<label class="mb-2">{% trans %}Types de billets{% endtrans %}</label>
 									<div id="ticket-types-list" data-prototype="{{ macros.ticketTypeRow(form.tickettypes.vars.prototype)|e('html_attr') }}" data-index="{{ form.tickettypes|length }}">
 										{% for ticketType in form.tickettypes %}
 											<div class="ticket-type-row border border-secondary border-opacity-25 rounded-3 p-3 mb-3">
 												{{ macros.ticketTypeRow(ticketType) }}
-												<button type="button" class="btn btn-outline-danger btn-sm remove-ticket-type mt-2">Retirer ce type de billet</button>
+												<button type="button" class="btn btn-outline-danger btn-sm remove-ticket-type mt-2">{% trans %}Retirer ce type de billet{% endtrans %}</button>
 											</div>
 										{% endfor %}
 									</div>
-									<button type="button" id="add-ticket-type" class="btn btn-outline-light btn-sm">+ Ajouter un type de billet</button>
+									<button type="button" id="add-ticket-type" class="btn btn-outline-light btn-sm">{% trans %}+ Ajouter un type de billet{% endtrans %}</button>
 								</div>
 
 								<div class="col-12">
@@ -167,8 +166,8 @@
 								</div>
 
 								<div class="col-12 text-center">
-									<button type="submit" class="btn button large my-4">Créer l'événement</button>
-									<a href="{{ path('app_mes_evenements') }}">Retour à la liste des événements</a>
+									<button type="submit" class="btn button large my-4">{% trans %}Créer l'événement{% endtrans %}</button>
+									<a href="{{ path('app_mes_evenements') }}">{% trans %}Retour à la liste des événements{% endtrans %}</a>
 								</div>
 							</div>
 							{{ form_widget(form._token) }}

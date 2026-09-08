@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ajouter une image | BxlEvent{% endblock %}
+{% block title %}{% trans %}Ajouter une image{% endtrans %} | BxlEvent{% endblock %}
 
 {% block body %}
-    <h1>Create new Gallery</h1>
+    <h1>{% trans %}Create new Gallery{% endtrans %}</h1>
 
     {{ include('gallery/_form.html.twig') }}
 
-    <a href="{{ path('app_gallery_index') }}">back to list</a>
+    <a href="{{ path('app_gallery_index') }}">{% trans %}back to list{% endtrans %}</a>
 {% endblock %}

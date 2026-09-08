@@ -1,22 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Signalement | BxlEvent{% endblock %}
+{% block title %}{% trans %}Signalement{% endtrans %} | BxlEvent{% endblock %}
 
 {% block body %}
 	<section class="pt-5 pb-5">
 		<div class="container-fluid container-lg">
-			<h1>Signalement</h1>
+			<h1>{% trans %}Signalement{% endtrans %}</h1>
 			<div class="dash-card p-4 mt-4">
 				<div class="table-responsive rounded">
 					<table class="table event-table border-0 align-middle">
 						<thead>
 							<tr>
-								<th>Evènement concerné</th>
-								<th>Utilisateur</th>
-								<th>Description</th>
-								<th>Date</th>
-								<th>Categorie</th>
-								<th>Traité</th>
+								<th>{% trans %}Evènement concerné{% endtrans %}</th>
+								<th>{% trans %}Utilisateur{% endtrans %}</th>
+								<th>{% trans %}Description{% endtrans %}</th>
+								<th>{% trans %}Date{% endtrans %}</th>
+								<th>{% trans %}Categorie{% endtrans %}</th>
+								<th>{% trans %}Traité{% endtrans %}</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -40,9 +40,9 @@
 				</div>
 
 				<div class="d-flex gap-3 mt-3">
-					<a href="{{ path('app_reports_index') }}" class="button">Retour à la liste</a>
+					<a href="{{ path('app_reports_index') }}" class="button">{% trans %}Retour à la liste{% endtrans %}</a>
 					{% if app.user.role.value == "admin" %}
-						<a href="{{ path('app_reports_edit', {'id': report.id}) }}" class="button">Modifier</a>
+						<a href="{{ path('app_reports_edit', {'id': report.id}) }}" class="button">{% trans %}Modifier{% endtrans %}</a>
 					{% endif %}
 					{{ include('reports/_delete_form.html.twig') }}
 				</div>

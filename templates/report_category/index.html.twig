@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Catégories de signalement | BxlEvent{% endblock %}
+{% block title %}{% trans %}Catégories de signalement{% endtrans %} | BxlEvent{% endblock %}
 
 {% block body %}
-    <h1>ReportCategory index</h1>
+    <h1>{% trans %}ReportCategory index{% endtrans %}</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Label</th>
-                <th>actions</th>
+                <th>{% trans %}Id{% endtrans %}</th>
+                <th>{% trans %}Label{% endtrans %}</th>
+                <th>{% trans %}actions{% endtrans %}</th>
             </tr>
         </thead>
         <tbody>
@@ -19,17 +19,17 @@
                 <td>{{ report_category.id }}</td>
                 <td>{{ report_category.label }}</td>
                 <td>
-                    <a href="{{ path('app_report_category_show', {'id': report_category.id}) }}">show</a>
-                    <a href="{{ path('app_report_category_edit', {'id': report_category.id}) }}">edit</a>
+                    <a href="{{ path('app_report_category_show', {'id': report_category.id}) }}">{% trans %}show{% endtrans %}</a>
+                    <a href="{{ path('app_report_category_edit', {'id': report_category.id}) }}">{% trans %}edit{% endtrans %}</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="3">{% trans %}no records found{% endtrans %}</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_report_category_new') }}">Create new</a>
+    <a href="{{ path('app_report_category_new') }}">{% trans %}Create new{% endtrans %}</a>
 {% endblock %}

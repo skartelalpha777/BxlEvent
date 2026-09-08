@@ -5,7 +5,7 @@
 
 
 {% block title %}
-	Profil | BxlEvent
+	{% trans %}Profil{% endtrans %} | BxlEvent
 {% endblock %}
 
 {% block body %}
@@ -28,19 +28,19 @@
 	{% set accountInfo %}
 	<div class="account-row">
 		<i class="bi bi-person"></i>
-		<span class="account-label">Nom complet</span>
+		<span class="account-label">{% trans %}Nom complet{% endtrans %}</span>
 		<span class="account-value">{{ user.firstName }}
 			{{ user.lastName }}</span>
 	</div>
 	<div class="account-row">
 		<i class="bi bi-envelope"></i>
-		<span class="account-label">Email</span>
+		<span class="account-label">{% trans %}Email{% endtrans %}</span>
 		<span class="account-value">{{ user.email }}</span>
 	</div>
 	{% if user.street or user.city %}
 		<div class="account-row">
 			<i class="bi bi-geo-alt"></i>
-			<span class="account-label">Adresse</span>
+			<span class="account-label">{% trans %}Adresse{% endtrans %}</span>
 			<span class="account-value">
 				{{ user.street }}
 				{% if user.number %}
@@ -55,22 +55,22 @@
 	{% endif %}
 	<div class="account-row">
 		<i class="bi bi-calendar-check"></i>
-		<span class="account-label">Membre depuis</span>
+		<span class="account-label">{% trans %}Membre depuis{% endtrans %}</span>
 		<span class="account-value">{{ user.dateRgpd|date('d/m/Y') }}</span>
 	</div>
 	<div class="account-row">
 		<i class="bi bi-lock"></i>
-		<span class="account-label">Mot de passe</span>
+		<span class="account-label">{% trans %}Mot de passe{% endtrans %}</span>
 		<span class="account-value">••••••••••</span>
 	</div>
 	<a href="{{ path('app_user_edit_own_profil', {id: user.id}) }}" class="btn button large w-100 mt-3 text-decoration-none">
 		<i class="bi bi-pencil-square"></i>
-		Modifier mes informations
+		{% trans %}Modifier mes informations{% endtrans %}
 	</a>
 	{% if app.user.role.getLabel == 'Administrateur' or app.user.role.getLabel == 'Contributeur' %}
 		<a href="{{ path('app_mes_evenements', {id: user.id}) }}" class="btn button large w-100 mt-3 text-decoration-none">
 			<i class="bi bi-pencil-square"></i>
-			Gestion des événements
+			{% trans %}Gestion des événements{% endtrans %}
 		</a>
 	{% endif %}
 	{% endset %}
@@ -111,7 +111,7 @@
 							</p>
 							<p class="mb-0">
 								<i class="bi bi-calendar-check"></i>
-								Membre depuis le
+								{% trans %}Membre depuis le{% endtrans %}
 								{{ user.dateRgpd|date('d/m/Y') }}
 							</p>
 							{% if user.street or user.city %}
@@ -130,9 +130,7 @@
 						</div>
 
 						<div class="col-auto">
-							<button class="btn button ps-1" onclick="window.location.href='{{ path('app_user_edit_own_profil', {id: user.id}) }}'">
-								Modifier mon profil
-							</button>
+							<button class="btn button ps-1" onclick="window.location.href='{{ path('app_user_edit_own_profil', {id: user.id}) }}'">{% trans %}Modifier mon profil{% endtrans %}</button>
 						</div>
 					</div>
 				</div>
@@ -145,8 +143,8 @@
 							</div>
 							<div>
 								<p class="fw-bold fs-3 mb-0">{{ user.orders|length }}</p>
-								<p class="mb-0">Commandes</p>
-								<p class="stat-sublabel mb-0">Total effectuées</p>
+								<p class="mb-0">{% trans %}Commandes{% endtrans %}</p>
+								<p class="stat-sublabel mb-0">{% trans %}Total effectuées{% endtrans %}</p>
 							</div>
 						</div>
 					</div>
@@ -157,8 +155,8 @@
 							</div>
 							<div>
 								<p class="fw-bold fs-3 mb-0">{{ user.tickets|length }}</p>
-								<p class="mb-0">Billets</p>
-								<p class="stat-sublabel mb-0">Total obtenus</p>
+								<p class="mb-0">{% trans %}Billets{% endtrans %}</p>
+								<p class="stat-sublabel mb-0">{% trans %}Total obtenus{% endtrans %}</p>
 							</div>
 						</div>
 					</div>
@@ -170,8 +168,8 @@
 							<div>
 								<p class="fw-bold fs-3 mb-0">{{ totalSpent }}
 									€</p>
-								<p class="mb-0">Total dépensé</p>
-								<p class="stat-sublabel mb-0">Toutes commandes</p>
+								<p class="mb-0">{% trans %}Total dépensé{% endtrans %}</p>
+								<p class="stat-sublabel mb-0">{% trans %}Toutes commandes{% endtrans %}</p>
 							</div>
 						</div>
 					</div>
@@ -182,8 +180,8 @@
 							</div>
 							<div>
 								<p class="fw-bold fs-3 mb-0">{{ participatedEvents|length }}</p>
-								<p class="mb-0">Événements</p>
-								<p class="stat-sublabel mb-0">Déjà participés</p>
+								<p class="mb-0">{% trans %}Événements{% endtrans %}</p>
+								<p class="stat-sublabel mb-0">{% trans %}Déjà participés{% endtrans %}</p>
 							</div>
 						</div>
 					</div>
@@ -194,7 +192,7 @@
 							</div>
 							<div>
 								<p class="fw-bold fs-3 mb-0">{{ user.reports|length }}</p>
-								<p class="mb-0">Signalements</p>
+								<p class="mb-0">{% trans %}Signalements{% endtrans %}</p>
 								<p class="stat-sublabel mb-0">
 									{{ user.reports|length == 0 ? 'Aucun signalement' : 'Total soumis' }}
 								</p>
@@ -207,13 +205,13 @@
 					<div class="col-lg-7">
 						<ul class="nav profile-tabs mb-4" id="profilTabs" role="tablist">
 							<li class="nav-item" role="presentation">
-								<button class="nav-link active" id="commandes-tab" data-bs-toggle="tab" data-bs-target="#commandes" type="button" role="tab">Mes commandes & billets</button>
+								<button class="nav-link active" id="commandes-tab" data-bs-toggle="tab" data-bs-target="#commandes" type="button" role="tab">{% trans %}Mes commandes & billets{% endtrans %}</button>
 							</li>
 							<li class="nav-item" role="presentation">
-								<button class="nav-link" id="evenements-tab" data-bs-toggle="tab" data-bs-target="#evenements" type="button" role="tab">Événements déjà participés</button>
+								<button class="nav-link" id="evenements-tab" data-bs-toggle="tab" data-bs-target="#evenements" type="button" role="tab">{% trans %}Événements déjà participés{% endtrans %}</button>
 							</li>
 							<li class="nav-item" role="presentation">
-								<button class="nav-link" id="signalements-tab" data-bs-toggle="tab" data-bs-target="#signalements" type="button" role="tab">Mes signalements</button>
+								<button class="nav-link" id="signalements-tab" data-bs-toggle="tab" data-bs-target="#signalements" type="button" role="tab">{% trans %}Mes signalements{% endtrans %}</button>
 							</li>
 						</ul>
 
@@ -221,7 +219,7 @@
 							<div class="tab-pane fade show active" id="commandes" role="tabpanel">
 								<div class="info-box p-4">
 									{% if user.orders|length == 0 %}
-										<p class="mb-0">Vous n'avez encore passé aucune commande.</p>
+										<p class="mb-0">{% trans %}Vous n'avez encore passé aucune commande.{% endtrans %}</p>
 									{% endif %}
 
 									{% for order in user.orders|reverse %}
@@ -236,11 +234,11 @@
 												</div>
 												<div>
 													{% if order.status.value == 'paid' %}
-														<span class="badge bg-success">Payée</span>
+														<span class="badge bg-success">{% trans %}Payée{% endtrans %}</span>
 													{% elseif order.status.value == 'pending' %}
-														<span class="badge bg-warning text-dark">En attente</span>
+														<span class="badge bg-warning text-dark">{% trans %}En attente{% endtrans %}</span>
 													{% else %}
-														<span class="badge bg-secondary">Annulée</span>
+														<span class="badge bg-secondary">{% trans %}Annulée{% endtrans %}</span>
 													{% endif %}
 													<p class="fw-bold text-info mb-0 mt-1">{{ order.totalPrice }}
 														€
@@ -260,9 +258,9 @@
 															</span>
 															<span>
 																{% if ticket.isScanned %}
-																	<span class="badge bg-secondary">Utilisé</span>
+																	<span class="badge bg-secondary">{% trans %}Utilisé{% endtrans %}</span>
 																{% else %}
-																	<span class="badge bg-success">Non utilisé</span>
+																	<span class="badge bg-success">{% trans %}Non utilisé{% endtrans %}</span>
 																{% endif %}
 															</span>
 														</li>
@@ -272,7 +270,7 @@
 												{% if order.status.value == 'paid' %}
 													<button class="noBackground large mt-3" type="button" onclick="window.location.href='{{ path('app_ticket_download', {reference: order.reference}) }}'">
 														<i class="bi bi-download"></i>
-														Télécharger mes billets
+														{% trans %}Télécharger mes billets{% endtrans %}
 													</button>
 												{% endif %}
 											{% endif %}
@@ -284,7 +282,7 @@
 							<div class="tab-pane fade" id="evenements" role="tabpanel">
 								<div class="info-box p-4">
 									{% if participatedEvents|length == 0 %}
-										<p class="text-white-50 mb-0">Vous n'avez pas encore participé à un événement.</p>
+										<p class="text-white-50 mb-0">{% trans %}Vous n'avez pas encore participé à un événement.{% endtrans %}</p>
 									{% endif %}
 
 									{% for event in participatedEvents|reverse %}
@@ -317,7 +315,7 @@
 							<div class="tab-pane fade" id="signalements" role="tabpanel">
 								<div class="info-box p-4">
 									{% if user.reports|length == 0 %}
-										<p class="text-white-50 mb-0">Vous n'avez soumis aucun signalement.</p>
+										<p class="text-white-50 mb-0">{% trans %}Vous n'avez soumis aucun signalement.{% endtrans %}</p>
 									{% endif %}
 
 									{% for report in user.reports %}
@@ -326,7 +324,7 @@
 												<div>
 													<h6 class="fw-bold mb-1">{{ report.event ? report.event.title : 'Événement supprimé' }}</h6>
 													<p class="small mb-0">
-														Date:
+														{% trans %}Date:{% endtrans %}
 														{{ report.date | date('d/m/Y') }}</p>
 													<p class="small text-white-50 mb-1">{{ report ? report.description : 'Aucune description' }}</p>
 												</div>
@@ -343,13 +341,11 @@
 
 					<div class="col-lg-5">
 						<div class="info-box p-4">
-							<h2 class="h5 mb-3">Informations du compte</h2>
+							<h2 class="h5 mb-3">{% trans %}Informations du compte{% endtrans %}</h2>
 							{{ accountInfo|raw }}
 							<form id="delete-account-form" method="post" action="{{ path('app_user_delete', {'id': user.id}) }}">
 
-								<button type="button" id="deleteAccount" class="btn btn-outline-danger w-100 mt-3 py-2">
-									Supprimer mon profil
-								</button>
+								<button type="button" id="deleteAccount" class="btn btn-outline-danger w-100 mt-3 py-2">{% trans %}Supprimer mon profil{% endtrans %}</button>
 								<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
 							</form>
 						</div>

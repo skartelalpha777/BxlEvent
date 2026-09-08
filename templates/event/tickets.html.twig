@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Choisir vos tickets - {{ event.title }} | BxlEvent
+{% block title %}{% trans %}Choisir vos tickets -{% endtrans %} {{ event.title }} | BxlEvent
 {% endblock %}
 
 {% block body %}
@@ -9,7 +9,7 @@
 			<div class="mb-4">
 				<a href="{{ path('app_event_consult', {'id': event.id}) }}" class="text-decoration-none text-info">
 					<i class="bi bi-arrow-left"></i>
-					Retour à l'événement
+					{% trans %}Retour à l'événement{% endtrans %}
 				</a>
 			</div>
 			<div class="row g-4">
@@ -20,7 +20,7 @@
 								{% if event.galleries is not empty %}
 									<img src="{{ asset('assets/img/uploads/events/' ~ event.galleries[0].name) }}" class="img-fluid rounded-3 w-100" style="object-fit: cover; max-height: 200px;" alt="{{ event.title }}">
 								{% else %}
-									<img src="https://c8.alamy.com/compfr/2fa5h0c/icone-aucune-image-disponible-signe-d-image-manquant-ou-aucune-image-pour-le-site-web-ou-l-application-mobile-symbole-vectoriel-2fa5h0c.jpg" class="img-fluid rounded-3 w-100" style="object-fit: cover; max-height: 200px;" alt="Image anonyme de l'évènement">
+									<img src="https://c8.alamy.com/compfr/2fa5h0c/icone-aucune-image-disponible-signe-d-image-manquant-ou-aucune-image-pour-le-site-web-ou-l-application-mobile-symbole-vectoriel-2fa5h0c.jpg" class="img-fluid rounded-3 w-100" style="object-fit: cover; max-height: 200px;" alt="{{ 'Image anonyme de l\'évènement'|trans }}">
 								{% endif %}
 							</div>
 							<div class="col-md-8">
@@ -44,8 +44,8 @@
 
 					{% if isPurchasable %}
 						<div class="info-box p-4 rounded-4 mb-4 shadow">
-							<h2 class="h4 fw-bold text-white mb-1">Choisissez vos tickets</h2>
-							<p class="text-white-50 small mb-4">Sélectionnez le type de ticket qui vous convient</p>
+							<h2 class="h4 fw-bold text-white mb-1">{% trans %}Choisissez vos tickets{% endtrans %}</h2>
+							<p class="text-white-50 small mb-4">{% trans %}Sélectionnez le type de ticket qui vous convient{% endtrans %}</p>
 
 							<form action="{{path('app_cart_add',{id:event.id})}}" method="POST" id="ticket-form">
 								{% for type in event.tickettypes %}
@@ -87,8 +87,8 @@
 								<div class="d-flex align-items-start gap-2 mt-4 text-info small">
 									<i class="bi bi-info-circle mt-1"></i>
 									<span>
-										<strong>Bon à savoir :</strong>
-										Les billets sont non remboursables sauf en cas d'annulation de l'événement.</span>
+										<strong>{% trans %}Bon à savoir :{% endtrans %}</strong>
+										{% trans %}Les billets sont non remboursables sauf en cas d'annulation de l'événement.{% endtrans %}</span>
 								</div>
 								<input type="hidden" name="_token" value="{{ csrf_token('_token') }}"/>
 							</form>
@@ -96,12 +96,12 @@
 					{% else %}
 						<div class="info-box p-4 rounded-4 mb-4 shadow text-center">
 							<i class="bi bi-exclamation-circle fs-2 text-warning mb-3"></i>
-							<h2 class="h5 fw-bold text-white mb-2">Billets non disponibles</h2>
+							<h2 class="h5 fw-bold text-white mb-2">{% trans %}Billets non disponibles{% endtrans %}</h2>
 							<p class="text-white-50 mb-0">
 								{% if event.status.value != 'validated' %}
-									Cet évènement est en attente de validation ou n'a pas été approuvé, les billets ne sont pas encore en vente.
+									{% trans %}Cet évènement est en attente de validation ou n'a pas été approuvé, les billets ne sont pas encore en vente.{% endtrans %}
 								{% else %}
-									Cet évènement est déjà passé, il n'est plus possible d'acheter de billets.
+									{% trans %}Cet évènement est déjà passé, il n'est plus possible d'acheter de billets.{% endtrans %}
 								{% endif %}
 							</p>
 						</div>
@@ -115,23 +115,23 @@
 							<div class="info-box p-4 rounded-4 mb-4 shadow">
 								<div class="d-flex align-items-center gap-2 mb-4">
 									<i class="bi bi-receipt fs-4 text-white"></i>
-									<h2 class="h5 fw-bold text-white mb-0">Votre commande</h2>
+									<h2 class="h5 fw-bold text-white mb-0">{% trans %}Votre commande{% endtrans %}</h2>
 								</div>
 
 								<div class="mb-4">
-									<p class="fw-bold text-white mb-2">Tickets sélectionnés</p>
+									<p class="fw-bold text-white mb-2">{% trans %}Tickets sélectionnés{% endtrans %}</p>
 									<div class="d-flex justify-content-between text-white-50 small mb-2">
-										<span id="summary-text">Aucun ticket sélectionné</span>
+										<span id="summary-text">{% trans %}Aucun ticket sélectionné{% endtrans %}</span>
 										<span id="summary-subtotal">0 €</span>
 									</div>
 									<div class="d-flex justify-content-between align-items-center text-white mt-3">
-										<span class="fs-5 fw-bold">Total</span>
+										<span class="fs-5 fw-bold">{% trans %}Total{% endtrans %}</span>
 										<span class="fs-4 fw-bold" id="summary-total">0 €</span>
 									</div>
 								</div>
 
 								<button form="ticket-form" type="submit" class="button large w-100 py-3 border-0 d-flex justify-content-center align-items-center gap-2" id="btn-submit" disabled="true">
-									Ajouter au panier
+									{% trans %}Ajouter au panier{% endtrans %}
 									<i class="bi bi-arrow-right"></i>
 								</button>
 								{% for message in app.flashes('success') %}
@@ -141,31 +141,31 @@
 								{% endfor %}
 								<div class="text-center mt-3 text-white-50 small">
 									<i class="bi bi-lock-fill"></i>
-									Paiement 100% sécurisé
+									{% trans %}Paiement 100% sécurisé{% endtrans %}
 								</div>
 							</div>
 						{% endif %}
 						<div class="info-box p-4 rounded-4 shadow">
-							<h3 class="h6 fw-bold text-white mb-4">Pourquoi acheter sur BxlEvent ?</h3>
+							<h3 class="h6 fw-bold text-white mb-4">{% trans %}Pourquoi acheter sur BxlEvent ?{% endtrans %}</h3>
 							<div class="d-flex align-items-start gap-3 mb-3">
 								<i class="bi bi-shield-check text-success fs-4"></i>
 								<div>
-									<p class="fw-bold text-white mb-0 small">Paiement sécurisé</p>
-									<p class="text-white-50 small mb-0" style="font-size: 0.8rem;">Vos données sont protégées</p>
+									<p class="fw-bold text-white mb-0 small">{% trans %}Paiement sécurisé{% endtrans %}</p>
+									<p class="text-white-50 small mb-0" style="font-size: 0.8rem;">{% trans %}Vos données sont protégées{% endtrans %}</p>
 								</div>
 							</div>
 							<div class="d-flex align-items-start gap-3 mb-3">
 								<i class="bi bi-envelope-paper text-success fs-4"></i>
 								<div>
-									<p class="fw-bold text-white mb-0 small">Billets électroniques</p>
-									<p class="text-white-50 small mb-0" style="font-size: 0.8rem;">Reçus instantanément par email</p>
+									<p class="fw-bold text-white mb-0 small">{% trans %}Billets électroniques{% endtrans %}</p>
+									<p class="text-white-50 small mb-0" style="font-size: 0.8rem;">{% trans %}Reçus instantanément par email{% endtrans %}</p>
 								</div>
 							</div>
 							<div class="d-flex align-items-start gap-3">
 								<i class="bi bi-headset text-success fs-4"></i>
 								<div>
-									<p class="fw-bold text-white mb-0 small">Support disponible</p>
-									<p class="text-white-50 small mb-0" style="font-size: 0.8rem;">7j/7 de 9h à 22h</p>
+									<p class="fw-bold text-white mb-0 small">{% trans %}Support disponible{% endtrans %}</p>
+									<p class="text-white-50 small mb-0" style="font-size: 0.8rem;">{% trans %}7j/7 de 9h à 22h{% endtrans %}</p>
 								</div>
 							</div>
 						</div>

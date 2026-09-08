@@ -1,17 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Galeries | BxlEvent{% endblock %}
+{% block title %}{% trans %}Galeries{% endtrans %} | BxlEvent{% endblock %}
 
 {% block body %}
-    <h1>Gallery index</h1>
+    <h1>{% trans %}Gallery index{% endtrans %}</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Nampe</th>
-                <th>IsMain</th>
-                <th>actions</th>
+                <th>{% trans %}Id{% endtrans %}</th>
+                <th>{% trans %}Nampe{% endtrans %}</th>
+                <th>{% trans %}IsMain{% endtrans %}</th>
+                <th>{% trans %}actions{% endtrans %}</th>
             </tr>
         </thead>
         <tbody>
@@ -19,19 +19,19 @@
             <tr>
                 <td>{{ gallery.id }}</td>
                 <td>{{ gallery.name }}</td>
-                <td>{{ gallery.isMain ? 'Yes' : 'No' }}</td>
+                <td>{{ (gallery.isMain ? 'Yes' : 'No')|trans }}</td>
                 <td>
-                    <a href="{{ path('app_gallery_show', {'id': gallery.id}) }}">show</a>
-                    <a href="{{ path('app_gallery_edit', {'id': gallery.id}) }}">edit</a>
+                    <a href="{{ path('app_gallery_show', {'id': gallery.id}) }}">{% trans %}show{% endtrans %}</a>
+                    <a href="{{ path('app_gallery_edit', {'id': gallery.id}) }}">{% trans %}edit{% endtrans %}</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">{% trans %}no records found{% endtrans %}</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_gallery_new') }}">Create new</a>
+    <a href="{{ path('app_gallery_new') }}">{% trans %}Create new{% endtrans %}</a>
 {% endblock %}

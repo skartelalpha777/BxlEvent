@@ -1,7 +1,7 @@
 {% extends '@EasyAdmin/page/content.html.twig' %}
 
 {% block page_title %}
-	Amministration
+	{% trans %}Amministration{% endtrans %}
 {% endblock %}
 
 {% block main %}
@@ -9,15 +9,14 @@
 		<form class="event-filters mb-3" method="GET" action="{{ path('admin') }}">
 			<div class="row gy-3">
 				<div class="col-md-6 col-lg">
-					<label class="filter-label" for="filter-date">Date de début</label>
+					<label class="filter-label" for="filter-date">{% trans %}Date de début{% endtrans %}</label>
 					<div class="filter-control">
 						<i class="bi bi-calendar-event"></i>
 						<input type="datetime-local" name="start-date">
 					</div>
 				</div>
 				<div class="col-md-6 col-lg">
-					<label class="filter-label" for="filter-date">Date de fin
-					</label>
+					<label class="filter-label" for="filter-date">{% trans %}Date de fin{% endtrans %}</label>
 					<div class="filter-control">
 						<i class="bi bi-calendar-event"></i>
 						<input type="datetime-local" name="end-date">
@@ -26,10 +25,10 @@
 			</div>
 			<input type="hidden" name="filter_token" value="{{ csrf_token('filter') }}">
 			<div class="text-center mt-4 d-flex justify-content-center align-items-center gap-3">
-				<button type="submit" class="button">Appliquer</button>
+				<button type="submit" class="button">{% trans %}Appliquer{% endtrans %}</button>
 				<a href="{{ path('admin') }}">
 					<i class="bi bi-arrow-counterclockwise"></i>
-					Réinitialiser les filtres
+					{% trans %}Réinitialiser les filtres{% endtrans %}
 				</a>
 			</div>
 		</form>
@@ -59,8 +58,8 @@
 				<a href="{{ path('admin_event_index') }}" class="card border-0  border-4 shadow-lg bg-body-tertiary text-decoration-none text-reset" >
 					<div class="card-body">
 						<div class="title fs-3 fw-bold" >{{ pendingEventsCount }}</div>
-						<div class="small text-muted">Évènement{{ pendingEventsCount > 1 ? 's' : '' }}
-							en attente de validation</div>
+						<div class="small text-muted">{% trans %}Évènement{% endtrans %}{{ pendingEventsCount > 1 ? 's' : '' }}
+							{% trans %}en attente de validation{% endtrans %}</div>
 					</div>
 				</a>
 			</div>
@@ -68,8 +67,8 @@
 				<a href="{{ path('admin_reports_index') }}" class="card border-0  border-4 shadow-lg bg-body-tertiary text-decoration-none text-reset">
 					<div class="card-body">
 						<div class="title fs-3 fw-bold" >{{ untreatedReportsCount }}</div>
-						<div class="small text-muted">Signalement{{ untreatedReportsCount > 1 ? 's' : '' }}
-							non traité{{ untreatedReportsCount > 1 ? 's' : '' }}</div>
+						<div class="small text-muted">{% trans %}Signalement{% endtrans %}{{ untreatedReportsCount > 1 ? 's' : '' }}
+							{% trans %}non traité{% endtrans %}{{ untreatedReportsCount > 1 ? 's' : '' }}</div>
 					</div>
 				</a>
 			</div>
@@ -79,7 +78,7 @@
 			<div class="col-12 col-lg-6">
 				<div class="card border-0 shadow-lg bg-body-tertiary bg-body-tertiary">
 					<div class="card-body">
-						<h3 class="title fs-6 fw-semibold border-bottom pb-2 mb-3" >Utilisateurs inscrits par mois</h3>
+						<h3 class="title fs-6 fw-semibold border-bottom pb-2 mb-3" >{% trans %}Utilisateurs inscrits par mois{% endtrans %}</h3>
 						{{ render_chart(userByMonth) }}
 					</div>
 				</div>
@@ -87,7 +86,7 @@
 			<div class="col-12 col-lg-6">
 				<div class="card border-0 shadow-lg bg-body-tertiary">
 					<div class="card-body">
-						<h3 class="title fs-6 fw-semibold border-bottom pb-2 mb-3" >Chiffre d'affaires par mois</h3>
+						<h3 class="title fs-6 fw-semibold border-bottom pb-2 mb-3" >{% trans %}Chiffre d'affaires par mois{% endtrans %}</h3>
 						{{ render_chart(revenuByMonth) }}
 					</div>
 				</div>
@@ -95,7 +94,7 @@
 			<div class="col-12 col-lg-6">
 				<div class="card border-0 shadow-lg bg-body-tertiary">
 					<div class="card-body">
-						<h3 class="title fs-6 fw-semibold border-bottom pb-2 mb-3" >Top catégories</h3>
+						<h3 class="title fs-6 fw-semibold border-bottom pb-2 mb-3" >{% trans %}Top catégories{% endtrans %}</h3>
 						{{ render_chart(topCategories) }}
 					</div>
 				</div>
@@ -103,7 +102,7 @@
 			<div class="col-12 col-lg-6">
 				<div class="card border-0 shadow-lg bg-body-tertiary">
 					<div class="card-body">
-						<h3 class="title fs-6 fw-semibold border-bottom pb-2 mb-3" >Évènements par statut</h3>
+						<h3 class="title fs-6 fw-semibold border-bottom pb-2 mb-3" >{% trans %}Évènements par statut{% endtrans %}</h3>
 						{{ render_chart(eventsByStatus) }}
 					</div>
 				</div>
@@ -114,17 +113,17 @@
 			<div class="col-12">
 				<div class="card border-0 shadow-lg bg-body-tertiary">
 					<div class="card-body">
-						<h3 class="title fs-6 fw-semibold border-bottom pb-2 mb-3">Top 5 évènements (par revenu)</h3>
+						<h3 class="title fs-6 fw-semibold border-bottom pb-2 mb-3">{% trans %}Top 5 évènements (par revenu){% endtrans %}</h3>
 						{% if topEvents is empty %}
-							<p class="small text-muted mb-0">Aucune vente sur cette période.</p>
+							<p class="small text-muted mb-0">{% trans %}Aucune vente sur cette période.{% endtrans %}</p>
 						{% else %}
 							<div class="table-responsive">
 								<table class="table table-sm align-middle mb-0">
 									<thead>
 										<tr>
-											<th>Évènement</th>
-											<th class="text-end">Billets vendus</th>
-											<th class="text-end">Revenu</th>
+											<th>{% trans %}Évènement{% endtrans %}</th>
+											<th class="text-end">{% trans %}Billets vendus{% endtrans %}</th>
+											<th class="text-end">{% trans %}Revenu{% endtrans %}</th>
 										</tr>
 									</thead>
 									<tbody>

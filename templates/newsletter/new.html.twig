@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Nouvel abonné | BxlEvent{% endblock %}
+{% block title %}{% trans %}Nouvel abonné{% endtrans %} | BxlEvent{% endblock %}
 
 {% block body %}
-    <h1>Create new Newsletter</h1>
+    <h1>{% trans %}Create new Newsletter{% endtrans %}</h1>
 
     {{ include('newsletter/_form.html.twig') }}
 
-    <a href="{{ path('app_newsletter_index') }}">back to list</a>
+    <a href="{{ path('app_newsletter_index') }}">{% trans %}back to list{% endtrans %}</a>
 {% endblock %}

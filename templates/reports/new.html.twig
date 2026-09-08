@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Signaler | BxlEvent{% endblock %}
+{% block title %}{% trans %}Signaler{% endtrans %} | BxlEvent{% endblock %}
 
 {% block body %}
 
     {{ include('reports/_form.html.twig') }}
 
-    <a href="{{ path('app_reports_index') }}">back to list</a>
+    <a href="{{ path('app_reports_index') }}">{% trans %}back to list{% endtrans %}</a>
 {% endblock %}

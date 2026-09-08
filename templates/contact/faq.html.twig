@@ -1,15 +1,13 @@
 {% extends 'base.html.twig' %}
-{% block title %}
-	FAQ | BxlEvent
-{% endblock %}
+{% block title %}{% trans %}FAQ{% endtrans %} | BxlEvent{% endblock %}
 {% block body %}
 	<main class="main">
 
 		<section id="faq-head" class="FaqHead section">
 			<div class="container-fluid container-lg text-center">
-				<h1>Foire aux questions</h1>
+				<h1>{% trans %}Foire aux questions{% endtrans %}</h1>
 				<div class="line mb-4 mx-auto"></div>
-				<p class="fs-5">Retrouvez ici les réponses aux questions les plus fréquentes à propos de BxlEvent.</p>
+				<p class="fs-5">{% trans %}Retrouvez ici les réponses aux questions les plus fréquentes à propos de BxlEvent.{% endtrans %}</p>
 			</div>
 		</section>
 
@@ -23,12 +21,12 @@
 								<span class="accordion-icon">
 									<i class="bi bi-person"></i>
 								</span>
-								Comment créer un compte sur BxlEvent ?
+								{% trans %}Comment créer un compte sur BxlEvent ?{% endtrans %}
 							</button>
 						</h2>
 						<div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
 							<div class="accordion-body">
-								Cliquez sur "S'inscrire" dans  de la page de connexion, remplissez le formulaire avec vos informations et validez votre inscription via l'e-mail que vous recevrez. Une fois votre compte activé, vous pourrez profiter de toutes les fonctionnalités.
+								{% trans %}Cliquez sur "S'inscrire" dans  de la page de connexion, remplissez le formulaire avec vos informations et validez votre inscription via l'e-mail que vous recevrez. Une fois votre compte activé, vous pourrez profiter de toutes les fonctionnalités.{% endtrans %}
 							</div>
 						</div>
 					</div>
@@ -39,12 +37,12 @@
 								<span class="accordion-icon">
 									<i class="bi bi-ticket-perforated"></i>
 								</span>
-								Comment réserver un événement ?
+								{% trans %}Comment réserver un événement ?{% endtrans %}
 							</button>
 						</h2>
 						<div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
 							<div class="accordion-body">
-								Rendez-vous sur la page de l'événement qui vous intéresse, choisissez votre type de billet et la quantité, puis ajoutez-le au panier. Vous pourrez ensuite finaliser votre commande depuis votre panier.
+								{% trans %}Rendez-vous sur la page de l'événement qui vous intéresse, choisissez votre type de billet et la quantité, puis ajoutez-le au panier. Vous pourrez ensuite finaliser votre commande depuis votre panier.{% endtrans %}
 							</div>
 						</div>
 					</div>
@@ -56,12 +54,12 @@
 								<span class="accordion-icon">
 									<i class="bi bi-calendar-x"></i>
 								</span>
-								Puis-je annuler ou modifier ma réservation ?
+								{% trans %}Puis-je annuler ou modifier ma réservation ?{% endtrans %}
 							</button>
 						</h2>
 						<div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
 							<div class="accordion-body">
-						Les billets sont non remboursables sauf en cas d'annulation de l'événement.	</div>
+						{% trans %}Les billets sont non remboursables sauf en cas d'annulation de l'événement.{% endtrans %}	</div>
 						</div>
 					</div>
 
@@ -71,12 +69,12 @@
 								<span class="accordion-icon">
 									<i class="bi bi-credit-card"></i>
 								</span>
-								Quels moyens de paiement acceptez-vous ?
+								{% trans %}Quels moyens de paiement acceptez-vous ?{% endtrans %}
 							</button>
 						</h2>
 						<div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
 							<div class="accordion-body">
-								BxlEvent accepte les principales cartes bancaires ainsi que les moyens de paiement en ligne les plus courants. Toutes les transactions sont sécurisées.
+								{% trans %}BxlEvent accepte les principales cartes bancaires ainsi que les moyens de paiement en ligne les plus courants. Toutes les transactions sont sécurisées.{% endtrans %}
 							</div>
 						</div>
 					</div>
@@ -87,12 +85,12 @@
 								<span class="accordion-icon">
 									<i class="bi bi-bell"></i>
 								</span>
-								Comment être informé des nouveaux événements ?
+								{% trans %}Comment être informé des nouveaux événements ?{% endtrans %}
 							</button>
 						</h2>
 						<div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
 							<div class="accordion-body">
-								Inscrivez-vous à notre newsletter depuis la page d'accueil pour recevoir chaque semaine une sélection des meilleurs événements à ne pas manquer à Bruxelles.
+								{% trans %}Inscrivez-vous à notre newsletter depuis la page d'accueil pour recevoir chaque semaine une sélection des meilleurs événements à ne pas manquer à Bruxelles.{% endtrans %}
 							</div>
 						</div>
 					</div>
@@ -103,12 +101,12 @@
 								<span class="accordion-icon">
 									<i class="bi bi-shield-check"></i>
 								</span>
-								Mes données sont-elles sécurisées ?
+								{% trans %}Mes données sont-elles sécurisées ?{% endtrans %}
 							</button>
 						</h2>
 						<div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
 							<div class="accordion-body">
-								Oui. Vos données personnelles et vos paiements sont traités de manière sécurisée et ne sont jamais partagés avec des tiers sans votre consentement.
+								{% trans %}Oui. Vos données personnelles et vos paiements sont traités de manière sécurisée et ne sont jamais partagés avec des tiers sans votre consentement.{% endtrans %}
 							</div>
 						</div>
 					</div>
@@ -119,12 +117,12 @@
 								<span class="accordion-icon">
 									<i class="bi bi-question-circle"></i>
 								</span>
-								Je n'ai pas trouvé la réponse à ma question, que faire ?
+								{% trans %}Je n'ai pas trouvé la réponse à ma question, que faire ?{% endtrans %}
 							</button>
 						</h2>
 						<div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
 							<div class="accordion-body">
-								N'hésitez pas à nous contacter directement via notre page de contact, notre équipe se fera un plaisir de vous répondre rapidement.
+								{% trans %}N'hésitez pas à nous contacter directement via notre page de contact, notre équipe se fera un plaisir de vous répondre rapidement.{% endtrans %}
 							</div>
 						</div>
 					</div>
@@ -135,12 +133,12 @@
 								<span class="accordion-icon">
 									<i class="bi bi-download"></i>
 								</span>
-								Comment télécharger mes billets ?
+								{% trans %}Comment télécharger mes billets ?{% endtrans %}
 							</button>
 						</h2>
 						<div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
 							<div class="accordion-body">
-								Rendez-vous dans votre profil, section "Mes commandes & billets". Pour chaque commande payée, un bouton "Télécharger mes billets" vous permet de récupérer vos billets au format PDF.
+								{% trans %}Rendez-vous dans votre profil, section "Mes commandes & billets". Pour chaque commande payée, un bouton "Télécharger mes billets" vous permet de récupérer vos billets au format PDF.{% endtrans %}
 							</div>
 						</div>
 					</div>
@@ -151,12 +149,12 @@
 								<span class="accordion-icon">
 									<i class="bi bi-megaphone"></i>
 								</span>
-								Comment devenir organisateur et publier mon propre événement ?
+								{% trans %}Comment devenir organisateur et publier mon propre événement ?{% endtrans %}
 							</button>
 						</h2>
 						<div id="faq9" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
 							<div class="accordion-body">
-								Lors de votre inscription, choisissez le profil "Contributeur (Organisateur)". Vous pourrez ensuite publier vos propres événements et gérer votre programmation depuis votre compte.
+								{% trans %}Lors de votre inscription, choisissez le profil "Contributeur (Organisateur)". Vous pourrez ensuite publier vos propres événements et gérer votre programmation depuis votre compte.{% endtrans %}
 							</div>
 						</div>
 					</div>
@@ -167,12 +165,12 @@
 								<span class="accordion-icon">
 									<i class="bi bi-flag"></i>
 								</span>
-								Comment signaler un problème avec un événement ?
+								{% trans %}Comment signaler un problème avec un événement ?{% endtrans %}
 							</button>
 						</h2>
 						<div id="faq10" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
 							<div class="accordion-body">
-								Si un événement vous semble incorrect, annulé ou frauduleux, vous pouvez le signaler directement depuis sa page. Notre équipe examine chaque signalement et vous tient informé du traitement de votre demande.
+								{% trans %}Si un événement vous semble incorrect, annulé ou frauduleux, vous pouvez le signaler directement depuis sa page. Notre équipe examine chaque signalement et vous tient informé du traitement de votre demande.{% endtrans %}
 							</div>
 						</div>
 					</div>
@@ -182,12 +180,12 @@
 						<i class="bi bi-headset"></i>
 					</div>
 					<div class="col-12 col-lg-4 col-md-4">
-						<h3 class="h5">Vous avez encore une question ?</h3>
-						<p>Notre équipe est là pour vous aider. N'hésitez pas à nous contacter.</p>
+						<h3 class="h5">{% trans %}Vous avez encore une question ?{% endtrans %}</h3>
+						<p>{% trans %}Notre équipe est là pour vous aider. N'hésitez pas à nous contacter.{% endtrans %}</p>
 					</div>
 					<div class="col col-lg-3"></div>
 					<div class="col-12 col-lg-3 col-md-4 ">
-						<button class="button" onclick="window.location.href='{{path('app_contact_contoller')}}'">Nous contacter</button>
+						<button class="button" onclick="window.location.href='{{path('app_contact_contoller')}}'">{% trans %}Nous contacter{% endtrans %}</button>
 					</div>
 				</div>
 

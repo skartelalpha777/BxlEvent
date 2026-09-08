@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Connexion | BxlEvent
-{% endblock %}
+{% block title %}{% trans %}Connexion{% endtrans %} | BxlEvent{% endblock %}
 
 {% block body %}
 	<main class="main">
@@ -14,7 +13,7 @@
 
 					<div class="col-11 col-md-10 col-lg-8 info-box">
 						<div class="container section-title">
-							<h1>Connexion</h1>
+							<h1>{% trans %}Connexion{% endtrans %}</h1>
 						</div>
 						<div class="inscription-form">
 							<form method="post">
@@ -24,13 +23,13 @@
 
 								{% if app.user %}
 									<div class="mb-3">
-										Vous êtes déjà connecté en tant que:
+										{% trans %}Vous êtes déjà connecté en tant que:{% endtrans %}
 										{{ app.user.userIdentifier }},
-										<a href="{{ logout_path() }}">Se deconnecter</a>
+										<a href="{{ logout_path() }}">{% trans %}Se deconnecter{% endtrans %}</a>
 									</div>
 								{% endif %}
 								<div>
-									<label for="username">Email</label>
+									<label for="username">{% trans %}Email{% endtrans %}</label>
 									<div class="input-group mb-3">
 										<span class="input-group-text">
 											<i class="bi bi-person-fill"></i>
@@ -41,7 +40,7 @@
 								</div>
 
 								<div class="mt-4">
-									<label for="password">Password</label>
+									<label for="password">{% trans %}Password{% endtrans %}</label>
 									<div class="input-group mb-3">
 										<span class="input-group-text">
 											<i class="bi bi-lock-fill"></i>
@@ -54,24 +53,22 @@
 								<div class="row justify-content-center mt-4">
 
 									<div class="col-12 col-md-6 col-lg-6">
-										<label for="_remember_me">Se souvenir de moi</label>
+										<label for="_remember_me">{% trans %}Se souvenir de moi{% endtrans %}</label>
 										<input type="checkbox" name="_remember_me" id="_remember_me">
 
 
 									</div>
 									<div class="col-12 col-md-6 col-lg-6">
-										<a class=" d-flex justify-content-start justify-content-md-end" href="{{path('app_forgot_password_request')}}">Mot de passe oublié?</a>
+										<a class=" d-flex justify-content-start justify-content-md-end" href="{{path('app_forgot_password_request')}}">{% trans %}Mot de passe oublié?{% endtrans %}</a>
 									</div>
 
 								</div>
 
-								<button class="btn button large mt-4" type="submit">
-									Se connecter
-								</button>
+								<button class="btn button large mt-4" type="submit">{% trans %}Se connecter{% endtrans %}</button>
 							</form>
 
-							<p class="d-flex justify-content-center mt-2">Nouveau sur BxlEvents?
-								<a href="{{path('app_register')}}">Créer un compte</a>
+							<p class="d-flex justify-content-center mt-2">{% trans %}Nouveau sur BxlEvents?{% endtrans %}
+								<a href="{{path('app_register')}}">{% trans %}Créer un compte{% endtrans %}</a>
 							</p>
 						</div>
 					</div>

@@ -1,17 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Types de billets | BxlEvent{% endblock %}
+{% block title %}{% trans %}Types de billets{% endtrans %} | BxlEvent{% endblock %}
 
 {% block body %}
-    <h1>TicketType index</h1>
+    <h1>{% trans %}TicketType index{% endtrans %}</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Label</th>
-                <th>Price</th>
-                <th>actions</th>
+                <th>{% trans %}Id{% endtrans %}</th>
+                <th>{% trans %}Label{% endtrans %}</th>
+                <th>{% trans %}Price{% endtrans %}</th>
+                <th>{% trans %}actions{% endtrans %}</th>
             </tr>
         </thead>
         <tbody>
@@ -21,17 +21,17 @@
                 <td>{{ ticket_type.label }}</td>
                 <td>{{ ticket_type.price }}</td>
                 <td>
-                    <a href="{{ path('app_ticket_type_show', {'id': ticket_type.id}) }}">show</a>
-                    <a href="{{ path('app_ticket_type_edit', {'id': ticket_type.id}) }}">edit</a>
+                    <a href="{{ path('app_ticket_type_show', {'id': ticket_type.id}) }}">{% trans %}show{% endtrans %}</a>
+                    <a href="{{ path('app_ticket_type_edit', {'id': ticket_type.id}) }}">{% trans %}edit{% endtrans %}</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">{% trans %}no records found{% endtrans %}</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_ticket_type_new') }}">Create new</a>
+    <a href="{{ path('app_ticket_type_new') }}">{% trans %}Create new{% endtrans %}</a>
 {% endblock %}

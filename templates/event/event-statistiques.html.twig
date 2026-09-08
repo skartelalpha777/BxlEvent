@@ -1,23 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Statistiques — {{ event.title }} | BxlEvent
+{% block title %}{% trans %}Statistiques —{% endtrans %} {{ event.title }} | BxlEvent
 {% endblock %}
 
 {% block body %}
 	<div class="container py-5 stats-page">
-		<h1 class="mb-3">Statistiques —
+		<h1 class="mb-3">{% trans %}Statistiques —{% endtrans %}
 			{{ event.title }}</h1>
 		<form class="event-filters" method="GET" action="{{ path('app_event_statistiques', {eventId: event.id}) }}">
 			<div class="row gy-3">
 				<div class="col-md-6 col-lg">
-					<label class="filter-label" for="filter-start-date">Date de début</label>
+					<label class="filter-label" for="filter-start-date">{% trans %}Date de début{% endtrans %}</label>
 					<div class="filter-control">
 						<i class="bi bi-calendar-event"></i>
 						<input type="datetime-local" id="filter-start-date" name="start-date">
 					</div>
 				</div>
 				<div class="col-md-6 col-lg">
-					<label class="filter-label" for="filter-end-date">Date de fin</label>
+					<label class="filter-label" for="filter-end-date">{% trans %}Date de fin{% endtrans %}</label>
 					<div class="filter-control">
 						<i class="bi bi-calendar-event"></i>
 						<input type="datetime-local" id="filter-end-date" name="end-date">
@@ -28,10 +28,10 @@
 			<input type="hidden" name="filter_token" value="{{ csrf_token('filter') }}">
 
 			<div class="text-center mt-4 d-flex justify-content-center align-items-center gap-3">
-				<button type="submit" class="button">Appliquer</button>
+				<button type="submit" class="button">{% trans %}Appliquer{% endtrans %}</button>
 				<a href="{{ path('app_event_statistiques', {eventId: event.id}) }}" class="filter-reset">
 					<i class="bi bi-arrow-counterclockwise"></i>
-					Réinitialiser les filtres
+					{% trans %}Réinitialiser les filtres{% endtrans %}
 				</a>
 			</div>
 		</form>
@@ -44,7 +44,7 @@
 					</div>
 					<div class="fs-4 fw-bold">{{ totalRevenue|number_format(0, ',', ' ') }}
 						€</div>
-					<p class="small mb-0">Chiffre d'affaires total</p>
+					<p class="small mb-0">{% trans %}Chiffre d'affaires total{% endtrans %}</p>
 				</div>
 			</div>
 			<div class="col-6 col-lg-6">
@@ -53,7 +53,7 @@
 						<i class="bi bi-ticket-perforated-fill"></i>
 					</div>
 					<div class="fs-4 fw-bold">{{ totalTickets }}</div>
-					<p class="small mb-0">Billets vendus au total</p>
+					<p class="small mb-0">{% trans %}Billets vendus au total{% endtrans %}</p>
 				</div>
 			</div>
 		</div>
@@ -62,13 +62,13 @@
 			<div class="col-12 col-lg-6">
 				<div class="card border-0 shadow-lg h-100">
 					<div class="card-body rounded">
-						<h3 class="title fs-6 fw-semibold pb-2 mb-3">Répartition par type de billet</h3>
+						<h3 class="title fs-6 fw-semibold pb-2 mb-3">{% trans %}Répartition par type de billet{% endtrans %}</h3>
 						<div class="d-flex align-items-center gap-4 flex-wrap">
 							<div class="donut-wrap">
 								{{ render_chart(ticketTypeChart) }}
 								<div class="donut-center">
 									<span class="donut-center-label-value">{{ ticketTypeTotal }}</span>
-									<span class="donut-center-label-value">billets</span>
+									<span class="donut-center-label-value">{% trans %}billets{% endtrans %}</span>
 								</div>
 							</div>
 							<ul class="donut-legend list-unstyled mb-0 flex-grow-1">
@@ -90,24 +90,24 @@
 			<div class="col-12 col-lg-6">
 				<div class="card border-0 shadow-lg h-100">
 					<div class="card-body rounded text-center">
-						<h3 class="title fs-6 fw-semibold pb-2 mb-3">Taux de remplissage</h3>
+						<h3 class="title fs-6 fw-semibold pb-2 mb-3">{% trans %}Taux de remplissage{% endtrans %}</h3>
 						{% if capacity is not null %}
 							<div class="donut-wrap mx-auto">
 								{{ render_chart(fillRateChart) }}
 								<div class="donut-center">
 									<span class="donut-center-label-value">{{ fillRate }}%</span>
-									<span class="donut-center-label-value">rempli</span>
+									<span class="donut-center-label-value">{% trans %}rempli{% endtrans %}</span>
 								</div>
 							</div>
 							<p class="mb-0 mt-2">{{ totalTickets }}
 								/
 								{{ capacity }}
-								billets vendus</p>
-							<p class="text-white-50 small mb-0">Capacité totale :
+								{% trans %}billets vendus{% endtrans %}</p>
+							<p class="text-white-50 small mb-0">{% trans %}Capacité totale :{% endtrans %}
 								{{ capacity }}
-								billets</p>
+								{% trans %}billets{% endtrans %}</p>
 						{% else %}
-							<p class="text-white-50 mb-0">Aucune limite de billets définie pour cet événement.</p>
+							<p class="text-white-50 mb-0">{% trans %}Aucune limite de billets définie pour cet événement.{% endtrans %}</p>
 						{% endif %}
 					</div>
 				</div>
@@ -119,7 +119,7 @@
 			<div class="col-12 col-lg-6">
 				<div class="card border-0 shadow-lg">
 					<div class="card-body rounded">
-						<h3 class="title fs-6 fw-semibold pb-2 mb-3">Chiffre d'affaires par jour</h3>
+						<h3 class="title fs-6 fw-semibold pb-2 mb-3">{% trans %}Chiffre d'affaires par jour{% endtrans %}</h3>
 						{{ render_chart(revenuChart) }}
 					</div>
 				</div>
@@ -127,13 +127,13 @@
 			<div class="col-12 col-lg-6">
 				<div class="card border-0 shadow-lg">
 					<div class="card-body rounded">
-						<h3 class="title fs-6 fw-semibold pb-2 mb-3">Tickets vendu par jour</h3>
+						<h3 class="title fs-6 fw-semibold pb-2 mb-3">{% trans %}Tickets vendu par jour{% endtrans %}</h3>
 						{{ render_chart(ticketsChart) }}
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<a href="{{ path('app_mes_evenements') }}" class="button">Retour à mon tableau de bord</a>
+		<a href="{{ path('app_mes_evenements') }}" class="button">{% trans %}Retour à mon tableau de bord{% endtrans %}</a>
 	</div>
 {% endblock %}

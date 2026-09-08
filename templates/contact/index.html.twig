@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Contact | BxlEvent
-{% endblock %}
+{% block title %}{% trans %}Contact{% endtrans %} | BxlEvent{% endblock %}
 
 {% block body %}
 	<main class="main">
@@ -10,8 +9,8 @@
 
 
 			<div class="container section-title">
-				<h2>Contact</h2>
-				<p>Une question sur un événement à Bruxelles ? Notre équipe vous répond dans les plus brefs délais.</p>
+				<h2>{% trans %}Contact{% endtrans %}</h2>
+				<p>{% trans %}Une question sur un événement à Bruxelles ? Notre équipe vous répond dans les plus brefs délais.{% endtrans %}</p>
 			</div>
 
 			<div class="container-fluid container-lg">
@@ -19,17 +18,17 @@
 				<div class="row g-4 g-lg-5">
 					<div class="col-lg-5">
 						<div class="info-box">
-							<h3>Contact Info</h3>
-							<p>Retrouvez-nous au cœur de la capitale ou contactez-nous directement.</p>
+							<h3>{% trans %}Contact Info{% endtrans %}</h3>
+							<p>{% trans %}Retrouvez-nous au cœur de la capitale ou contactez-nous directement.{% endtrans %}</p>
 
 							<div class="info-item">
 								<div class="icon-box">
 									<i class="bi bi-geo-alt"></i>
 								</div>
 								<div class="content">
-									<h4>Notre Localisation</h4>
-									<p>Avenue de l'Astronomie 19 
-																																																												1210 Saint-Josse</p>
+									<h4>{% trans %}Notre Localisation{% endtrans %}</h4>
+									<p>{% trans %}Avenue de l'Astronomie 19 
+																																																												1210 Saint-Josse{% endtrans %}</p>
 								</div>
 							</div>
 
@@ -38,7 +37,7 @@
 									<i class="bi bi-telephone"></i>
 								</div>
 								<div class="content">
-									<h4>Téléphone</h4>
+									<h4>{% trans %}Téléphone{% endtrans %}</h4>
 									<p>+1 5589 55488 55</p>
 								</div>
 							</div>
@@ -48,8 +47,8 @@
 									<i class="bi bi-envelope"></i>
 								</div>
 								<div class="content">
-									<h4>Email</h4>
-									<p>contact@bxlevent.be</p>
+									<h4>{% trans %}Email{% endtrans %}</h4>
+									<p>{% trans %}contact@bxlevent.be{% endtrans %}</p>
 								</div>
 							</div>
 						</div>
@@ -57,7 +56,7 @@
 
 					<div class="col-lg-7">
 						<div class="contact-form">
-							<h3>Envoyez un message</h3>
+							<h3>{% trans %}Envoyez un message{% endtrans %}</h3>
 
 
 							{{ form_start(form, {'attr': {'class': 'php-email-form'}}) }}
@@ -104,11 +103,11 @@
 								</div>
 
 								<div class="col-12 text-center">
-									<div class="loading">Chargement...</div>
+									<div class="loading">{% trans %}Chargement...{% endtrans %}</div>
 									<div class="error-message"></div>
-									<div class="sent-message">Votre message a été envoyé. Merci !</div>
+									<div class="sent-message">{% trans %}Votre message a été envoyé. Merci !{% endtrans %}</div>
 
-									<button type="submit" class="btn button">Envoyer le message</button>
+									<button type="submit" class="btn button">{% trans %}Envoyer le message{% endtrans %}</button>
 								</div>
 								<div class="col-12 text-center">
 									{% for message in app.flashes('success') %}
@@ -127,7 +126,7 @@
 						{% for message in app.flashes('success') %}
 							<div class="alert alert-success alert-dismissible fade show" role="alert">
 								{{ message }}
-								<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+								<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="{{ 'Close'|trans }}"></button>
 							</div>
 						{% endfor %}
 					</div>

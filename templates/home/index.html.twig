@@ -1,17 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}
-  Accueil | BxlEvent
-{% endblock %}
+{% block title %}{% trans %}Accueil{% endtrans %} | BxlEvent{% endblock %}
 {% block body %}
   <table class="table" border="1">
     <thead>
       <tr>
-        <th>Id</th>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Date</th>
-        <th>Hour</th>
+        <th>{% trans %}Id{% endtrans %}</th>
+        <th>{% trans %}Title{% endtrans %}</th>
+        <th>{% trans %}Description{% endtrans %}</th>
+        <th>{% trans %}Date{% endtrans %}</th>
+        <th>{% trans %}Hour{% endtrans %}</th>
       </tr>
     </thead>
     <tbody>
@@ -26,7 +24,7 @@
         </tr>
       {% else %}
         <tr>
-          <td colspan="7">no records found</td>
+          <td colspan="7">{% trans %}no records found{% endtrans %}</td>
         </tr>
       {% endfor %}
     </tbody>

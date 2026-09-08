@@ -1,6 +1,6 @@
 <form method="post" action="{{ path('app_reports_delete', {'id': report.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce signalement ?');">
 	<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ report.id) }}">
 	{% if app.user.role.value == "admin" %}
-		<button class="btn text-danger">Supprimer</button>
+		<button class="btn text-danger">{% trans %}Supprimer{% endtrans %}</button>
 	{% endif %}
 </form>

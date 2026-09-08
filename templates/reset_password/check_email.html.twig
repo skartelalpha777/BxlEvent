@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Email envoyé | BxlEvent
-{% endblock %}
+{% block title %}{% trans %}Email envoyé{% endtrans %} | BxlEvent{% endblock %}
 
 {% block body %}
 	<main class="main">
@@ -10,25 +9,21 @@
 				<div class="row justify-content-center gy-4">
 					<div class="col-11 col-md-10 col-lg-8 info-box">
 						<div class="container section-title text-center">
-							<h1>Confirmation</h1>
+							<h1>{% trans %}Confirmation{% endtrans %}</h1>
 						</div>
 
 						<div class="inscription-form text-center">
 							<p class="mb-4">
-								Si un compte correspond à votre adresse e-mail, un lien vient de vous être envoyé pour réinitialiser votre mot de passe.
+								{% trans %}Si un compte correspond à votre adresse e-mail, un lien vient de vous être envoyé pour réinitialiser votre mot de passe.{% endtrans %}
 								<br><br>
 								<span class="small">
-									Ce lien expirera dans
+									{% trans %}Ce lien expirera dans{% endtrans %}
 									{{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
 								</span>
 							</p>
-							<p class="small text-secondary mb-4">
-								Rien reçu ? Pensez à vérifier vos courriers indésirables (spams).
-							</p>
+							<p class="small text-secondary mb-4">{% trans %}Rien reçu ? Pensez à vérifier vos courriers indésirables (spams).{% endtrans %}</p>
 
-							<a href="{{ path('app_login') }}" class="btn btn-info text-white">
-								Retour à la connexion
-							</a>
+							<a href="{{ path('app_login') }}" class="btn btn-info text-white">{% trans %}Retour à la connexion{% endtrans %}</a>
 						</div>
 					</div>
 

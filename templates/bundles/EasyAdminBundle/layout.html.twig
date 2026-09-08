@@ -16,9 +16,9 @@
 {% block sidebar_footer %}
 	<div class="p-3">
 		<div class="fw-bold" style="color: #1387c1;">BxlEvent</div>
-		<div class="small text-muted mb-2">L'agenda de vos meilleures sorties</div>
+		<div class="small text-muted mb-2">{% trans %}L'agenda de vos meilleures sorties{% endtrans %}</div>
 		<a href="{{ path('app_event_index') }}" class="btn btn-sm btn-outline-primary w-100" target="_blank" rel="noopener">
-			Voir le site
+			{% trans %}Voir le site{% endtrans %}
 			<i class="fas fa-arrow-up-right-from-square ms-1"></i>
 		</a>
 	</div>

@@ -1,29 +1,26 @@
 {% extends 'base.html.twig' %}
-{% block title %}
-	Évènements à ne pas rater | BxlEvent
-{% endblock %}
+{% block title %}{% trans %}Évènements à ne pas rater{% endtrans %} | BxlEvent{% endblock %}
 {% block body %}
 	<main class="main">
 		<div class="container-fluid">
 			<div class="row featureEventsHead">
 				<div class="col-2"></div>
 				<div class="col-8 d-flex flex-column align-items-center justify-content-center">
-					<h1>Evènements à ne pas rater</h1>
+					<h1>{% trans %}Evènements à ne pas rater{% endtrans %}</h1>
 					<div id="line"></div>
-					<p class=" text-center fs-5 mt-2">Découvrez les événements incontournables de Bruxelles																																												Concerts, festivals, expositions, spectacles, événements sportifs ou activités en famille : retrouvez chaque semaine notre sélection des meilleures sorties à Bruxelles et dans les environs. Réservez vos billets en quelques clics grâce à BxlEvent.
-					</p>
+					<p class=" text-center fs-5 mt-2">{% trans %}Découvrez les événements incontournables de Bruxelles																																												Concerts, festivals, expositions, spectacles, événements sportifs ou activités en famille : retrouvez chaque semaine notre sélection des meilleures sorties à Bruxelles et dans les environs. Réservez vos billets en quelques clics grâce à BxlEvent.{% endtrans %}</p>
 				</div>
 				<div class="col-2"></div>
 			</div>
 		</div>
 		<section id="hero">
 			<div class="container container-lg mt-0">
-				<p>Notre équipe sélectionne les événements les plus populaires et les meilleures nouveautés afin de vous aider à trouver votre prochaine sortie. Que vous soyez amateur de musique, de culture ou de sport, il y en a pour tous les goûts.</p>
+				<p>{% trans %}Notre équipe sélectionne les événements les plus populaires et les meilleures nouveautés afin de vous aider à trouver votre prochaine sortie. Que vous soyez amateur de musique, de culture ou de sport, il y en a pour tous les goûts.{% endtrans %}</p>
 				<div class="row mt-4 mb-5">
 					<h2>{{ events | length  }}
-						Evènements</h2>
+						{% trans %}Evènements{% endtrans %}</h2>
 					{% if events | length == 0 %}
-						<p>Aucun événement pour le moment, veillez revenir plus tard</p>
+						<p>{% trans %}Aucun événement pour le moment, veillez revenir plus tard{% endtrans %}</p>
 					{% endif %}
 
 					{% for event in events %}
@@ -59,10 +56,10 @@
 								<div class="card-body">
 									<div class="row">
 										<div class="col">
-											<button class="button w-100" type="button" onclick="window.location.href='{{path('app_event_tickets',{id:event.id})}}'">Voir les tickets</button>
+											<button class="button w-100" type="button" onclick="window.location.href='{{path('app_event_tickets',{id:event.id})}}'">{% trans %}Voir les tickets{% endtrans %}</button>
 										</div>
 										<div class="col text-end">
-											<button class="noBackground px-4" type="button" onclick="window.location.href='{{path('app_event_consult', {id:event.id} )}}'">Voir l'évenement</button>
+											<button class="noBackground px-4" type="button" onclick="window.location.href='{{path('app_event_consult', {id:event.id} )}}'">{% trans %}Voir l'évenement{% endtrans %}</button>
 										</div>
 									</div>
 								</div>
@@ -77,8 +74,8 @@
 								<i class="bi bi-star icon"></i>
 							</div>
 							<div class="col-10">
-								<h3 class="fs-5 title">Selection exclusive</h3>
-								<p>Les meilleurs évènements choisis pour vous</p>
+								<h3 class="fs-5 title">{% trans %}Selection exclusive{% endtrans %}</h3>
+								<p>{% trans %}Les meilleurs évènements choisis pour vous{% endtrans %}</p>
 							</div>
 						</div>
 					</div>
@@ -88,8 +85,8 @@
 								<i class="bi bi-hand-thumbs-up icon"></i>
 							</div>
 							<div class="col-8">
-								<h3 class="fs-5 title">Billets sécurisés</h3>
-								<p>Achats à 100% sécurisés et garantis</p>
+								<h3 class="fs-5 title">{% trans %}Billets sécurisés{% endtrans %}</h3>
+								<p>{% trans %}Achats à 100% sécurisés et garantis{% endtrans %}</p>
 							</div>
 						</div>
 					</div>
@@ -99,8 +96,8 @@
 								<i class="bi bi-headset icon"></i>
 							</div>
 							<div class="col-8">
-								<h3 class="fs-5 title">Support réactif</h3>
-								<p>Notre équipe est là pour vous aider</p>
+								<h3 class="fs-5 title">{% trans %}Support réactif{% endtrans %}</h3>
+								<p>{% trans %}Notre équipe est là pour vous aider{% endtrans %}</p>
 							</div>
 						</div>
 					</div>
@@ -110,8 +107,8 @@
 								<i class="bi bi-calendar-event icon"></i>
 							</div>
 							<div class="col-8">
-								<h3 class="fs-5 title">Mise à jour courante</h3>
-								<p>De nouveaux évènements chaque semaine</p>
+								<h3 class="fs-5 title">{% trans %}Mise à jour courante{% endtrans %}</h3>
+								<p>{% trans %}De nouveaux évènements chaque semaine{% endtrans %}</p>
 							</div>
 						</div>
 					</div>
@@ -122,13 +119,13 @@
 							<i class="bi bi-envelope"></i>
 						</div>
 						<div>
-							<h3 class="h5 mb-1">Ne manquez aucune sortie !</h3>
-							<p class="mb-0 small">Inscrivez-vous à notre newsletter et recevez chaque semaine les événements à ne pas rater.</p>
+							<h3 class="h5 mb-1">{% trans %}Ne manquez aucune sortie !{% endtrans %}</h3>
+							<p class="mb-0 small">{% trans %}Inscrivez-vous à notre newsletter et recevez chaque semaine les événements à ne pas rater.{% endtrans %}</p>
 						</div>
 					</div>
 					<form name="frmNewsletter" action="{{ path('app_newSuscrib_new') }}" method="post" class="d-flex gap-2">
-						<input type="email" name="email" id="email" placeholder="Votre e-mail" class="form-control newsletter-input">
-						<button type="submit" class="button">S'abonner</button>
+						<input type="email" name="email" id="email" placeholder="{{ 'Votre e-mail'|trans }}" class="form-control newsletter-input">
+						<button type="submit" class="button">{% trans %}S'abonner{% endtrans %}</button>
 						<input type="hidden" name="_token" value="{{ csrf_token('newsletter_token') }}">
 					</form>
 				</div>

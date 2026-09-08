@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mot de passe oublié | BxlEvent
-{% endblock %}
+{% block title %}{% trans %}Mot de passe oublié{% endtrans %} | BxlEvent{% endblock %}
 
 {% block body %}
 
@@ -15,8 +14,8 @@
 
 					<div class="col-11 col-md-10 col-lg-8 info-box">
 						<div class="container section-title pb-0">
-							<h1>Rénitialiser votre mot de passe</h1>
-							<p class="mt-3">Entrez votre adresse email et nous vous enverrons un mail pour rénitialiser votre mot de passe</p>
+							<h1>{% trans %}Rénitialiser votre mot de passe{% endtrans %}</h1>
+							<p class="mt-3">{% trans %}Entrez votre adresse email et nous vous enverrons un mail pour rénitialiser votre mot de passe{% endtrans %}</p>
 						</div>
 						<div class="inscription-form">
 							{% for flash_error in app.flashes('reset_password_error') %}
@@ -40,7 +39,7 @@
 							</div>
 							
 
-							<button class="btn button large mt-4">Envoyer</button>
+							<button class="btn button large mt-4">{% trans %}Envoyer{% endtrans %}</button>
 							{{ form_end(requestForm) }}
 
 						</div>

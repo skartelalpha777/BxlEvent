@@ -1,8 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}
-	Inscription | BxlEvent
-{% endblock %}
+{% block title %}{% trans %}Inscription{% endtrans %} | BxlEvent{% endblock %}
 
 {% block body %}
 
@@ -13,7 +11,7 @@
 				<div class="row  justify-content-center gy-4">
 					<div class="col-11 col-md-10 col-lg-8 info-box">
 						<div class="container section-title">
-							<h1>Inscription</h1>
+							<h1>{% trans %}Inscription{% endtrans %}</h1>
 						</div>
 
 						<div class="inscription-form">
@@ -173,9 +171,9 @@
 								</div>
 
 								<div class="col-12 text-center mt-0">
-									<button type="submit" class="btn button large">S'incrire</button>
-									<p>Vous disposez déja d'un compte?
-										<a href="{{path('app_login')}}">Connectez vous</a>
+									<button type="submit" class="btn button large">{% trans %}S'incrire{% endtrans %}</button>
+									<p>{% trans %}Vous disposez déja d'un compte?{% endtrans %}
+										<a href="{{path('app_login')}}">{% trans %}Connectez vous{% endtrans %}</a>
 									</p>
 								</div>
 							</div>
