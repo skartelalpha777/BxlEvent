@@ -17,8 +17,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
     normalizationContext: ['groups' => ['event:read']],
     denormalizationContext: ['groups' => ['event:write']],
     paginationEnabled: false,
-    security: "is_granted('ROLE_ADMIN')", // Nécessite une authentification pour accéder à cette ressource
-    securityPostDenormalize: "is_granted('ROLE_ADMIN')" // Contrôle après la désérialisation
+    security: "is_granted('ROLE_USER')", // Nécessite une authentification pour accéder à cette ressource
+    securityPostDenormalize: "is_granted('ROLE_USER')" // Contrôle après la désérialisation
 
 )]
 
@@ -30,7 +30,7 @@ class Event
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['event:read'])]
+    #[Groups(['event:read', 'event:write'])]
     private ?string $title = null;
 
     #[ORM\Column(length: 255)]
@@ -38,17 +38,18 @@ class Event
     private ?string $description = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    #[Groups(['event:read'])]
+    #[Groups(['event:read', 'event:write'])]
     private ?\DateTime $date = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
-    #[Groups(['event:read'])]
+    #[Groups(['event:read', 'event:write'])]
     private ?\DateTime $hour = null;
 
     #[ORM\Column(enumType: Status::class)]
     private ?Status $status = Status::NOTCHECKED;
 
     #[ORM\ManyToOne(inversedBy: 'events')]
+    #[Groups(['event:read', 'event:write'])]
     private ?Location $location = null;
 
     #[ORM\ManyToOne(inversedBy: 'events')]
@@ -82,6 +83,7 @@ class Event
      * @var Collection<int, Categorie>
      */
     #[ORM\ManyToMany(targetEntity: Categorie::class, inversedBy: 'events')]
+    #[Groups(['event:read', 'event:write'])]
     private Collection $categories;
 
     #[ORM\Column]

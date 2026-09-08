@@ -2,12 +2,22 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Post;
 use App\Repository\LocationRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: LocationRepository::class)]
+#[ApiResource(
+    operations: [new Get(), new GetCollection()],
+    normalizationContext: ['groups' => ['location:read']],
+    paginationEnabled: false
+)]
 class Location
 {
     #[ORM\Id]
@@ -16,18 +26,23 @@ class Location
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['location:read'])]
     private ?string $street = null;
 
     #[ORM\Column]
+    #[Groups(['location:read'])]
     private ?int $number = null;
 
     #[ORM\Column]
+    #[Groups(['location:read'])]
     private ?int $postcode = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['location:read'])]
     private ?string $city = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(['location:read'])]
     private ?string $details = null;
 
     /**
@@ -37,6 +52,7 @@ class Location
     private Collection $events;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['location:read'])]
     private ?string $name = null;
 
 

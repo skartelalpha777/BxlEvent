@@ -11,15 +11,25 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
-#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+#[UniqueEntity(fields: ['email'], message: 'Il existe déjà un compte avec cet email')]
+#[ApiResource(
+    operations: [new Get(), new GetCollection()],
+    normalizationContext: ['groups' => ['location:read']],
+    paginationEnabled: false
+)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['location:read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 180)]
@@ -131,11 +141,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $liste = [];
 
-        
+
         if ($this->role) {
             $liste[] = 'ROLE_' . strtoupper($this->role->value);
         }
-       // dd($liste);
+        // dd($liste);
 
         // 3. On ajoute TOUJOURS le rôle par défaut "ROLE_USER"
         $liste[] = 'ROLE_USER';
