@@ -22,7 +22,7 @@ use ApiPlatform\Metadata\GetCollection;
 #[ApiResource(
     operations: [new Get(), new GetCollection()],
     normalizationContext: ['groups' => ['users:read']],
-    paginationEnabled: false
+    paginationItemsPerPage: 50 
 )]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {

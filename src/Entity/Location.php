@@ -16,7 +16,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ApiResource(
     operations: [new Get(), new GetCollection()],
     normalizationContext: ['groups' => ['location:read']],
-    paginationEnabled: false
+    paginationItemsPerPage: 50 
 )]
 class Location
 {

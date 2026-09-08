@@ -15,7 +15,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ApiResource(
     operations: [new Get(), new GetCollection()],
     normalizationContext: ['groups' => ['categorie:read']],
-    paginationEnabled: false
+    paginationItemsPerPage: 50 
 )]
 class Categorie
 {

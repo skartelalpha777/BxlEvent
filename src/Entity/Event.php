@@ -10,13 +10,14 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 #[ORM\Entity(repositoryClass: EventRepository::class)]
 #[ApiResource(
     normalizationContext: ['groups' => ['event:read']],
     denormalizationContext: ['groups' => ['event:write']],
-    paginationEnabled: false,
+    paginationItemsPerPage: 50, // Limite la taille de la réponse( le nombre d'object renvoyé) : sans pagination, toute la table est sérialisée à chaque appel et cela proque un ralentissement
     security: "is_granted('ROLE_USER')", // Nécessite une authentification pour accéder à cette ressource
     securityPostDenormalize: "is_granted('ROLE_USER')" // Contrôle après la désérialisation
 
@@ -31,18 +32,24 @@ class Event
 
     #[ORM\Column(length: 255)]
     #[Groups(['event:read', 'event:write'])]
+    #[Assert\NotBlank(message: 'Le titre est obligatoire.')]
+    #[Assert\Length(max: 255, maxMessage: 'Le titre ne peut pas dépasser {{ limit }} caractères.')]
     private ?string $title = null;
 
     #[ORM\Column(length: 255)]
     #[Groups(['event:read', 'event:write'])]
+    #[Assert\NotBlank(message: 'La description est obligatoire.')]
+    #[Assert\Length(max: 255, maxMessage: 'La description ne peut pas dépasser {{ limit }} caractères.')]
     private ?string $description = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     #[Groups(['event:read', 'event:write'])]
+    #[Assert\NotNull(message: 'La date est obligatoire.')]
     private ?\DateTime $date = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
     #[Groups(['event:read', 'event:write'])]
+    #[Assert\NotNull(message: 'L\'heure est obligatoire.')]
     private ?\DateTime $hour = null;
 
     #[ORM\Column(enumType: Status::class)]
