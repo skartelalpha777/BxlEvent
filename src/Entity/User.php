@@ -21,7 +21,7 @@ use ApiPlatform\Metadata\GetCollection;
 #[UniqueEntity(fields: ['email'], message: 'Il existe déjà un compte avec cet email')]
 #[ApiResource(
     operations: [new Get(), new GetCollection()],
-    normalizationContext: ['groups' => ['location:read']],
+    normalizationContext: ['groups' => ['users:read']],
     paginationEnabled: false
 )]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -29,7 +29,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['location:read'])]
+    #[Groups(['users:read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 180)]
