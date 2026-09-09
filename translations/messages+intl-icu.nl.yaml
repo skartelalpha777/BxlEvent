@@ -1,0 +1,538 @@
+'Date de début': Startdatum
+'Date de fin': Einddatum
+Appliquer: Toepassen
+'Réinitialiser les filtres': 'Filters resetten'
+Évènement: Evenement
+'en attente de validation': 'in afwachting van goedkeuring'
+Signalement: Melding
+'non traité': 'niet behandeld'
+'Utilisateurs inscrits par mois': 'Geregistreerde gebruikers per maand'
+"Chiffre d'affaires par mois": 'Omzet per maand'
+'Top catégories': Topcategorieën
+'Évènements par statut': 'Evenementen per status'
+'Top 5 évènements (par revenu)': 'Top 5 evenementen (naar omzet)'
+'Aucune vente sur cette période.': 'Geen verkoop in deze periode.'
+'Billets vendus': 'Verkochte tickets'
+Revenu: Omzet
+Accueil: Startpagina
+'A propos': 'Over ons'
+Catégories: Categorieën
+Contact: Contact
+Panier: Winkelmandje
+Profil: Profiel
+Connexion: Inloggen
+Inscription: Registreren
+'Mon profil': 'Mijn profiel'
+Administration: Administratie
+'Gestion des évènements': Evenementenbeheer
+'Mes évènements': 'Mijn evenementen'
+Déconnexion: Uitloggen
+'La billetterie qui réunit les meilleurs événements de Bruxelles, du showcase intime au grand festival.': 'Het ticketplatform dat de beste evenementen van Brussel samenbrengt, van een intieme showcase tot een groot festival.'
+'Billets sécurisés': 'Veilige tickets'
+'Achat 100% sécurisé': '100% veilige aankoop'
+'Support réactif': 'Snelle ondersteuning'
+'Notre équipe est là pour vous': 'Ons team staat voor u klaar'
+'Événements vérifiés': 'Geverifieerde evenementen'
+'Qualité et fiabilité garanties': 'Kwaliteit en betrouwbaarheid gegarandeerd'
+Navigation: Navigatie
+'Mon compte': 'Mijn account'
+"S'inscrire": Registreren
+Aide: Hulp
+FAQ: 'Veelgestelde vragen'
+'Conditions générales': 'Algemene voorwaarden'
+'Politique de confidentialité': Privacybeleid
+'Mentions légales': 'Wettelijke vermeldingen'
+Suivez-nous: 'Volg ons'
+'Bruxelles, Belgique': 'Brussel, België'
+contact@bxlevent.be: contact@bxlevent.be
+'Tous droits réservés.': 'Alle rechten voorbehouden.'
+"L'agenda de vos meilleures sorties": 'De agenda van uw beste uitjes'
+'Voir le site': 'Bekijk de site'
+'Votre Panier': 'Uw winkelmandje'
+'Vider le panier': 'Winkelmandje leegmaken'
+'Votre commande': 'Uw bestelling'
+Sous-total: Subtotaal
+'Frais de service': Servicekosten
+Total: Totaal
+'Procéder au paiement': 'Doorgaan naar betaling'
+'Paiement 100% sécurisé': '100% veilige betaling'
+'Votre panier est vide.': 'Uw winkelmandje is leeg.'
+'Parcourez nos événements pour trouver votre prochaine sortie !': 'Blader door onze evenementen om uw volgende uitje te vinden!'
+"Retourner à l'accueil": 'Terug naar de startpagina'
+'Modifier la catégorie': 'Categorie bewerken'
+'Edit Categorie': 'Categorie bewerken'
+'back to list': 'terug naar de lijst'
+'Categorie index': Categorieënoverzicht
+Id: Id
+Name: Naam
+actions: acties
+show: bekijken
+edit: bewerken
+'no records found': 'geen gegevens gevonden'
+'Create new': 'Nieuw aanmaken'
+'Nouvelle catégorie': 'Nieuwe categorie'
+'Create new Categorie': 'Nieuwe categorie aanmaken'
+Catégorie: Categorie
+Categorie: Categorie
+'Are you sure you want to delete this item?': 'Weet u zeker dat u dit item wilt verwijderen?'
+Delete: Verwijderen
+'À propos': 'Over ons'
+'A propos de BxlEvent': 'Over BxlEvent'
+'BxlEvent est une plateforme dédiée aux événements récréatifs à Bruxelles et dans ses environs.': 'BxlEvent is een platform gewijd aan recreatieve evenementen in Brussel en omgeving.'
+'Notre objectif est de vous aider à découvrir facilement les activités et sorties qui correspondent à vos envies.': 'Ons doel is u te helpen gemakkelijk activiteiten en uitjes te ontdekken die aansluiten bij uw wensen.'
+'Notre projet': 'Ons project'
+'Une plateforme pensée pour découvrir Bruxelles autrement': 'Een platform ontworpen om Brussel op een andere manier te ontdekken'
+"BxlEvent a été développé dans le cadre d'un projet scolaire avec l'objectif de créer une plateforme permettant de centraliser différents événements récréatifs organisés à Bruxelles.": 'BxlEvent is ontwikkeld in het kader van een schoolproject met als doel een platform te creëren waarop verschillende recreatieve evenementen in Brussel gecentraliseerd worden.'
+'Concerts, festivals, spectacles, expositions, événements sportifs ou encore activités de loisirs : notre plateforme rassemble différentes possibilités de sorties au même endroit.': 'Concerten, festivals, voorstellingen, tentoonstellingen, sportevenementen of vrijetijdsactiviteiten: ons platform verzamelt verschillende uitstapmogelijkheden op één plek.'
+'Nous avons voulu proposer une interface simple et intuitive afin que chacun puisse trouver rapidement un événement, consulter ses informations et découvrir de nouvelles activités.': 'We wilden een eenvoudige en intuïtieve interface aanbieden, zodat iedereen snel een evenement kan vinden, de informatie kan bekijken en nieuwe activiteiten kan ontdekken.'
+'Pourquoi BxlEvent ?': 'Waarom BxlEvent?'
+"Bruxelles, une ville pleine d'événements": 'Brussel, een stad vol evenementen'
+"Bruxelles propose de nombreuses activités tout au long de l'année. Pourtant, trouver un événement qui correspond à ses envies peut parfois nécessiter de consulter plusieurs sites.": 'Brussel biedt het hele jaar door talrijke activiteiten. Toch is het soms nodig om meerdere sites te raadplegen om een evenement te vinden dat bij uw wensen past.'
+'BxlEvent a donc été imaginé pour simplifier cette recherche. Grâce aux catégories, aux filtres et aux informations détaillées de chaque événement, vous pouvez facilement explorer les sorties disponibles et préparer votre prochaine activité.': 'BxlEvent is daarom bedacht om deze zoektocht te vereenvoudigen. Dankzij categorieën, filters en gedetailleerde informatie over elk evenement kunt u eenvoudig de beschikbare uitjes verkennen en uw volgende activiteit voorbereiden.'
+'Ce que vous pouvez trouver sur BxlEvent': 'Wat u op BxlEvent kunt vinden'
+'Concerts & festivals': 'Concerten & festivals'
+'Découvrez les artistes et événements musicaux qui se déroulent à Bruxelles.': 'Ontdek de artiesten en muziekevenementen die in Brussel plaatsvinden.'
+'Spectacles & culture': 'Voorstellingen & cultuur'
+'Théâtre, spectacles, expositions et autres rendez-vous culturels à ne pas manquer.': 'Theater, voorstellingen, tentoonstellingen en andere culturele afspraken die u niet mag missen.'
+'Sports & loisirs': 'Sport & vrije tijd'
+'Retrouvez les événements sportifs et activités de loisirs proposés dans la capitale.': 'Ontdek de sportevenementen en vrijetijdsactiviteiten die in de hoofdstad worden aangeboden.'
+'Sorties & activités': 'Uitjes & activiteiten'
+'Des idées de sorties pour profiter de Bruxelles seul, entre amis ou en famille.': 'Ideeën voor uitjes om alleen, met vrienden of in familieverband van Brussel te genieten.'
+'Tout pour': 'Alles om'
+'Vous aider à trouver votre prochaine sortie': 'u te helpen uw volgende uitje te vinden'
+"Nous avons à cœur de rendre la recherche d'événements plus simple, claire et plus agréable. BxlEvent permet de parcourir les événements selon différents critères comme la catégorie, la date ou le lieu afin de trouver plus rapidement une activité qui vous correspond.": 'Het is onze prioriteit om het zoeken naar evenementen eenvoudiger, duidelijker en aangenamer te maken. Met BxlEvent kunt u evenementen doorbladeren op basis van criteria zoals categorie, datum of locatie, zodat u sneller een activiteit vindt die bij u past.'
+"Une sélection d'événements récréatifs de qualité": 'Een selectie van kwalitatieve recreatieve evenementen'
+'Des informations claires et mises à jour régulièrement': 'Duidelijke en regelmatig bijgewerkte informatie'
+'Une interface simple, rapide et accessible à tous': 'Een eenvoudige, snelle en voor iedereen toegankelijke interface'
+"Un projet réalisé avec passion et envie d'apprendre": 'Een project gerealiseerd met passie en leergierigheid'
+'Une sortie vous attend peut-être!': 'Misschien wacht er een uitje op u!'
+'Parcourez les évènements disponibles à Bruxelles et trouvez votre prochaine activité en quelques clics': 'Blader door de beschikbare evenementen in Brussel en vind uw volgende activiteit in enkele klikken'
+'Découvrez les évènements': 'Ontdek de evenementen'
+'Foire aux questions': 'Veelgestelde vragen'
+'Retrouvez ici les réponses aux questions les plus fréquentes à propos de BxlEvent.': 'Vind hier de antwoorden op de meest gestelde vragen over BxlEvent.'
+'Comment créer un compte sur BxlEvent ?': 'Hoe maak ik een account aan op BxlEvent?'
+'Cliquez sur "S''inscrire" dans  de la page de connexion, remplissez le formulaire avec vos informations et validez votre inscription via l''e-mail que vous recevrez. Une fois votre compte activé, vous pourrez profiter de toutes les fonctionnalités.': 'Klik op "Registreren" op de inlogpagina, vul het formulier in met uw gegevens en bevestig uw registratie via de e-mail die u ontvangt. Zodra uw account geactiveerd is, kunt u van alle functies genieten.'
+'Comment réserver un événement ?': 'Hoe reserveer ik een evenement?'
+"Rendez-vous sur la page de l'événement qui vous intéresse, choisissez votre type de billet et la quantité, puis ajoutez-le au panier. Vous pourrez ensuite finaliser votre commande depuis votre panier.": 'Ga naar de pagina van het evenement dat u interesseert, kies uw type ticket en de hoeveelheid, en voeg het toe aan uw winkelmandje. Vervolgens kunt u uw bestelling afronden vanuit uw winkelmandje.'
+'Puis-je annuler ou modifier ma réservation ?': 'Kan ik mijn reservering annuleren of wijzigen?'
+"Les billets sont non remboursables sauf en cas d'annulation de l'événement.": 'Tickets zijn niet terugbetaalbaar, behalve bij annulering van het evenement.'
+'Quels moyens de paiement acceptez-vous ?': 'Welke betaalmethoden accepteert u?'
+'BxlEvent accepte les principales cartes bancaires ainsi que les moyens de paiement en ligne les plus courants. Toutes les transactions sont sécurisées.': 'BxlEvent accepteert de belangrijkste bankkaarten en de meest gangbare online betaalmethoden. Alle transacties zijn beveiligd.'
+'Comment être informé des nouveaux événements ?': 'Hoe blijf ik op de hoogte van nieuwe evenementen?'
+"Inscrivez-vous à notre newsletter depuis la page d'accueil pour recevoir chaque semaine une sélection des meilleurs événements à ne pas manquer à Bruxelles.": 'Schrijf u in voor onze nieuwsbrief via de startpagina om wekelijks een selectie van de beste evenementen in Brussel te ontvangen.'
+'Mes données sont-elles sécurisées ?': 'Zijn mijn gegevens veilig?'
+'Oui. Vos données personnelles et vos paiements sont traités de manière sécurisée et ne sont jamais partagés avec des tiers sans votre consentement.': 'Ja. Uw persoonsgegevens en betalingen worden veilig verwerkt en nooit met derden gedeeld zonder uw toestemming.'
+"Je n'ai pas trouvé la réponse à ma question, que faire ?": 'Ik heb geen antwoord op mijn vraag gevonden, wat nu?'
+"N'hésitez pas à nous contacter directement via notre page de contact, notre équipe se fera un plaisir de vous répondre rapidement.": 'Aarzel niet om ons rechtstreeks te contacteren via onze contactpagina, ons team beantwoordt u graag snel.'
+'Comment télécharger mes billets ?': 'Hoe download ik mijn tickets?'
+'Rendez-vous dans votre profil, section "Mes commandes & billets". Pour chaque commande payée, un bouton "Télécharger mes billets" vous permet de récupérer vos billets au format PDF.': 'Ga naar uw profiel, sectie "Mijn bestellingen & tickets". Voor elke betaalde bestelling kunt u via de knop "Mijn tickets downloaden" uw tickets als PDF ophalen.'
+'Comment devenir organisateur et publier mon propre événement ?': 'Hoe word ik organisator en publiceer ik mijn eigen evenement?'
+'Lors de votre inscription, choisissez le profil "Contributeur (Organisateur)". Vous pourrez ensuite publier vos propres événements et gérer votre programmation depuis votre compte.': 'Kies bij uw registratie het profiel "Bijdrager (Organisator)". Vervolgens kunt u uw eigen evenementen publiceren en uw programmering beheren vanuit uw account.'
+'Comment signaler un problème avec un événement ?': 'Hoe meld ik een probleem met een evenement?'
+'Si un événement vous semble incorrect, annulé ou frauduleux, vous pouvez le signaler directement depuis sa page. Notre équipe examine chaque signalement et vous tient informé du traitement de votre demande.': 'Als een evenement u onjuist, geannuleerd of frauduleus lijkt, kunt u dit rechtstreeks vanaf de pagina melden. Ons team onderzoekt elke melding en houdt u op de hoogte van de afhandeling van uw verzoek.'
+'Vous avez encore une question ?': 'Heeft u nog een vraag?'
+"Notre équipe est là pour vous aider. N'hésitez pas à nous contacter.": 'Ons team staat klaar om u te helpen. Aarzel niet om contact met ons op te nemen.'
+'Nous contacter': 'Contacteer ons'
+'Une question sur un événement à Bruxelles ? Notre équipe vous répond dans les plus brefs délais.': 'Een vraag over een evenement in Brussel? Ons team antwoordt u zo snel mogelijk.'
+'Contact Info': Contactgegevens
+'Retrouvez-nous au cœur de la capitale ou contactez-nous directement.': 'Bezoek ons in het hart van de hoofdstad of neem rechtstreeks contact met ons op.'
+'Notre Localisation': 'Onze locatie'
+"Avenue de l'Astronomie 19 \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t1210 Saint-Josse": |-
+    Sterrenkundelaan 19 
+    																																																												1210 Sint-Joost-ten-Node
+Téléphone: Telefoon
+Email: E-mail
+'Envoyez un message': 'Stuur een bericht'
+Chargement...: Laden...
+'Votre message a été envoyé. Merci !': 'Uw bericht is verzonden. Dank u!'
+'Envoyer le message': 'Bericht verzenden'
+Close: Sluiten
+'Informations légales': 'Wettelijke informatie'
+'Dernière mise à jour :': 'Laatst bijgewerkt:'
+"Cette page présente les informations relatives à l'éditeur et à l'hébergement du site BxlEvent.": 'Deze pagina bevat informatie over de uitgever en de hosting van de website BxlEvent.'
+'1. Éditeur du site': '1. Uitgever van de site'
+"Le site BxlEvent a été développé dans le cadre d'un projet de formation à l'EPFC (École Pratique des Hautes Études Commerciales).": 'De website BxlEvent is ontwikkeld in het kader van een opleiding aan de EPFC (École Pratique des Hautes Études Commerciales).'
+'Responsable de la publication : Mamadou Alpha Diallo': 'Verantwoordelijke uitgever: Mamadou Alpha Diallo'
+'E-mail :': 'E-mail:'
+3010madiallo@student.epfc.eu: 3010madiallo@student.epfc.eu
+'2. Hébergement': '2. Hosting'
+"Nom de l'hébergeur :": 'Naam van de hostingprovider:'
+'Adresse :': 'Adres:'
+'Contact :': 'Contact:'
+'3. Propriété intellectuelle': '3. Intellectuele eigendom'
+'Les éléments originaux du site BxlEvent, notamment les textes, le logo, la mise en page et les éléments graphiques créés dans le cadre du projet, sont protégés par les règles applicables en matière de propriété intellectuelle. Toute reproduction ou utilisation non autorisée de ces éléments peut être interdite. Plus de détails dans nos': 'De originele elementen van de website BxlEvent, met name de teksten, het logo, de lay-out en de grafische elementen die in het kader van het project zijn gemaakt, worden beschermd door de geldende regels inzake intellectuele eigendom. Elke ongeoorloofde reproductie of gebruik van deze elementen kan worden verboden. Meer details in onze'
+'conditions générales': 'algemene voorwaarden'
+'4. Données personnelles': '4. Persoonsgegevens'
+'Le traitement des données personnelles collectées sur le site est détaillé dans notre': 'De verwerking van de op de site verzamelde persoonsgegevens wordt beschreven in ons'
+'politique de confidentialité': privacybeleid
+'5. Nature du site': '5. Aard van de site'
+"BxlEvent est un projet initialement réalisé dans le cadre d'une formation à l'EPFC, dont le déploiement sur un serveur accessible publiquement fait partie des exigences de la formation. Au-delà de ce cadre scolaire, BxlEvent a vocation à être exploité comme un service réel une fois le projet validé.": 'BxlEvent is een project dat oorspronkelijk werd gerealiseerd in het kader van een opleiding aan de EPFC, waarbij de implementatie op een publiek toegankelijke server deel uitmaakt van de opleidingseisen. Buiten dit schoolkader heeft BxlEvent de ambitie om als een echte dienst te worden geëxploiteerd zodra het project is goedgekeurd.'
+'6. Contact': '6. Contact'
+'Pour toute question relative à ces mentions légales, vous pouvez nous contacter via notre': 'Voor vragen over deze wettelijke vermeldingen kunt u ons contacteren via onze'
+'page de contact': contactpagina
+Confidentialité: Privacy
+'BxlEvent accorde une grande importance à la protection de vos données personnelles. Cette page explique quelles données nous collectons, pourquoi, et quels sont vos droits.': 'BxlEvent hecht veel belang aan de bescherming van uw persoonsgegevens. Deze pagina legt uit welke gegevens wij verzamelen, waarom, en wat uw rechten zijn.'
+'1. Données collectées': '1. Verzamelde gegevens'
+"Lors de votre inscription et de l'utilisation du site, nous collectons les informations suivantes : nom, prénom, adresse e-mail, adresse postale (facultative) et, le cas échéant, les informations liées à vos commandes et billets.": 'Bij uw registratie en het gebruik van de site verzamelen wij de volgende gegevens: naam, voornaam, e-mailadres, postadres (facultatief) en, indien van toepassing, informatie met betrekking tot uw bestellingen en tickets.'
+'2. Utilisation des données': '2. Gebruik van de gegevens'
+'Ces données sont utilisées uniquement pour :': 'Deze gegevens worden uitsluitend gebruikt om:'
+'Créer et gérer votre compte utilisateur ;': 'Uw gebruikersaccount aan te maken en te beheren;'
+'Traiter vos commandes et générer vos billets ;': 'Uw bestellingen te verwerken en uw tickets te genereren;'
+'Vous envoyer la newsletter, si vous y êtes inscrit ;': 'U de nieuwsbrief te sturen, indien u hierop bent geabonneerd;'
+'Répondre à vos demandes via le formulaire de contact.': 'Te reageren op uw verzoeken via het contactformulier.'
+'3. Conservation des données': '3. Bewaring van de gegevens'
+'Vos données sont conservées uniquement le temps nécessaire aux finalités décrites ci-dessus, et supprimées  à la clôture de votre compte.': 'Uw gegevens worden enkel bewaard zolang nodig is voor de hierboven beschreven doeleinden, en verwijderd bij sluiting van uw account.'
+'4. Vos droits': '4. Uw rechten'
+"Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Vous pouvez à tout moment consulter et modifier vos informations depuis votre profil, ou nous contacter directement pour toute demande.": 'Overeenkomstig de AVG heeft u recht op inzage, rectificatie en verwijdering van uw gegevens. U kunt op elk moment uw gegevens raadplegen en wijzigen via uw profiel, of ons rechtstreeks contacteren voor elk verzoek.'
+'5. Cookies': '5. Cookies'
+"BxlEvent utilise uniquement des cookies techniques nécessaires au bon fonctionnement du site (ex : maintien de votre session et de votre panier). Aucun cookie publicitaire n'est utilisé.": 'BxlEvent gebruikt uitsluitend technische cookies die nodig zijn voor de goede werking van de site (bv.: het behoud van uw sessie en winkelmandje). Er worden geen reclamecookies gebruikt.'
+'6. Base légale du traitement': '6. Rechtsgrondslag van de verwerking'
+'Les données personnelles sont traitées sur la base de différentes fondements juridiques prévus par le RGPD :.': 'Persoonsgegevens worden verwerkt op basis van verschillende rechtsgrondslagen die door de AVG worden voorzien:.'
+"l'exécution d'un contrat, notamment pour la création du compte et la gestion des commandes ;": 'de uitvoering van een overeenkomst, met name voor het aanmaken van het account en het beheer van bestellingen;'
+"le consentement de l'utilisateur, notamment pour l'inscription à la newsletter ;": 'de toestemming van de gebruiker, met name voor de inschrijving op de nieuwsbrief;'
+"le respect d'obligations légales lorsque cela est nécessaire ;": 'de naleving van wettelijke verplichtingen indien nodig;'
+"l'intérêt légitime de BxlEvent pour assurer la sécurité et le bon fonctionnement du site.": 'het gerechtvaardigd belang van BxlEvent om de veiligheid en de goede werking van de site te waarborgen.'
+'7. Destinataires des données': '7. Ontvangers van de gegevens'
+"Les données personnelles sont uniquement accessibles aux personnes nécessaires au fonctionnement de BxlEvent. Elles peuvent notamment être transmises à nos prestataires techniques lorsque cela est nécessaire au fonctionnement du site, au traitement des paiements ou à l'envoi d'e-mails.": 'Persoonsgegevens zijn uitsluitend toegankelijk voor personen die nodig zijn voor de werking van BxlEvent. Ze kunnen worden doorgegeven aan onze technische dienstverleners wanneer dit nodig is voor de werking van de site, de verwerking van betalingen of het versturen van e-mails.'
+'8. Sécurité des données': '8. Beveiliging van de gegevens'
+"BxlEvent met en œuvre des mesures techniques et organisationnelles appropriées afin de protéger les données personnelles contre la perte, l'accès non autorisé, la modification ou la divulgation.": 'BxlEvent neemt passende technische en organisatorische maatregelen om persoonsgegevens te beschermen tegen verlies, ongeoorloofde toegang, wijziging of openbaarmaking.'
+"9. Transfert des données hors de l'Union européenne": '9. Doorgifte van gegevens buiten de Europese Unie'
+"Lorsque certains prestataires utilisés par BxlEvent peuvent traiter des données personnelles en dehors de l'Union européenne, nous veillons à ce que ces transferts soient réalisés conformément aux exigences du RGPD et bénéficient de garanties appropriées.": 'Wanneer bepaalde door BxlEvent gebruikte dienstverleners persoonsgegevens buiten de Europese Unie kunnen verwerken, zorgen wij ervoor dat deze doorgiftes gebeuren in overeenstemming met de vereisten van de AVG en voorzien zijn van passende waarborgen.'
+'10. Modification de la politique de confidentialité': '10. Wijziging van het privacybeleid'
+"Cette politique de confidentialité peut être modifiée afin de tenir compte de l'évolution du site, de nos services ou de la réglementation applicable.": 'Dit privacybeleid kan worden gewijzigd om rekening te houden met de evolutie van de site, onze diensten of de toepasselijke regelgeving.'
+'La date de dernière mise à jour indiquée en haut de cette page permet de connaître la version actuellement en vigueur.': 'De datum van de laatste update, bovenaan deze pagina, geeft aan welke versie momenteel van kracht is.'
+'11. Contact': '11. Contact'
+'Pour toute question concernant vos données personnelles, vous pouvez nous contacter via notre': 'Voor vragen over uw persoonsgegevens kunt u ons contacteren via onze'
+Conditions: Voorwaarden
+"Conditions générales d'utilisation": 'Algemene gebruiksvoorwaarden'
+"Les présentes conditions générales régissent l'utilisation du site BxlEvent. En créant un compte ou en utilisant le site, vous acceptez sans réserve les conditions décrites ci-dessous.": 'Deze algemene voorwaarden regelen het gebruik van de website BxlEvent. Door een account aan te maken of de site te gebruiken, aanvaardt u zonder voorbehoud de hieronder beschreven voorwaarden.'
+'1. Objet': '1. Doel'
+'BxlEvent est une plateforme permettant de découvrir des événements organisés à Bruxelles et dans ses environs, de réserver des billets, et pour les Contributeurs, de publier et gérer leurs propres événements.': 'BxlEvent is een platform waarmee u evenementen in Brussel en omgeving kunt ontdekken, tickets kunt reserveren, en waarmee Bijdragers hun eigen evenementen kunnen publiceren en beheren.'
+"2. Création d'un compte": '2. Aanmaken van een account'
+"L'utilisation de certaines fonctionnalités de BxlEvent (réservation de billets, publication d'événements, gestion du profil) nécessite la création d'un compte. Lors de l'inscription, vous devez choisir un profil :": 'Het gebruik van bepaalde functies van BxlEvent (ticketreservering, publicatie van evenementen, profielbeheer) vereist het aanmaken van een account. Bij de registratie moet u een profiel kiezen:'
+Membre: Lid
+': permet de parcourir les événements, réserver des billets et gérer ses commandes ;': ': maakt het mogelijk om evenementen te bekijken, tickets te reserveren en bestellingen te beheren;'
+Contributeur: Bijdrager
+': permet en plus de publier et gérer ses propres événements.': ': maakt het bovendien mogelijk om eigen evenementen te publiceren en te beheren.'
+'Vous vous engagez à fournir des informations exactes, à jour, et à les maintenir à jour depuis votre profil. Vous êtes responsable de la confidentialité de votre mot de passe et de toute activité effectuée depuis votre compte.': 'U verbindt zich ertoe juiste en actuele informatie te verstrekken en deze up-to-date te houden via uw profiel. U bent verantwoordelijk voor de vertrouwelijkheid van uw wachtwoord en voor elke activiteit die vanaf uw account wordt uitgevoerd.'
+'3. Comportement des utilisateurs': '3. Gedrag van gebruikers'
+'En utilisant BxlEvent, vous vous engagez à :': 'Door BxlEvent te gebruiken, verbindt u zich ertoe om:'
+'Ne pas créer plusieurs comptes dans le but de contourner une restriction ;': 'Geen meerdere accounts aan te maken om een beperking te omzeilen;'
+"Ne pas publier de contenu trompeur, injurieux, illicite ou portant atteinte aux droits d'autrui ;": 'Geen misleidende, beledigende, onwettige inhoud te publiceren of inhoud die de rechten van anderen schendt;'
+"Ne pas utiliser le site à des fins frauduleuses (fausses réservations, faux événements, usurpation d'identité) ;": 'De site niet te gebruiken voor frauduleuze doeleinden (valse reserveringen, valse evenementen, identiteitsdiefstal);'
+'Respecter les autres utilisateurs et organisateurs.': 'De andere gebruikers en organisatoren te respecteren.'
+"Tout utilisateur constatant un comportement abusif ou un événement suspect peut le signaler directement depuis la page de l'événement concerné.": 'Elke gebruiker die ongepast gedrag of een verdacht evenement opmerkt, kan dit rechtstreeks melden vanaf de pagina van het betreffende evenement.'
+'4. Fonctionnement des événements': '4. Werking van de evenementen'
+"Les événements affichés sur BxlEvent peuvent être créés par l'équipe BxlEvent ou publiés par des utilisateurs Contributeurs. Chaque événement passe par un statut de validation avant d'être visible publiquement, afin de limiter la publication de contenus non conformes.": 'De evenementen op BxlEvent kunnen worden aangemaakt door het BxlEvent-team of gepubliceerd door Bijdragers. Elk evenement doorloopt een goedkeuringsstatus voordat het publiekelijk zichtbaar wordt, om de publicatie van niet-conforme inhoud te beperken.'
+"Les Contributeurs sont responsables de l'exactitude des informations qu'ils publient (description, date, heure, lieu, catégories, tarifs des billets). Il leur appartient de tenir ces informations à jour, notamment en cas de report ou d'annulation.": 'Bijdragers zijn verantwoordelijk voor de juistheid van de informatie die zij publiceren (beschrijving, datum, tijdstip, locatie, categorieën, ticketprijzen). Het is hun verantwoordelijkheid om deze informatie up-to-date te houden, met name bij uitstel of annulering.'
+'5. Réservation et paiement des billets': '5. Reservering en betaling van tickets'
+"Toute commande de billets via BxlEvent est ferme dès sa confirmation. Les billets sont nominatifs et non transférables, sauf indication contraire de l'organisateur de l'événement. Après paiement, les billets sont accessibles au format PDF depuis votre profil.": 'Elke ticketbestelling via BxlEvent is definitief zodra deze bevestigd is. Tickets zijn persoonsgebonden en niet overdraagbaar, tenzij de organisator van het evenement anders aangeeft. Na betaling zijn de tickets als PDF beschikbaar vanuit uw profiel.'
+'6. Responsabilité de BxlEvent': '6. Aansprakelijkheid van BxlEvent'
+"BxlEvent agit en tant qu'intermédiaire technique entre les organisateurs et les participants. À ce titre, BxlEvent ne peut être tenu responsable :": 'BxlEvent treedt op als technische tussenpersoon tussen organisatoren en deelnemers. Als zodanig kan BxlEvent niet aansprakelijk worden gesteld voor:'
+"Du déroulement, du report ou de l'annulation d'un événement, ces responsabilités incombant à l'organisateur ;": 'Het verloop, het uitstel of de annulering van een evenement, aangezien deze verantwoordelijkheden bij de organisator liggen;'
+"De l'exactitude des informations publiées par les Contributeurs ;": 'De juistheid van de door Bijdragers gepubliceerde informatie;'
+"D'une interruption temporaire du site liée à la maintenance ou à un incident technique.": 'Een tijdelijke onderbreking van de site door onderhoud of een technisch incident.'
+'BxlEvent met cependant tout en œuvre pour vérifier les événements publiés et retirer rapidement tout contenu signalé comme non conforme.': 'BxlEvent doet echter al het mogelijke om gepubliceerde evenementen te controleren en gemelde niet-conforme inhoud snel te verwijderen.'
+"7. Suspension et suppression d'un compte": '7. Schorsing en verwijdering van een account'
+'BxlEvent se réserve le droit de suspendre ou de supprimer, temporairement ou définitivement, tout compte ne respectant pas les présentes conditions générales, notamment en cas de comportement frauduleux, de publication de contenu non conforme ou de signalements répétés et justifiés.': 'BxlEvent behoudt zich het recht voor om elk account dat deze algemene voorwaarden niet naleeft, tijdelijk of definitief te schorsen of te verwijderen, met name bij frauduleus gedrag, publicatie van niet-conforme inhoud of herhaalde en gegronde meldingen.'
+'Vous pouvez également demander la suppression de votre compte à tout moment, en nous contactant via notre page de contact.': 'U kunt ook op elk moment de verwijdering van uw account aanvragen door ons te contacteren via onze contactpagina.'
+'8. Propriété intellectuelle': '8. Intellectuele eigendom'
+"L'ensemble des contenus du site (textes, logo, mise en page, charte graphique) est protégé et ne peut être reproduit sans autorisation préalable. Les contenus publiés par les Contributeurs (descriptions, visuels d'événements) restent leur propriété, mais sont mis à disposition de BxlEvent pour affichage sur la plateforme.": 'Alle inhoud van de site (teksten, logo, lay-out, grafisch charter) is beschermd en mag niet worden gereproduceerd zonder voorafgaande toestemming. Inhoud gepubliceerd door Bijdragers (beschrijvingen, visuals van evenementen) blijft hun eigendom, maar wordt aan BxlEvent ter beschikking gesteld voor weergave op het platform.'
+'9. Données personnelles': '9. Persoonsgegevens'
+'Le traitement de vos données personnelles est détaillé dans notre': 'De verwerking van uw persoonsgegevens wordt beschreven in ons'
+'10. Modification des conditions': '10. Wijziging van de voorwaarden'
+'BxlEvent se réserve le droit de modifier les présentes conditions générales à tout moment. La date de dernière mise à jour indiquée en haut de cette page permet de connaître la version en vigueur.': 'BxlEvent behoudt zich het recht voor om deze algemene voorwaarden op elk moment te wijzigen. De datum van de laatste update, bovenaan deze pagina, geeft aan welke versie van kracht is.'
+'Pour toute question relative à ces conditions générales, vous pouvez nous contacter via notre': 'Voor vragen over deze algemene voorwaarden kunt u ons contacteren via onze'
+'Retour aux événements': 'Terug naar de evenementen'
+Previous: Vorige
+Next: Volgende
+Informations: Informatie
+Date: Datum
+Heure: Tijdstip
+Lieu: Locatie
+'Acheter un ticket': 'Ticket kopen'
+'Billets non disponibles pour cet évènement': 'Geen tickets beschikbaar voor dit evenement'
+'Ajouter à mes favoris': 'Toevoegen aan favorieten'
+Description: Beschrijving
+'Embed Google Street View map': 'Google Street View-kaart insluiten'
+'Types de tickets': Ticketsoorten
+"Signaler l'événement": 'Evenement melden'
+"Cet événement pose problème ? Signalez-le et notre équipe l'examinera.": 'Is er een probleem met dit evenement? Meld het en ons team zal het onderzoeken.'
+Signaler: Melden
+'Paiement sécurisé': 'Veilige betaling'
+'Transactions 100% sécurisées': '100% veilige transacties'
+'Billets électroniques': 'Elektronische tickets'
+'Reçus par email instantanément': 'Direct per e-mail ontvangen'
+'Service client': Klantenservice
+'Lundi - Vendredi de 9h à 19h': 'Maandag - vrijdag van 9u tot 19u'
+'Événements similaires': 'Vergelijkbare evenementen'
+"Voir l'évenement": 'Evenement bekijken'
+'Mon tableau de bord': 'Mijn dashboard'
+'Photo de profil': Profielfoto
+"Vue d'ensemble": Overzicht
+Statistiques: Statistieken
+Signalements: Meldingen
+Bonjour: Hallo
+'Voici un aperçu de votre activité sur BxlEvent.': 'Hier is een overzicht van uw activiteit op BxlEvent.'
+'Revenus générés': 'Gegenereerde omzet'
+'Événements créés': 'Aangemaakte evenementen'
+'Signalements reçus': 'Ontvangen meldingen'
+'Événements à venir': 'Aankomende evenementen'
+'Événements passés': 'Afgelopen evenementen'
+'Mes événements': 'Mijn evenementen'
+"Vous n'avez pas encore créé d'événement.": 'U heeft nog geen evenement aangemaakt.'
+Événement: Evenement
+Statut: Status
+Ventes: Verkoop
+Affiche: Affiche
+"En cours d'examen": 'In behandeling'
+Passé: Afgelopen
+'À venir': Aankomend
+'Voir les Statistiques': 'Statistieken bekijken'
+"Voir l'affiche": 'Affiche bekijken'
+'Créer un évènement': 'Evenement aanmaken'
+"Modifier l'évènement": 'Evenement bewerken'
+"Modifier l'événement": 'Evenement bewerken'
+"Le lieu n'existe pas ? Créez-en un nouveau": 'Bestaat de locatie nog niet? Maak een nieuwe aan'
+'Types de billets': Ticketsoorten
+'Retirer ce type de billet': 'Dit type ticket verwijderen'
+'+ Ajouter un type de billet': '+ Ticketsoort toevoegen'
+'Affiches actuelles (maximum 3 images au total)': 'Huidige affiches (maximaal 3 afbeeldingen in totaal)'
+Supprimer: Verwijderen
+'* Champs obligatoire': '* Verplicht veld'
+'Enregistrer les modificatios': 'Wijzigingen opslaan'
+'Statistiques —': 'Statistieken —'
+"Chiffre d'affaires total": 'Totale omzet'
+'Billets vendus au total': 'Totaal aantal verkochte tickets'
+'Répartition par type de billet': 'Verdeling per ticketsoort'
+billets: tickets
+'Taux de remplissage': Bezettingsgraad
+rempli: gevuld
+'billets vendus': 'verkochte tickets'
+'Capacité totale :': 'Totale capaciteit:'
+'Aucune limite de billets définie pour cet événement.': 'Geen ticketlimiet ingesteld voor dit evenement.'
+"Chiffre d'affaires par jour": 'Omzet per dag'
+'Tickets vendu par jour': 'Verkochte tickets per dag'
+'Retour à mon tableau de bord': 'Terug naar mijn dashboard'
+'Évènements à ne pas rater': 'Evenementen om niet te missen'
+'Evènements à ne pas rater': 'Evenementen om niet te missen'
+"Découvrez les événements incontournables de Bruxelles\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tConcerts, festivals, expositions, spectacles, événements sportifs ou activités en famille : retrouvez chaque semaine notre sélection des meilleures sorties à Bruxelles et dans les environs. Réservez vos billets en quelques clics grâce à BxlEvent.": "Ontdek de onmisbare evenementen van Brussel\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tConcerten, festivals, tentoonstellingen, voorstellingen, sportevenementen of familieactiviteiten: ontdek elke week onze selectie van de beste uitjes in Brussel en omgeving. Reserveer uw tickets in enkele klikken dankzij BxlEvent."
+'Notre équipe sélectionne les événements les plus populaires et les meilleures nouveautés afin de vous aider à trouver votre prochaine sortie. Que vous soyez amateur de musique, de culture ou de sport, il y en a pour tous les goûts.': 'Ons team selecteert de populairste evenementen en de beste nieuwigheden om u te helpen uw volgende uitje te vinden. Of u nu van muziek, cultuur of sport houdt, er is voor ieder wat wils.'
+Evènements: Evenementen
+'Aucun événement pour le moment, veillez revenir plus tard': 'Momenteel geen evenementen, kom later nog eens terug'
+'Voir les tickets': 'Tickets bekijken'
+'Selection exclusive': 'Exclusieve selectie'
+'Les meilleurs évènements choisis pour vous': 'De beste evenementen speciaal voor u geselecteerd'
+'Achats à 100% sécurisés et garantis': '100% veilige en gegarandeerde aankopen'
+'Notre équipe est là pour vous aider': 'Ons team staat klaar om u te helpen'
+'Mise à jour courante': 'Regelmatige updates'
+'De nouveaux évènements chaque semaine': 'Elke week nieuwe evenementen'
+'Ne manquez aucune sortie !': 'Mis geen enkel uitje!'
+'Inscrivez-vous à notre newsletter et recevez chaque semaine les événements à ne pas rater.': 'Schrijf u in voor onze nieuwsbrief en ontvang elke week de evenementen die u niet mag missen.'
+'Votre e-mail': 'Uw e-mailadres'
+"S'abonner": Abonneren
+"L'AGENDA DE VOS MEILLEURS SORTIES": 'DE AGENDA VAN UW BESTE UITJES'
+"Concerts, expositions, festivals ou événements sportifs...\n\t\t\t\t\t\t\t<br>BxlEvent rassemble pour vous toutes les activités incontournables de la capitale.": |-
+    Concerten, tentoonstellingen, festivals of sportevenementen...
+    							<br>BxlEvent verzamelt voor u alle onmisbare activiteiten van de hoofdstad.
+'Découvrez les évènements à ne pas rater': 'Ontdek de evenementen om niet te missen'
+Recherche: Zoeken
+'Rechercher un événement...': 'Zoek een evenement...'
+'Toutes les catégories': 'Alle categorieën'
+'Tous les lieux': 'Alle locaties'
+'Trier par': 'Sorteren op'
+'Date croissante': 'Datum oplopend'
+'Date décroissante': 'Datum aflopend'
+"Image anonyme de l'évènement": 'Anonieme afbeelding van het evenement'
+"Voir l'évènement": 'Evenement bekijken'
+'Ne manquez aucune sortie': 'Mis geen enkel uitje'
+'Créer un événement': 'Evenement aanmaken'
+"Créer l'événement": 'Evenement aanmaken'
+'Retour à la liste des événements': 'Terug naar de evenementenlijst'
+'Statut :': 'Status:'
+Modifier: Bewerken
+'Mes statistiques': 'Mijn statistieken'
+'État de vos événements': 'Status van uw evenementen'
+événements: evenementen
+"Chiffre d'affaires par événement": 'Omzet per evenement'
+'Billets vendus par événement': 'Verkochte tickets per evenement'
+'Choisir vos tickets -': 'Kies uw tickets -'
+"Retour à l'événement": 'Terug naar het evenement'
+'Choisissez vos tickets': 'Kies uw tickets'
+'Sélectionnez le type de ticket qui vous convient': 'Selecteer het type ticket dat bij u past'
+'Bon à savoir :': 'Goed om te weten:'
+'Billets non disponibles': 'Tickets niet beschikbaar'
+"Cet évènement est en attente de validation ou n'a pas été approuvé, les billets ne sont pas encore en vente.": 'Dit evenement is in afwachting van goedkeuring of is niet goedgekeurd, de tickets zijn nog niet te koop.'
+"Cet évènement est déjà passé, il n'est plus possible d'acheter de billets.": 'Dit evenement heeft al plaatsgevonden, het is niet meer mogelijk om tickets te kopen.'
+'Tickets sélectionnés': 'Geselecteerde tickets'
+'Aucun ticket sélectionné': 'Geen ticket geselecteerd'
+'Ajouter au panier': 'Toevoegen aan winkelmandje'
+'Pourquoi acheter sur BxlEvent ?': 'Waarom kopen bij BxlEvent?'
+'Vos données sont protégées': 'Uw gegevens zijn beschermd'
+'Reçus instantanément par email': 'Direct per e-mail ontvangen'
+'Support disponible': 'Ondersteuning beschikbaar'
+'7j/7 de 9h à 22h': '7 dagen per week van 9u tot 22u'
+"Modifier l'image": 'Afbeelding bewerken'
+'Edit Gallery': 'Galerij bewerken'
+Galeries: Galerijen
+'Gallery index': Galerijoverzicht
+IsMain: Hoofdafbeelding
+'Ajouter une image': 'Afbeelding toevoegen'
+'Create new Gallery': 'Nieuwe galerij aanmaken'
+Galerie: Galerij
+Gallery: Galerij
+FilePath: Bestandspad
+Title: Titel
+Hour: Tijdstip
+'Modifier le lieu': 'Locatie bewerken'
+'Edit Location': 'Locatie bewerken'
+Lieux: Locaties
+'Location index': Locatieoverzicht
+Street: Straat
+Number: Nummer
+Postcode: Postcode
+City: Stad
+Details: Details
+'Nouveau lieu': 'Nieuwe locatie'
+'Create new Location': 'Nieuwe locatie aanmaken'
+Location: Locatie
+"Modifier l'abonné": 'Abonnee bewerken'
+'Edit Newsletter': 'Nieuwsbrief bewerken'
+Newsletter: Nieuwsbrief
+'Newsletter index': Nieuwsbriefoverzicht
+InscriptionDate: Inschrijvingsdatum
+'Nouvel abonné': 'Nieuwe abonnee'
+'Create new Newsletter': 'Nieuwe nieuwsbriefinschrijving aanmaken'
+'Abonné newsletter': Nieuwsbriefabonnee
+"Vous disposez déja d'un compte?": 'Heeft u al een account?'
+'Connectez vous': 'Log in'
+'Modifier le signalement': 'Melding bewerken'
+'Edit Reports': 'Melding bewerken'
+'Evènement concerné': 'Betreffend evenement'
+Utilisateur: Gebruiker
+Traité: Behandeld
+Actions: Acties
+Voir: Bekijken
+'Aucun Signalement': 'Geen meldingen'
+'Retour à la liste': 'Terug naar de lijst'
+'Signaler un événement': 'Evenement melden'
+'Vous avez remarqué un problème avec cet événement ?': 'Heeft u een probleem opgemerkt met dit evenement?'
+"Signalez-le à notre équipe et nous l'examinerons rapidement.": 'Meld het bij ons team en wij zullen het snel onderzoeken.'
+'1. Quel est le problème ?': '1. Wat is het probleem?'
+'Sélectionnez le type de problème rencontré': 'Selecteer het type probleem dat u bent tegengekomen'
+'2. Décrivez le problème': '2. Beschrijf het probleem'
+'Donnez-nous plus de détails sur le problème rencontré': 'Geef ons meer details over het probleem'
+'Envoyer le signalement': 'Melding verzenden'
+'Modifier la catégorie de signalement': 'Meldingscategorie bewerken'
+'Edit ReportCategory': 'Meldingscategorie bewerken'
+'Catégories de signalement': Meldingscategorieën
+'ReportCategory index': Meldingscategorieoverzicht
+Label: Label
+'Nouvelle catégorie de signalement': 'Nieuwe meldingscategorie'
+'Create new ReportCategory': 'Nieuwe meldingscategorie aanmaken'
+'Catégorie de signalement': Meldingscategorie
+ReportCategory: Meldingscategorie
+'Email envoyé': 'E-mail verzonden'
+Confirmation: Bevestiging
+'Si un compte correspond à votre adresse e-mail, un lien vient de vous être envoyé pour réinitialiser votre mot de passe.': 'Als er een account overeenkomt met uw e-mailadres, is er zojuist een link naar u verzonden om uw wachtwoord opnieuw in te stellen.'
+'Ce lien expirera dans': 'Deze link verloopt over'
+'Rien reçu ? Pensez à vérifier vos courriers indésirables (spams).': 'Niets ontvangen? Controleer ook uw ongewenste e-mail (spam).'
+'Retour à la connexion': 'Terug naar inloggen'
+Hi!: Hallo!
+'To reset your password, please visit the following link': 'Om uw wachtwoord opnieuw in te stellen, bezoek de volgende link'
+'This link will expire in': 'Deze link verloopt over'
+Cheers!: 'Met vriendelijke groet!'
+'Mot de passe oublié': 'Wachtwoord vergeten'
+Envoyer: Verzenden
+'Réinitialiser le mot de passe': 'Wachtwoord opnieuw instellen'
+Réinitialiser: 'Opnieuw instellen'
+'Vous êtes déjà connecté en tant que:': 'U bent al ingelogd als:'
+Password: Wachtwoord
+'Se souvenir de moi': 'Onthoud mij'
+'Mot de passe oublié?': 'Wachtwoord vergeten?'
+'Se connecter': Inloggen
+'Créer un compte': 'Account aanmaken'
+'Modifier le billet': 'Ticket bewerken'
+'Edit Ticket': 'Ticket bewerken'
+Billets: Tickets
+'Ticket index': Ticketoverzicht
+eventID: evenement-ID
+userID: gebruikers-ID
+ticketTypeID: ticketsoort-ID
+code: code
+isScanned: gescand
+'Nouveau billet': 'Nieuw ticket'
+'Create new Ticket': 'Nieuw ticket aanmaken'
+'Vos Billets': 'Uw tickets'
+'Date & Heure': 'Datum & tijdstip'
+'Type de billet': Ticketsoort
+Prix: Prijs
+'Votre billet': 'Uw ticket'
+Titulaire: Houder
+'Acheté le': 'Aangekocht op'
+"Présentez ce QR code à l'entrée de l'événement. Ce billet est nominatif et non transférable. Code :": 'Toon deze QR-code bij de ingang van het evenement. Dit ticket is persoonsgebonden en niet overdraagbaar. Code:'
+Billet: Ticket
+Ticket: Ticket
+'Paiement réussi': 'Betaling geslaagd'
+'Merci pour votre achat !': 'Bedankt voor uw aankoop!'
+'a été validée avec succès.': 'is succesvol bevestigd.'
+'Télécharger mes billets (PDF)': 'Mijn tickets downloaden (PDF)'
+'Modifier le type de billet': 'Ticketsoort bewerken'
+'Edit TicketType': 'Ticketsoort bewerken'
+'TicketType index': Ticketsoortoverzicht
+Price: Prijs
+'Nouveau type de billet': 'Nieuwe ticketsoort'
+'Create new TicketType': 'Nieuwe ticketsoort aanmaken'
+TicketType: Ticketsoort
+'Modifier le profil': 'Profiel bewerken'
+Utilisateurs: Gebruikers
+'User index': Gebruikersoverzicht
+FirstName: Voornaam
+LastName: Achternaam
+ProfileImg: Profielafbeelding
+DateRgpd: AVG-datum
+Role: Rol
+'Nouvel utilisateur': 'Nieuwe gebruiker'
+'Create new User': 'Nieuwe gebruiker aanmaken'
+'Nom complet': 'Volledige naam'
+Adresse: Adres
+'Membre depuis': 'Lid sinds'
+'Mot de passe': Wachtwoord
+'Modifier mes informations': 'Mijn gegevens bewerken'
+'Gestion des événements': Evenementenbeheer
+'Membre depuis le': 'Lid sinds'
+'Modifier mon profil': 'Mijn profiel bewerken'
+Commandes: Bestellingen
+'Total effectuées': 'Totaal geplaatst'
+'Total obtenus': 'Totaal verkregen'
+'Total dépensé': 'Totaal uitgegeven'
+'Toutes commandes': 'Alle bestellingen'
+Événements: Evenementen
+'Déjà participés': 'Al aan deelgenomen'
+'Mes commandes & billets': 'Mijn bestellingen & tickets'
+'Événements déjà participés': 'Evenementen waaraan u al deelnam'
+'Mes signalements': 'Mijn meldingen'
+"Vous n'avez encore passé aucune commande.": 'U heeft nog geen bestelling geplaatst.'
+Payée: Betaald
+'En attente': 'In afwachting'
+Annulée: Geannuleerd
+Utilisé: Gebruikt
+'Non utilisé': 'Niet gebruikt'
+'Télécharger mes billets': 'Mijn tickets downloaden'
+"Vous n'avez pas encore participé à un événement.": 'U heeft nog aan geen enkel evenement deelgenomen.'
+"Vous n'avez soumis aucun signalement.": 'U heeft geen melding ingediend.'
+'Date:': 'Datum:'
+'Informations du compte': Accountgegevens
+'Supprimer mon profil': 'Mijn profiel verwijderen'
+User: Gebruiker
+Roles: Rollen
+'Modifier le  profil': 'Profiel bewerken'
+'Événements refusés': 'Geweigerde evenementen'
+Refusé: Geweigerd
+'Enregistrer les modifications': 'Wijzigingen opslaan'
+'Inscrivez-vous à notre newsletter': 'Schrijf u in voor onze nieuwsbrief'
+"Vous disposez déjà d'un compte?": 'Heeft u al een account?'
+'Réinitialiser votre mot de passe': 'Wachtwoord opnieuw instellen'
+'Entrez votre adresse email et nous vous enverrons un mail pour réinitialiser votre mot de passe': 'Voer uw e-mailadres in en wij sturen u een e-mail om uw wachtwoord opnieuw in te stellen'
+'Se déconnecter': Uitloggen
+'Nouveau sur BxlEvent?': 'Nieuw op BxlEvent?'

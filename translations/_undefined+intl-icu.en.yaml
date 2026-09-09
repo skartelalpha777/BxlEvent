@@ -1,0 +1,8 @@
+paginator.label: __paginator.label
+paginator.first: __paginator.first
+paginator.more_pages: __paginator.more_pages
+paginator.last: __paginator.last
+paginator.results: __paginator.results
+paginator.previous: __paginator.previous
+paginator.next: __paginator.next
+download: __download

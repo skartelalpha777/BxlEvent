@@ -1,0 +1,538 @@
+'Date de début': 'Fecha de inicio'
+'Date de fin': 'Fecha de fin'
+Appliquer: Aplicar
+'Réinitialiser les filtres': 'Restablecer los filtros'
+Évènement: Evento
+'en attente de validation': 'pendiente de aprobación'
+Signalement: Reporte
+'non traité': 'no procesado'
+'Utilisateurs inscrits par mois': 'Usuarios registrados por mes'
+"Chiffre d'affaires par mois": 'Ingresos por mes'
+'Top catégories': 'Categorías principales'
+'Évènements par statut': 'Eventos por estado'
+'Top 5 évènements (par revenu)': 'Top 5 eventos (por ingresos)'
+'Aucune vente sur cette période.': 'Sin ventas en este período.'
+'Billets vendus': 'Entradas vendidas'
+Revenu: Ingresos
+Accueil: Inicio
+'A propos': 'Acerca de'
+Catégories: Categorías
+Contact: Contacto
+Panier: Carrito
+Profil: Perfil
+Connexion: 'Iniciar sesión'
+Inscription: Registrarse
+'Mon profil': 'Mi perfil'
+Administration: Administración
+'Gestion des évènements': 'Gestión de eventos'
+'Mes évènements': 'Mis eventos'
+Déconnexion: 'Cerrar sesión'
+'La billetterie qui réunit les meilleurs événements de Bruxelles, du showcase intime au grand festival.': 'La plataforma de entradas que reúne los mejores eventos de Bruselas, desde showcases íntimos hasta grandes festivales.'
+'Billets sécurisés': 'Entradas seguras'
+'Achat 100% sécurisé': 'Compra 100% segura'
+'Support réactif': 'Soporte receptivo'
+'Notre équipe est là pour vous': 'Nuestro equipo está a su disposición'
+'Événements vérifiés': 'Eventos verificados'
+'Qualité et fiabilité garanties': 'Calidad y fiabilidad garantizadas'
+Navigation: Navegación
+'Mon compte': 'Mi cuenta'
+"S'inscrire": Registrarse
+Aide: Ayuda
+FAQ: 'Preguntas frecuentes'
+'Conditions générales': 'Términos y condiciones'
+'Politique de confidentialité': 'Política de privacidad'
+'Mentions légales': 'Aviso legal'
+Suivez-nous: Síganos
+'Bruxelles, Belgique': 'Bruselas, Bélgica'
+contact@bxlevent.be: contact@bxlevent.be
+'Tous droits réservés.': 'Todos los derechos reservados.'
+"L'agenda de vos meilleures sorties": 'La agenda de sus mejores salidas'
+'Voir le site': 'Ver el sitio'
+'Votre Panier': 'Su carrito'
+'Vider le panier': 'Vaciar el carrito'
+'Votre commande': 'Su pedido'
+Sous-total: Subtotal
+'Frais de service': 'Gastos de servicio'
+Total: Total
+'Procéder au paiement': 'Proceder al pago'
+'Paiement 100% sécurisé': 'Pago 100% seguro'
+'Votre panier est vide.': 'Su carrito está vacío.'
+'Parcourez nos événements pour trouver votre prochaine sortie !': '¡Explore nuestros eventos para encontrar su próxima salida!'
+"Retourner à l'accueil": 'Volver al inicio'
+'Modifier la catégorie': 'Editar categoría'
+'Edit Categorie': 'Editar categoría'
+'back to list': 'volver a la lista'
+'Categorie index': 'Lista de categorías'
+Id: Id
+Name: Nombre
+actions: acciones
+show: ver
+edit: editar
+'no records found': 'no se encontraron registros'
+'Create new': 'Crear nuevo'
+'Nouvelle catégorie': 'Nueva categoría'
+'Create new Categorie': 'Crear nueva categoría'
+Catégorie: Categoría
+Categorie: Categoría
+'Are you sure you want to delete this item?': '¿Está seguro de que desea eliminar este elemento?'
+Delete: Eliminar
+'À propos': 'Acerca de'
+'A propos de BxlEvent': 'Acerca de BxlEvent'
+'BxlEvent est une plateforme dédiée aux événements récréatifs à Bruxelles et dans ses environs.': 'BxlEvent es una plataforma dedicada a los eventos recreativos en Bruselas y sus alrededores.'
+'Notre objectif est de vous aider à découvrir facilement les activités et sorties qui correspondent à vos envies.': 'Nuestro objetivo es ayudarle a descubrir fácilmente las actividades y salidas que se ajustan a sus intereses.'
+'Notre projet': 'Nuestro proyecto'
+'Une plateforme pensée pour découvrir Bruxelles autrement': 'Una plataforma pensada para descubrir Bruselas de otra manera'
+"BxlEvent a été développé dans le cadre d'un projet scolaire avec l'objectif de créer une plateforme permettant de centraliser différents événements récréatifs organisés à Bruxelles.": 'BxlEvent fue desarrollado en el marco de un proyecto escolar con el objetivo de crear una plataforma que permita centralizar diferentes eventos recreativos organizados en Bruselas.'
+'Concerts, festivals, spectacles, expositions, événements sportifs ou encore activités de loisirs : notre plateforme rassemble différentes possibilités de sorties au même endroit.': 'Conciertos, festivales, espectáculos, exposiciones, eventos deportivos o actividades de ocio: nuestra plataforma reúne diferentes opciones de salidas en un mismo lugar.'
+'Nous avons voulu proposer une interface simple et intuitive afin que chacun puisse trouver rapidement un événement, consulter ses informations et découvrir de nouvelles activités.': 'Quisimos ofrecer una interfaz simple e intuitiva para que cada persona pueda encontrar rápidamente un evento, consultar su información y descubrir nuevas actividades.'
+'Pourquoi BxlEvent ?': '¿Por qué BxlEvent?'
+"Bruxelles, une ville pleine d'événements": 'Bruselas, una ciudad llena de eventos'
+"Bruxelles propose de nombreuses activités tout au long de l'année. Pourtant, trouver un événement qui correspond à ses envies peut parfois nécessiter de consulter plusieurs sites.": 'Bruselas ofrece numerosas actividades durante todo el año. Sin embargo, encontrar un evento que se ajuste a sus intereses a veces requiere consultar varios sitios.'
+'BxlEvent a donc été imaginé pour simplifier cette recherche. Grâce aux catégories, aux filtres et aux informations détaillées de chaque événement, vous pouvez facilement explorer les sorties disponibles et préparer votre prochaine activité.': 'BxlEvent fue por tanto concebido para simplificar esta búsqueda. Gracias a las categorías, los filtros y la información detallada de cada evento, puede explorar fácilmente las salidas disponibles y preparar su próxima actividad.'
+'Ce que vous pouvez trouver sur BxlEvent': 'Lo que puede encontrar en BxlEvent'
+'Concerts & festivals': 'Conciertos y festivales'
+'Découvrez les artistes et événements musicaux qui se déroulent à Bruxelles.': 'Descubra los artistas y eventos musicales que tienen lugar en Bruselas.'
+'Spectacles & culture': 'Espectáculos y cultura'
+'Théâtre, spectacles, expositions et autres rendez-vous culturels à ne pas manquer.': 'Teatro, espectáculos, exposiciones y otras citas culturales que no debe perderse.'
+'Sports & loisirs': 'Deporte y ocio'
+'Retrouvez les événements sportifs et activités de loisirs proposés dans la capitale.': 'Encuentre los eventos deportivos y actividades de ocio que se ofrecen en la capital.'
+'Sorties & activités': 'Salidas y actividades'
+'Des idées de sorties pour profiter de Bruxelles seul, entre amis ou en famille.': 'Ideas de salidas para disfrutar de Bruselas solo, con amigos o en familia.'
+'Tout pour': 'Todo para'
+'Vous aider à trouver votre prochaine sortie': 'ayudarle a encontrar su próxima salida'
+"Nous avons à cœur de rendre la recherche d'événements plus simple, claire et plus agréable. BxlEvent permet de parcourir les événements selon différents critères comme la catégorie, la date ou le lieu afin de trouver plus rapidement une activité qui vous correspond.": 'Nos esforzamos por hacer que la búsqueda de eventos sea más simple, clara y agradable. BxlEvent permite explorar los eventos según diferentes criterios como la categoría, la fecha o el lugar, para encontrar más rápidamente una actividad que se ajuste a usted.'
+"Une sélection d'événements récréatifs de qualité": 'Una selección de eventos recreativos de calidad'
+'Des informations claires et mises à jour régulièrement': 'Información clara y actualizada regularmente'
+'Une interface simple, rapide et accessible à tous': 'Una interfaz simple, rápida y accesible para todos'
+"Un projet réalisé avec passion et envie d'apprendre": 'Un proyecto realizado con pasión y ganas de aprender'
+'Une sortie vous attend peut-être!': '¡Quizás una salida le está esperando!'
+'Parcourez les évènements disponibles à Bruxelles et trouvez votre prochaine activité en quelques clics': 'Explore los eventos disponibles en Bruselas y encuentre su próxima actividad en pocos clics'
+'Découvrez les évènements': 'Descubra los eventos'
+'Foire aux questions': 'Preguntas frecuentes'
+'Retrouvez ici les réponses aux questions les plus fréquentes à propos de BxlEvent.': 'Encuentre aquí las respuestas a las preguntas más frecuentes sobre BxlEvent.'
+'Comment créer un compte sur BxlEvent ?': '¿Cómo creo una cuenta en BxlEvent?'
+'Cliquez sur "S''inscrire" dans  de la page de connexion, remplissez le formulaire avec vos informations et validez votre inscription via l''e-mail que vous recevrez. Une fois votre compte activé, vous pourrez profiter de toutes les fonctionnalités.': 'Haga clic en "Registrarse" en la página de inicio de sesión, complete el formulario con sus datos y confirme su registro a través del correo electrónico que recibirá. Una vez activada su cuenta, podrá disfrutar de todas las funciones.'
+'Comment réserver un événement ?': '¿Cómo reservo un evento?'
+"Rendez-vous sur la page de l'événement qui vous intéresse, choisissez votre type de billet et la quantité, puis ajoutez-le au panier. Vous pourrez ensuite finaliser votre commande depuis votre panier.": 'Vaya a la página del evento que le interesa, elija su tipo de entrada y la cantidad, y añádalo al carrito. A continuación, podrá finalizar su pedido desde el carrito.'
+'Puis-je annuler ou modifier ma réservation ?': '¿Puedo cancelar o modificar mi reserva?'
+"Les billets sont non remboursables sauf en cas d'annulation de l'événement.": 'Las entradas no son reembolsables, salvo en caso de cancelación del evento.'
+'Quels moyens de paiement acceptez-vous ?': '¿Qué medios de pago aceptan?'
+'BxlEvent accepte les principales cartes bancaires ainsi que les moyens de paiement en ligne les plus courants. Toutes les transactions sont sécurisées.': 'BxlEvent acepta las principales tarjetas bancarias, así como los medios de pago en línea más comunes. Todas las transacciones son seguras.'
+'Comment être informé des nouveaux événements ?': '¿Cómo puedo enterarme de los nuevos eventos?'
+"Inscrivez-vous à notre newsletter depuis la page d'accueil pour recevoir chaque semaine une sélection des meilleurs événements à ne pas manquer à Bruxelles.": 'Suscríbase a nuestro boletín desde la página de inicio para recibir cada semana una selección de los mejores eventos que no debe perderse en Bruselas.'
+'Mes données sont-elles sécurisées ?': '¿Están seguros mis datos?'
+'Oui. Vos données personnelles et vos paiements sont traités de manière sécurisée et ne sont jamais partagés avec des tiers sans votre consentement.': 'Sí. Sus datos personales y sus pagos se procesan de forma segura y nunca se comparten con terceros sin su consentimiento.'
+"Je n'ai pas trouvé la réponse à ma question, que faire ?": 'No he encontrado la respuesta a mi pregunta, ¿qué hago?'
+"N'hésitez pas à nous contacter directement via notre page de contact, notre équipe se fera un plaisir de vous répondre rapidement.": 'No dude en contactarnos directamente a través de nuestra página de contacto, nuestro equipo estará encantado de responderle rápidamente.'
+'Comment télécharger mes billets ?': '¿Cómo descargo mis entradas?'
+'Rendez-vous dans votre profil, section "Mes commandes & billets". Pour chaque commande payée, un bouton "Télécharger mes billets" vous permet de récupérer vos billets au format PDF.': 'Vaya a su perfil, sección "Mis pedidos y entradas". Para cada pedido pagado, un botón "Descargar mis entradas" le permite obtener sus entradas en formato PDF.'
+'Comment devenir organisateur et publier mon propre événement ?': '¿Cómo puedo convertirme en organizador y publicar mi propio evento?'
+'Lors de votre inscription, choisissez le profil "Contributeur (Organisateur)". Vous pourrez ensuite publier vos propres événements et gérer votre programmation depuis votre compte.': 'Al registrarse, elija el perfil "Colaborador (Organizador)". A continuación, podrá publicar sus propios eventos y gestionar su programación desde su cuenta.'
+'Comment signaler un problème avec un événement ?': '¿Cómo reporto un problema con un evento?'
+'Si un événement vous semble incorrect, annulé ou frauduleux, vous pouvez le signaler directement depuis sa page. Notre équipe examine chaque signalement et vous tient informé du traitement de votre demande.': 'Si un evento le parece incorrecto, cancelado o fraudulento, puede reportarlo directamente desde su página. Nuestro equipo examina cada reporte y le mantiene informado sobre el trámite de su solicitud.'
+'Vous avez encore une question ?': '¿Tiene alguna otra pregunta?'
+"Notre équipe est là pour vous aider. N'hésitez pas à nous contacter.": 'Nuestro equipo está aquí para ayudarle. No dude en contactarnos.'
+'Nous contacter': Contáctenos
+'Une question sur un événement à Bruxelles ? Notre équipe vous répond dans les plus brefs délais.': '¿Alguna pregunta sobre un evento en Bruselas? Nuestro equipo le responderá lo antes posible.'
+'Contact Info': 'Información de contacto'
+'Retrouvez-nous au cœur de la capitale ou contactez-nous directement.': 'Encuéntrenos en el corazón de la capital o contáctenos directamente.'
+'Notre Localisation': 'Nuestra ubicación'
+"Avenue de l'Astronomie 19 \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t1210 Saint-Josse": |-
+    Avenida de la Astronomía 19 
+    																																																												1210 Saint-Josse
+Téléphone: Teléfono
+Email: 'Correo electrónico'
+'Envoyez un message': 'Envíe un mensaje'
+Chargement...: Cargando...
+'Votre message a été envoyé. Merci !': '¡Su mensaje ha sido enviado. Gracias!'
+'Envoyer le message': 'Enviar mensaje'
+Close: Cerrar
+'Informations légales': 'Información legal'
+'Dernière mise à jour :': 'Última actualización:'
+"Cette page présente les informations relatives à l'éditeur et à l'hébergement du site BxlEvent.": 'Esta página presenta la información relativa al editor y al alojamiento del sitio BxlEvent.'
+'1. Éditeur du site': '1. Editor del sitio'
+"Le site BxlEvent a été développé dans le cadre d'un projet de formation à l'EPFC (École Pratique des Hautes Études Commerciales).": 'El sitio BxlEvent fue desarrollado en el marco de un proyecto de formación en la EPFC (École Pratique des Hautes Études Commerciales).'
+'Responsable de la publication : Mamadou Alpha Diallo': 'Responsable de la publicación: Mamadou Alpha Diallo'
+'E-mail :': 'Correo electrónico:'
+3010madiallo@student.epfc.eu: 3010madiallo@student.epfc.eu
+'2. Hébergement': '2. Alojamiento'
+"Nom de l'hébergeur :": 'Nombre del proveedor de alojamiento:'
+'Adresse :': 'Dirección:'
+'Contact :': 'Contacto:'
+'3. Propriété intellectuelle': '3. Propiedad intelectual'
+'Les éléments originaux du site BxlEvent, notamment les textes, le logo, la mise en page et les éléments graphiques créés dans le cadre du projet, sont protégés par les règles applicables en matière de propriété intellectuelle. Toute reproduction ou utilisation non autorisée de ces éléments peut être interdite. Plus de détails dans nos': 'Los elementos originales del sitio BxlEvent, en particular los textos, el logotipo, el diseño y los elementos gráficos creados en el marco del proyecto, están protegidos por las normas aplicables en materia de propiedad intelectual. Cualquier reproducción o uso no autorizado de estos elementos puede estar prohibido. Más detalles en nuestros'
+'conditions générales': 'términos y condiciones'
+'4. Données personnelles': '4. Datos personales'
+'Le traitement des données personnelles collectées sur le site est détaillé dans notre': 'El tratamiento de los datos personales recopilados en el sitio se detalla en nuestra'
+'politique de confidentialité': 'política de privacidad'
+'5. Nature du site': '5. Naturaleza del sitio'
+"BxlEvent est un projet initialement réalisé dans le cadre d'une formation à l'EPFC, dont le déploiement sur un serveur accessible publiquement fait partie des exigences de la formation. Au-delà de ce cadre scolaire, BxlEvent a vocation à être exploité comme un service réel une fois le projet validé.": 'BxlEvent es un proyecto realizado inicialmente en el marco de una formación en la EPFC, cuyo despliegue en un servidor de acceso público forma parte de los requisitos de la formación. Más allá de este contexto escolar, BxlEvent tiene vocación de explotarse como un servicio real una vez validado el proyecto.'
+'6. Contact': '6. Contacto'
+'Pour toute question relative à ces mentions légales, vous pouvez nous contacter via notre': 'Para cualquier pregunta relacionada con este aviso legal, puede contactarnos a través de nuestra'
+'page de contact': 'página de contacto'
+Confidentialité: Privacidad
+'BxlEvent accorde une grande importance à la protection de vos données personnelles. Cette page explique quelles données nous collectons, pourquoi, et quels sont vos droits.': 'BxlEvent concede gran importancia a la protección de sus datos personales. Esta página explica qué datos recopilamos, por qué, y cuáles son sus derechos.'
+'1. Données collectées': '1. Datos recopilados'
+"Lors de votre inscription et de l'utilisation du site, nous collectons les informations suivantes : nom, prénom, adresse e-mail, adresse postale (facultative) et, le cas échéant, les informations liées à vos commandes et billets.": 'Durante su registro y el uso del sitio, recopilamos la siguiente información: apellido, nombre, dirección de correo electrónico, dirección postal (opcional) y, en su caso, la información relacionada con sus pedidos y entradas.'
+'2. Utilisation des données': '2. Uso de los datos'
+'Ces données sont utilisées uniquement pour :': 'Estos datos se utilizan únicamente para:'
+'Créer et gérer votre compte utilisateur ;': 'Crear y gestionar su cuenta de usuario;'
+'Traiter vos commandes et générer vos billets ;': 'Procesar sus pedidos y generar sus entradas;'
+'Vous envoyer la newsletter, si vous y êtes inscrit ;': 'Enviarle el boletín, si está suscrito;'
+'Répondre à vos demandes via le formulaire de contact.': 'Responder a sus solicitudes a través del formulario de contacto.'
+'3. Conservation des données': '3. Conservación de los datos'
+'Vos données sont conservées uniquement le temps nécessaire aux finalités décrites ci-dessus, et supprimées  à la clôture de votre compte.': 'Sus datos se conservan únicamente durante el tiempo necesario para los fines descritos anteriormente, y se eliminan al cerrar su cuenta.'
+'4. Vos droits': '4. Sus derechos'
+"Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Vous pouvez à tout moment consulter et modifier vos informations depuis votre profil, ou nous contacter directement pour toute demande.": 'De conformidad con el RGPD, usted dispone de un derecho de acceso, rectificación y supresión de sus datos. Puede consultar y modificar su información desde su perfil en cualquier momento, o contactarnos directamente para cualquier solicitud.'
+'5. Cookies': '5. Cookies'
+"BxlEvent utilise uniquement des cookies techniques nécessaires au bon fonctionnement du site (ex : maintien de votre session et de votre panier). Aucun cookie publicitaire n'est utilisé.": 'BxlEvent utiliza únicamente cookies técnicas necesarias para el buen funcionamiento del sitio (por ejemplo: mantener su sesión y su carrito). No se utiliza ninguna cookie publicitaria.'
+'6. Base légale du traitement': '6. Base legal del tratamiento'
+'Les données personnelles sont traitées sur la base de différentes fondements juridiques prévus par le RGPD :.': 'Los datos personales se tratan sobre la base de diferentes fundamentos jurídicos previstos por el RGPD:.'
+"l'exécution d'un contrat, notamment pour la création du compte et la gestion des commandes ;": 'la ejecución de un contrato, en particular para la creación de la cuenta y la gestión de los pedidos;'
+"le consentement de l'utilisateur, notamment pour l'inscription à la newsletter ;": 'el consentimiento del usuario, en particular para la suscripción al boletín;'
+"le respect d'obligations légales lorsque cela est nécessaire ;": 'el cumplimiento de obligaciones legales cuando sea necesario;'
+"l'intérêt légitime de BxlEvent pour assurer la sécurité et le bon fonctionnement du site.": 'el interés legítimo de BxlEvent para garantizar la seguridad y el buen funcionamiento del sitio.'
+'7. Destinataires des données': '7. Destinatarios de los datos'
+"Les données personnelles sont uniquement accessibles aux personnes nécessaires au fonctionnement de BxlEvent. Elles peuvent notamment être transmises à nos prestataires techniques lorsque cela est nécessaire au fonctionnement du site, au traitement des paiements ou à l'envoi d'e-mails.": 'Los datos personales solo son accesibles para las personas necesarias para el funcionamiento de BxlEvent. Pueden transmitirse en particular a nuestros proveedores técnicos cuando sea necesario para el funcionamiento del sitio, el procesamiento de pagos o el envío de correos electrónicos.'
+'8. Sécurité des données': '8. Seguridad de los datos'
+"BxlEvent met en œuvre des mesures techniques et organisationnelles appropriées afin de protéger les données personnelles contre la perte, l'accès non autorisé, la modification ou la divulgation.": 'BxlEvent aplica medidas técnicas y organizativas apropiadas para proteger los datos personales contra la pérdida, el acceso no autorizado, la modificación o la divulgación.'
+"9. Transfert des données hors de l'Union européenne": '9. Transferencia de datos fuera de la Unión Europea'
+"Lorsque certains prestataires utilisés par BxlEvent peuvent traiter des données personnelles en dehors de l'Union européenne, nous veillons à ce que ces transferts soient réalisés conformément aux exigences du RGPD et bénéficient de garanties appropriées.": 'Cuando ciertos proveedores utilizados por BxlEvent puedan tratar datos personales fuera de la Unión Europea, nos aseguramos de que estas transferencias se realicen de conformidad con los requisitos del RGPD y cuenten con garantías apropiadas.'
+'10. Modification de la politique de confidentialité': '10. Modificación de la política de privacidad'
+"Cette politique de confidentialité peut être modifiée afin de tenir compte de l'évolution du site, de nos services ou de la réglementation applicable.": 'Esta política de privacidad puede modificarse para tener en cuenta la evolución del sitio, de nuestros servicios o de la normativa aplicable.'
+'La date de dernière mise à jour indiquée en haut de cette page permet de connaître la version actuellement en vigueur.': 'La fecha de la última actualización indicada en la parte superior de esta página permite conocer la versión actualmente vigente.'
+'11. Contact': '11. Contacto'
+'Pour toute question concernant vos données personnelles, vous pouvez nous contacter via notre': 'Para cualquier pregunta relativa a sus datos personales, puede contactarnos a través de nuestra'
+Conditions: Condiciones
+"Conditions générales d'utilisation": 'Términos y condiciones de uso'
+"Les présentes conditions générales régissent l'utilisation du site BxlEvent. En créant un compte ou en utilisant le site, vous acceptez sans réserve les conditions décrites ci-dessous.": 'Los presentes términos y condiciones regulan el uso del sitio BxlEvent. Al crear una cuenta o utilizar el sitio, usted acepta sin reservas las condiciones descritas a continuación.'
+'1. Objet': '1. Objeto'
+'BxlEvent est une plateforme permettant de découvrir des événements organisés à Bruxelles et dans ses environs, de réserver des billets, et pour les Contributeurs, de publier et gérer leurs propres événements.': 'BxlEvent es una plataforma que permite descubrir eventos organizados en Bruselas y sus alrededores, reservar entradas y, para los Colaboradores, publicar y gestionar sus propios eventos.'
+"2. Création d'un compte": '2. Creación de una cuenta'
+"L'utilisation de certaines fonctionnalités de BxlEvent (réservation de billets, publication d'événements, gestion du profil) nécessite la création d'un compte. Lors de l'inscription, vous devez choisir un profil :": 'El uso de ciertas funciones de BxlEvent (reserva de entradas, publicación de eventos, gestión del perfil) requiere la creación de una cuenta. Al registrarse, debe elegir un perfil:'
+Membre: Miembro
+': permet de parcourir les événements, réserver des billets et gérer ses commandes ;': ': permite explorar los eventos, reservar entradas y gestionar sus pedidos;'
+Contributeur: Colaborador
+': permet en plus de publier et gérer ses propres événements.': ': permite además publicar y gestionar sus propios eventos.'
+'Vous vous engagez à fournir des informations exactes, à jour, et à les maintenir à jour depuis votre profil. Vous êtes responsable de la confidentialité de votre mot de passe et de toute activité effectuée depuis votre compte.': 'Usted se compromete a proporcionar información exacta y actualizada, y a mantenerla al día desde su perfil. Usted es responsable de la confidencialidad de su contraseña y de toda actividad realizada desde su cuenta.'
+'3. Comportement des utilisateurs': '3. Comportamiento de los usuarios'
+'En utilisant BxlEvent, vous vous engagez à :': 'Al utilizar BxlEvent, usted se compromete a:'
+'Ne pas créer plusieurs comptes dans le but de contourner une restriction ;': 'No crear varias cuentas con el fin de eludir una restricción;'
+"Ne pas publier de contenu trompeur, injurieux, illicite ou portant atteinte aux droits d'autrui ;": 'No publicar contenido engañoso, injurioso, ilícito o que vulnere los derechos de terceros;'
+"Ne pas utiliser le site à des fins frauduleuses (fausses réservations, faux événements, usurpation d'identité) ;": 'No utilizar el sitio con fines fraudulentos (reservas falsas, eventos falsos, suplantación de identidad);'
+'Respecter les autres utilisateurs et organisateurs.': 'Respetar a los demás usuarios y organizadores.'
+"Tout utilisateur constatant un comportement abusif ou un événement suspect peut le signaler directement depuis la page de l'événement concerné.": 'Todo usuario que detecte un comportamiento abusivo o un evento sospechoso puede reportarlo directamente desde la página del evento en cuestión.'
+'4. Fonctionnement des événements': '4. Funcionamiento de los eventos'
+"Les événements affichés sur BxlEvent peuvent être créés par l'équipe BxlEvent ou publiés par des utilisateurs Contributeurs. Chaque événement passe par un statut de validation avant d'être visible publiquement, afin de limiter la publication de contenus non conformes.": 'Los eventos que aparecen en BxlEvent pueden ser creados por el equipo de BxlEvent o publicados por usuarios Colaboradores. Cada evento pasa por un estado de validación antes de ser visible públicamente, con el fin de limitar la publicación de contenidos no conformes.'
+"Les Contributeurs sont responsables de l'exactitude des informations qu'ils publient (description, date, heure, lieu, catégories, tarifs des billets). Il leur appartient de tenir ces informations à jour, notamment en cas de report ou d'annulation.": 'Los Colaboradores son responsables de la exactitud de la información que publican (descripción, fecha, hora, lugar, categorías, precios de las entradas). Es su responsabilidad mantener esta información actualizada, en particular en caso de aplazamiento o cancelación.'
+'5. Réservation et paiement des billets': '5. Reserva y pago de entradas'
+"Toute commande de billets via BxlEvent est ferme dès sa confirmation. Les billets sont nominatifs et non transférables, sauf indication contraire de l'organisateur de l'événement. Après paiement, les billets sont accessibles au format PDF depuis votre profil.": 'Todo pedido de entradas a través de BxlEvent es firme desde su confirmación. Las entradas son personales e intransferibles, salvo indicación contraria del organizador del evento. Tras el pago, las entradas están disponibles en formato PDF desde su perfil.'
+'6. Responsabilité de BxlEvent': '6. Responsabilidad de BxlEvent'
+"BxlEvent agit en tant qu'intermédiaire technique entre les organisateurs et les participants. À ce titre, BxlEvent ne peut être tenu responsable :": 'BxlEvent actúa como intermediario técnico entre los organizadores y los participantes. Como tal, BxlEvent no puede ser considerado responsable de:'
+"Du déroulement, du report ou de l'annulation d'un événement, ces responsabilités incombant à l'organisateur ;": 'El desarrollo, el aplazamiento o la cancelación de un evento, ya que estas responsabilidades corresponden al organizador;'
+"De l'exactitude des informations publiées par les Contributeurs ;": 'La exactitud de la información publicada por los Colaboradores;'
+"D'une interruption temporaire du site liée à la maintenance ou à un incident technique.": 'Una interrupción temporal del sitio relacionada con el mantenimiento o un incidente técnico.'
+'BxlEvent met cependant tout en œuvre pour vérifier les événements publiés et retirer rapidement tout contenu signalé comme non conforme.': 'No obstante, BxlEvent hace todo lo posible para verificar los eventos publicados y retirar rápidamente cualquier contenido reportado como no conforme.'
+"7. Suspension et suppression d'un compte": '7. Suspensión y eliminación de una cuenta'
+'BxlEvent se réserve le droit de suspendre ou de supprimer, temporairement ou définitivement, tout compte ne respectant pas les présentes conditions générales, notamment en cas de comportement frauduleux, de publication de contenu non conforme ou de signalements répétés et justifiés.': 'BxlEvent se reserva el derecho de suspender o eliminar, temporal o definitivamente, toda cuenta que no respete los presentes términos y condiciones, en particular en caso de comportamiento fraudulento, publicación de contenido no conforme o reportes repetidos y justificados.'
+'Vous pouvez également demander la suppression de votre compte à tout moment, en nous contactant via notre page de contact.': 'También puede solicitar la eliminación de su cuenta en cualquier momento, contactándonos a través de nuestra página de contacto.'
+'8. Propriété intellectuelle': '8. Propiedad intelectual'
+"L'ensemble des contenus du site (textes, logo, mise en page, charte graphique) est protégé et ne peut être reproduit sans autorisation préalable. Les contenus publiés par les Contributeurs (descriptions, visuels d'événements) restent leur propriété, mais sont mis à disposition de BxlEvent pour affichage sur la plateforme.": 'Todos los contenidos del sitio (textos, logotipo, diseño, identidad gráfica) están protegidos y no pueden reproducirse sin autorización previa. Los contenidos publicados por los Colaboradores (descripciones, imágenes de eventos) siguen siendo de su propiedad, pero se ponen a disposición de BxlEvent para su visualización en la plataforma.'
+'9. Données personnelles': '9. Datos personales'
+'Le traitement de vos données personnelles est détaillé dans notre': 'El tratamiento de sus datos personales se detalla en nuestra'
+'10. Modification des conditions': '10. Modificación de las condiciones'
+'BxlEvent se réserve le droit de modifier les présentes conditions générales à tout moment. La date de dernière mise à jour indiquée en haut de cette page permet de connaître la version en vigueur.': 'BxlEvent se reserva el derecho de modificar los presentes términos y condiciones en cualquier momento. La fecha de la última actualización indicada en la parte superior de esta página permite conocer la versión vigente.'
+'Pour toute question relative à ces conditions générales, vous pouvez nous contacter via notre': 'Para cualquier pregunta relativa a estos términos y condiciones, puede contactarnos a través de nuestra'
+'Retour aux événements': 'Volver a los eventos'
+Previous: Anterior
+Next: Siguiente
+Informations: Información
+Date: Fecha
+Heure: Hora
+Lieu: Lugar
+'Acheter un ticket': 'Comprar una entrada'
+'Billets non disponibles pour cet évènement': 'Entradas no disponibles para este evento'
+'Ajouter à mes favoris': 'Añadir a favoritos'
+Description: Descripción
+'Embed Google Street View map': 'Insertar mapa de Google Street View'
+'Types de tickets': 'Tipos de entradas'
+"Signaler l'événement": 'Reportar el evento'
+"Cet événement pose problème ? Signalez-le et notre équipe l'examinera.": '¿Hay algún problema con este evento? Repórtelo y nuestro equipo lo revisará.'
+Signaler: Reportar
+'Paiement sécurisé': 'Pago seguro'
+'Transactions 100% sécurisées': 'Transacciones 100% seguras'
+'Billets électroniques': 'Entradas electrónicas'
+'Reçus par email instantanément': 'Recibidas al instante por correo electrónico'
+'Service client': 'Atención al cliente'
+'Lundi - Vendredi de 9h à 19h': 'Lunes a viernes de 9h a 19h'
+'Événements similaires': 'Eventos similares'
+"Voir l'évenement": 'Ver el evento'
+'Mon tableau de bord': 'Mi panel'
+'Photo de profil': 'Foto de perfil'
+"Vue d'ensemble": Resumen
+Statistiques: Estadísticas
+Signalements: Reportes
+Bonjour: Hola
+'Voici un aperçu de votre activité sur BxlEvent.': 'Aquí tiene un resumen de su actividad en BxlEvent.'
+'Revenus générés': 'Ingresos generados'
+'Événements créés': 'Eventos creados'
+'Signalements reçus': 'Reportes recibidos'
+'Événements à venir': 'Próximos eventos'
+'Événements passés': 'Eventos pasados'
+'Mes événements': 'Mis eventos'
+"Vous n'avez pas encore créé d'événement.": 'Todavía no ha creado ningún evento.'
+Événement: Evento
+Statut: Estado
+Ventes: Ventas
+Affiche: Cartel
+"En cours d'examen": 'En revisión'
+Passé: Pasado
+'À venir': Próximo
+'Voir les Statistiques': 'Ver estadísticas'
+"Voir l'affiche": 'Ver el cartel'
+'Créer un évènement': 'Crear un evento'
+"Modifier l'évènement": 'Editar el evento'
+"Modifier l'événement": 'Editar el evento'
+"Le lieu n'existe pas ? Créez-en un nouveau": '¿El lugar no existe? Cree uno nuevo'
+'Types de billets': 'Tipos de entradas'
+'Retirer ce type de billet': 'Eliminar este tipo de entrada'
+'+ Ajouter un type de billet': '+ Añadir un tipo de entrada'
+'Affiches actuelles (maximum 3 images au total)': 'Carteles actuales (máximo 3 imágenes en total)'
+Supprimer: Eliminar
+'* Champs obligatoire': '* Campo obligatorio'
+'Enregistrer les modificatios': 'Guardar los cambios'
+'Statistiques —': 'Estadísticas —'
+"Chiffre d'affaires total": 'Ingresos totales'
+'Billets vendus au total': 'Total de entradas vendidas'
+'Répartition par type de billet': 'Desglose por tipo de entrada'
+billets: entradas
+'Taux de remplissage': 'Tasa de ocupación'
+rempli: ocupado
+'billets vendus': 'entradas vendidas'
+'Capacité totale :': 'Capacidad total:'
+'Aucune limite de billets définie pour cet événement.': 'No se ha definido ningún límite de entradas para este evento.'
+"Chiffre d'affaires par jour": 'Ingresos por día'
+'Tickets vendu par jour': 'Entradas vendidas por día'
+'Retour à mon tableau de bord': 'Volver a mi panel'
+'Évènements à ne pas rater': 'Eventos que no debe perderse'
+'Evènements à ne pas rater': 'Eventos que no debe perderse'
+"Découvrez les événements incontournables de Bruxelles\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tConcerts, festivals, expositions, spectacles, événements sportifs ou activités en famille : retrouvez chaque semaine notre sélection des meilleures sorties à Bruxelles et dans les environs. Réservez vos billets en quelques clics grâce à BxlEvent.": "Descubra los eventos imprescindibles de Bruselas\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tConciertos, festivales, exposiciones, espectáculos, eventos deportivos o actividades en familia: encuentre cada semana nuestra selección de las mejores salidas en Bruselas y sus alrededores. Reserve sus entradas en pocos clics gracias a BxlEvent."
+'Notre équipe sélectionne les événements les plus populaires et les meilleures nouveautés afin de vous aider à trouver votre prochaine sortie. Que vous soyez amateur de musique, de culture ou de sport, il y en a pour tous les goûts.': 'Nuestro equipo selecciona los eventos más populares y las mejores novedades para ayudarle a encontrar su próxima salida. Ya sea que le guste la música, la cultura o el deporte, hay algo para todos los gustos.'
+Evènements: Eventos
+'Aucun événement pour le moment, veillez revenir plus tard': 'No hay eventos por el momento, vuelva más tarde'
+'Voir les tickets': 'Ver las entradas'
+'Selection exclusive': 'Selección exclusiva'
+'Les meilleurs évènements choisis pour vous': 'Los mejores eventos elegidos para usted'
+'Achats à 100% sécurisés et garantis': 'Compras 100% seguras y garantizadas'
+'Notre équipe est là pour vous aider': 'Nuestro equipo está aquí para ayudarle'
+'Mise à jour courante': 'Actualizaciones frecuentes'
+'De nouveaux évènements chaque semaine': 'Nuevos eventos cada semana'
+'Ne manquez aucune sortie !': '¡No se pierda ninguna salida!'
+'Inscrivez-vous à notre newsletter et recevez chaque semaine les événements à ne pas rater.': 'Suscríbase a nuestro boletín y reciba cada semana los eventos que no debe perderse.'
+'Votre e-mail': 'Su correo electrónico'
+"S'abonner": Suscribirse
+"L'AGENDA DE VOS MEILLEURS SORTIES": 'LA AGENDA DE SUS MEJORES SALIDAS'
+"Concerts, expositions, festivals ou événements sportifs...\n\t\t\t\t\t\t\t<br>BxlEvent rassemble pour vous toutes les activités incontournables de la capitale.": |-
+    Conciertos, exposiciones, festivales o eventos deportivos...
+    							<br>BxlEvent reúne para usted todas las actividades imprescindibles de la capital.
+'Découvrez les évènements à ne pas rater': 'Descubra los eventos que no debe perderse'
+Recherche: Búsqueda
+'Rechercher un événement...': 'Buscar un evento...'
+'Toutes les catégories': 'Todas las categorías'
+'Tous les lieux': 'Todos los lugares'
+'Trier par': 'Ordenar por'
+'Date croissante': 'Fecha ascendente'
+'Date décroissante': 'Fecha descendente'
+"Image anonyme de l'évènement": 'Imagen anónima del evento'
+"Voir l'évènement": 'Ver el evento'
+'Ne manquez aucune sortie': 'No se pierda ninguna salida'
+'Créer un événement': 'Crear un evento'
+"Créer l'événement": 'Crear el evento'
+'Retour à la liste des événements': 'Volver a la lista de eventos'
+'Statut :': 'Estado:'
+Modifier: Editar
+'Mes statistiques': 'Mis estadísticas'
+'État de vos événements': 'Estado de sus eventos'
+événements: eventos
+"Chiffre d'affaires par événement": 'Ingresos por evento'
+'Billets vendus par événement': 'Entradas vendidas por evento'
+'Choisir vos tickets -': 'Elija sus entradas -'
+"Retour à l'événement": 'Volver al evento'
+'Choisissez vos tickets': 'Elija sus entradas'
+'Sélectionnez le type de ticket qui vous convient': 'Seleccione el tipo de entrada que le convenga'
+'Bon à savoir :': 'Bueno saberlo:'
+'Billets non disponibles': 'Entradas no disponibles'
+"Cet évènement est en attente de validation ou n'a pas été approuvé, les billets ne sont pas encore en vente.": 'Este evento está pendiente de aprobación o no ha sido aprobado, las entradas aún no están a la venta.'
+"Cet évènement est déjà passé, il n'est plus possible d'acheter de billets.": 'Este evento ya ha pasado, ya no es posible comprar entradas.'
+'Tickets sélectionnés': 'Entradas seleccionadas'
+'Aucun ticket sélectionné': 'Ninguna entrada seleccionada'
+'Ajouter au panier': 'Añadir al carrito'
+'Pourquoi acheter sur BxlEvent ?': '¿Por qué comprar en BxlEvent?'
+'Vos données sont protégées': 'Sus datos están protegidos'
+'Reçus instantanément par email': 'Recibidas al instante por correo electrónico'
+'Support disponible': 'Soporte disponible'
+'7j/7 de 9h à 22h': '7 días a la semana de 9h a 22h'
+"Modifier l'image": 'Editar la imagen'
+'Edit Gallery': 'Editar galería'
+Galeries: Galerías
+'Gallery index': 'Lista de galerías'
+IsMain: 'Imagen principal'
+'Ajouter une image': 'Añadir una imagen'
+'Create new Gallery': 'Crear nuevo elemento de galería'
+Galerie: Galería
+Gallery: Galería
+FilePath: 'Ruta del archivo'
+Title: Título
+Hour: Hora
+'Modifier le lieu': 'Editar lugar'
+'Edit Location': 'Editar lugar'
+Lieux: Lugares
+'Location index': 'Lista de lugares'
+Street: Calle
+Number: Número
+Postcode: 'Código postal'
+City: Ciudad
+Details: Detalles
+'Nouveau lieu': 'Nuevo lugar'
+'Create new Location': 'Crear nuevo lugar'
+Location: Lugar
+"Modifier l'abonné": 'Editar suscriptor'
+'Edit Newsletter': 'Editar suscripción al boletín'
+Newsletter: Boletín
+'Newsletter index': 'Lista de suscripciones'
+InscriptionDate: 'Fecha de inscripción'
+'Nouvel abonné': 'Nuevo suscriptor'
+'Create new Newsletter': 'Crear nueva suscripción al boletín'
+'Abonné newsletter': 'Suscriptor del boletín'
+"Vous disposez déja d'un compte?": '¿Ya tiene una cuenta?'
+'Connectez vous': 'Inicie sesión'
+'Modifier le signalement': 'Editar el reporte'
+'Edit Reports': 'Editar reporte'
+'Evènement concerné': 'Evento en cuestión'
+Utilisateur: Usuario
+Traité: Procesado
+Actions: Acciones
+Voir: Ver
+'Aucun Signalement': 'Ningún reporte'
+'Retour à la liste': 'Volver a la lista'
+'Signaler un événement': 'Reportar un evento'
+'Vous avez remarqué un problème avec cet événement ?': '¿Ha detectado un problema con este evento?'
+"Signalez-le à notre équipe et nous l'examinerons rapidement.": 'Repórtelo a nuestro equipo y lo revisaremos rápidamente.'
+'1. Quel est le problème ?': '1. ¿Cuál es el problema?'
+'Sélectionnez le type de problème rencontré': 'Seleccione el tipo de problema encontrado'
+'2. Décrivez le problème': '2. Describa el problema'
+'Donnez-nous plus de détails sur le problème rencontré': 'Danos más detalles sobre el problema encontrado'
+'Envoyer le signalement': 'Enviar reporte'
+'Modifier la catégorie de signalement': 'Editar categoría de reporte'
+'Edit ReportCategory': 'Editar categoría de reporte'
+'Catégories de signalement': 'Categorías de reporte'
+'ReportCategory index': 'Lista de categorías de reporte'
+Label: Etiqueta
+'Nouvelle catégorie de signalement': 'Nueva categoría de reporte'
+'Create new ReportCategory': 'Crear nueva categoría de reporte'
+'Catégorie de signalement': 'Categoría de reporte'
+ReportCategory: 'Categoría de reporte'
+'Email envoyé': 'Correo enviado'
+Confirmation: Confirmación
+'Si un compte correspond à votre adresse e-mail, un lien vient de vous être envoyé pour réinitialiser votre mot de passe.': 'Si una cuenta coincide con su dirección de correo electrónico, se le acaba de enviar un enlace para restablecer su contraseña.'
+'Ce lien expirera dans': 'Este enlace caducará en'
+'Rien reçu ? Pensez à vérifier vos courriers indésirables (spams).': '¿No ha recibido nada? Revise su carpeta de correo no deseado (spam).'
+'Retour à la connexion': 'Volver al inicio de sesión'
+Hi!: ¡Hola!
+'To reset your password, please visit the following link': 'To reset your password, please visit the following link'
+'This link will expire in': 'This link will expire in'
+Cheers!: Cheers!
+'Mot de passe oublié': 'Contraseña olvidada'
+Envoyer: Enviar
+'Réinitialiser le mot de passe': 'Restablecer la contraseña'
+Réinitialiser: Restablecer
+'Vous êtes déjà connecté en tant que:': 'Ya ha iniciado sesión como:'
+Password: Contraseña
+'Se souvenir de moi': Recordarme
+'Mot de passe oublié?': '¿Contraseña olvidada?'
+'Se connecter': 'Iniciar sesión'
+'Créer un compte': 'Crear una cuenta'
+'Modifier le billet': 'Editar entrada'
+'Edit Ticket': 'Editar entrada'
+Billets: Entradas
+'Ticket index': 'Lista de entradas'
+eventID: 'ID de evento'
+userID: 'ID de usuario'
+ticketTypeID: 'ID de tipo de entrada'
+code: código
+isScanned: escaneado
+'Nouveau billet': 'Nueva entrada'
+'Create new Ticket': 'Crear nueva entrada'
+'Vos Billets': 'Sus entradas'
+'Date & Heure': 'Fecha y hora'
+'Type de billet': 'Tipo de entrada'
+Prix: Precio
+'Votre billet': 'Su entrada'
+Titulaire: Titular
+'Acheté le': 'Comprado el'
+"Présentez ce QR code à l'entrée de l'événement. Ce billet est nominatif et non transférable. Code :": 'Presente este código QR en la entrada del evento. Esta entrada es personal e intransferible. Código:'
+Billet: Entrada
+Ticket: Entrada
+'Paiement réussi': 'Pago exitoso'
+'Merci pour votre achat !': '¡Gracias por su compra!'
+'a été validée avec succès.': 'se ha confirmado correctamente.'
+'Télécharger mes billets (PDF)': 'Descargar mis entradas (PDF)'
+'Modifier le type de billet': 'Editar tipo de entrada'
+'Edit TicketType': 'Editar tipo de entrada'
+'TicketType index': 'Lista de tipos de entrada'
+Price: Precio
+'Nouveau type de billet': 'Nuevo tipo de entrada'
+'Create new TicketType': 'Crear nuevo tipo de entrada'
+TicketType: 'Tipo de entrada'
+'Modifier le profil': 'Editar perfil'
+Utilisateurs: Usuarios
+'User index': 'Lista de usuarios'
+FirstName: Nombre
+LastName: Apellido
+ProfileImg: 'Foto de perfil'
+DateRgpd: 'Fecha RGPD'
+Role: Rol
+'Nouvel utilisateur': 'Nuevo usuario'
+'Create new User': 'Crear nuevo usuario'
+'Nom complet': 'Nombre completo'
+Adresse: Dirección
+'Membre depuis': 'Miembro desde'
+'Mot de passe': Contraseña
+'Modifier mes informations': 'Editar mi información'
+'Gestion des événements': 'Gestión de eventos'
+'Membre depuis le': 'Miembro desde el'
+'Modifier mon profil': 'Editar mi perfil'
+Commandes: Pedidos
+'Total effectuées': 'Total realizados'
+'Total obtenus': 'Total obtenidos'
+'Total dépensé': 'Total gastado'
+'Toutes commandes': 'Todos los pedidos'
+Événements: Eventos
+'Déjà participés': 'Ya asistidos'
+'Mes commandes & billets': 'Mis pedidos y entradas'
+'Événements déjà participés': 'Eventos a los que ya ha asistido'
+'Mes signalements': 'Mis reportes'
+"Vous n'avez encore passé aucune commande.": 'Todavía no ha realizado ningún pedido.'
+Payée: Pagado
+'En attente': Pendiente
+Annulée: Cancelado
+Utilisé: Usado
+'Non utilisé': 'No usado'
+'Télécharger mes billets': 'Descargar mis entradas'
+"Vous n'avez pas encore participé à un événement.": 'Todavía no ha asistido a ningún evento.'
+"Vous n'avez soumis aucun signalement.": 'No ha enviado ningún reporte.'
+'Date:': 'Fecha:'
+'Informations du compte': 'Información de la cuenta'
+'Supprimer mon profil': 'Eliminar mi perfil'
+User: Usuario
+Roles: Roles
+'Modifier le  profil': 'Editar perfil'
+'Événements refusés': 'Eventos rechazados'
+Refusé: Rechazado
+'Enregistrer les modifications': 'Guardar los cambios'
+'Inscrivez-vous à notre newsletter': 'Suscríbase a nuestro boletín'
+"Vous disposez déjà d'un compte?": '¿Ya tiene una cuenta?'
+'Réinitialiser votre mot de passe': 'Restablecer su contraseña'
+'Entrez votre adresse email et nous vous enverrons un mail pour réinitialiser votre mot de passe': 'Introduzca su dirección de correo electrónico y le enviaremos un correo para restablecer su contraseña'
+'Se déconnecter': 'Cerrar sesión'
+'Nouveau sur BxlEvent?': '¿Nuevo en BxlEvent?'

@@ -1,0 +1,538 @@
+'Date de début': 'Start date'
+'Date de fin': 'End date'
+Appliquer: Apply
+'Réinitialiser les filtres': 'Reset filters'
+Évènement: Event
+'en attente de validation': 'pending approval'
+Signalement: Report
+'non traité': 'not processed'
+'Utilisateurs inscrits par mois': 'Users registered per month'
+"Chiffre d'affaires par mois": 'Revenue per month'
+'Top catégories': 'Top categories'
+'Évènements par statut': 'Events by status'
+'Top 5 évènements (par revenu)': 'Top 5 events (by revenue)'
+'Aucune vente sur cette période.': 'No sales for this period.'
+'Billets vendus': 'Tickets sold'
+Revenu: Revenue
+Accueil: Home
+'A propos': About
+Catégories: Categories
+Contact: Contact
+Panier: Cart
+Profil: Profile
+Connexion: 'Log in'
+Inscription: 'Sign up'
+'Mon profil': 'My profile'
+Administration: Administration
+'Gestion des évènements': 'Event management'
+'Mes évènements': 'My events'
+Déconnexion: 'Log out'
+'La billetterie qui réunit les meilleurs événements de Bruxelles, du showcase intime au grand festival.': "Brussels' ticketing platform bringing together the best events, from intimate showcases to major festivals."
+'Billets sécurisés': 'Secure tickets'
+'Achat 100% sécurisé': '100% secure purchase'
+'Support réactif': 'Responsive support'
+'Notre équipe est là pour vous': 'Our team is here for you'
+'Événements vérifiés': 'Verified events'
+'Qualité et fiabilité garanties': 'Quality and reliability guaranteed'
+Navigation: Navigation
+'Mon compte': 'My account'
+"S'inscrire": 'Sign up'
+Aide: Help
+FAQ: FAQ
+'Conditions générales': 'Terms and conditions'
+'Politique de confidentialité': 'Privacy policy'
+'Mentions légales': 'Legal notice'
+Suivez-nous: 'Follow us'
+'Bruxelles, Belgique': 'Brussels, Belgium'
+contact@bxlevent.be: contact@bxlevent.be
+'Tous droits réservés.': 'All rights reserved.'
+"L'agenda de vos meilleures sorties": 'The calendar for your best outings'
+'Voir le site': 'View the site'
+'Votre Panier': 'Your Cart'
+'Vider le panier': 'Empty the cart'
+'Votre commande': 'Your order'
+Sous-total: Subtotal
+'Frais de service': 'Service fee'
+Total: Total
+'Procéder au paiement': 'Proceed to payment'
+'Paiement 100% sécurisé': '100% secure payment'
+'Votre panier est vide.': 'Your cart is empty.'
+'Parcourez nos événements pour trouver votre prochaine sortie !': 'Browse our events to find your next outing!'
+"Retourner à l'accueil": 'Return to home'
+'Modifier la catégorie': 'Edit category'
+'Edit Categorie': 'Edit category'
+'back to list': 'back to list'
+'Categorie index': 'Category list'
+Id: Id
+Name: Name
+actions: actions
+show: show
+edit: edit
+'no records found': 'no records found'
+'Create new': 'Create new'
+'Nouvelle catégorie': 'New category'
+'Create new Categorie': 'Create new category'
+Catégorie: Category
+Categorie: Category
+'Are you sure you want to delete this item?': 'Are you sure you want to delete this item?'
+Delete: Delete
+'À propos': About
+'A propos de BxlEvent': 'About BxlEvent'
+'BxlEvent est une plateforme dédiée aux événements récréatifs à Bruxelles et dans ses environs.': 'BxlEvent is a platform dedicated to recreational events in Brussels and its surroundings.'
+'Notre objectif est de vous aider à découvrir facilement les activités et sorties qui correspondent à vos envies.': 'Our goal is to help you easily discover activities and outings that match your interests.'
+'Notre projet': 'Our project'
+'Une plateforme pensée pour découvrir Bruxelles autrement': 'A platform designed to discover Brussels differently'
+"BxlEvent a été développé dans le cadre d'un projet scolaire avec l'objectif de créer une plateforme permettant de centraliser différents événements récréatifs organisés à Bruxelles.": 'BxlEvent was developed as part of a school project with the goal of creating a platform to centralize various recreational events organized in Brussels.'
+'Concerts, festivals, spectacles, expositions, événements sportifs ou encore activités de loisirs : notre plateforme rassemble différentes possibilités de sorties au même endroit.': 'Concerts, festivals, shows, exhibitions, sporting events or leisure activities: our platform brings together different outing options in one place.'
+'Nous avons voulu proposer une interface simple et intuitive afin que chacun puisse trouver rapidement un événement, consulter ses informations et découvrir de nouvelles activités.': 'We wanted to offer a simple and intuitive interface so that everyone can quickly find an event, view its details and discover new activities.'
+'Pourquoi BxlEvent ?': 'Why BxlEvent?'
+"Bruxelles, une ville pleine d'événements": 'Brussels, a city full of events'
+"Bruxelles propose de nombreuses activités tout au long de l'année. Pourtant, trouver un événement qui correspond à ses envies peut parfois nécessiter de consulter plusieurs sites.": 'Brussels offers many activities throughout the year. However, finding an event that matches your interests can sometimes require checking several websites.'
+'BxlEvent a donc été imaginé pour simplifier cette recherche. Grâce aux catégories, aux filtres et aux informations détaillées de chaque événement, vous pouvez facilement explorer les sorties disponibles et préparer votre prochaine activité.': 'BxlEvent was therefore designed to simplify this search. Thanks to categories, filters and detailed information for each event, you can easily explore the available outings and plan your next activity.'
+'Ce que vous pouvez trouver sur BxlEvent': 'What you can find on BxlEvent'
+'Concerts & festivals': 'Concerts & festivals'
+'Découvrez les artistes et événements musicaux qui se déroulent à Bruxelles.': 'Discover the artists and music events taking place in Brussels.'
+'Spectacles & culture': 'Shows & culture'
+'Théâtre, spectacles, expositions et autres rendez-vous culturels à ne pas manquer.': 'Theatre, shows, exhibitions and other cultural events not to be missed.'
+'Sports & loisirs': 'Sports & leisure'
+'Retrouvez les événements sportifs et activités de loisirs proposés dans la capitale.': 'Find the sporting events and leisure activities on offer in the capital.'
+'Sorties & activités': 'Outings & activities'
+'Des idées de sorties pour profiter de Bruxelles seul, entre amis ou en famille.': 'Ideas for outings to enjoy Brussels alone, with friends or family.'
+'Tout pour': 'Everything to'
+'Vous aider à trouver votre prochaine sortie': 'help you find your next outing'
+"Nous avons à cœur de rendre la recherche d'événements plus simple, claire et plus agréable. BxlEvent permet de parcourir les événements selon différents critères comme la catégorie, la date ou le lieu afin de trouver plus rapidement une activité qui vous correspond.": 'We care about making the search for events simpler, clearer and more enjoyable. BxlEvent lets you browse events by different criteria such as category, date or location, so you can more quickly find an activity that suits you.'
+"Une sélection d'événements récréatifs de qualité": 'A selection of quality recreational events'
+'Des informations claires et mises à jour régulièrement': 'Clear information updated regularly'
+'Une interface simple, rapide et accessible à tous': 'A simple, fast interface accessible to everyone'
+"Un projet réalisé avec passion et envie d'apprendre": 'A project made with passion and a desire to learn'
+'Une sortie vous attend peut-être!': 'An outing might be waiting for you!'
+'Parcourez les évènements disponibles à Bruxelles et trouvez votre prochaine activité en quelques clics': 'Browse the events available in Brussels and find your next activity in just a few clicks'
+'Découvrez les évènements': 'Discover the events'
+'Foire aux questions': 'Frequently asked questions'
+'Retrouvez ici les réponses aux questions les plus fréquentes à propos de BxlEvent.': 'Find here the answers to the most frequently asked questions about BxlEvent.'
+'Comment créer un compte sur BxlEvent ?': 'How do I create an account on BxlEvent?'
+'Cliquez sur "S''inscrire" dans  de la page de connexion, remplissez le formulaire avec vos informations et validez votre inscription via l''e-mail que vous recevrez. Une fois votre compte activé, vous pourrez profiter de toutes les fonctionnalités.': 'Click "Sign up" on the login page, fill in the form with your details and confirm your registration via the email you receive. Once your account is activated, you can enjoy all the features.'
+'Comment réserver un événement ?': 'How do I book an event?'
+"Rendez-vous sur la page de l'événement qui vous intéresse, choisissez votre type de billet et la quantité, puis ajoutez-le au panier. Vous pourrez ensuite finaliser votre commande depuis votre panier.": "Go to the page of the event you're interested in, choose your ticket type and quantity, then add it to your cart. You can then complete your order from your cart."
+'Puis-je annuler ou modifier ma réservation ?': 'Can I cancel or change my booking?'
+"Les billets sont non remboursables sauf en cas d'annulation de l'événement.": 'Tickets are non-refundable, except if the event is cancelled.'
+'Quels moyens de paiement acceptez-vous ?': 'What payment methods do you accept?'
+'BxlEvent accepte les principales cartes bancaires ainsi que les moyens de paiement en ligne les plus courants. Toutes les transactions sont sécurisées.': 'BxlEvent accepts major bank cards as well as the most common online payment methods. All transactions are secure.'
+'Comment être informé des nouveaux événements ?': 'How can I be notified about new events?'
+"Inscrivez-vous à notre newsletter depuis la page d'accueil pour recevoir chaque semaine une sélection des meilleurs événements à ne pas manquer à Bruxelles.": 'Sign up for our newsletter from the homepage to receive a weekly selection of the best events not to miss in Brussels.'
+'Mes données sont-elles sécurisées ?': 'Is my data secure?'
+'Oui. Vos données personnelles et vos paiements sont traités de manière sécurisée et ne sont jamais partagés avec des tiers sans votre consentement.': 'Yes. Your personal data and payments are processed securely and are never shared with third parties without your consent.'
+"Je n'ai pas trouvé la réponse à ma question, que faire ?": "I couldn't find the answer to my question, what should I do?"
+"N'hésitez pas à nous contacter directement via notre page de contact, notre équipe se fera un plaisir de vous répondre rapidement.": 'Feel free to contact us directly via our contact page, our team will be happy to reply quickly.'
+'Comment télécharger mes billets ?': 'How do I download my tickets?'
+'Rendez-vous dans votre profil, section "Mes commandes & billets". Pour chaque commande payée, un bouton "Télécharger mes billets" vous permet de récupérer vos billets au format PDF.': 'Go to your profile, "My orders & tickets" section. For each paid order, a "Download my tickets" button lets you retrieve your tickets as a PDF.'
+'Comment devenir organisateur et publier mon propre événement ?': 'How do I become an organizer and publish my own event?'
+'Lors de votre inscription, choisissez le profil "Contributeur (Organisateur)". Vous pourrez ensuite publier vos propres événements et gérer votre programmation depuis votre compte.': 'When registering, choose the "Contributor (Organizer)" profile. You can then publish your own events and manage your schedule from your account.'
+'Comment signaler un problème avec un événement ?': 'How do I report a problem with an event?'
+'Si un événement vous semble incorrect, annulé ou frauduleux, vous pouvez le signaler directement depuis sa page. Notre équipe examine chaque signalement et vous tient informé du traitement de votre demande.': 'If an event seems incorrect, cancelled or fraudulent, you can report it directly from its page. Our team reviews every report and keeps you informed of how your request is handled.'
+'Vous avez encore une question ?': 'Still have a question?'
+"Notre équipe est là pour vous aider. N'hésitez pas à nous contacter.": 'Our team is here to help. Feel free to contact us.'
+'Nous contacter': 'Contact us'
+'Une question sur un événement à Bruxelles ? Notre équipe vous répond dans les plus brefs délais.': 'A question about an event in Brussels? Our team will respond as soon as possible.'
+'Contact Info': 'Contact Info'
+'Retrouvez-nous au cœur de la capitale ou contactez-nous directement.': 'Find us in the heart of the capital or contact us directly.'
+'Notre Localisation': 'Our Location'
+"Avenue de l'Astronomie 19 \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t1210 Saint-Josse": |-
+    Astronomy Avenue 19 
+    																																																												1210 Saint-Josse
+Téléphone: Phone
+Email: Email
+'Envoyez un message': 'Send a message'
+Chargement...: Loading...
+'Votre message a été envoyé. Merci !': 'Your message has been sent. Thank you!'
+'Envoyer le message': 'Send message'
+Close: Close
+'Informations légales': 'Legal information'
+'Dernière mise à jour :': 'Last updated:'
+"Cette page présente les informations relatives à l'éditeur et à l'hébergement du site BxlEvent.": 'This page presents information about the publisher and hosting of the BxlEvent website.'
+'1. Éditeur du site': '1. Site publisher'
+"Le site BxlEvent a été développé dans le cadre d'un projet de formation à l'EPFC (École Pratique des Hautes Études Commerciales).": 'The BxlEvent website was developed as part of a training program at EPFC (École Pratique des Hautes Études Commerciales).'
+'Responsable de la publication : Mamadou Alpha Diallo': 'Publication manager: Mamadou Alpha Diallo'
+'E-mail :': 'Email:'
+3010madiallo@student.epfc.eu: 3010madiallo@student.epfc.eu
+'2. Hébergement': '2. Hosting'
+"Nom de l'hébergeur :": 'Host name:'
+'Adresse :': 'Address:'
+'Contact :': 'Contact:'
+'3. Propriété intellectuelle': '3. Intellectual property'
+'Les éléments originaux du site BxlEvent, notamment les textes, le logo, la mise en page et les éléments graphiques créés dans le cadre du projet, sont protégés par les règles applicables en matière de propriété intellectuelle. Toute reproduction ou utilisation non autorisée de ces éléments peut être interdite. Plus de détails dans nos': 'The original elements of the BxlEvent website, including texts, the logo, layout and graphic elements created for the project, are protected by applicable intellectual property rules. Any unauthorized reproduction or use of these elements may be prohibited. More details in our'
+'conditions générales': 'terms and conditions'
+'4. Données personnelles': '4. Personal data'
+'Le traitement des données personnelles collectées sur le site est détaillé dans notre': 'The processing of personal data collected on the site is detailed in our'
+'politique de confidentialité': 'privacy policy'
+'5. Nature du site': '5. Nature of the site'
+"BxlEvent est un projet initialement réalisé dans le cadre d'une formation à l'EPFC, dont le déploiement sur un serveur accessible publiquement fait partie des exigences de la formation. Au-delà de ce cadre scolaire, BxlEvent a vocation à être exploité comme un service réel une fois le projet validé.": 'BxlEvent is a project initially carried out as part of training at EPFC, whose deployment on a publicly accessible server is part of the training requirements. Beyond this school context, BxlEvent is intended to operate as a real service once the project is validated.'
+'6. Contact': '6. Contact'
+'Pour toute question relative à ces mentions légales, vous pouvez nous contacter via notre': 'For any question about this legal notice, you can contact us via our'
+'page de contact': 'contact page'
+Confidentialité: Privacy
+'BxlEvent accorde une grande importance à la protection de vos données personnelles. Cette page explique quelles données nous collectons, pourquoi, et quels sont vos droits.': 'BxlEvent attaches great importance to the protection of your personal data. This page explains what data we collect, why, and what your rights are.'
+'1. Données collectées': '1. Data collected'
+"Lors de votre inscription et de l'utilisation du site, nous collectons les informations suivantes : nom, prénom, adresse e-mail, adresse postale (facultative) et, le cas échéant, les informations liées à vos commandes et billets.": 'When you register and use the site, we collect the following information: last name, first name, email address, postal address (optional) and, where applicable, information related to your orders and tickets.'
+'2. Utilisation des données': '2. Use of data'
+'Ces données sont utilisées uniquement pour :': 'This data is used solely to:'
+'Créer et gérer votre compte utilisateur ;': 'Create and manage your user account;'
+'Traiter vos commandes et générer vos billets ;': 'Process your orders and generate your tickets;'
+'Vous envoyer la newsletter, si vous y êtes inscrit ;': 'Send you the newsletter, if you are subscribed;'
+'Répondre à vos demandes via le formulaire de contact.': 'Respond to your requests via the contact form.'
+'3. Conservation des données': '3. Data retention'
+'Vos données sont conservées uniquement le temps nécessaire aux finalités décrites ci-dessus, et supprimées  à la clôture de votre compte.': 'Your data is kept only for as long as necessary for the purposes described above, and is deleted when your account is closed.'
+'4. Vos droits': '4. Your rights'
+"Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Vous pouvez à tout moment consulter et modifier vos informations depuis votre profil, ou nous contacter directement pour toute demande.": 'In accordance with the GDPR, you have the right to access, rectify and delete your data. You can view and edit your information from your profile at any time, or contact us directly with any request.'
+'5. Cookies': '5. Cookies'
+"BxlEvent utilise uniquement des cookies techniques nécessaires au bon fonctionnement du site (ex : maintien de votre session et de votre panier). Aucun cookie publicitaire n'est utilisé.": 'BxlEvent only uses technical cookies necessary for the proper functioning of the site (e.g. keeping your session and cart). No advertising cookies are used.'
+'6. Base légale du traitement': '6. Legal basis for processing'
+'Les données personnelles sont traitées sur la base de différentes fondements juridiques prévus par le RGPD :.': 'Personal data is processed on the basis of various legal grounds provided for by the GDPR:.'
+"l'exécution d'un contrat, notamment pour la création du compte et la gestion des commandes ;": 'the performance of a contract, in particular for account creation and order management;'
+"le consentement de l'utilisateur, notamment pour l'inscription à la newsletter ;": "the user's consent, in particular for newsletter subscription;"
+"le respect d'obligations légales lorsque cela est nécessaire ;": 'compliance with legal obligations where necessary;'
+"l'intérêt légitime de BxlEvent pour assurer la sécurité et le bon fonctionnement du site.": "BxlEvent's legitimate interest in ensuring the security and proper functioning of the site."
+'7. Destinataires des données': '7. Data recipients'
+"Les données personnelles sont uniquement accessibles aux personnes nécessaires au fonctionnement de BxlEvent. Elles peuvent notamment être transmises à nos prestataires techniques lorsque cela est nécessaire au fonctionnement du site, au traitement des paiements ou à l'envoi d'e-mails.": "Personal data is only accessible to people necessary for the operation of BxlEvent. It may be shared with our technical service providers when necessary for the site's operation, payment processing or sending emails."
+'8. Sécurité des données': '8. Data security'
+"BxlEvent met en œuvre des mesures techniques et organisationnelles appropriées afin de protéger les données personnelles contre la perte, l'accès non autorisé, la modification ou la divulgation.": 'BxlEvent implements appropriate technical and organizational measures to protect personal data against loss, unauthorized access, alteration or disclosure.'
+"9. Transfert des données hors de l'Union européenne": '9. Transfer of data outside the European Union'
+"Lorsque certains prestataires utilisés par BxlEvent peuvent traiter des données personnelles en dehors de l'Union européenne, nous veillons à ce que ces transferts soient réalisés conformément aux exigences du RGPD et bénéficient de garanties appropriées.": 'Where certain service providers used by BxlEvent may process personal data outside the European Union, we ensure that such transfers are carried out in accordance with GDPR requirements and benefit from appropriate safeguards.'
+'10. Modification de la politique de confidentialité': '10. Changes to the privacy policy'
+"Cette politique de confidentialité peut être modifiée afin de tenir compte de l'évolution du site, de nos services ou de la réglementation applicable.": 'This privacy policy may be amended to reflect changes to the site, our services or applicable regulations.'
+'La date de dernière mise à jour indiquée en haut de cette page permet de connaître la version actuellement en vigueur.': 'The last update date shown at the top of this page indicates the currently applicable version.'
+'11. Contact': '11. Contact'
+'Pour toute question concernant vos données personnelles, vous pouvez nous contacter via notre': 'For any question regarding your personal data, you can contact us via our'
+Conditions: Terms
+"Conditions générales d'utilisation": 'General terms of use'
+"Les présentes conditions générales régissent l'utilisation du site BxlEvent. En créant un compte ou en utilisant le site, vous acceptez sans réserve les conditions décrites ci-dessous.": 'These terms and conditions govern the use of the BxlEvent website. By creating an account or using the site, you fully accept the terms described below.'
+'1. Objet': '1. Purpose'
+'BxlEvent est une plateforme permettant de découvrir des événements organisés à Bruxelles et dans ses environs, de réserver des billets, et pour les Contributeurs, de publier et gérer leurs propres événements.': 'BxlEvent is a platform for discovering events organized in Brussels and its surroundings, booking tickets, and, for Contributors, publishing and managing their own events.'
+"2. Création d'un compte": '2. Creating an account'
+"L'utilisation de certaines fonctionnalités de BxlEvent (réservation de billets, publication d'événements, gestion du profil) nécessite la création d'un compte. Lors de l'inscription, vous devez choisir un profil :": 'Using certain features of BxlEvent (ticket booking, event publishing, profile management) requires creating an account. When registering, you must choose a profile:'
+Membre: Member
+': permet de parcourir les événements, réserver des billets et gérer ses commandes ;': ': allows you to browse events, book tickets and manage your orders;'
+Contributeur: Contributor
+': permet en plus de publier et gérer ses propres événements.': ': also allows you to publish and manage your own events.'
+'Vous vous engagez à fournir des informations exactes, à jour, et à les maintenir à jour depuis votre profil. Vous êtes responsable de la confidentialité de votre mot de passe et de toute activité effectuée depuis votre compte.': 'You agree to provide accurate, up-to-date information and to keep it current from your profile. You are responsible for the confidentiality of your password and for any activity carried out from your account.'
+'3. Comportement des utilisateurs': '3. User conduct'
+'En utilisant BxlEvent, vous vous engagez à :': 'By using BxlEvent, you agree to:'
+'Ne pas créer plusieurs comptes dans le but de contourner une restriction ;': 'Not create multiple accounts to circumvent a restriction;'
+"Ne pas publier de contenu trompeur, injurieux, illicite ou portant atteinte aux droits d'autrui ;": 'Not publish misleading, abusive, unlawful content, or content infringing on the rights of others;'
+"Ne pas utiliser le site à des fins frauduleuses (fausses réservations, faux événements, usurpation d'identité) ;": 'Not use the site for fraudulent purposes (fake bookings, fake events, identity theft);'
+'Respecter les autres utilisateurs et organisateurs.': 'Respect other users and organizers.'
+"Tout utilisateur constatant un comportement abusif ou un événement suspect peut le signaler directement depuis la page de l'événement concerné.": 'Any user noticing abusive behavior or a suspicious event can report it directly from the page of the event concerned.'
+'4. Fonctionnement des événements': '4. How events work'
+"Les événements affichés sur BxlEvent peuvent être créés par l'équipe BxlEvent ou publiés par des utilisateurs Contributeurs. Chaque événement passe par un statut de validation avant d'être visible publiquement, afin de limiter la publication de contenus non conformes.": 'Events shown on BxlEvent can be created by the BxlEvent team or published by Contributor users. Each event goes through a validation status before becoming publicly visible, in order to limit the publication of non-compliant content.'
+"Les Contributeurs sont responsables de l'exactitude des informations qu'ils publient (description, date, heure, lieu, catégories, tarifs des billets). Il leur appartient de tenir ces informations à jour, notamment en cas de report ou d'annulation.": 'Contributors are responsible for the accuracy of the information they publish (description, date, time, location, categories, ticket prices). It is their responsibility to keep this information up to date, particularly in the event of postponement or cancellation.'
+'5. Réservation et paiement des billets': '5. Ticket booking and payment'
+"Toute commande de billets via BxlEvent est ferme dès sa confirmation. Les billets sont nominatifs et non transférables, sauf indication contraire de l'organisateur de l'événement. Après paiement, les billets sont accessibles au format PDF depuis votre profil.": 'Any ticket order placed via BxlEvent is final once confirmed. Tickets are personal and non-transferable, unless otherwise stated by the event organizer. After payment, tickets are available as a PDF from your profile.'
+'6. Responsabilité de BxlEvent': "6. BxlEvent's liability"
+"BxlEvent agit en tant qu'intermédiaire technique entre les organisateurs et les participants. À ce titre, BxlEvent ne peut être tenu responsable :": 'BxlEvent acts as a technical intermediary between organizers and participants. As such, BxlEvent cannot be held liable for:'
+"Du déroulement, du report ou de l'annulation d'un événement, ces responsabilités incombant à l'organisateur ;": 'The running, postponement or cancellation of an event, as these responsibilities lie with the organizer;'
+"De l'exactitude des informations publiées par les Contributeurs ;": 'The accuracy of information published by Contributors;'
+"D'une interruption temporaire du site liée à la maintenance ou à un incident technique.": 'A temporary interruption of the site due to maintenance or a technical incident.'
+'BxlEvent met cependant tout en œuvre pour vérifier les événements publiés et retirer rapidement tout contenu signalé comme non conforme.': 'BxlEvent nevertheless does everything possible to check published events and promptly remove any content reported as non-compliant.'
+"7. Suspension et suppression d'un compte": '7. Suspension and deletion of an account'
+'BxlEvent se réserve le droit de suspendre ou de supprimer, temporairement ou définitivement, tout compte ne respectant pas les présentes conditions générales, notamment en cas de comportement frauduleux, de publication de contenu non conforme ou de signalements répétés et justifiés.': 'BxlEvent reserves the right to temporarily or permanently suspend or delete any account that does not comply with these terms and conditions, particularly in the event of fraudulent behavior, publication of non-compliant content, or repeated and justified reports.'
+'Vous pouvez également demander la suppression de votre compte à tout moment, en nous contactant via notre page de contact.': 'You can also request the deletion of your account at any time by contacting us via our contact page.'
+'8. Propriété intellectuelle': '8. Intellectual property'
+"L'ensemble des contenus du site (textes, logo, mise en page, charte graphique) est protégé et ne peut être reproduit sans autorisation préalable. Les contenus publiés par les Contributeurs (descriptions, visuels d'événements) restent leur propriété, mais sont mis à disposition de BxlEvent pour affichage sur la plateforme.": 'All content on the site (texts, logo, layout, graphic style) is protected and may not be reproduced without prior authorization. Content published by Contributors (descriptions, event visuals) remains their property but is made available to BxlEvent for display on the platform.'
+'9. Données personnelles': '9. Personal data'
+'Le traitement de vos données personnelles est détaillé dans notre': 'The processing of your personal data is detailed in our'
+'10. Modification des conditions': '10. Changes to the terms'
+'BxlEvent se réserve le droit de modifier les présentes conditions générales à tout moment. La date de dernière mise à jour indiquée en haut de cette page permet de connaître la version en vigueur.': 'BxlEvent reserves the right to modify these terms and conditions at any time. The last update date shown at the top of this page indicates the version in effect.'
+'Pour toute question relative à ces conditions générales, vous pouvez nous contacter via notre': 'For any question about these terms and conditions, you can contact us via our'
+'Retour aux événements': 'Back to events'
+Previous: Previous
+Next: Next
+Informations: Information
+Date: Date
+Heure: Time
+Lieu: Location
+'Acheter un ticket': 'Buy a ticket'
+'Billets non disponibles pour cet évènement': 'Tickets not available for this event'
+'Ajouter à mes favoris': 'Add to favorites'
+Description: Description
+'Embed Google Street View map': 'Embed Google Street View map'
+'Types de tickets': 'Ticket types'
+"Signaler l'événement": 'Report the event'
+"Cet événement pose problème ? Signalez-le et notre équipe l'examinera.": 'Is there a problem with this event? Report it and our team will look into it.'
+Signaler: Report
+'Paiement sécurisé': 'Secure payment'
+'Transactions 100% sécurisées': '100% secure transactions'
+'Billets électroniques': E-tickets
+'Reçus par email instantanément': 'Received instantly by email'
+'Service client': 'Customer service'
+'Lundi - Vendredi de 9h à 19h': 'Monday - Friday, 9am to 7pm'
+'Événements similaires': 'Similar events'
+"Voir l'évenement": 'View the event'
+'Mon tableau de bord': 'My dashboard'
+'Photo de profil': 'Profile picture'
+"Vue d'ensemble": Overview
+Statistiques: Statistics
+Signalements: Reports
+Bonjour: Hello
+'Voici un aperçu de votre activité sur BxlEvent.': "Here's an overview of your activity on BxlEvent."
+'Revenus générés': 'Revenue generated'
+'Événements créés': 'Events created'
+'Signalements reçus': 'Reports received'
+'Événements à venir': 'Upcoming events'
+'Événements passés': 'Past events'
+'Mes événements': 'My events'
+"Vous n'avez pas encore créé d'événement.": "You haven't created an event yet."
+Événement: Event
+Statut: Status
+Ventes: Sales
+Affiche: Poster
+"En cours d'examen": 'Under review'
+Passé: Past
+'À venir': Upcoming
+'Voir les Statistiques': 'View Statistics'
+"Voir l'affiche": 'View poster'
+'Créer un évènement': 'Create an event'
+"Modifier l'évènement": 'Edit the event'
+"Modifier l'événement": 'Edit the event'
+"Le lieu n'existe pas ? Créez-en un nouveau": "Location doesn't exist? Create a new one"
+'Types de billets': 'Ticket types'
+'Retirer ce type de billet': 'Remove this ticket type'
+'+ Ajouter un type de billet': '+ Add a ticket type'
+'Affiches actuelles (maximum 3 images au total)': 'Current posters (maximum 3 images in total)'
+Supprimer: Delete
+'* Champs obligatoire': '* Required field'
+'Enregistrer les modificatios': 'Save changes'
+'Statistiques —': 'Statistics —'
+"Chiffre d'affaires total": 'Total revenue'
+'Billets vendus au total': 'Total tickets sold'
+'Répartition par type de billet': 'Breakdown by ticket type'
+billets: tickets
+'Taux de remplissage': 'Fill rate'
+rempli: filled
+'billets vendus': 'tickets sold'
+'Capacité totale :': 'Total capacity:'
+'Aucune limite de billets définie pour cet événement.': 'No ticket limit set for this event.'
+"Chiffre d'affaires par jour": 'Revenue per day'
+'Tickets vendu par jour': 'Tickets sold per day'
+'Retour à mon tableau de bord': 'Back to my dashboard'
+'Évènements à ne pas rater': 'Events not to be missed'
+'Evènements à ne pas rater': 'Events not to be missed'
+"Découvrez les événements incontournables de Bruxelles\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tConcerts, festivals, expositions, spectacles, événements sportifs ou activités en famille : retrouvez chaque semaine notre sélection des meilleures sorties à Bruxelles et dans les environs. Réservez vos billets en quelques clics grâce à BxlEvent.": "Discover Brussels' unmissable events\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tConcerts, festivals, exhibitions, shows, sporting events or family activities: find our weekly selection of the best outings in Brussels and the surrounding area. Book your tickets in just a few clicks with BxlEvent."
+'Notre équipe sélectionne les événements les plus populaires et les meilleures nouveautés afin de vous aider à trouver votre prochaine sortie. Que vous soyez amateur de musique, de culture ou de sport, il y en a pour tous les goûts.': "Our team selects the most popular events and the best new additions to help you find your next outing. Whether you're into music, culture or sport, there's something for everyone."
+Evènements: Events
+'Aucun événement pour le moment, veillez revenir plus tard': 'No events at the moment, please check back later'
+'Voir les tickets': 'View tickets'
+'Selection exclusive': 'Exclusive selection'
+'Les meilleurs évènements choisis pour vous': 'The best events chosen for you'
+'Achats à 100% sécurisés et garantis': '100% secure and guaranteed purchases'
+'Notre équipe est là pour vous aider': 'Our team is here to help you'
+'Mise à jour courante': 'Regular updates'
+'De nouveaux évènements chaque semaine': 'New events every week'
+'Ne manquez aucune sortie !': "Don't miss a single outing!"
+'Inscrivez-vous à notre newsletter et recevez chaque semaine les événements à ne pas rater.': 'Sign up for our newsletter and receive the events not to miss every week.'
+'Votre e-mail': 'Your email'
+"S'abonner": Subscribe
+"L'AGENDA DE VOS MEILLEURS SORTIES": 'THE CALENDAR FOR YOUR BEST OUTINGS'
+"Concerts, expositions, festivals ou événements sportifs...\n\t\t\t\t\t\t\t<br>BxlEvent rassemble pour vous toutes les activités incontournables de la capitale.": |-
+    Concerts, exhibitions, festivals or sporting events...
+    							<br>BxlEvent brings together all the unmissable activities of the capital for you.
+'Découvrez les évènements à ne pas rater': 'Discover the events not to be missed'
+Recherche: Search
+'Rechercher un événement...': 'Search for an event...'
+'Toutes les catégories': 'All categories'
+'Tous les lieux': 'All locations'
+'Trier par': 'Sort by'
+'Date croissante': 'Date ascending'
+'Date décroissante': 'Date descending'
+"Image anonyme de l'évènement": 'Anonymous image of the event'
+"Voir l'évènement": 'View the event'
+'Ne manquez aucune sortie': "Don't miss a single outing"
+'Créer un événement': 'Create an event'
+"Créer l'événement": 'Create the event'
+'Retour à la liste des événements': 'Back to the events list'
+'Statut :': 'Status:'
+Modifier: Edit
+'Mes statistiques': 'My statistics'
+'État de vos événements': 'Status of your events'
+événements: events
+"Chiffre d'affaires par événement": 'Revenue per event'
+'Billets vendus par événement': 'Tickets sold per event'
+'Choisir vos tickets -': 'Choose your tickets -'
+"Retour à l'événement": 'Back to the event'
+'Choisissez vos tickets': 'Choose your tickets'
+'Sélectionnez le type de ticket qui vous convient': 'Select the ticket type that suits you'
+'Bon à savoir :': 'Good to know:'
+'Billets non disponibles': 'Tickets not available'
+"Cet évènement est en attente de validation ou n'a pas été approuvé, les billets ne sont pas encore en vente.": 'This event is pending approval or has not been approved, tickets are not yet on sale.'
+"Cet évènement est déjà passé, il n'est plus possible d'acheter de billets.": 'This event has already taken place, it is no longer possible to buy tickets.'
+'Tickets sélectionnés': 'Selected tickets'
+'Aucun ticket sélectionné': 'No ticket selected'
+'Ajouter au panier': 'Add to cart'
+'Pourquoi acheter sur BxlEvent ?': 'Why buy on BxlEvent?'
+'Vos données sont protégées': 'Your data is protected'
+'Reçus instantanément par email': 'Received instantly by email'
+'Support disponible': 'Support available'
+'7j/7 de 9h à 22h': '7 days a week from 9am to 10pm'
+"Modifier l'image": 'Edit the image'
+'Edit Gallery': 'Edit gallery'
+Galeries: Galleries
+'Gallery index': 'Gallery list'
+IsMain: 'Main image'
+'Ajouter une image': 'Add an image'
+'Create new Gallery': 'Create new gallery item'
+Galerie: Gallery
+Gallery: Gallery
+FilePath: 'File path'
+Title: Title
+Hour: Time
+'Modifier le lieu': 'Edit location'
+'Edit Location': 'Edit location'
+Lieux: Locations
+'Location index': 'Location list'
+Street: Street
+Number: Number
+Postcode: Postcode
+City: City
+Details: Details
+'Nouveau lieu': 'New location'
+'Create new Location': 'Create new location'
+Location: Location
+"Modifier l'abonné": 'Edit subscriber'
+'Edit Newsletter': 'Edit newsletter subscription'
+Newsletter: Newsletter
+'Newsletter index': 'Newsletter list'
+InscriptionDate: 'Registration date'
+'Nouvel abonné': 'New subscriber'
+'Create new Newsletter': 'Create new newsletter subscription'
+'Abonné newsletter': 'Newsletter subscriber'
+"Vous disposez déja d'un compte?": 'Already have an account?'
+'Connectez vous': 'Log in'
+'Modifier le signalement': 'Edit the report'
+'Edit Reports': 'Edit report'
+'Evènement concerné': 'Event concerned'
+Utilisateur: User
+Traité: Processed
+Actions: Actions
+Voir: View
+'Aucun Signalement': 'No reports'
+'Retour à la liste': 'Back to list'
+'Signaler un événement': 'Report an event'
+'Vous avez remarqué un problème avec cet événement ?': 'Have you noticed a problem with this event?'
+"Signalez-le à notre équipe et nous l'examinerons rapidement.": "Report it to our team and we'll look into it quickly."
+'1. Quel est le problème ?': '1. What is the problem?'
+'Sélectionnez le type de problème rencontré': 'Select the type of problem encountered'
+'2. Décrivez le problème': '2. Describe the problem'
+'Donnez-nous plus de détails sur le problème rencontré': 'Give us more details about the problem encountered'
+'Envoyer le signalement': 'Send report'
+'Modifier la catégorie de signalement': 'Edit report category'
+'Edit ReportCategory': 'Edit report category'
+'Catégories de signalement': 'Report categories'
+'ReportCategory index': 'Report category list'
+Label: Label
+'Nouvelle catégorie de signalement': 'New report category'
+'Create new ReportCategory': 'Create new report category'
+'Catégorie de signalement': 'Report category'
+ReportCategory: 'Report category'
+'Email envoyé': 'Email sent'
+Confirmation: Confirmation
+'Si un compte correspond à votre adresse e-mail, un lien vient de vous être envoyé pour réinitialiser votre mot de passe.': 'If an account matches your email address, a link has just been sent to you to reset your password.'
+'Ce lien expirera dans': 'This link will expire in'
+'Rien reçu ? Pensez à vérifier vos courriers indésirables (spams).': 'Nothing received? Be sure to check your spam folder.'
+'Retour à la connexion': 'Back to login'
+Hi!: Hi!
+'To reset your password, please visit the following link': 'To reset your password, please visit the following link'
+'This link will expire in': 'This link will expire in'
+Cheers!: Cheers!
+'Mot de passe oublié': 'Forgot password'
+Envoyer: Send
+'Réinitialiser le mot de passe': 'Reset password'
+Réinitialiser: Reset
+'Vous êtes déjà connecté en tant que:': 'You are already logged in as:'
+Password: Password
+'Se souvenir de moi': 'Remember me'
+'Mot de passe oublié?': 'Forgot password?'
+'Se connecter': 'Log in'
+'Créer un compte': 'Create an account'
+'Modifier le billet': 'Edit ticket'
+'Edit Ticket': 'Edit ticket'
+Billets: Tickets
+'Ticket index': 'Ticket list'
+eventID: 'event ID'
+userID: 'user ID'
+ticketTypeID: 'ticket type ID'
+code: code
+isScanned: scanned
+'Nouveau billet': 'New ticket'
+'Create new Ticket': 'Create new ticket'
+'Vos Billets': 'Your tickets'
+'Date & Heure': 'Date & time'
+'Type de billet': 'Ticket type'
+Prix: Price
+'Votre billet': 'Your ticket'
+Titulaire: Holder
+'Acheté le': 'Purchased on'
+"Présentez ce QR code à l'entrée de l'événement. Ce billet est nominatif et non transférable. Code :": 'Present this QR code at the event entrance. This ticket is personal and non-transferable. Code:'
+Billet: Ticket
+Ticket: Ticket
+'Paiement réussi': 'Payment successful'
+'Merci pour votre achat !': 'Thank you for your purchase!'
+'a été validée avec succès.': 'has been successfully confirmed.'
+'Télécharger mes billets (PDF)': 'Download my tickets (PDF)'
+'Modifier le type de billet': 'Edit ticket type'
+'Edit TicketType': 'Edit ticket type'
+'TicketType index': 'Ticket type list'
+Price: Price
+'Nouveau type de billet': 'New ticket type'
+'Create new TicketType': 'Create new ticket type'
+TicketType: 'Ticket type'
+'Modifier le profil': 'Edit profile'
+Utilisateurs: Users
+'User index': 'User list'
+FirstName: 'First name'
+LastName: 'Last name'
+ProfileImg: 'Profile picture'
+DateRgpd: 'GDPR date'
+Role: Role
+'Nouvel utilisateur': 'New user'
+'Create new User': 'Create new user'
+'Nom complet': 'Full name'
+Adresse: Address
+'Membre depuis': 'Member since'
+'Mot de passe': Password
+'Modifier mes informations': 'Edit my information'
+'Gestion des événements': 'Event management'
+'Membre depuis le': 'Member since'
+'Modifier mon profil': 'Edit my profile'
+Commandes: Orders
+'Total effectuées': 'Total placed'
+'Total obtenus': 'Total obtained'
+'Total dépensé': 'Total spent'
+'Toutes commandes': 'All orders'
+Événements: Events
+'Déjà participés': 'Already attended'
+'Mes commandes & billets': 'My orders & tickets'
+'Événements déjà participés': 'Events already attended'
+'Mes signalements': 'My reports'
+"Vous n'avez encore passé aucune commande.": "You haven't placed any orders yet."
+Payée: Paid
+'En attente': Pending
+Annulée: Cancelled
+Utilisé: Used
+'Non utilisé': 'Not used'
+'Télécharger mes billets': 'Download my tickets'
+"Vous n'avez pas encore participé à un événement.": "You haven't attended any events yet."
+"Vous n'avez soumis aucun signalement.": "You haven't submitted any reports."
+'Date:': 'Date:'
+'Informations du compte': 'Account information'
+'Supprimer mon profil': 'Delete my profile'
+User: User
+Roles: Roles
+'Modifier le  profil': 'Edit profile'
+'Événements refusés': 'Rejected events'
+Refusé: Rejected
+'Enregistrer les modifications': 'Save changes'
+'Inscrivez-vous à notre newsletter': 'Sign up for our newsletter'
+"Vous disposez déjà d'un compte?": 'Already have an account?'
+'Réinitialiser votre mot de passe': 'Reset your password'
+'Entrez votre adresse email et nous vous enverrons un mail pour réinitialiser votre mot de passe': "Enter your email address and we'll send you an email to reset your password"
+'Se déconnecter': 'Log out'
+'Nouveau sur BxlEvent?': 'New to BxlEvent?'
