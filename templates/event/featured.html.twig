@@ -27,7 +27,7 @@
 						<div class="col-12 col-md-4 mt-4">
 							<div class="card">
 								{% if event.galleries|length > 0 %}
-									<img src="{{ asset('assets/img/uploads/events/' ~ event.galleries[0].name) }}" class="card-img-top" alt="image de l'évènement{{event.title}}" style="height: 220px; object-fit: cover;"/>
+									<img src="{{ asset('assets/img/uploads/events/' ~ event.galleries[0].name) }}" class="card-img-top" alt="image de l'évènement{{ event.title }}" style="height: 220px; object-fit: cover;"/>
 								{% endif %}
 								<div class="card-body mb-0 pb-0">
 									{% for cat in event.categories %}
