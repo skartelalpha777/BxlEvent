@@ -98,7 +98,7 @@
 						<div class="col-md-4">
 							<div class="dash-card p-3 h-100 d-flex align-items-center justify-content-between">
 								<span>
-									<i class="bi bi-calendar-x text-danger me-2"></i>{% trans %}Événements réfusés{% endtrans %}</span>
+									<i class="bi bi-calendar-x text-danger me-2"></i>{% trans %}Événements refusés{% endtrans %}</span>
 								<span class="fs-5 fw-bold">{{ refused }}</span>
 							</div>
 						</div>
@@ -132,7 +132,7 @@
 												<td class="text-white-50">{{ event.location ? event.location.name : '—' }}</td>
 												<td>
 													{% if event.status.value == 'refused' %}
-														<span class="badge text-bg-danger">{% trans %}Réfusé{% endtrans %}</span>
+														<span class="badge text-bg-danger">{% trans %}Refusé{% endtrans %}</span>
 													{% elseif event.status.value == 'notchecked' %}
 														<span class="badge text-bg-warning">{% trans %}En cours d'examen{% endtrans %}</span>
 													{% elseif event.date < date() %}

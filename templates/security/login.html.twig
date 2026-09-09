@@ -25,7 +25,7 @@
 									<div class="mb-3">
 										{% trans %}Vous êtes déjà connecté en tant que:{% endtrans %}
 										{{ app.user.userIdentifier }},
-										<a href="{{ logout_path() }}">{% trans %}Se deconnecter{% endtrans %}</a>
+										<a href="{{ logout_path() }}">{% trans %}Se déconnecter{% endtrans %}</a>
 									</div>
 								{% endif %}
 								<div>
@@ -67,7 +67,7 @@
 								<button class="btn button large mt-4" type="submit">{% trans %}Se connecter{% endtrans %}</button>
 							</form>
 
-							<p class="d-flex justify-content-center mt-2">{% trans %}Nouveau sur BxlEvents?{% endtrans %}
+							<p class="d-flex justify-content-center mt-2">{% trans %}Nouveau sur BxlEvent?{% endtrans %}
 								<a href="{{path('app_register')}}">{% trans %}Créer un compte{% endtrans %}</a>
 							</p>
 						</div>
