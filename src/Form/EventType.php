@@ -64,7 +64,7 @@ class EventType extends AbstractType
                     new Assert\All([
                         new Assert\File(
                             extensions: ['jpg', 'jpeg', 'png', 'webp'],
-                            extensionsMessage: 'Veillez ajouter au moins une image',
+                            extensionsMessage: 'Veillez ajouter au moins une image au format jpg, jpeg, png, webp',
                         ),
                     ]),
                 ],

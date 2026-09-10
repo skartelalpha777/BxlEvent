@@ -25,6 +25,9 @@ use Symfony\UX\Chartjs\Model\Chart;
 use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
 use App\Enum\Status;
 use App\Service\FileUploader;
+use Symfony\Component\Mime\Email;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 
 #[Route('/event')]
 final class EventController extends AbstractController
@@ -413,7 +416,7 @@ final class EventController extends AbstractController
 
     #[IsGranted('ROLE_CONTRIBUTEUR')]
     #[Route('/new', name: 'app_event_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader, MailerInterface $mailer): Response
     {
         $event = new Event();
         $form = $this->createForm(EventType::class, $event);
@@ -431,6 +434,27 @@ final class EventController extends AbstractController
                 $this->addEventGalleries($brochureFiles, $event, $entityManager, $fileUploader);
 
                 $entityManager->flush();
+
+                $title = $form->get('title')->getData();
+                $creator = $event->getCreator();
+                $message = 'Un nouvel évènement "' . $title . '" a été soumis par '
+                    . $creator->getFirstName() . ' ' . $creator->getLastName()
+                    . ' (' . $creator->getEmail() . ') et est en attente de validation.'
+                    . "\nVeuillez vous connecter pour le valider.";
+
+                $email = (new Email())
+                    ->from('3010madiallo@student.epfc.eu')
+                    ->to('3010madiallo@student.epfc.eu')
+                    ->subject('Nouvel évènement à valider : ' . $title)
+                    ->text($message);
+
+                try {
+                    $mailer->send($email);
+                    
+                } catch (TransportExceptionInterface $e) {
+                    
+                }
+
                 $this->addFlash('succes', 'Votre évènement à été créé avec succès. Vous pouvez le rétrouver dans la page gestion des évènements');
                 return $this->redirectToRoute('app_user_profil', ['id' => $this->getUser()->getId()], Response::HTTP_SEE_OTHER);
             }

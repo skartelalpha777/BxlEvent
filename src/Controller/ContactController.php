@@ -34,7 +34,7 @@ final class ContactController extends AbstractController
                 //->priority(Email::PRIORITY_HIGH)
                 ->subject($nom . ' ' . $prenom)
                 ->text($message);
-            //->html('<p>See Twig integration for better HTML integration!</p>');
+            
 
             $mailer->send($email);
             $this->addFlash('success', 'Votre message à bien été envoyé. Nous réviendrons vers vous le plus rapidement possible');
