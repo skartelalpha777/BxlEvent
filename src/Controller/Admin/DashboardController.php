@@ -386,13 +386,14 @@ class DashboardController extends AbstractDashboardController
 
         yield MenuItem::section('Catalogue');
         yield MenuItem::linkTo(EventCrudController::class, 'Évènements', 'fas fa-calendar-alt')->setAction(Action::INDEX);
-        yield MenuItem::linkTo(EventTranslationCrudController::class, 'Traductions', 'fas fa-language')->setAction(Action::INDEX);
+        yield MenuItem::linkTo(EventTranslationCrudController::class, 'Traductions d\'évènements', 'fas fa-language')->setAction(Action::INDEX);
         yield MenuItem::linkTo(CategorieCrudController::class, 'Catégories', 'fas fa-tags')->setAction(Action::INDEX);
         yield MenuItem::linkTo(LocationCrudController::class, 'Lieux', 'fas fa-map-marker-alt')->setAction(Action::INDEX);
         yield MenuItem::linkTo(GalleryCrudController::class, 'Galerie', 'fas fa-images')->setAction(Action::INDEX);
 
         yield MenuItem::section('Billetterie');
         yield MenuItem::linkTo(TicketTypeCrudController::class, 'Types de billets', 'fas fa-ticket-alt')->setAction(Action::INDEX);
+        yield MenuItem::linkTo(TicketTypeTranslationCrudController::class, 'Traductions de billets', 'fas fa-language')->setAction(Action::INDEX);
         yield MenuItem::linkTo(TicketCrudController::class, 'Billets', 'fas fa-qrcode')->setAction(Action::INDEX);
         yield MenuItem::linkTo(OrderCrudController::class, 'Commandes', 'fas fa-shopping-cart')->setAction(Action::INDEX);
 

@@ -161,8 +161,8 @@
 												<div class="p-3 rounded-3" style=" border: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);">
 													<div class="d-flex justify-content-between align-items-start">
 														<div>
-															<h5 class="fw-bold mb-1">{{ type.label }}</h5>
-															<p class="small text-white-50 mb-0">{{ type.description }}</p>
+															<h5 class="fw-bold mb-1">{{  type.getTranslatedLabel(app.request.locale)  }}</h5>
+															<p class="small text-white-50 mb-0">{{ type.getTranslatedDescription(app.request.locale) }}</p>
 														</div>
 														<div class="text-end ps-3">
 															<p class="fs-5 fw-bold text-info mb-0 text-nowrap">{{ type.price }}

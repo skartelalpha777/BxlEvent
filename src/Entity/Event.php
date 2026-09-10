@@ -140,8 +140,7 @@ class Event implements TranslatableInterface
 
     public function getTranslatedDescription(string $locale): ?string
     {
-        $description = $this->translate($locale, false)->getDescription();
-
+        $description = $this->translate($locale, false)->getDescription(); // false -> pour eviter qu'ill aille chercher dans la db local=fr ce qui n'est jama stocké
         return ($description !== null && $description !== '') ? $description : $this->description;
     }
 

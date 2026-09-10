@@ -7,10 +7,14 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Expr\Value;
 use Doctrine\ORM\Mapping as ORM;
+use Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface;
+use Knp\DoctrineBehaviors\Model\Translatable\TranslatableTrait;
 
 #[ORM\Entity(repositoryClass: TicketTypeRepository::class)]
-class TicketType
+class TicketType implements TranslatableInterface
 {
+    use TranslatableTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -147,5 +151,19 @@ class TicketType
         $this->description = $Description;
 
         return $this;
+    }
+
+    public function getTranslatedLabel(string $locale): ?string
+    {
+        $label = $this->translate($locale, false)->getLabel();
+
+        return ($label !== null && $label !== '') ? $label : $this->label;
+    }
+
+    public function getTranslatedDescription(string $locale): ?string
+    {
+        $description = $this->translate($locale, false)->getDescription();
+
+        return ($description !== null && $description !== '') ? $description : $this->description;
     }
 }
