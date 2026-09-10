@@ -26,12 +26,9 @@ final class ContactController extends AbstractController
             $emailAddress = $form->get('email')->getData();
             $message = $form->get('message')->getData();
             $email = (new Email())
-                ->from($emailAddress)
+                ->from('3010madiallo@student.epfc.eu')
+                ->replyTo($emailAddress)
                 ->to('3010madiallo@student.epfc.eu')
-                //->cc('cc@example.com')
-                //->bcc('bcc@example.com')
-                //->replyTo('fabien@example.com')
-                //->priority(Email::PRIORITY_HIGH)
                 ->subject($nom . ' ' . $prenom)
                 ->text($message);
             
