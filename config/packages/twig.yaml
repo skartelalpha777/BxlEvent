@@ -3,6 +3,7 @@ twig:
     globals:
         cart_service: '@App\Service\CartService'
         categorie_repository: '@App\Repository\CategorieRepository'
+        google_maps_key: '%env(MAPS_KEY)%'
 
 when@test:
     twig:

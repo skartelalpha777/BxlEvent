@@ -2,278 +2,251 @@
 
 
 {% block title %}
-	{{ event.title }} | BxlEvent
+	{{ event.title }}
+	| BxlEvent
 {% endblock %}
 
 {% block body %}
 
-	<main class="main">
+<main class="main">
 
-		<section id="hero">
-			<section id="contact" class="contact section">
-				<div class="container-fluid container-lg">
+	<section id="hero">
+		<section id="contact" class="contact section">
+			<div class="container-fluid container-lg">
 
-					<div class="row">
-						<a href=" {{path('app_event_index', {id:event.id} )}}" class="text-decoration-none text-info mb-5 d-inline-block ">
-							<i class="bi bi-arrow-left"></i>
-							{% trans %}Retour aux événements{% endtrans %}
-						</a>
+				<div class="row">
+					<a href=" {{path('app_event_index', {id:event.id} )}}" class="text-decoration-none text-info mb-5 d-inline-block ">
+						<i class="bi bi-arrow-left"></i>
+						{% trans %}Retour aux événements{% endtrans %}
+					</a>
 
-					</div>
+				</div>
 
-					<div class="row  gx-lg-5 gy-4">
-						<div class="col-lg-9">
+				<div class="row  gx-lg-5 gy-4">
+					<div class="col-lg-9">
 
-							<div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000" data-bs-pause="false">
-								<div class="carousel-inner">
-									{% for eventimg in event.galleries %}
-										{% set name = eventimg.name %}
+						<div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000" data-bs-pause="false">
+							<div class="carousel-inner">
+								{% for eventimg in event.galleries %}
+									{% set name = eventimg.name %}
 
-										<div class="carousel-item {% if loop.first %}active{% endif %}">
-											<img src="{{ asset('assets/img/uploads/events/') ~ name }}" class="rounded event-card-img " alt="image de l'évènement: {{ event.title }}">
-										</div>
-									{% endfor %}
-								</div>
-								<button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-									<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-									<span class="visually-hidden">{% trans %}Previous{% endtrans %}</span>
-								</button>
-								<button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-									<span class="carousel-control-next-icon" aria-hidden="true"></span>
-									<span class="visually-hidden">{% trans %}Next{% endtrans %}</span>
-								</button>
-								<div class="position-absolute top-0 start-0 m-3 px-3 py-2 rounded text-white fw-bold" style="background: #1a9c23;">
-									{{ event.date|date('d M Y')|upper }}
-								</div>
+									<div class="carousel-item {% if loop.first %}active{% endif %}">
+										<img src="{{ asset('assets/img/uploads/events/') ~ name }}" class="rounded event-card-img " alt="image de l'évènement: {{ event.title }}">
+									</div>
+								{% endfor %}
+							</div>
+							<button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+								<span class="visually-hidden">{% trans %}Previous{% endtrans %}</span>
+							</button>
+							<button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+								<span class="carousel-control-next-icon" aria-hidden="true"></span>
+								<span class="visually-hidden">{% trans %}Next{% endtrans %}</span>
+							</button>
+							<div class="event-date-badge position-absolute top-0 start-0 m-3 px-2 rounded text-white fw-bold" style="background:var(--accent-color);">
+								{{ event.date|date('d M Y')|upper }}
+							</div>
 
-								<div class="position-absolute top-50 start-0  mx-3 ">
-									{% for cat in event.categories %}
-										<p class="categorie  mt-5  px-3 rounded">{{cat.name}}</p>
+							<div class="position-absolute top-50 start-0  mx-3">
+								{% for cat in event.categories %}
+									<p class="categorie  mt-5  px-3 rounded">{{cat.name}}</p>
 
-									{% endfor %}
-									<h1 class=" ">{{ event.title }}</h1>
-									<p>
-										<i class="bi bi-geo-alt"></i>
-										{{event.location.name}}</p>
-								</div>
+								{% endfor %}
+								<h1 class=" ">{{ event.title }}</h1>
+								<p>
+									<i class="bi bi-geo-alt"></i>
+									{{event.location.name}}</p>
 							</div>
 						</div>
-						<div class="col-lg-3">
-							<div class="info-box h-100">
-								<h2>{% trans %}Informations{% endtrans %}</h2>
-								<div class="row ">
-									<div class="col">
-										<li class="list-group-item ">
-											<i class="bi bi-calendar-check-fill me-1"></i>
-											{% trans %}Date{% endtrans %}
-										</li>
-									</div>
-									<div class="col ">
-										<p class="text-nowrap">{{event.date|date('d M Y') }}
-										</p>
-									</div>
+					</div>
+					<div class="col-lg-3">
+						<div class="info-box h-100">
+							<h2>{% trans %}Informations{% endtrans %}</h2>
+							<div class="row ">
+								<div class="col">
+									<li class="list-group-item ">
+										<i class="bi bi-calendar-check-fill me-1"></i>
+										{% trans %}Date{% endtrans %}
+									</li>
 								</div>
-								<div class="row ">
-									<div class="col">
-										<li class="list-group-item ">
-											<i class="bi bi-alarm"></i>
-											{% trans %}Heure{% endtrans %}
-										</li>
-									</div>
-									<div class="col ">
-										<p>{{ event.hour|date('H:i') }}</p>
-									</div>
-								</div>
-								<div class="row ">
-									<div class="col">
-										<li class="list-group-item ">
-											<i class="bi bi-geo-alt"></i>
-											{% trans %}Lieu{% endtrans %}
-										</li>
-									</div>
-									<div class="col">
-										{% set adress = event.location.name ~','~ event.location.street ~'  '~ event.location.number ~','~ event.location.postcode ~' '~ event.location.city	%}
-										{% set url = 'https://www.google.com/maps/search/?api=1&query=' ~ adress|url_encode%}
-										<p>
-											<a href="{{url}}" target="_blank">{{event.location.name}}</a>
-										</p>
-									</div>
-								</div>
-								<div class="row ">
-									<div class="col">
-										<li class="list-group-item text-nowrap">
-											<i class="bi bi-bookmark-heart"></i>
-											{% trans %}Catégorie{% endtrans %}
-
-										</li>
-									</div>
-									<div class="col">
-										{% set allCategories ='' %}
-										{% for cat  in event.categories %}
-											{% set allCategories = allCategories ~ cat.name ~' '%}
-										{% endfor %}
-										<p>{{allCategories }}</p>
-
-									</div>
-
-								</div>
-								{% if isPurchasable %}
-									<button class="btn button large " onclick="window.location.href='{{path('app_event_tickets',{id:event.id})}}'">{% trans %}Acheter un ticket{% endtrans %}</button>
-								{% else %}
-									<p class="text-white-50 small mb-0">
-										<i class="bi bi-exclamation-circle"></i>
-										{% trans %}Billets non disponibles pour cet évènement{% endtrans %}
+								<div class="col ">
+									<p class="text-nowrap">{{event.date|date('d M Y') }}
 									</p>
-								{% endif %}
-								<button class=" noBackground large mt-2" type="button">{% trans %}Ajouter à mes favoris{% endtrans %}</button>
-
+								</div>
 							</div>
-						</div>
-					</div>
-					<div class="row  gx-lg-5 gy-4 mt-3  ">
-						<div class="col-lg-9">
-							<div class="info-box h-100">
-								<div class="row ">
-									<div class="col">
-										<h2>{% trans %}Description{% endtrans %}</h2>
-										<p class="mt-3">{{ event.getTranslatedDescription(app.request.locale) }}</p>
-
-										<h2 class="mt-4 mb-3">{% trans %}Lieu{% endtrans %}</h2>
+							<div class="row ">
+								<div class="col">
+									<li class="list-group-item ">
+										<i class="bi bi-alarm"></i>
+										{% trans %}Heure{% endtrans %}
+									</li>
+								</div>
+								<div class="col ">
+									<p>{{ event.hour|date('H:i') }}</p>
+								</div>
+							</div>
+							<div class="row ">
+								<div class="col">
+									<li class="list-group-item ">
 										<i class="bi bi-geo-alt"></i>
-										{% set adress = event.location.name ~','~ event.location.street ~'  '~ event.location.number ~','~ event.location.postcode ~' '~ event.location.city	%}
-										{% set url = 'https://www.google.com/maps/search/?api=1&query=' ~ adress|url_encode%}
-
+										{% trans %}Lieu{% endtrans %}
+									</li>
+								</div>
+								<div class="col">
+									{% set adress = event.location.name ~','~ event.location.street ~'  '~ event.location.number ~','~ event.location.postcode ~' '~ event.location.city	%}
+									{% set url = 'https://www.google.com/maps/search/?api=1&query=' ~ adress|url_encode%}
+									<p>
 										<a href="{{url}}" target="_blank">{{event.location.name}}</a>
-										<div>
-											<i class="bi bi-geo"></i>
-											{{event.location.street ~'  '~ event.location.number ~','~ event.location.postcode ~' '~ event.location.city}}
-										</div>
-										<div class="mt-3">
-											<iframe class="rounded" width="100%" height="125px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" style="border:0" allowfullscreen="" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBVizdQeh3udy11xDc5Ao2YStR2gLc-rfc&amp;q={{adress|url_encode}}&amp;maptype=roadmap&amp;zoom=14">
-												<a href="https://www.maps.ie/create-google-map/">{% trans %}Embed Google Street View map{% endtrans %}</a>
-											</iframe>
-										</div>
-									</div>
-									<div class="col">
-										<h2>{% trans %}Types de tickets{% endtrans %}</h2>
-										<div class="d-flex flex-column gap-3 mt-3">
-											{% for type in event.tickettypes %}
-												<div class="p-3 rounded-3" style=" border: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);">
-													<div class="d-flex justify-content-between align-items-start">
-														<div>
-															<h5 class="fw-bold mb-1">{{  type.getTranslatedLabel(app.request.locale)  }}</h5>
-															<p class="small text-white-50 mb-0">{{ type.getTranslatedDescription(app.request.locale) }}</p>
-														</div>
-														<div class="text-end ps-3">
-															<p class="fs-5 fw-bold text-info mb-0 text-nowrap">{{ type.price }}
-																€</p>
-														</div>
-													</div>
-												</div>
-											{% endfor %}
-										</div>
-										{% if isPurchasable %}
-											<button class="btn button large mt-3 " onclick="window.location.href='{{path('app_event_tickets',{id:event.id})}}'">{% trans %}Acheter un ticket{% endtrans %}</button>
-										{% else %}
-											<p class="text-white-50 small mt-3 mb-0">
-												<i class="bi bi-exclamation-circle"></i>
-												{% trans %}Billets non disponibles pour cet évènement{% endtrans %}
-											</p>
-										{% endif %}
-									</div>
+									</p>
 								</div>
 							</div>
-						</div>
-						<div class="col-lg-3">
-							<div class=" p-4 rounded-4 border border-secondary border-opacity-25 shadow-sm">
-								<div class="d-flex align-items-center mb-3">
-									<i class="bi bi-shield-exclamation text-danger fs-4 me-3"></i>
-									<h4 class="mb-0">{% trans %}Signaler l'événement{% endtrans %}</h4>
+							<div class="row ">
+								<div class="col">
+									<li class="list-group-item text-nowrap">
+										<i class="bi bi-bookmark-heart"></i>
+										{% trans %}Catégorie{% endtrans %}
+
+									</li>
 								</div>
-								<p class="small text-white-50">{% trans %}Cet événement pose problème ? Signalez-le et notre équipe l'examinera.{% endtrans %}</p>
-								<button class="btn btn-outline-danger w-100 py-2 rounded-3 mt-2" type="button" onclick="window.location.href='{{path('app_reports_new', {id:event.id})}}'">
-									<i class="bi bi-flag"></i>
-									{% trans %}Signaler{% endtrans %}
-								</button>
-							</div>
-							<div class=" mt-4 p-4 rounded-4 border border-secondary border-opacity-25 shadow-sm">
-								<div class="d-flex align-items-start mb-3">
-									<i class="bi bi-shield-lock text-success fs-4 me-3"></i>
-									<div>
-										<h6 class="fw-bold mb-1">{% trans %}Paiement sécurisé{% endtrans %}</h6>
-										<small class="text-white-50">{% trans %}Transactions 100% sécurisées{% endtrans %}</small>
-									</div>
-								</div>
-								<div class="d-flex align-items-start mb-3">
-									<i class="bi bi-ticket-detailed text-success fs-4 me-3"></i>
-									<div>
-										<h6 class="fw-bold mb-1">{% trans %}Billets électroniques{% endtrans %}</h6>
-										<small class="text-white-50">{% trans %}Reçus par email instantanément{% endtrans %}</small>
-									</div>
-								</div>
-								<div class="d-flex align-items-start">
-									<i class="bi bi-headset text-success fs-4 me-3"></i>
-									<div>
-										<h6 class="fw-bold mb-1">{% trans %}Service client{% endtrans %}</h6>
-										<small class="text-white-50">{% trans %}Lundi - Vendredi de 9h à 19h{% endtrans %}</small>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col">
-							<section class="mt-5 pb-5">
-
-								<div class="d-flex justify-content-between align-items-center mb-4">
-									<h2>{% trans %}Événements similaires{% endtrans %}</h2>
-
-								</div>
-								<div class="row">
-									{% set displayedCount = 0 %}
-									{% for allevents in events %}
-										{% if allevents.id != event.id and displayedCount < 6 %}
-
-
-											{% set common = false %}
-											{% for cat in allevents.categories %}
-												{% if cat in event.categories %}
-													{% set common = true %}
-												{% endif %}
-											{% endfor %}
-
-											{% if common %}
-												<div class="col-12 col-md-6 col-lg-4 mb-4">
-													<div class="card bg-transparent border border-secondary border-opacity-25 rounded-4 overflow-hidden">
-														{% if allevents.galleries is not empty %}
-														<img src="{{ asset('assets/img/uploads/events/' ~ allevents.galleries[0].name) }}" class="card-img-top" style="height: 200px; object-fit: cover;">
-													{% else %}
-														<img src="https://c8.alamy.com/compfr/2fa5h0c/icone-aucune-image-disponible-signe-d-image-manquant-ou-aucune-image-pour-le-site-web-ou-l-application-mobile-symbole-vectoriel-2fa5h0c.jpg" class="card-img-top" style="height: 200px; object-fit: cover;" alt="{{ 'Image anonyme de l\'évènement'|trans }}">
-													{% endif %}
-														<div class="card-body">
-															<span class="badge bg-primary mb-2">
-																{{ allevents.categories[0].name }}
-															</span>
-															<h5 class="card-title text-white">{{ allevents.title }}</h5>
-															<p class="text-info small">
-																<i class="bi bi-geo-alt"></i>
-																{{ allevents.location.name }}</p>
-															<button class=" noBackground" type="button" onclick="window.location.href='{{path('app_event_consult', {'id': allevents.id}) }}'">{% trans %}Voir l'évenement{% endtrans %}</button>
-														</div>
-													</div>
-												</div>
-												{% set displayedCount = displayedCount + 1 %}
-											{% endif %}
-										{% endif %}
-
+								<div class="col">
+									{% set allCategories ='' %}
+									{% for cat  in event.categories %}
+										{% set allCategories = allCategories ~ cat.name ~' '%}
 									{% endfor %}
+									<p>{{allCategories }}</p>
+
 								</div>
 
-							</section>
+							</div>
+							{% if isPurchasable %}
+								<button class="btn button large " onclick="window.location.href='{{path('app_event_tickets',{id:event.id})}}'">{% trans %}Acheter un ticket{% endtrans %}</button>
+							{% else %}
+								<p class="text-white-50 small mb-0">
+									<i class="bi bi-exclamation-circle"></i>
+									{% trans %}Billets non disponibles pour cet évènement{% endtrans %}
+								</p>
+							{% endif %}
+							<button class=" noBackground large mt-2" type="button">{% trans %}Ajouter à mes favoris{% endtrans %}</button>
+
 						</div>
 					</div>
 				</div>
-			</section>
-		</section>
-	</main>
-{% endblock %}
+				<div class="row  gx-lg-5 gy-4 mt-3  ">
+					<div class="col-lg-9">
+						<div class="info-box h-100">
+							<div class="row ">
+								<div class="col">
+									<h2>{% trans %}Description{% endtrans %}</h2>
+									<p class="mt-3">{{ event.getTranslatedDescription(app.request.locale) }}</p>
+
+									<h2 class="mt-4 mb-3">{% trans %}Lieu{% endtrans %}</h2>
+									<i class="bi bi-geo-alt"></i>
+									{% set adress = event.location.name ~','~ event.location.street ~'  '~ event.location.number ~','~ event.location.postcode ~' '~ event.location.city	%}
+									{% set url = 'https://www.google.com/maps/search/?api=1&query=' ~ adress|url_encode%}
+
+									<a href="{{url}}" target="_blank">{{event.location.name}}</a>
+									<div>
+										<i class="bi bi-geo"></i>
+										{{event.location.street ~'  '~ event.location.number ~','~ event.location.postcode ~' '~ event.location.city}}
+									</div>
+									<div class="mt-3">
+										<iframe class="rounded" width="100%" height="125px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" style="border:0" allowfullscreen="" src="https://www.google.com/maps/embed/v1/place?key={{ google_maps_key }}&amp;q={{adress|url_encode}}&amp;maptype=roadmap&amp;zoom=14">
+											<a href="https://www.maps.ie/create-google-map/">{% trans %}Embed Google Street View map{% endtrans %}</a>
+										</iframe>
+									</div>
+								</div>
+								<div class="col">
+									<h2>{% trans %}Types de tickets{% endtrans %}</h2>
+									<div class="d-flex flex-column gap-3 mt-3">
+										{% for type in event.tickettypes %}
+											<div class="p-3 rounded-3" style=" border: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);">
+												<div class="d-flex justify-content-between align-items-start">
+													<div>
+														<h5 class="fw-bold mb-1">{{  type.getTranslatedLabel(app.request.locale)  }}</h5>
+														<p class="small text-white-50 mb-0">{{ type.getTranslatedDescription(app.request.locale) }}</p>
+													</div>
+													<div class="text-end ps-3">
+														<p class="fs-5 fw-bold text-info mb-0 text-nowrap">{{ type.price }}
+															€</p>
+													</div>
+												</div>
+											</div>
+										{% endfor %}
+									</div>
+									{% if isPurchasable %}
+										<button class="btn button large mt-3 " onclick="window.location.href='{{path('app_event_tickets',{id:event.id})}}'">{% trans %}Acheter un ticket{% endtrans %}</button>
+									{% else %}
+										<p class="text-white-50 small mt-3 mb-0">
+											<i class="bi bi-exclamation-circle"></i>
+											{% trans %}Billets non disponibles pour cet évènement{% endtrans %}
+										</p>
+									{% endif %}
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3">
+						<div class=" p-4 rounded-4 border border-secondary border-opacity-25 shadow-sm">
+							<div class="d-flex align-items-center mb-3">
+								<i class="bi bi-shield-exclamation text-danger fs-4 me-3"></i>
+								<h4 class="mb-0">{% trans %}Signaler l'événement{% endtrans %}</h4>
+							</div>
+							<p class="small text-white-50">{% trans %}Cet événement pose problème ? Signalez-le et notre équipe l'examinera.{% endtrans %}</p>
+							<button class="btn btn-outline-danger w-100 py-2 rounded-3 mt-2" type="button" onclick="window.location.href='{{path('app_reports_new', {id:event.id})}}'">
+								<i class="bi bi-flag"></i>
+								{% trans %}Signaler{% endtrans %}
+							</button>
+						</div>
+						<div class=" mt-4 p-4 rounded-4 border border-secondary border-opacity-25 shadow-sm">
+							<div class="d-flex align-items-start mb-3">
+								<i class="bi bi-shield-lock text-success fs-4 me-3"></i>
+								<div>
+									<h6 class="fw-bold mb-1">{% trans %}Paiement sécurisé{% endtrans %}</h6>
+									<small class="text-white-50">{% trans %}Transactions 100% sécurisées{% endtrans %}</small>
+								</div>
+							</div>
+							<div class="d-flex align-items-start mb-3">
+								<i class="bi bi-ticket-detailed text-success fs-4 me-3"></i>
+								<div>
+									<h6 class="fw-bold mb-1">{% trans %}Billets électroniques{% endtrans %}</h6>
+									<small class="text-white-50">{% trans %}Reçus par email instantanément{% endtrans %}</small>
+								</div>
+							</div>
+							<div class="d-flex align-items-start">
+								<i class="bi bi-headset text-success fs-4 me-3"></i>
+								<div>
+									<h6 class="fw-bold mb-1">{% trans %}Service client{% endtrans %}</h6>
+									<small class="text-white-50">{% trans %}Lundi - Vendredi de 9h à 19h{% endtrans %}</small>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<section class="mt-5 pb-0 pb-md-0">
+
+							<div class="d-flex justify-content-between align-items-center mb-4">
+								<h2>{% trans %}Événements similaires{% endtrans %}</h2>
+
+							</div>
+							<div class="row" id="similar-events">
+								{% set displayedCount = 0 %}
+								{% for allevents in events %}
+									{% if allevents.id != event.id and displayedCount < 6 %}
+
+
+										{% set common = false %}
+										{% for cat in allevents.categories %}
+											{% if cat in event.categories %}
+												{% set common = true %}
+											{% endif %}
+										{% endfor %}
+
+										{% if common %}
+											<div class="col-6 col-md-6 col-lg-4 mb-4">
+												<div class="card bg-transparent border border-secondary border-opacity-25 rounded-4 overflow-hidden">
+													{% if allevents.galleries is not empty %}
+														<img src="{{ asset('assets/img/uploads/events/' ~ allevents.galleries[0].name) }}" class="card-img-top" style="height: 200px; object-fit: cover; object-position: top;">
+													{% else %}
+														<img src="https://c8.alamy.com/compfr/2fa5h0c/icone-aucune-image-disponible-signe-d-image-manquant-ou-aucune-image-pour-le-site-web-ou-l-application-mobile-symbole-vectoriel-2fa5h0c.jpg" class="card-img-top" style="height: 200px; object-fit: cover; object-position: top;"
