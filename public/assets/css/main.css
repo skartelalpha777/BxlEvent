@@ -668,7 +668,7 @@ h6 {
 /*--------------------------------------------------------------
 # Disable aos animation delay on mobile devices
 --------------------------------------------------------------*/
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   [data-aos-delay] {
     transition-delay: 0 !important;
   }
@@ -715,7 +715,7 @@ section,
 
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .section-title h2 {
     font-size: 2.5rem;
   }
@@ -765,7 +765,7 @@ section,
   border-radius: 2px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .hero .hero-content h1 {
     font-size: 2.5rem;
   }
@@ -794,7 +794,7 @@ section,
   font-weight: 600;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .hero .hero-content h2 {
     font-size: 1.25rem;
   }
@@ -844,7 +844,7 @@ section,
   transform: translateY(-2px);
 }
 
-@media (max-width: 576px) {
+@media (max-width: 767px) {
   .hero .hero-actions {
     flex-direction: column;
   }
@@ -985,7 +985,7 @@ section,
   margin-bottom: 1rem;
 }
 
-@media (max-width: 767.98px) {
+@media (max-width: 767px) {
   .contact .info-box h3 {
     font-size: 1.75rem;
   }
@@ -1072,7 +1072,7 @@ section,
   margin-bottom: 1rem;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .contact .contact-form h3 {
     font-size: 1.75rem;
   }
@@ -1162,6 +1162,75 @@ section,
 .card:hover {
   transform: translateY(-10px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 767px) {
+  #events-results .card-img-top,
+  #hero .card-img-top {
+    height: 100px !important;
+  }
+
+  #events-results .card .card-title,
+  #hero .card .card-title {
+    font-size: 0.9rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  #events-results .card .categorie,
+  #hero .card .categorie {
+    font-size: 0.7rem;
+  }
+
+  #events-results .card .card-body,
+  #hero .card .card-body {
+    padding: 0.5rem;
+  }
+
+  #events-results .card .list-group-item,
+  #hero .card .list-group-item {
+    padding: 0.35rem 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  #events-results .card .card-actions,
+  #hero .card .card-actions {
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  #events-results .card .card-actions .col,
+  #hero .card .card-actions .col {
+    width: 100%;
+    max-width: 100%;
+    text-align: center !important;
+  }
+
+  #events-results .card .card-actions .noBackground,
+  #hero .card .card-actions .noBackground {
+    width: 100%;
+  }
+
+  #events-results .card .event-date-badge,
+  #hero .card .event-date-badge {
+    font-size: 0.7rem;
+    padding: 2px 6px !important;
+  }
+
+  /* Réduit tous les boutons du système maison (.button / .noBackground) sur mobile, sur tout le site */
+  .button {
+    padding: 8px 14px !important;
+    font-size: 0.85rem;
+  }
+
+  .noBackground {
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+    font-size: 0.85rem;
+  }
 }
 
 .categorie {
