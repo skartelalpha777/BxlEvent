@@ -1167,7 +1167,7 @@ section,
 @media (max-width: 767px) {
   #events-results .card-img-top,
   #hero .card-img-top {
-    height: 100px !important;
+    height: 150px !important;
   }
 
   #events-results .card .card-title,
@@ -1214,14 +1214,12 @@ section,
     width: 100%;
   }
 
-  #events-results .card .event-date-badge,
-  #hero .card .event-date-badge {
-    font-size: 0.7rem;
+  .event-date-badge {
+    font-size: 0.5rem;
     padding: 2px 6px !important;
   }
 
-  /* Réduit tous les boutons du système maison (.button / .noBackground) sur mobile, sur tout le site */
-  .button {
+.button {
     padding: 8px 14px !important;
     font-size: 0.85rem;
   }
@@ -1230,6 +1228,30 @@ section,
     padding-top: 8px !important;
     padding-bottom: 8px !important;
     font-size: 0.85rem;
+  }
+
+  /* "Événements similaires" (event/consult.html.twig) : scopé sur son propre id
+     plutôt que sur #hero, qui est aussi utilisé par event/featured.html.twig et
+     enveloppe toute cette section — un scope #hero aurait touché les deux pages. */
+  #similar-events .card-img-top {
+    height: 110px !important;
+  }
+
+  #similar-events .card-title {
+    font-size: 0.85rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  #similar-events .card-body {
+    padding: 0.6rem;
+  }
+
+  #similar-events .noBackground {
+    width: 100%;
   }
 }
 
@@ -1751,6 +1773,12 @@ section,
   height: 535px;
   object-fit: cover;
   object-position: center;
+}
+
+@media (max-width: 767px) {
+  .event-card-img {
+    height: 350px;
+  }
 }
 
 .signaler {
