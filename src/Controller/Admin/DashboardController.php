@@ -386,6 +386,7 @@ class DashboardController extends AbstractDashboardController
 
         yield MenuItem::section('Catalogue');
         yield MenuItem::linkTo(EventCrudController::class, 'Évènements', 'fas fa-calendar-alt')->setAction(Action::INDEX);
+        yield MenuItem::linkTo(EventTranslationCrudController::class, 'Traductions', 'fas fa-language')->setAction(Action::INDEX);
         yield MenuItem::linkTo(CategorieCrudController::class, 'Catégories', 'fas fa-tags')->setAction(Action::INDEX);
         yield MenuItem::linkTo(LocationCrudController::class, 'Lieux', 'fas fa-map-marker-alt')->setAction(Action::INDEX);
         yield MenuItem::linkTo(GalleryCrudController::class, 'Galerie', 'fas fa-images')->setAction(Action::INDEX);

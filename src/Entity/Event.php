@@ -138,6 +138,13 @@ class Event implements TranslatableInterface
         return $this;
     }
 
+    public function getTranslatedDescription(string $locale): ?string
+    {
+        $description = $this->translate($locale, false)->getDescription();
+
+        return ($description !== null && $description !== '') ? $description : $this->description;
+    }
+
     public function getDate(): ?\DateTime
     {
         return $this->date;

@@ -2,7 +2,7 @@
 
 
 {% block title %}
-	{{ event.getTranslatedTitle(app.request.locale) }} | BxlEvent
+	{{ event.title }} | BxlEvent
 {% endblock %}
 
 {% block body %}
@@ -30,7 +30,7 @@
 										{% set name = eventimg.name %}
 
 										<div class="carousel-item {% if loop.first %}active{% endif %}">
-											<img src="{{ asset('assets/img/uploads/events/') ~ name }}" class="rounded event-card-img " alt="image de l'évènement: {{ event.getTranslatedTitle(app.request.locale) }}">
+											<img src="{{ asset('assets/img/uploads/events/') ~ name }}" class="rounded event-card-img " alt="image de l'évènement: {{ event.title }}">
 										</div>
 									{% endfor %}
 								</div>
@@ -51,7 +51,7 @@
 										<p class="categorie  mt-5  px-3 rounded">{{cat.name}}</p>
 
 									{% endfor %}
-									<h1 class=" ">{{ event.getTranslatedTitle(app.request.locale) }}</h1>
+									<h1 class=" ">{{ event.title }}</h1>
 									<p>
 										<i class="bi bi-geo-alt"></i>
 										{{event.location.name}}</p>
@@ -254,7 +254,7 @@
 															<span class="badge bg-primary mb-2">
 																{{ allevents.categories[0].name }}
 															</span>
-															<h5 class="card-title text-white">{{ allevents.getTranslatedTitle(app.request.locale) }}</h5>
+															<h5 class="card-title text-white">{{ allevents.title }}</h5>
 															<p class="text-info small">
 																<i class="bi bi-geo-alt"></i>
 																{{ allevents.location.name }}</p>

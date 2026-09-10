@@ -7,11 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Contract\Entity\TranslationInterface;
 use Knp\DoctrineBehaviors\Model\Translatable\TranslationTrait;
 
-/**
- * Traduction de Event : title et description, une ligne par langue.
- * locale et la relation vers Event sont fournis par TranslationTrait,
- * injectés dans les métadonnées Doctrine par TranslatableEventSubscriber.
- */
+
 #[ORM\Entity(repositoryClass: EventTranslationRepository::class)]
 class EventTranslation implements TranslationInterface
 {
@@ -23,22 +19,11 @@ class EventTranslation implements TranslationInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $title = null;
-
-    #[ORM\Column(length: 255)]
     private ?string $description = null;
 
-
-    public function getTitle(): ?string
+    public function getId(): ?int
     {
-        return $this->title;
-    }
-
-    public function setTitle(?string $title): static
-    {
-        $this->title = $title;
-
-        return $this;
+        return $this->id;
     }
 
     public function getDescription(): ?string
@@ -49,6 +34,19 @@ class EventTranslation implements TranslationInterface
     public function setDescription(?string $description): static
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+
+    public function getEvent(): ?Event
+    {
+        return $this->translatable;
+    }
+
+    public function setEvent(?Event $event): static
+    {
+        $this->translatable = $event;
 
         return $this;
     }

@@ -18,7 +18,7 @@
         <tr>
           <td>{{ event.id }}</td>
           <td>{{ event.title }}</td>
-          <td>{{ event.description }}</td>
+          <td>{{ event.getTranslatedDescription(app.request.locale) }}</td>
           <td>{{ event.date ? event.date|date('Y-m-d') : '' }}</td>
           <td>{{ event.hour ? event.hour|date('H:i:s') : '' }}</td>
         </tr>
