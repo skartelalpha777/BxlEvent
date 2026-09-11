@@ -6,6 +6,8 @@
 	| BxlEvent
 {% endblock %}
 
+{% block metadescription %}{{ event.getTranslatedDescription(app.request.locale)|striptags|slice(0, 160) }}{% endblock %}
+
 {% block body %}
 
 <main class="main">
@@ -249,4 +251,32 @@
 													{% if allevents.galleries is not empty %}
 														<img src="{{ asset('assets/img/uploads/events/' ~ allevents.galleries[0].name) }}" class="card-img-top" style="height: 200px; object-fit: cover; object-position: top;">
 													{% else %}
-														<img src="https://c8.alamy.com/compfr/2fa5h0c/icone-aucune-image-disponible-signe-d-image-manquant-ou-aucune-image-pour-le-site-web-ou-l-application-mobile-symbole-vectoriel-2fa5h0c.jpg" class="card-img-top" style="height: 200px; object-fit: cover; object-position: top;"
+														<img src="https://c8.alamy.com/compfr/2fa5h0c/icone-aucune-image-disponible-signe-d-image-manquant-ou-aucune-image-pour-le-site-web-ou-l-application-mobile-symbole-vectoriel-2fa5h0c.jpg" class="card-img-top" style="height: 200px; object-fit: cover; object-position: top;" alt="{{ 'Image anonyme de l\'évènement'|trans }}">
+												{% endif %}
+													<div class="card-body">
+														<span class="badge bg-primary mb-2">
+															{{ allevents.categories[0].name }}
+														</span>
+														<h5 class="card-title text-white">{{ allevents.title }}</h5>
+														<p class="text-info small">
+															<i class="bi bi-geo-alt"></i>
+															{{ allevents.location.name }}</p>
+														<button class=" noBackground" type="button" onclick="window.location.href='{{path('app_event_consult', {'id': allevents.id}) }}'">{% trans %}Voir l'évenement{% endtrans %}</button>
+													</div>
+												</div>
+											</div>
+											{% set displayedCount = displayedCount + 1 %}
+										{% endif %}
+									{% endif %}
+
+								{% endfor %}
+
+
+							</div>
+						</section>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+{% endblock %}

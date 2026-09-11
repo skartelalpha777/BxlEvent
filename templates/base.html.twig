@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ app.request.locale }}">
 	<head>
 		<meta charset="UTF-8"/>
 		<title>
@@ -7,6 +7,7 @@
 				BxlEvent
 			{% endblock %}
 		</title>
+		<meta name="description" content="{% block metadescription %}BxlEvent, la billetterie en ligne des évènements à Bruxelles : concerts, festivals, expositions et activités. Trouvez votre prochaine sortie et achetez vos billets en quelques clics.{% endblock %}"/>
 		<!-- Fonts -->
 		<link href="https://fonts.googleapis.com" rel="preconnect"/>
 		<link href="https://fonts.gstatic.com" rel="preconnect" crossorigin/>
