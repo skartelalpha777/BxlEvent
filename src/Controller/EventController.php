@@ -242,7 +242,6 @@ final class EventController extends AbstractController
                 $end = new \DateTime($request->query->get('end-date'));
                 return $eventRepository->getTicketsAndRevenuByDay($start, $end, $userId);
             } catch (\Exception) {
-                // dates invalides -> on ignore le filtre et on affiche tout
             }
         }
         return $eventRepository->getTicketsAndRevenuByDay(null, null, $userId);
