@@ -51,7 +51,11 @@ final class EventController extends AbstractController
 
                 $date = null;
                 if ($dateParam = $request->query->get('date')) {
-                    $date = new \DateTime($dateParam);
+                    try {
+                        $date = new \DateTime($dateParam);
+                    } catch (\Exception) {
+                        $date = null;
+                    }
                 }
 
                 $location = null;
@@ -233,9 +237,13 @@ final class EventController extends AbstractController
         $submittedToken = $request->query->get('filter_token');
 
         if ($this->isCsrfTokenValid('filter', $submittedToken)) {
-            $start = new \DateTime($request->query->get('start-date'));
-            $end = new \DateTime($request->query->get('end-date'));
-            return $eventRepository->getTicketsAndRevenuByDay($start, $end, $userId);
+            try {
+                $start = new \DateTime($request->query->get('start-date'));
+                $end = new \DateTime($request->query->get('end-date'));
+                return $eventRepository->getTicketsAndRevenuByDay($start, $end, $userId);
+            } catch (\Exception) {
+                // dates invalides -> on ignore le filtre et on affiche tout
+            }
         }
         return $eventRepository->getTicketsAndRevenuByDay(null, null, $userId);
     }
@@ -248,9 +256,13 @@ final class EventController extends AbstractController
         $submittedToken = $request->query->get('filter_token');
 
         if ($this->isCsrfTokenValid('filter', $submittedToken)) {
-            $start = new \DateTime($request->query->get('start-date'));
-            $end = new \DateTime($request->query->get('end-date'));
-            return $eventRepository->getTicketsAndRevenuByDayForEvent($start, $end, $eventId);
+            try {
+                $start = new \DateTime($request->query->get('start-date'));
+                $end = new \DateTime($request->query->get('end-date'));
+                return $eventRepository->getTicketsAndRevenuByDayForEvent($start, $end, $eventId);
+            } catch (\Exception) {
+                // dates invalides -> on ignore le filtre et on affiche tout
+            }
         }
 
         return $eventRepository->getTicketsAndRevenuByDayForEvent(null, null, $eventId);
