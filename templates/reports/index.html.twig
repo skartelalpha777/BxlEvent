@@ -24,8 +24,10 @@
 							</tr>
 						</thead>
 						<tbody>
+							{% set untreatedCount = 0 %}
 							{% for report in reports %}
 								{% if report.treated == false %}
+									{% set untreatedCount = untreatedCount + 1 %}
 									<tr>
 										<td>
 											<a href="{{path('app_event_consult',{'id':report.event.id})}}">{{ report.event.title}}</a>
@@ -47,11 +49,12 @@
 										</td>
 									</tr>
 								{% endif %}
-							{% else %}
+							{% endfor %}
+							{% if untreatedCount == 0 %}
 								<tr>
 									<td colspan="7">{% trans %}Aucun Signalement{% endtrans %}</td>
 								</tr>
-							{% endfor %}
+							{% endif %}
 						</tbody>
 					</table>
 				</div>
