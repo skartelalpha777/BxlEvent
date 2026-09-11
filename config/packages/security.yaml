@@ -32,6 +32,8 @@ security:
                 check_path: app_login
                 enable_csrf: true
                 default_target_path: app_event_index
+            login_throttling:
+                max_attempts: 5
             logout:
                 path: app_logout
                 # where to redirect after logout
