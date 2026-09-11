@@ -7,7 +7,8 @@
 				BxlEvent
 			{% endblock %}
 		</title>
-		<meta name="description" content="{% block metadescription %}BxlEvent, la billetterie en ligne des évènements à Bruxelles : concerts, festivals, expositions et activités. Trouvez votre prochaine sortie et achetez vos billets en quelques clics.{% endblock %}"/>
+		<meta
+		name="description" content="{% block metadescription %}BxlEvent, la billetterie en ligne des évènements à Bruxelles : concerts, festivals, expositions et activités. Trouvez votre prochaine sortie et achetez vos billets en quelques clics.{% endblock %}"/>
 		<!-- Fonts -->
 		<link href="https://fonts.googleapis.com" rel="preconnect"/>
 		<link href="https://fonts.gstatic.com" rel="preconnect" crossorigin/>
@@ -116,14 +117,16 @@
 							{% set flags = {'fr': 'fi-fr', 'en': 'fi-gb', 'nl': 'fi-nl', 'es': 'fi-es'} %}
 							<li class="dropdown">
 								<a href="">
-									<span class="nav-label"><span class="fi {{ flags[app.request.locale]|default('fi-fr') }}"></span></span>
+									<span class="nav-label">
+										<span class="fi {{ flags[app.request.locale]|default('fi-fr') }}"></span>
+									</span>
 									<i class="bi bi-chevron-down toggle-dropdown"></i>
 								</a>
 								<ul>
-									<li><a href="{{ path('app_change_locale', {'_locale': 'fr'}) }}" class="{{ app.request.locale == 'fr' ? 'active' : '' }}"><span class="fi fi-fr"></span></a></li>
-									<li><a href="{{ path('app_change_locale', {'_locale': 'en'}) }}" class="{{ app.request.locale == 'en' ? 'active' : '' }}"><span class="fi fi-gb"></span></a></li>
-									<li><a href="{{ path('app_change_locale', {'_locale': 'nl'}) }}" class="{{ app.request.locale == 'nl' ? 'active' : '' }}"><span class="fi fi-nl"></span></a></li>
-									<li><a href="{{ path('app_change_locale', {'_locale': 'es'}) }}" class="{{ app.request.locale == 'es' ? 'active' : '' }}"><span class="fi fi-es"></span></a></li>
+									<li><ahref="{{ path('app_change_locale', {'_locale': 'fr'}) }}"class="{{ app.request.locale == 'fr' ? 'active' : '' }}"><span class="fi fi-fr"></span></a></li>
+									<li><ahref="{{ path('app_change_locale', {'_locale': 'en'}) }}"class="{{ app.request.locale == 'en' ? 'active' : '' }}"><span class="fi fi-gb"></span></a></li>
+									<li><ahref="{{ path('app_change_locale', {'_locale': 'nl'}) }}"class="{{ app.request.locale == 'nl' ? 'active' : '' }}"><span class="fi fi-nl"></span></a></li>
+									<li><ahref="{{ path('app_change_locale', {'_locale': 'es'}) }}"class="{{ app.request.locale == 'es' ? 'active' : '' }}"><span class="fi fi-es"></span></a></li>
 								</ul>
 							</li>
 						</li>
@@ -248,9 +251,9 @@
 				<i class="bi bi-geo-alt"></i>
 				{% trans %}Bruxelles, Belgique{% endtrans %}</span>
 			<span>
-				<a href="mailto:contact@bxlevent.be">
+				<a href="mailto:3010madiallo@student.epfc.eu">
 					<i class="bi bi-envelope"></i>
-					{% trans %}contact@bxlevent.be{% endtrans %}</a>
+					3010madiallo@student.epfc.eu</a>
 			</span>
 			<span>
 				<a href="tel:+3221234567">

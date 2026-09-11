@@ -8,17 +8,17 @@
 		<form class="event-filters" method="GET" action="{{ path('app_mes_statistiques') }}">
 			<div class="row gy-3">
 				<div class="col-md-6 col-lg">
-					<label class="filter-label" for="filter-date">{% trans %}Date de début{% endtrans %}</label>
+					<label class="filter-label" for="filter-start-date">{% trans %}Date de début{% endtrans %}</label>
 					<div class="filter-control">
 						<i class="bi bi-calendar-event"></i>
-						<input type="datetime-local" name="start-date">
+						<input type="datetime-local" id="filter-start-date" name="start-date">
 					</div>
 				</div>
 				<div class="col-md-6 col-lg">
-					<label class="filter-label" for="filter-date">{% trans %}Date de fin{% endtrans %}</label>
+					<label class="filter-label" for="filter-end-date">{% trans %}Date de fin{% endtrans %}</label>
 					<div class="filter-control">
 						<i class="bi bi-calendar-event"></i>
-						<input type="datetime-local" name="end-date">
+						<input type="datetime-local" id="filter-end-date" name="end-date">
 					</div>
 				</div>
 			</div>
