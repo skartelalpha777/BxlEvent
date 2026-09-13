@@ -1484,7 +1484,8 @@ section,
 
 /* --- 4.2 Évènements à ne pas rater (event/featured.html.twig) --- */
 .featureEventsHead {
-  height: 400px;
+  min-height: 400px;
+  padding: 2rem 0;
   background-image: linear-gradient(180deg, color-mix(in srgb, var(--background-color), transparent 8%), color-mix(in srgb, var(--background-color), transparent 50%)), url("../img/Bruxelles_Grande_place.jpg");
   background-size: cover;
   background-position: center;
