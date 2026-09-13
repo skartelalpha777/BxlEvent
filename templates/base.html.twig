@@ -8,9 +8,9 @@
 				BxlEvent
 			{% endblock %}
 		</title>
-		<meta
-		name="description" content="{% block metadescription %}BxlEvent, la billetterie en ligne des évènements à Bruxelles : concerts, festivals, expositions et activités. Trouvez votre prochaine sortie et achetez vos billets en quelques clics.{% endblock %}"/>
-		<link rel="icon" type="image/svg+xml" href="{{ asset('assets/img/favicon.svg') }}"/>
+		<meta name="description" content="{% block metadescription %}BxlEvent, la billetterie en ligne des évènements à Bruxelles : concerts, festivals, expositions et activités. Trouvez votre prochaine sortie et achetez vos billets en quelques clics.{% endblock %}"/>
+		<link
+		rel="icon" type="image/svg+xml" href="{{ asset('assets/img/favicon.svg') }}"/>
 		<!-- Fonts -->
 		<link href="https://fonts.googleapis.com" rel="preconnect"/>
 		<link href="https://fonts.gstatic.com" rel="preconnect" crossorigin/>
@@ -117,6 +117,7 @@
 								</ul>
 							</li>
 							{% set flags = {'fr': 'fi-fr', 'en': 'fi-gb', 'nl': 'fi-nl', 'es': 'fi-es'} %}
+							<i class="bi bi-cart fs-5 me-1"></i>
 							<li class="dropdown">
 								<a href="">
 									<span class="nav-label">
@@ -125,10 +126,10 @@
 									<i class="bi bi-chevron-down toggle-dropdown"></i>
 								</a>
 								<ul>
-									<li><a href="{{ path('app_change_locale', {'_locale': 'fr'}) }}" class="{{ app.request.locale == 'fr' ? 'active' : '' }}"><span class="fi fi-fr"></span></a></li>
-									<li><a href="{{ path('app_change_locale', {'_locale': 'en'}) }}" class="{{ app.request.locale == 'en' ? 'active' : '' }}"><span class="fi fi-gb"></span></a></li>
-									<li><a href="{{ path('app_change_locale', {'_locale': 'nl'}) }}" class="{{ app.request.locale == 'nl' ? 'active' : '' }}"><span class="fi fi-nl"></span></a></li>
-									<li><a href="{{ path('app_change_locale', {'_locale': 'es'}) }}" class="{{ app.request.locale == 'es' ? 'active' : '' }}"><span class="fi fi-es"></span></a></li>
+									<li><ahref="{{ path('app_change_locale', {'_locale': 'fr'}) }}"class="{{ app.request.locale == 'fr' ? 'active' : '' }}"><span class="fi fi-fr"></span></a></li>
+									<li><ahref="{{ path('app_change_locale', {'_locale': 'en'}) }}"class="{{ app.request.locale == 'en' ? 'active' : '' }}"><span class="fi fi-gb"></span></a></li>
+									<li><ahref="{{ path('app_change_locale', {'_locale': 'nl'}) }}"class="{{ app.request.locale == 'nl' ? 'active' : '' }}"><span class="fi fi-nl"></span></a></li>
+									<li><ahref="{{ path('app_change_locale', {'_locale': 'es'}) }}"class="{{ app.request.locale == 'es' ? 'active' : '' }}"><span class="fi fi-es"></span></a></li>
 								</ul>
 							</li>
 						</li>
