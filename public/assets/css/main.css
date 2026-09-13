@@ -534,6 +534,28 @@ h6 {
   }
 }
 
+@media (max-width: 480px) {
+  .header .logo img {
+    max-height: 22px;
+  }
+
+  .header .logo span {
+    font-size: 1.1rem;
+  }
+
+  .navmenu-right .nav-label {
+    display: none;
+  }
+
+  .navmenu-right>ul>li {
+    padding: 0;
+  }
+
+  .navmenu-right a {
+    padding: 8px 6px;
+  }
+}
+
 /* --- Footer --- */
 .footer {
   color: var(--default-color);
