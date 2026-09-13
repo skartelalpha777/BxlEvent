@@ -20,7 +20,7 @@ class UserFixtures extends Fixture
         $Users = [
             'organizer_1' => ['email' => 'organisateur1@gmail.com', 'firstName' => 'Sophie', 'lastName' => 'Lambert'],
             'organizer_2' => ['email' => 'organisateur2@gmail.com', 'firstName' => 'Thomas', 'lastName' => 'Dubois'],
-            'user1_' => ['email' => 'user1@gmail.com', 'firstName' => 'Françcois', 'lastName' => 'Leblanc'],
+            'user1_' => ['email' => 'user1@gmail.com', 'firstName' => 'François', 'lastName' => 'Leblanc'],
             'user_2' => ['email' => 'user2@gmail.com', 'firstName' => 'Emanuel', 'lastName' => 'Junior'],
             'Admin' => ['email' => 'admin@gmail.com', 'firstName' => 'Alpha', 'lastName' => 'Diallo'],
         ];

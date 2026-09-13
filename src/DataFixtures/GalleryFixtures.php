@@ -23,7 +23,7 @@ class GalleryFixtures extends Fixture implements DependentFixtureInterface
             'event_5' => ['Classic21Festival.jpg','Classic21FestivalMain.jpg'],
             'event_6' => ['Leto_Guy2bezbar.jpg','Leto_Guy2bezbarMain.jpg','Leto_Guy2bezbar2.jpg'],
             'event_7' => ['ElectroSymfony.png','ElectroSymfony2.jpg','ElectroSymfonyMain.jpg'],
-            'event_8' => ['JazzBluesNightMain.jpg','JazzBluesNight2.jpg',''],
+            'event_8' => ['JazzBluesNightMain.jpg','JazzBluesNight2.jpg'],
             'event_9' => ['BruxellesOpenAirFestivalMain.png','BruxellesOpenAirFestival.jpg'],
         ];
 
