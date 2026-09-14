@@ -134,7 +134,7 @@
 							<p class="mb-0 small">{% trans %}Inscrivez-vous à notre newsletter et recevez chaque semaine les événements à ne pas rater.{% endtrans %}</p>
 						</div>
 					</div>
-					<form name="frmNewsletter" action="{{ path('app_newSuscrib_new') }}" method="post" class="d-flex gap-2">
+					<form name="frmNewsletter" action="{{ path('app_newSuscrib_new') }}" method="post" class="d-flex flex-column flex-sm-row gap-2">
 						<input type="email" name="email" id="email" placeholder="{{ 'Votre e-mail'|trans }}" class="form-control newsletter-input">
 						<button type="submit" class="button">{% trans %}S'abonner{% endtrans %}</button>
 						<input type="hidden" name="_token" value="{{ csrf_token('newsletter_token') }}">

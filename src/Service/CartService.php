@@ -15,7 +15,7 @@ class CartService
     private TicketTypeRepository $ticketTypeRepository;
 
     /**
-     * Summary of __construct ils s'agit du constructeur qui initialise les deux attribut ci-dessous
+     * Ils s'agit du constructeur qui initialise les deux attribut ci-dessous
      * @param RequestStack $requestStack répresente la session
      * @param TicketTypeRepository $ticketTypeRepository contient les different type de tickets
      */
