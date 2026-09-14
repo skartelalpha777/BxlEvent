@@ -43,7 +43,8 @@ final class ReportsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($report);
             $entityManager->flush();
-            return $this->redirectToRoute('app_reports_index', [], Response::HTTP_SEE_OTHER);
+            $this->addFlash('success', 'Votre signalement a bien été envoyé. Merci de nous aider à garder BxlEvent fiable.');
+            return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
         }
         return $this->render('reports/new.html.twig', [
             'report' => $report,
