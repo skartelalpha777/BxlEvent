@@ -579,6 +579,10 @@ final class EventController extends AbstractController
     #[Route('/{id}', name: 'app_event_show', methods: ['GET'])]
     public function show(Event $event): Response
     {
+        if ($event->getCreator() !== $this->getUser() && !$this->isGranted('ROLE_ADMIN')) {
+            throw $this->createAccessDeniedException('Vous ne pouvez consulter que vos propres événements.');
+        }
+
         return $this->render('event/show.html.twig', [
             'event' => $event,
         ]);
