@@ -8,6 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class GalleryCrudController extends AbstractCrudController
 {
@@ -22,7 +23,10 @@ class GalleryCrudController extends AbstractCrudController
             IdField::new('id')->hideOnForm(),
             ImageField::new('name', 'Image')
                 ->setBasePath('assets/img/uploads/events')
-                ->setUploadDir('public/assets/img/uploads/events'),
+                ->setUploadDir('public/assets/img/uploads/events')
+                ->setFormTypeOption('constraints', [
+                    new Assert\File(extensions: ['jpg', 'jpeg', 'png', 'webp']),
+                ]),
             BooleanField::new('isMain', 'Image principale'),
             AssociationField::new('event', 'Événement'),
         ];
