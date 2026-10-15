@@ -24,7 +24,7 @@ class GalleryCrudController extends AbstractCrudController
             ImageField::new('name', 'Image')
                 ->setBasePath('assets/img/uploads/events')
                 ->setUploadDir('public/assets/img/uploads/events')
-                ->setFormTypeOption('constraints', [
+                ->setFileConstraints([
                     new Assert\File(extensions: ['jpg', 'jpeg', 'png', 'webp']),
                 ]),
             BooleanField::new('isMain', 'Image principale'),
