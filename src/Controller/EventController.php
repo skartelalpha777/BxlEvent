@@ -109,6 +109,7 @@ final class EventController extends AbstractController
         }
 
         return $this->render('event/dashboard.html.twig', [
+            'events'=>$eventRepository->findAll(),
             'myEvents' => $events,
             'revenu' => $revenu,
             'totalTickets' => $totalTickets,
@@ -184,7 +185,7 @@ final class EventController extends AbstractController
         if (!$event) {
             throw $this->createNotFoundException('Événement introuvable.');
         }
-        if ($event->getCreator() !== $this->getUser()) {
+        if ($event->getCreator() !== $this->getUser() && !$this->isGranted('ROLE_ADMIN')) {
             throw $this->createAccessDeniedException('Vous ne pouvez pas consulter les statistiques d\'un événement dont vous n\'êtes pas le créateur.');
         }
 

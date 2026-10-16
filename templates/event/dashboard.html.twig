@@ -1,6 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{% trans %}Mon tableau de bord{% endtrans %} | BxlEvent{% endblock %}
+{% block title %}
+	{% trans %}Mon tableau de bord{% endtrans %}
+	| BxlEvent
+{% endblock %}
 
 {% block body %}
 	<section class="pt-5 pb-5">
@@ -84,21 +87,24 @@
 						<div class="col-md-4">
 							<div class="dash-card p-3 h-100 d-flex align-items-center justify-content-between">
 								<span>
-									<i class="bi bi-calendar-check text-success me-2"></i>{% trans %}Événements à venir{% endtrans %}</span>
+									<i class="bi bi-calendar-check text-success me-2"></i>
+									{% trans %}Événements à venir{% endtrans %}</span>
 								<span class="fs-5 fw-bold">{{ upcomingCount }}</span>
 							</div>
 						</div>
 						<div class="col-md-4">
 							<div class="dash-card p-3 h-100 d-flex align-items-center justify-content-between">
 								<span>
-									<i class="bi bi-calendar-event text-warning me-2"></i>{% trans %}Événements passés{% endtrans %}</span>
+									<i class="bi bi-calendar-event text-warning me-2"></i>
+									{% trans %}Événements passés{% endtrans %}</span>
 								<span class="fs-5 fw-bold">{{ pastCount }}</span>
 							</div>
 						</div>
 						<div class="col-md-4">
 							<div class="dash-card p-3 h-100 d-flex align-items-center justify-content-between">
 								<span>
-									<i class="bi bi-calendar-x text-danger me-2"></i>{% trans %}Événements refusés{% endtrans %}</span>
+									<i class="bi bi-calendar-x text-danger me-2"></i>
+									{% trans %}Événements refusés{% endtrans %}</span>
 								<span class="fs-5 fw-bold">{{ refused }}</span>
 							</div>
 						</div>
@@ -126,7 +132,8 @@
 										{% for event in myEvents %}
 											<tr>
 												<td>
-													<a href="{{path('app_event_show',{'id':event.id})}}">{{ event.title }}
+													<a href="{{path('app_event_show',{'id':event.id})}}"{{ event.title }}>
+												</td>
 												</td>
 												<td class="text-white-50">{{ event.date|date('d M Y') }}</td>
 												<td class="text-white-50">{{ event.location ? event.location.name : '—' }}</td>
@@ -151,7 +158,7 @@
 														<a href="{{path('app_event_consult',{'id':event.id})}}">{% trans %}Voir l'affiche{% endtrans %}</a>
 													{% endif %}
 												</td>
-												
+
 											</tr>
 										{% endfor %}
 									</tbody>
@@ -159,6 +166,65 @@
 							</div>
 						{% endif %}
 					</div>
+					{% if app.user.role.value == 'admin' %}
+
+						<div class="dash-card p-4">
+							<div class="d-flex justify-content-between align-items-center mb-3">
+								<h5 class="mb-0">{% trans %}Tous les événements{% endtrans %}</h5>
+							</div>
+							{% if events|length == 0  %}
+								<p class="text-white-50 mb-0">{% trans %}Aucun événement disponible.{% endtrans %}</p>
+							{% else %}
+								<div class="table-responsive">
+									<table class="table event-table border-0 align-middle mb-0">
+										<thead>
+											<tr>
+												<th>{% trans %}Événement{% endtrans %}</th>
+												<th>{% trans %}Date{% endtrans %}</th>
+												<th>{% trans %}Lieu{% endtrans %}</th>
+												<th>{% trans %}Statut{% endtrans %}</th>
+												<th>{% trans %}Ventes{% endtrans %}</th>
+												<th>{% trans %}Affiche{% endtrans %}</th>
+											</tr>
+										</thead>
+										<tbody>
+											{% for event in events %}
+												<tr>
+													<td>
+														<a href="{{path('app_event_show',{'id':event.id})}}">{{ event.title }}</a>
+													</td>
+													<td class="text-white-50">{{ event.date|date('d M Y') }}</td>
+													<td class="text-white-50">{{ event.location ? event.location.name : '—' }}</td>
+													<td>
+														{% if event.status.value == 'refused' %}
+															<span class="badge text-bg-danger">{% trans %}Refusé{% endtrans %}</span>
+														{% elseif event.status.value == 'notchecked' %}
+															<span class="badge text-bg-warning">{% trans %}En cours d'examen{% endtrans %}</span>
+														{% elseif event.date < date() %}
+															<span class="badge text-bg-warning">{% trans %}Passé{% endtrans %}</span>
+														{% else %}
+															<span class="badge text-bg-success">{% trans %}À venir{% endtrans %}</span>
+														{% endif %}
+													</td>
+													<td>
+														{% if event.status.value != 'notchecked' and event.status.value != 'refused' %}
+															<a href="{{path('app_event_statistiques',{'eventId':event.id})}}">{% trans %}Voir les Statistiques{% endtrans %}</a>
+														{% endif %}
+													</td>
+													<td>
+														{% if event.status.value != 'notchecked' and event.status.value != 'refused' %}
+															<a href="{{path('app_event_consult',{'id':event.id})}}">{% trans %}Voir l'affiche{% endtrans %}</a>
+														{% endif %}
+													</td>
+
+												</tr>
+											{% endfor %}
+										</tbody>
+									</table>
+								</div>
+							{% endif %}
+						</div>
+					{% endif %}
 					<button class="button mt-4" onclick="window.location.href='{{path('app_event_new') }} '">{% trans %}Créer un évènement{% endtrans %}</button>
 				</div>
 			</div>
