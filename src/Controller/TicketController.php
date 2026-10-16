@@ -53,7 +53,6 @@ final class TicketController extends AbstractController
 
         $user = $this->getUser();
         if (!$user) {
-            $this->addFlash('error', 'Vous devez être connecté pour acheter des tickets.');
             return $this->redirectToRoute('app_login');
         }
 
